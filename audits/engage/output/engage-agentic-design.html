@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engage Agentic AI Design: Next 4 Steps Implementation Plan</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h4 {
+            color: #34495e;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .architecture-diagram {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        
+        .file-path {
+            background: #e2e8f0;
+            color: #2d3748;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .status-check {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .status-pending {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        .highlight-box {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .timeline {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .timeline-week {
+            background: #3498db;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .timeline-content {
+            margin-left: 20px;
+            flex: 1;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .metric-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .metric-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .metric-value {
+            font-size: 24px;
+            color: #3498db;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Engage Agentic AI Design: Next 4 Steps Implementation Plan</h1>
+        
+        <div class="highlight-box">
+            <h3>Executive Summary</h3>
+            <p>This document outlines the specific design and implementation tasks for the next 4 critical steps to enhance BrightMove's existing agentic AI foundation. Based on the current state analysis, we have a solid foundation with AWS Bedrock integration, basic AI evaluation endpoints, and frontend integration. The next steps focus on adding LangChain orchestration, implementing the "Wiz" agent persona, expanding agentic capabilities, and integrating Twilio for messaging.</p>
+        </div>
+
+        <h2>Current State Assessment</h2>
+        
+        <div class="success-box">
+            <h4>✅ Already Implemented</h4>
+            <ul>
+                <li>AWS Bedrock integration in <code>AiAgenticService</code></li>
+                <li>Basic AI evaluation endpoints (<code>/agent/recruiter/evaluate</code>)</li>
+                <li>Generative AI endpoints (<code>/ai/job-description</code>, <code>/ai/email</code>)</li>
+                <li>Frontend integration in Engage app</li>
+                <li>MongoDB audit logging</li>
+                <li>Server-Sent Events (SSE) for streaming responses</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h4>🔄 Next 4 Steps to Implement</h4>
+            <ol>
+                <li><strong>LangChain Integration & Orchestration Layer</strong></li>
+                <li><strong>Wiz Agent Persona Implementation</strong></li>
+                <li><strong>Twilio Integration for Messaging</strong></li>
+                <li><strong>Advanced Agentic Capabilities Expansion</strong></li>
+            </ol>
+        </div>
+
+        <h2>Step 1: LangChain Integration & Orchestration Layer</h2>
+        
+        <h3>Architecture Overview</h3>
+        <div class="architecture-diagram">┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Engage App    │    │  LangChain       │    │   AWS Bedrock   │
+│   (Frontend)    │◄──►│  Orchestration   │◄──►│   (LLM)         │
+└─────────────────┘    │   Layer          │    └─────────────────┘
+                       └──────────────────┘
+                                │
+                       ┌──────────────────┐
+                       │  Tool Registry   │
+                       │  - ATS APIs      │
+                       │  - External APIs │
+                       │  - Custom Tools  │
+                       └──────────────────┘</div>
+
+        <h3>Implementation Tasks</h3>
+        
+        <h4>1.1 Create LangChain Service Layer</h4>
+        <div class="file-path">apps/brightmove-ats/brightmove-common/src/main/java/com/bm/ats/ai/LangChainOrchestrationService.java</div>
+        <div class="code-block">@Service
+@Slf4j
+public class LangChainOrchestrationService {
+    
+    private final BedrockRuntimeClient bedrockClient;
+    private final ToolRegistry toolRegistry;
+    private final AgentMemoryService memoryService;
+    
+    public AgentResponse executeAgentWorkflow(
+        UserModel user, 
+        AgentWorkflowRequest request,
+        List<AgentTool> tools
+    ) {
+        // 1. Initialize LangChain agent with tools
+        // 2. Set up conversation memory
+        // 3. Execute workflow with Bedrock
+        // 4. Return structured response
+    }
+    
+    public StreamingAgentResponse executeStreamingWorkflow(
+        UserModel user,
+        AgentWorkflowRequest request,
+        SseEmitter emitter
+    ) {
+        // Streaming version for real-time responses
+    }
+}</div>
+
+        <h4>1.2 Create Tool Registry</h4>
+        <div class="file-path">apps/brightmove-ats/brightmove-common/src/main/java/com/bm/ats/ai/tools/AgentToolRegistry.java</div>
+        <div class="code-block">@Component
+public class AgentToolRegistry {
+    
+    private final Map<String, AgentTool> tools = new ConcurrentHashMap<>();
+    
+    @PostConstruct
+    public void registerDefaultTools() {
+        registerTool(new ATSDataTool());
+        registerTool(new EmailCompositionTool());
+        registerTool(new CandidateSearchTool());
+        registerTool(new JobDescriptionTool());
+        registerTool(new CalendarSchedulingTool());
+    }
+    
+    public List<AgentTool> getToolsForWorkflow(String workflowType) {
+        // Return appropriate tools based on workflow
+    }
+}</div>
+
+        <h3>LangChain-Specific Instructions</h3>
+        
+        <div class="highlight-box">
+            <h4>1. Install LangChain4j Dependencies</h4>
+            <div class="code-block">&lt;!-- Add to build.gradle --&gt;
+implementation 'dev.langchain4j:langchain4j:0.27.1'
+implementation 'dev.langchain4j:langchain4j-bedrock:0.27.1'
+implementation 'dev.langchain4j:langchain4j-memory:0.27.1'</div>
+        </div>
+
+        <div class="highlight-box">
+            <h4>2. Configure LangChain4j with Bedrock</h4>
+            <div class="code-block">@Configuration
+public class LangChainConfig {
+    
+    @Bean
+    public BedrockChatModel bedrockChatModel(BedrockRuntimeClient client) {
+        return BedrockChatModel.builder()
+            .client(client)
+            .model("anthropic.claude-3-sonnet-20240229-v1:0")
+            .build();
+    }
+    
+    @Bean
+    public AgentMemoryService memoryService() {
+        return new InMemoryAgentMemoryService();
+    }
+}</div>
+        </div>
+
+        <h2>Step 2: Wiz Agent Persona Implementation</h2>
+        
+        <h3>Architecture Overview</h3>
+        <div class="architecture-diagram">┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Wiz Agent     │    │  Communication   │    │   Personality   │
+│   Controller    │◄──►│  Manager         │◄──►│   Engine        │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+                                │
+                       ┌──────────────────┐
+                       │  Channel Router  │
+                       │  - Email         │
+                       │  - SMS           │
+                       │  - In-App        │
+                       └──────────────────┘</div>
+
+        <h3>Implementation Tasks</h3>
+        
+        <h4>2.1 Create Wiz Agent Service</h4>
+        <div class="file-path">apps/brightmove-ats/brightmove-common/src/main/java/com/bm/ats/ai/wiz/WizAgentService.java</div>
+        <div class="code-block">@Service
+@Slf4j
+public class WizAgentService {
+    
+    private final LangChainOrchestrationService orchestrationService;
+    private final CommunicationManager communicationManager;
+    private final PersonalityEngine personalityEngine;
+    private final ChannelRouter channelRouter;
+    
+    public WizResponse handleCommunication(
+        UserModel user,
+        CommunicationRequest request
+    ) {
+        // 1. Analyze communication context
+        // 2. Apply Wiz personality
+        // 3. Route to appropriate channel
+        // 4. Execute communication workflow
+    }
+    
+    public WizResponse manageConversation(
+        UserModel user,
+        ConversationRequest request
+    ) {
+        // Handle ongoing conversation management
+    }
+}</div>
+
+        <h3>LangChain-Specific Instructions for Wiz Agent</h3>
+        
+        <div class="highlight-box">
+            <h4>1. Create Wiz Agent Chain</h4>
+            <div class="code-block">@Component
+public class WizAgentChain {
+    
+    private final ChatLanguageModel model;
+    private final List<AgentTool> wizTools;
+    
+    public WizAgentChain(BedrockChatModel model, AgentToolRegistry toolRegistry) {
+        this.model = model;
+        this.wizTools = toolRegistry.getToolsForWorkflow("wiz_communication");
+    }
+    
+    public String executeWizWorkflow(String input, UserModel user) {
+        // Create LangChain4j agent with Wiz-specific tools
+        Agent agent = Agent.builder()
+            .chatLanguageModel(model)
+            .tools(wizTools)
+            .memory(new InMemoryChatMemory())
+            .build();
+        
+        return agent.execute(input);
+    }
+}</div>
+        </div>
+
+        <h2>Step 3: Twilio Integration for Messaging</h2>
+        
+        <h3>Architecture Overview</h3>
+        <div class="architecture-diagram">┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Twilio SDK    │    │  Message Router  │    │   Channel       │
+│   Integration   │◄──►│  & Handler       │◄──►│   Manager       │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+                                │
+                       ┌──────────────────┐
+                       │  Conversation    │
+                       │  Store           │
+                       │  (MongoDB)       │
+                       └──────────────────┘</div>
+
+        <h3>Implementation Tasks</h3>
+        
+        <h4>3.1 Create Twilio Service</h4>
+        <div class="file-path">apps/brightmove-ats/brightmove-common/src/main/java/com/bm/ats/messaging/TwilioService.java</div>
+        <div class="code-block">@Service
+@Slf4j
+public class TwilioService {
+    
+    private final TwilioClient twilioClient;
+    private final ConversationStore conversationStore;
+    private final MessageRouter messageRouter;
+    
+    public MessageResponse sendMessage(
+        UserModel user,
+        MessageRequest request
+    ) {
+        // 1. Validate message request
+        // 2. Route to appropriate Twilio service
+        // 3. Store conversation state
+        // 4. Return response
+    }
+    
+    public void handleIncomingMessage(
+        TwilioWebhookRequest webhook
+    ) {
+        // Handle incoming SMS/WhatsApp messages
+    }
+}</div>
+
+        <h3>LangChain-Specific Instructions for Twilio Integration</h3>
+        
+        <div class="highlight-box">
+            <h4>1. Create Twilio Tool for LangChain</h4>
+            <div class="code-block">@Component
+public class TwilioMessagingTool implements AgentTool {
+    
+    private final TwilioService twilioService;
+    
+    @Override
+    public String getName() {
+        return "twilio_messaging";
+    }
+    
+    @Override
+    public ToolResult execute(Map<String, Object> parameters, UserModel user) {
+        String phoneNumber = (String) parameters.get("phone_number");
+        String message = (String) parameters.get("message");
+        
+        MessageRequest request = MessageRequest.builder()
+            .to(phoneNumber)
+            .body(message)
+            .build();
+        
+        MessageResponse response = twilioService.sendMessage(user, request);
+        return ToolResult.success(response);
+    }
+}</div>
+        </div>
+
+        <h2>Step 4: Advanced Agentic Capabilities Expansion</h2>
+        
+        <h3>Architecture Overview</h3>
+        <div class="architecture-diagram">┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Agent         │    │  Workflow        │    │   Capability    │
+│   Orchestrator  │◄──►│  Engine          │◄──►│   Registry      │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+                                │
+                       ┌──────────────────┐
+                       │  Specialized     │
+                       │  Agents          │
+                       │  - Screening     │
+                       │  - Engagement    │
+                       │  - Feedback      │
+                       └──────────────────┘</div>
+
+        <h3>Implementation Tasks</h3>
+        
+        <h4>4.1 Create Agent Orchestrator</h4>
+        <div class="file-path">apps/brightmove-ats/brightmove-common/src/main/java/com/bm/ats/ai/orchestration/AgentOrchestrator.java</div>
+        <div class="code-block">@Service
+@Slf4j
+public class AgentOrchestrator {
+    
+    private final Map<String, SpecializedAgent> agents;
+    private final WorkflowEngine workflowEngine;
+    private final CapabilityRegistry capabilityRegistry;
+    
+    public AgentResponse orchestrateWorkflow(
+        UserModel user,
+        WorkflowRequest request
+    ) {
+        // 1. Analyze workflow requirements
+        // 2. Select appropriate agents
+        // 3. Execute workflow with LangChain
+        // 4. Return coordinated response
+    }
+}</div>
+
+        <h3>LangChain-Specific Instructions for Advanced Capabilities</h3>
+        
+        <div class="highlight-box">
+            <h4>1. Create Multi-Agent LangChain Setup</h4>
+            <div class="code-block">@Component
+public class MultiAgentOrchestrator {
+    
+    private final Map<String, Agent> agents;
+    private final BedrockChatModel model;
+    
+    public MultiAgentOrchestrator(BedrockChatModel model, 
+                                List<SpecializedAgent> specializedAgents) {
+        this.model = model;
+        this.agents = createAgents(specializedAgents);
+    }
+    
+    private Map<String, Agent> createAgents(List<SpecializedAgent> specializedAgents) {
+        Map<String, Agent> agentMap = new HashMap<>();
+        
+        for (SpecializedAgent specializedAgent : specializedAgents) {
+            Agent agent = Agent.builder()
+                .chatLanguageModel(model)
+                .tools(specializedAgent.getSpecializedTools())
+                .memory(new InMemoryChatMemory())
+                .build();
+            
+            agentMap.put(specializedAgent.getAgentType(), agent);
+        }
+        
+        return agentMap;
+    }
+    
+    public String executeMultiAgentWorkflow(String input, 
+                                          List<String> agentTypes, 
+                                          UserModel user) {
+        // Execute workflow across multiple agents
+        String result = input;
+        for (String agentType : agentTypes) {
+            Agent agent = agents.get(agentType);
+            result = agent.execute(result);
+        }
+        return result;
+    }
+}</div>
+        </div>
+
+        <h2>Deployment Instructions</h2>
+        
+        <h3>1. Database Schema Updates</h3>
+        <div class="code-block">-- Create new tables for agentic features
+CREATE TABLE agent_conversations (
+    id VARCHAR(36) PRIMARY KEY,
+    user_id VARCHAR(36) NOT NULL,
+    conversation_sid VARCHAR(255),
+    channel_type VARCHAR(50),
+    status VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE agent_workflows (
+    id VARCHAR(36) PRIMARY KEY,
+    workflow_type VARCHAR(100) NOT NULL,
+    user_id VARCHAR(36) NOT NULL,
+    status VARCHAR(50),
+    result JSON,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</div>
+
+        <h3>2. Configuration Updates</h3>
+        <div class="file-path">apps/brightmove-ats/brightmove-web/src/main/resources/application.yml</div>
+        <div class="code-block">langchain:
+  bedrock:
+    model: anthropic.claude-3-sonnet-20240229-v1:0
+    max-tokens: 4096
+    temperature: 0.7
+  
+twilio:
+  account-sid: ${TWILIO_ACCOUNT_SID}
+  auth-token: ${TWILIO_AUTH_TOKEN}
+  phone-number: ${TWILIO_PHONE_NUMBER}
+  
+agent:
+  wiz:
+    personality-config: classpath:config/wiz-personality.json
+    memory-retention-days: 30
+  
+workflow:
+  max-concurrent: 10
+  timeout-seconds: 300</div>
+
+        <h3>3. New REST Endpoints</h3>
+        <div class="file-path">apps/brightmove-ats/brightmove-web/src/main/java/com/bm/ats/controller/agent/AdvancedAgentController.java</div>
+        <div class="code-block">@RestController
+@RequestMapping("/agent/v2")
+@Slf4j
+public class AdvancedAgentController {
+    
+    private final AgentOrchestrator agentOrchestrator;
+    private final WizAgentService wizAgentService;
+    private final TwilioService twilioService;
+    
+    @PostMapping("/workflow")
+    public AgentResponse executeWorkflow(
+        @RequestHeader(value = ApiHeaders.USER_API_KEY) String userApiKey,
+        @RequestBody WorkflowRequest request
+    ) {
+        UserModel user = userService.getUserByApiKey(userApiKey);
+        return agentOrchestrator.orchestrateWorkflow(user, request);
+    }
+    
+    @PostMapping("/wiz/communicate")
+    public WizResponse communicate(
+        @RequestHeader(value = ApiHeaders.USER_API_KEY) String userApiKey,
+        @RequestBody CommunicationRequest request
+    ) {
+        UserModel user = userService.getUserByApiKey(userApiKey);
+        return wizAgentService.handleCommunication(user, request);
+    }
+    
+    @PostMapping("/twilio/webhook")
+    public void handleTwilioWebhook(@RequestBody TwilioWebhookRequest webhook) {
+        twilioService.handleIncomingMessage(webhook);
+    }
+}</div>
+
+        <h3>4. Frontend Integration Updates</h3>
+        <div class="file-path">apps/engage-app/src/components/WizAgent.tsx</div>
+        <div class="code-block">interface WizAgentProps {
+  conversationId?: string;
+  channelType: 'email' | 'sms' | 'in-app';
+}
+
+export const WizAgent: React.FC<WizAgentProps> = ({ conversationId, channelType }) => {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isTyping, setIsTyping] = useState(false);
+  
+  const sendMessage = async (content: string) => {
+    setIsTyping(true);
+    try {
+      const response = await api.post('/agent/v2/wiz/communicate', {
+        content,
+        channelType,
+        conversationId
+      });
+      
+      setMessages(prev => [...prev, response.data]);
+    } catch (error) {
+      console.error('Error sending message:', error);
+    } finally {
+      setIsTyping(false);
+    }
+  };
+  
+  return (
+    <div className="wiz-agent-container">
+      <MessageList messages={messages} />
+      <MessageInput onSend={sendMessage} isTyping={isTyping} />
+    </div>
+  );
+};</div>
+
+        <h2>Testing Strategy</h2>
+        
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div class="metric-title">Unit Tests</div>
+                <ul>
+                    <li>Test each specialized agent independently</li>
+                    <li>Mock LangChain responses</li>
+                    <li>Test tool execution</li>
+                </ul>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">Integration Tests</div>
+                <ul>
+                    <li>Test agent orchestration</li>
+                    <li>Test Twilio integration</li>
+                    <li>Test conversation flow</li>
+                </ul>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">End-to-End Tests</div>
+                <ul>
+                    <li>Test complete workflow from frontend to backend</li>
+                    <li>Test multi-agent scenarios</li>
+                    <li>Test error handling and recovery</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Monitoring & Observability</h2>
+        
+        <h3>1. Metrics to Track</h3>
+        <ul>
+            <li>Agent response times</li>
+            <li>Workflow success rates</li>
+            <li>Twilio message delivery rates</li>
+            <li>User engagement metrics</li>
+        </ul>
+
+        <h3>2. Logging Strategy</h3>
+        <ul>
+            <li>Structured logging for all agent interactions</li>
+            <li>Audit trail for AI decisions</li>
+            <li>Performance monitoring</li>
+        </ul>
+
+        <h3>3. Alerting</h3>
+        <ul>
+            <li>Agent failure alerts</li>
+            <li>High latency alerts</li>
+            <li>Twilio delivery failure alerts</li>
+        </ul>
+
+        <h2>Risk Mitigation</h2>
+        
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div class="metric-title">Technical Risks</div>
+                <ul>
+                    <li><strong>LangChain Version Compatibility</strong>: Pin specific versions and test thoroughly</li>
+                    <li><strong>Bedrock Rate Limits</strong>: Implement retry logic and circuit breakers</li>
+                    <li><strong>Twilio Costs</strong>: Monitor usage and implement rate limiting</li>
+                </ul>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">Business Risks</div>
+                <ul>
+                    <li><strong>AI Response Quality</strong>: Implement human-in-the-loop for critical decisions</li>
+                    <li><strong>Data Privacy</strong>: Ensure all AI interactions are logged and auditable</li>
+                    <li><strong>User Adoption</strong>: Provide clear value proposition and training</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Success Metrics</h2>
+        
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div class="metric-title">Technical Metrics</div>
+                <div class="metric-value">Agent response time &lt; 2 seconds</div>
+                <div class="metric-value">Workflow success rate &gt; 95%</div>
+                <div class="metric-value">System uptime &gt; 99.9%</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">Business Metrics</div>
+                <div class="metric-value">User engagement increase &gt; 20%</div>
+                <div class="metric-value">Communication efficiency improvement &gt; 30%</div>
+                <div class="metric-value">Customer satisfaction score &gt; 4.5/5</div>
+            </div>
+        </div>
+
+        <h2>Timeline</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-week">Week 1-2</div>
+                <div class="timeline-content">
+                    <strong>LangChain Integration</strong><br>
+                    - Set up LangChain4j dependencies<br>
+                    - Create orchestration service<br>
+                    - Implement tool registry
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-week">Week 3-4</div>
+                <div class="timeline-content">
+                    <strong>Wiz Agent Implementation</strong><br>
+                    - Create Wiz agent service<br>
+                    - Implement personality engine<br>
+                    - Add communication manager
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-week">Week 5-6</div>
+                <div class="timeline-content">
+                    <strong>Twilio Integration</strong><br>
+                    - Set up Twilio SDK<br>
+                    - Create message router<br>
+                    - Implement conversation store
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-week">Week 7-8</div>
+                <div class="timeline-content">
+                    <strong>Advanced Capabilities</strong><br>
+                    - Create agent orchestrator<br>
+                    - Implement specialized agents<br>
+                    - Add workflow templates
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-week">Week 9-10</div>
+                <div class="timeline-content">
+                    <strong>Testing & Deployment</strong><br>
+                    - Comprehensive testing<br>
+                    - Performance optimization<br>
+                    - Production deployment
+                </div>
+            </div>
+        </div>
+
+        <h2>Appendix: Analysis Process</h2>
+        
+        <h3>Documents Analyzed</h3>
+        <ul>
+            <li>Current ATS source code structure</li>
+            <li>Existing AI service implementations</li>
+            <li>Engage app frontend architecture</li>
+            <li>BrightMove technical stack documentation</li>
+        </ul>
+
+        <h3>Key Decisions Made</h3>
+        <ol>
+            <li><strong>LangChain4j over Python LangChain</strong>: Better integration with existing Java Spring stack</li>
+            <li><strong>Modular Agent Architecture</strong>: Allows for independent development and testing</li>
+            <li><strong>Twilio as Primary Messaging Platform</strong>: Leverages existing Twilio SDK integration</li>
+            <li><strong>MongoDB for Conversation Storage</strong>: Consistent with existing audit logging approach</li>
+        </ol>
+
+        <h3>Assumptions</h3>
+        <ul>
+            <li>AWS Bedrock will remain the primary LLM provider</li>
+            <li>Existing ATS data models will be sufficient for agentic features</li>
+            <li>Twilio pricing model will remain cost-effective for the use case</li>
+            <li>LangChain4j will provide the necessary orchestration capabilities</li>
+        </ul>
+
+        <h3>Gaps Identified</h3>
+        <ul>
+            <li>Need for comprehensive testing framework for AI agents</li>
+            <li>Requirement for human-in-the-loop validation system</li>
+            <li>Need for advanced monitoring and observability tools</li>
+            <li>Requirement for AI bias detection and mitigation tools</li>
+        </ul>
+    </div>
+</body>
+</html> 

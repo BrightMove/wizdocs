@@ -1,0 +1,169 @@
+BrightMove
+Hire The Right Talent Quickly Problem
+Slow hiring is costly.  Bad hiring is worse.
+Companies take an average of 42 days to fill a position.
+Hiring managers struggle to efficiently track job applicants,
+leading to delays and poor hiring decisions.  The replacement
+cost of a bad hire is between 30%-150% of the original salary.
+Job seekers are frustrated and resent the process.
+The system is broken. Our advanced recruiting platform reduces time to hire and
+candidate acquisition costs by 30% with automated job postings,
+applicant tracking and robust candidate engagement.
+We build software our customers love to use.Solution
+Introducing BrightMoveAI Powered Hiring Platform for RPO, PEO & HR 5 Key FeaturesOur core feature allows you to manage large volumes of
+applicants efficiently across all of your customers to ensure no
+qualified candidate is overlooked.  Use augmented intelligence
+and machine learning to match make.
+Applicant
+Tracking
+Com m unicationsJob 
+Posting
+Hiring Decision
+SupportAutomatically advertise job openings
+across multiple platforms to attract a
+diverse pool of candidates.
+Maintain clear and timely communication with
+candidates throughout the hiring process to
+build a positive employer brand and keep top
+talent engaged.Streamline the process of evaluating
+candidates, making hiring decisions & sending
+offers to ensure positions are filled with the best-
+suited candidates.Brand
+Managem entEnsure every candidate's first impression
+reflects your customer’s brand, building
+trust and credibility from the very first
+interaction. 0102
+BrightMove Engage streamlines the hiring process with advanced
+communication, analytics, and administration tools, enhancing
+interactions between job seekers, hiring managers, and recruiters. It
+ensures efficient, transparent candidate experiences and provides
+insights and customizable workflows to boost recruitment efficiency
+and employer brandingEngage03
+04BrightMove's JobGorilla is an integrated service
+that automates the management and marketing of
+job postings with a singular goal of optimizing
+applicant conversion - to help qualified job seekers
+and hiring managers to find each other.  JobGorilla
+uses automation and AI to improve this part of the
+recruitment process.JobGorillaBrightMove Merge is an integrated platform for customers to
+service, manage, and monitor all their customers uniformly. It
+combines ATS and HRIS functionalities, offers advanced analytics,
+and supports customizable workflows to enhance efficiency,
+consistency, and scalability.Merge2025 Roadmap 
+BrightMove Wisdom is an integrated data analytics
+platform to capture, curate, calculate and consume data
+insights from the transactional behavior of the ATS users.
+Wisdom combines ATS and 3rd part data to offer a holistic
+view of the customer.Wisdom Some thoughts on AI
+Some foundational views
+We see AI as a potential Force Multiplier, and we’re not looking at it as a tool to reduce
+workforce.  
+Tasks once thought to be too labor heavy to take up, can now be accomplished in
+seconds.  This presents a new set of things to consider.
+We are concerned about authenticity, bias and ethical use, hence our measured rollout.
+It is a very exciting time, with rapid evolution and advancement.
+Some foundational terminology
+Generative AI, LLM, DSM
+ChatGPT (OpenAI), CoPilot (Microsoft), Gemini (Google), Grok (X), Claude /Bedrock (AWS)
+What is a Workflow? A process with a fixed set of steps
+What is an Agent? A dynamic process that works towards an outcome, continuously
+looping until achieved. Personas
+Candidate Carl
+Role: “job seeker”Recruiter Robin
+Role: “match maker”Hiring Manager Harry
+Role: “hiring decision maker”
+“Find the right job for
+me with the right
+company.”“Reduce the time to
+hire of the right
+candidate.”“Get my team in
+place and project
+back on track.” Current challenges: 
+Application black holes
+Impersonal screening
+Delayed updates
+Engage solutions: 
+Transparent process
+Automated status updates
+Personalized communication
+Recommendations
+Framework
+Recruiter Robin
+Candidate Carl Hiring Manager HarryRecruiter-Candidate EdgeCurrent challenges: 
+Misaligned expectations
+Slow feedback loops
+Fragmented communication tools
+Engage solutions: 
+Collaborative eval tools
+Streamlined feedback mechanisms
+Priority alignmentRecruiter-HM Edge
+Current challenges: 
+Limited direct interaction
+Formal / stilted communications
+Missed opportunities for
+connection
+Engage solutions: 
+Facilitated authentic engagement
+Guided interview process
+Contextual communicationHM-Job Seeker Edge
+All are using or should
+be using AI agents
+“A graph of nodes and edges” E n g a g e is a solution that ...
+is based on an AI Agentic strategy to
+streamline the hiring process
+has an agent named Wiz that monitors and
+manages all communication channels
+optimizes communication timing and content
+using natural language
+provides a consistent, authentic AI presence
+across the entire graph
+has an incremental cost based on usage, like
+ChatGPT and others
+Solution Overview
+BrightMove Engage powered by WizAI Powered Hiring Platform for HR
+SOURCING
+SCREENING
+HIRING
+ONBOARDINGGenAI: AI Email Content
+GenAI: AI Job Descriptions
+Agent: AI Job Completeness
+Agent: Email / SMS Campaign
+Agent: Application Bot (Wiz)
+Agent: Submittal AI
+Agent: Interview Bot
+Agent: Candidate Feedback
+GenAI: NLP Candidate Search
+Agent: Gather New Hire Info
+Agent: Manager Feedback
+Agent: Onboarding Buddy
+Agent: Check-in / WarrantyImagine the scenario with Engage and Wiz...
+“A one month period with 100 open jobs & 20:1 candidate to hire ratio” W iz Chatbot
+Candidate facing, mobile friendly
+A simple widget that can be deployed on
+any website
+Aware of candidate experience portal
+AI agent makes personalized
+recommendations for candidate’s
+consideration
+AI agent evaluates candidate’s hiring
+journey, time to hire and likely
+expectations
+Connects to Recruiters & Hiring
+Manager’s Inbox
+Human in the Loop: Connects Recruiter,
+Hiring Manager and Wiz
+communications with candidateThoughts & Inspiration
+The design of Chatbot comes from
+popular tools in the market Inbox
+Single page framework with vertical
+scrolling
+Collapsable D e t a i l s pane
+Simple and intuitive message box to
+add to conversation
+Design aims to reduce clicks and
+scrolling
+Minimalist approach to component
+selection, only what’s needed for task
+at handThoughts & Inspiration
+The design of Inbox comes from
+popular tools in the market

@@ -1,0 +1,152 @@
+BrightMove
+Hire The Right Talent Quickly Today’s Kickoff
+Inspiration for Today’s TopicsIntroduce CAB Members (30 mins)
+What are we asking of the CAB
+Can we get to know you?
+Name, Company, Role, Geography
+What book are you reading currently?
+What music is on shuffle in the car or in iTunes?
+How we see the problem (30 mins) 
+Initial thoughts on AI, Terms & Tools
+Problem Statement
+Personas
+Framework: Pain points and the impact on business
+Solution Concepts: Talent Acquisition Funnel
+Prototypes: Discussion on design thoughts
+What’s next
+Open Discussion (30 mins)
+What are we missing?
+What are your biggest consumers of time in the hiring process?
+What are your biggest areas of waste?
+What are your hardest engagement challenges with customers?“Nothing is quite so useless as doing with great
+efficiency what should not be done at all.”
+Peter F. Drucker Some initial thoughts on AI
+Some foundational views
+We see AI as a potential Force Multiplier, and we’re not looking at it as a tool to reduce
+workforce.  
+Tasks once thought to be too labor heavy to take up, can now be accomplished in
+seconds.  This presents a new set of things to consider.
+We are concerned about authenticity, bias and ethical use, hence our measured rollout.
+It is a very exciting time, with rapid evolution and advancement.
+Some foundational terminology
+Generative AI, LLM, DSM
+ChatGPT (OpenAI), CoPilot (Microsoft), Gemini (Google), Grok (X), Claude /Bedrock (AWS)
+What is a Workflow? A process with a fixed set of steps
+What is an Agent? A dynamic process that works towards an outcome, continuously
+looping until achieved. Problem
+Slow hiring is costly.  Bad hiring is worse.
+Companies take an average of 42 days to fill a position.
+Hiring managers struggle to efficiently track job applicants,
+leading to delays and poor hiring decisions.  The replacement
+cost of a bad hire is between 30%-150% of the original salary.
+Job seekers are frustrated and resent the process.
+The system is broken. Personas
+Candidate Carl
+Role: “job seeker”Recruiter Robin
+Role: “match maker”Hiring Manager Harry
+Role: “hiring decision maker”
+“Find the right job for
+me with the right
+company.”“Reduce the time to
+hire of the right
+candidate.”“Get my team in
+place and project
+back on track.” Current challenges: 
+Application black holes
+Impersonal screening
+Delayed updates
+Engage solutions: 
+Transparent process
+Automated status updates
+Personalized communication
+Recommendations
+Framework
+Recruiter Robin
+Candidate Carl Hiring Manager HarryRecruiter-Candidate EdgeCurrent challenges: 
+Misaligned expectations
+Slow feedback loops
+Fragmented communication tools
+Engage solutions: 
+Collaborative eval tools
+Streamlined feedback mechanisms
+Priority alignmentRecruiter-HM Edge
+Current challenges: 
+Limited direct interaction
+Formal / stilted communications
+Missed opportunities for
+connection
+Engage solutions: 
+Facilitated authentic engagement
+Guided interview process
+Contextual communicationHM-Job Seeker Edge
+All are using or should
+be using AI agents
+“A graph of nodes and edges” E n g a g e is a solution that ...
+is based on an AI Agentic strategy to
+streamline the hiring process
+has an agent named Wiz that monitors and
+manages all communication channels
+optimizes communication timing and content
+using natural language
+provides a consistent, authentic AI presence
+across the entire graph
+has an incremental cost based on usage, like
+ChatGPT and others
+Solution Concepts
+BrightMove Engage powered by WizAI Powered Hiring Platform for HR
+SOURCING
+SCREENING
+HIRING
+ONBOARDINGGenAI: AI Email Content
+GenAI: AI Job Descriptions
+Agent: AI Job Completeness
+Agent: Email / SMS Campaign
+Agent: Application Bot (Wiz)
+Agent: AI Submittal Scoring
+Agent: Interview Bot (Wiz)
+Agent: Candidate Feedback
+GenAI: NLP Candidate Search
+Agent: Gather New Hire Info
+Agent: Manager Feedback
+Agent: Onboarding Buddy
+Agent: Check-in / WarrantyImagine the scenario with Engage and Wiz...
+“A one month period with 100 open jobs & 20:1 candidate to hire ratio” Concept: Wiz Chatbot
+Candidate facing, mobile friendly
+A simple widget that can be deployed on
+any website
+Aware of candidate experience portal
+AI agent makes personalized
+recommendations for candidate’s
+consideration
+AI agent evaluates candidate’s hiring
+journey, time to hire and likely
+expectations
+Connects to Recruiters & Hiring
+Manager’s Inbox
+Human in the Loop: Connects Recruiter,
+Hiring Manager and Wiz
+communications with candidateThoughts & Inspiration
+The design of Chatbot comes from
+popular tools in the market
+Could Wiz bring about a career portal
+extinction event? Concept: Inbox
+Single page framework with vertical
+scrolling
+Collapsable D e t a i l s pane
+Simple and intuitive message box to
+add to conversation
+Design aims to reduce clicks and
+scrolling
+Minimalist approach to component
+selection, only what’s needed for task
+at handThoughts & Inspiration
+The design of Inbox comes from
+popular tools in the market CAB KickoffWhat’s Next
+Please take the survey and be honest
+Next CAB meeting in ~4 weeks: (end of April 2025)
+Development Sprint will take up feedback from survey
+Feedback 1 Feedback 2 Release 1 Release 2 Release 3March April May June July August
+MVP GA Link to Survey
+https://forms.gle/PWakQs2P5qJYTyjB6Please provide feedback via the link below. Next Meeting
+Date TBD, Jimmy will socialize after survey analysisWe value your honest & 
+constructive feedback.

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engage MVP Project Plan (Live)</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; background: #fafbfc; color: #222; }
+    h1, h2, h3 { color: #1a237e; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 2em; }
+    th, td { border: 1px solid #bbb; padding: 0.5em 1em; text-align: left; }
+    th { background: #e3e6f3; }
+    tr:nth-child(even) { background: #f5f6fa; }
+    code { background: #f3f3f3; padding: 2px 4px; border-radius: 3px; }
+    ul, ol { margin-bottom: 1em; }
+    section { margin-bottom: 2em; }
+    .appendix { font-size: 0.98em; color: #444; border-top: 1px solid #ddd; padding-top: 1em; }
+  </style>
+</head>
+<body>
+  <h1>Engage MVP Project Plan (Live)</h1>
+
+  <section>
+    <h2>1. Current State Analysis</h2>
+    <h3>a. Engage App</h3>
+    <ul>
+      <li><strong>Frontend:</strong> React/TypeScript, modular component structure (Dashboard, JobDetails, Messaging, SubmittalsTable, etc.).</li>
+      <li><strong>AI/Agentic Features:</strong>
+        <ul>
+          <li>SubmittalsTable includes AI agent scoring and summary for candidate submittals, with endpoints like <code>/agent/recruiter/evaluate</code>.</li>
+          <li>Messaging and conversation management present, with Twilio SDK integration planned/partially implemented.</li>
+        </ul>
+      </li>
+      <li><strong>Authentication:</strong> Context-based, with protected routes.</li>
+      <li><strong>Job and Submittal Management:</strong> Core job and candidate workflows are present.</li>
+      <li><strong>UI:</strong> Modern, responsive, with reusable components.</li>
+    </ul>
+    <h3>b. ATS Product</h3>
+    <ul>
+      <li><strong>Backend:</strong> Java Spring, robust applicant tracking, job management, and integrations.</li>
+      <li><strong>Integration:</strong> Engage is designed to work alongside ATS, leveraging its data and workflows.</li>
+      <li><strong>Note:</strong> No direct evidence of agentic endpoints in ATS, but Engage calls <code>/agent/recruiter/evaluate</code> (likely a new or planned microservice or ATS extension).</li>
+    </ul>
+    <h3>c. AI/Agentic Capabilities</h3>
+    <ul>
+      <li><strong>Implemented:</strong> AI scoring and summary for submittals, automated application screening, and candidate engagement.</li>
+      <li><strong>Planned:</strong> "Wiz" agent to manage communications, optimize timing/content, and provide a consistent AI presence across all communication channels.</li>
+      <li><strong>Twilio:</strong> Messaging infrastructure for omnichannel communication.</li>
+      <li><strong>AI Philosophy:</strong> AI is a force multiplier, not a workforce reducer. Focus on authenticity, bias, and ethical use. Measured rollout with customer feedback.</li>
+    </ul>
+    <h3>d. Customer Advisory Board (CAB) &amp; Feedback</h3>
+    <ul>
+      <li><strong>CAB Role:</strong> Regularly reviews product direction, provides feedback on pain points, time-wasters, and engagement challenges.</li>
+      <li><strong>Feedback Incorporated:</strong> Automated status updates, transparent process, personalized communication, collaborative evaluation tools, and priority alignment.</li>
+      <li><strong>Quality Metrics:</strong>
+        <ul>
+          <li>False Positive Rate (FPR) &lt; 5%</li>
+          <li>False Negative Rate (FNR) &lt; 3%</li>
+          <li>Consistency Rate (CR) &gt; 95%</li>
+          <li>Advanced metrics: decision distribution, bias detection, time-to-decision, human agreement rate, predictive validity</li>
+        </ul>
+      </li>
+      <li><strong>Evaluation Criteria:</strong> Job duties, tech skills, soft skills, related activities, professional associations, location.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2. MVP Scope &amp; Features</h2>
+    <h3>a. Core MVP Features</h3>
+    <ol>
+      <li><strong>User Authentication &amp; Authorization</strong>
+        <ul><li>Secure login, session management, and role-based access.</li></ul>
+      </li>
+      <li><strong>Dashboard</strong>
+        <ul><li>Overview of jobs, submittals, and recent activity.</li></ul>
+      </li>
+      <li><strong>Job Management</strong>
+        <ul><li>List, view, and manage job requisitions.</li></ul>
+      </li>
+      <li><strong>Submittal Management</strong>
+        <ul>
+          <li>List, view, and manage candidate submittals.</li>
+          <li>AI agent scoring and summary for each submittal, using CAB-defined quality metrics and evaluation criteria.</li>
+        </ul>
+      </li>
+      <li><strong>Messaging &amp; Conversations</strong>
+        <ul>
+          <li>Twilio-powered messaging (SMS, email, chat).</li>
+          <li>Conversation threads per job/candidate.</li>
+          <li>UI for viewing and sending messages.</li>
+        </ul>
+      </li>
+      <li><strong>AI/Agentic Capabilities</strong>
+        <ul>
+          <li>"Wiz" agent for submittal evaluation and communication management (partially implemented, ongoing improvements).</li>
+          <li>Foundation for future agentic features (e.g., automated candidate outreach, interview scheduling, GenAI for email content).</li>
+        </ul>
+      </li>
+      <li><strong>Notifications</strong>
+        <ul><li>Real-time or near-real-time notifications for key events (new submittal, message, etc.).</li></ul>
+      </li>
+      <li><strong>Basic Admin/Settings</strong>
+        <ul><li>User profile, notification preferences, and basic configuration.</li></ul>
+      </li>
+    </ol>
+    <h3>b. Non-Functional MVP Requirements</h3>
+    <ul>
+      <li><strong>Cloud-ready deployment (Docker, CI/CD).</strong></li>
+      <li><strong>Incremental cost tracking for AI usage (usage-based billing).</strong></li>
+      <li><strong>Usage analytics and basic reporting.</strong></li>
+      <li><strong>Accessibility and responsive design.</strong></li>
+      <li><strong>Ethical AI:</strong> Bias monitoring, transparency, and explainability in AI decisions.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>3. Release &amp; Delivery Plan</h2>
+    <h3>a. Milestones &amp; Timeline</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Milestone</th>
+          <th>Target Date</th>
+          <th>Key Deliverables</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Project Kickoff &amp; Planning</td><td>1/15/2025</td><td>Finalized plan, team alignment</td></tr>
+        <tr><td>Core Architecture &amp; Auth</td><td>2/15/2025</td><td>Auth, routing, CI/CD, base UI</td></tr>
+        <tr><td>Job &amp; Submittal Management</td><td>3/15/2025</td><td>Job list/details, submittal list/details</td></tr>
+        <tr><td>Messaging Infrastructure (Twilio)</td><td>4/15/2025</td><td>Messaging UI, Twilio integration, conversation flows</td></tr>
+        <tr><td>AI Agentic MVP (Wiz)</td><td>6/1/2025</td><td>AI scoring, summary, agentic API foundation</td></tr>
+        <tr><td>Internal MVP Demo</td><td>8/1/2025</td><td>End-to-end demo, feedback loop</td></tr>
+        <tr><td>Public MVP Release</td><td>9/1/2025</td><td>MVP live, feedback collection, support plan</td></tr>
+      </tbody>
+    </table>
+    <h3>b. Release Cadence</h3>
+    <ul>
+      <li><strong>Bi-weekly sprints</strong> with demos and retros.</li>
+      <li><strong>Monthly minor releases</strong> for new features/AI capabilities.</li>
+      <li><strong>Hotfixes as needed.</strong></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. Key Risks &amp; Mitigations</h2>
+    <ul>
+      <li><strong>AI/Agentic Backend Gaps:</strong> No clear backend for <code>/agent/recruiter/evaluate</code>—ensure this is prioritized early.</li>
+      <li><strong>Twilio Integration:</strong> Validate messaging flows and compliance.</li>
+      <li><strong>Data Integration with ATS:</strong> Ensure robust, secure data sync.</li>
+      <li><strong>AI Cost Management:</strong> Implement usage tracking and cost controls from the start.</li>
+      <li><strong>Ethical AI:</strong> Ongoing monitoring for bias, transparency, and explainability.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>5. Keeping the Plan Live: Continuous Feedback &amp; Adaptation</h2>
+    <ul>
+      <li><strong>CAB Reviews:</strong> Schedule regular (quarterly or more frequent) Customer Advisory Board reviews to assess progress, gather feedback, and reprioritize features.</li>
+      <li><strong>Customer Feedback Loops:</strong> Integrate in-app feedback mechanisms and direct customer interviews to capture real-world usage and pain points.</li>
+      <li><strong>Release Metrics:</strong> Track and publish key metrics (release frequency, AI quality metrics, user engagement, support tickets) to inform planning.</li>
+      <li><strong>Dynamic Roadmap:</strong> Adjust priorities and timelines based on CAB/customer feedback, market changes, and technical discoveries.</li>
+      <li><strong>Transparent Communication:</strong> Share roadmap updates, release notes, and key decisions with all stakeholders.</li>
+      <li><strong>Ethical Oversight:</strong> Regularly review AI outputs for bias, fairness, and compliance with ethical standards.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>6. Airflow: Data-Driven Feedback &amp; Automation</h2>
+    <ul>
+      <li><strong>Job Orchestration:</strong> Airflow schedules and runs ETL and analytics jobs, aggregating Engage and ATS data from Oracle, Snowflake, and other sources for business intelligence and reporting.</li>
+      <li><strong>Data-Driven Feedback Loops:</strong> Airflow automates the extraction and summarization of Engage usage, AI scoring, CAB/customer feedback, and release metrics. This data is used to inform regular reviews and roadmap adjustments.</li>
+      <li><strong>AI Monitoring &amp; Retraining:</strong> Airflow schedules evaluation of AI agent performance (FPR, FNR, CR, bias, etc.) and can trigger retraining or tuning jobs as needed. Automated reporting ensures transparency and ethical oversight.</li>
+      <li><strong>Release &amp; Adoption Metrics:</strong> Airflow orchestrates the collection of release frequency, feature adoption, and user engagement metrics for review by the CAB and stakeholders.</li>
+      <li><strong>Compliance &amp; Audit:</strong> Regular data quality, compliance, and audit jobs are scheduled to ensure ethical AI and regulatory requirements are met.</li>
+      <li><strong>Extensibility:</strong> New workflows (e.g., AI model retraining, feedback analytics, Engage-specific reporting) can be added as the product evolves.</li>
+    </ul>
+    <p>By integrating Airflow into the Engage feedback and analytics loop, the plan remains actionable, measurable, and continuously improved based on real data and stakeholder input.</p>
+  </section>
+
+  <section class="appendix">
+    <h2>Appendix: Analysis Process &amp; Gaps</h2>
+    <ul>
+      <li><strong>Codebase, documentation, and CAB/customer feedback were reviewed for current features, AI/agentic logic, and integration points.</strong></li>
+      <li><strong>No direct evidence of the backend implementation for agentic endpoints—this is a critical gap.</strong></li>
+      <li><strong>Twilio and AI agent features are present in the frontend, but backend and operational details need confirmation.</strong></li>
+      <li><strong>Assumptions:</strong> Engage will continue to leverage ATS for core data, and agentic features will be delivered as microservices or ATS extensions.</li>
+      <li><strong>Plan will be updated after each CAB review and major release.</strong></li>
+    </ul>
+  </section>
+</body>
+</html> 

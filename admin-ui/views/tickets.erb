@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development & Support Tickets - Wizdocs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 4px;
+            margin-top: 20px;
+        }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 12px 20px;
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .summary-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+        
+        .summary-card.high {
+            border-left-color: #e74c3c;
+        }
+        
+        .summary-card.medium {
+            border-left-color: #f39c12;
+        }
+        
+        .summary-card.low {
+            border-left-color: #27ae60;
+        }
+        
+        .summary-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .summary-card.high .summary-number {
+            color: #e74c3c;
+        }
+        
+        .summary-card.medium .summary-number {
+            color: #f39c12;
+        }
+        
+        .summary-card.low .summary-number {
+            color: #27ae60;
+        }
+        
+        .summary-label {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .recommendations-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            box-shadow: 0 2px 10px rgba(231, 76, 60, 0.3);
+        }
+        
+        .btn-danger:hover {
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            box-shadow: 0 2px 10px rgba(39, 174, 96, 0.3);
+        }
+        
+        .btn-success:hover {
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+        }
+        
+        .recommendation-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+        }
+        
+        .recommendation-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .recommendation-item.high {
+            border-left-color: #e74c3c;
+            background: #fdf2f2;
+        }
+        
+        .recommendation-item.medium {
+            border-left-color: #f39c12;
+            background: #fef9e7;
+        }
+        
+        .recommendation-item.low {
+            border-left-color: #27ae60;
+            background: #f0f9f0;
+        }
+        
+        .recommendation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .recommendation-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            flex: 1;
+        }
+        
+        .recommendation-id {
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .recommendation-reason {
+            color: #666;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .recommendation-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        .recommendation-date {
+            color: #999;
+            font-size: 0.9em;
+        }
+        
+        .recommendation-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .priority-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        
+        .priority-high {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .priority-medium {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .priority-low {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .empty-state h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .filters {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .filter-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+                            <h1>Development & Support Tickets</h1>
+            <p>Identify and manage obsolete tickets across JIRA and Intercom</p>
+            
+            <div class="nav-tabs">
+                <a href="/" class="nav-tab">Dashboard</a>
+                <a href="/tickets" class="nav-tab active">Development & Support Tickets</a>
+                <a href="/audits" class="nav-tab">Veracity Audits</a>
+                <a href="/settings" class="nav-tab">Settings</a>
+            </div>
+        </div>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label>Project:</label>
+                <select class="filter-select" id="projectFilter">
+                    <option value="">All Projects</option>
+                </select>
+                
+                <label>Priority:</label>
+                <select class="filter-select" id="priorityFilter">
+                    <option value="">All Priorities</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+                
+                <label>Type:</label>
+                <select class="filter-select" id="typeFilter">
+                    <option value="">All Types</option>
+                    <option value="jira_obsolete">JIRA Obsolete</option>
+                    <option value="jira_duplicate">JIRA Duplicate</option>
+                    <option value="intercom_old">Intercom Old</option>
+                </select>
+                
+                <button class="btn" onclick="refreshAnalysis()">Refresh Analysis</button>
+            </div>
+        </div>
+        
+        <div class="summary-cards">
+            <div class="summary-card high">
+                <div class="summary-number" id="highCount">-</div>
+                <div class="summary-label">High Priority</div>
+            </div>
+            <div class="summary-card medium">
+                <div class="summary-number" id="mediumCount">-</div>
+                <div class="summary-label">Medium Priority</div>
+            </div>
+            <div class="summary-card low">
+                <div class="summary-number" id="lowCount">-</div>
+                <div class="summary-label">Low Priority</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number" id="hygieneCount">-</div>
+                <div class="summary-label">Hygiene Issues</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number" id="priorityCount">-</div>
+                <div class="summary-label">Priority Issues</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number" id="customerImpactCount">-</div>
+                <div class="summary-label">Customer Impact</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number" id="resourceAllocationCount">-</div>
+                <div class="summary-label">Resource Allocation</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-number" id="totalCount">-</div>
+                <div class="summary-label">Total Issues</div>
+            </div>
+        </div>
+        
+        <div class="recommendations-section">
+            <div class="section-header">
+                <h2 class="section-title">Recommendations</h2>
+                <button class="btn" onclick="exportRecommendations()">Export Report</button>
+            </div>
+            
+            <div id="recommendations-container">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading recommendations...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let allRecommendations = [];
+        let allProjects = [];
+        
+        function loadProjects() {
+            fetch('/api/audits')
+                .then(response => response.json())
+                .then(data => {
+                    allProjects = data;
+                    const projectFilter = document.getElementById('projectFilter');
+                    projectFilter.innerHTML = '<option value="">All Projects</option>';
+                    
+                    if (data && data.length > 0) {
+                        data.forEach(project => {
+                            const option = document.createElement('option');
+                            option.value = project.key;
+                            option.textContent = `${project.name} (${project.key})`;
+                            projectFilter.appendChild(option);
+                        });
+                    } else {
+                        // No projects found - add a helpful message
+                        const option = document.createElement('option');
+                        option.value = "";
+                        option.textContent = "No projects found - check JIRA permissions";
+                        option.disabled = true;
+                        projectFilter.appendChild(option);
+                        
+                        // Show a notification
+                        const container = document.getElementById('recommendations-container');
+                        container.innerHTML = `
+                            <div class="empty-state">
+                                <h3>No JIRA Projects Found</h3>
+                                <p>No projects are accessible with the current JIRA credentials.</p>
+                                <p><strong>Possible solutions:</strong></p>
+                                <ul style="text-align: left; max-width: 500px; margin: 20px auto;">
+                                    <li>Check if your JIRA API token is valid and not expired</li>
+                                    <li>Verify the user has permission to view projects</li>
+                                    <li>Create a project in JIRA first</li>
+                                    <li>Check the JIRA site URL in config.env</li>
+                                </ul>
+                                <button class="btn" onclick="refreshAnalysis()">Retry</button>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading projects:', error);
+                    const projectFilter = document.getElementById('projectFilter');
+                    projectFilter.innerHTML = '<option value="">Error loading projects</option>';
+                });
+        }
+        
+        function refreshAnalysis() {
+            const selectedProject = document.getElementById('projectFilter').value;
+            const url = selectedProject ? `/api/tickets/recommendations?project=${selectedProject}` : '/api/tickets/recommendations';
+            
+            document.getElementById('recommendations-container').innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading recommendations...</p>
+                </div>
+            `;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    allRecommendations = data;
+                    updateRecommendations();
+                    updateSummary();
+                })
+                .catch(error => {
+                    console.error('Error fetching recommendations:', error);
+                    document.getElementById('recommendations-container').innerHTML = `
+                        <div class="empty-state">
+                            <h3>Error loading recommendations</h3>
+                            <p>Please check your API configuration and try again.</p>
+                        </div>
+                    `;
+                });
+        }
+        
+        function updateRecommendations() {
+            const container = document.getElementById('recommendations-container');
+            const priorityFilter = document.getElementById('priorityFilter').value;
+            const typeFilter = document.getElementById('typeFilter').value;
+            
+            let filteredRecommendations = allRecommendations;
+            
+            if (priorityFilter) {
+                filteredRecommendations = filteredRecommendations.filter(r => r.priority === priorityFilter);
+            }
+            
+            if (typeFilter) {
+                filteredRecommendations = filteredRecommendations.filter(r => r.type === typeFilter);
+            }
+            
+            if (filteredRecommendations.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No recommendations found</h3>
+                        <p>No tickets or issues were found in the selected project.</p>
+                        <p><strong>Possible reasons:</strong></p>
+                        <ul style="text-align: left; max-width: 500px; margin: 20px auto;">
+                            <li>No issues exist in the selected project</li>
+                            <li>No obsolete or duplicate issues found</li>
+                            <li>JIRA permissions may be limited</li>
+                            <li>Try selecting a different project or "All Projects"</li>
+                        </ul>
+                        <button class="btn" onclick="refreshAnalysis()">Refresh Analysis</button>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = filteredRecommendations.map(recommendation => `
+                <div class="recommendation-item ${recommendation.priority}">
+                    <div class="recommendation-header">
+                        <div class="recommendation-title">${recommendation.title}</div>
+                        <div class="recommendation-id">${recommendation.id}</div>
+                    </div>
+                    <div class="recommendation-reason">${recommendation.reason || 'No reason provided'}</div>
+                    <div class="recommendation-meta">
+                        <div class="recommendation-date">
+                            Created: ${new Date(recommendation.created).toLocaleDateString()}
+                        </div>
+                        <div class="recommendation-actions">
+                            <span class="priority-badge priority-${recommendation.priority}">${recommendation.priority}</span>
+                            <button class="btn btn-danger" onclick="closeTicket('${recommendation.id}', '${recommendation.type}')">Close</button>
+                            <button class="btn btn-success" onclick="viewTicket('${recommendation.id}', '${recommendation.type}')">View</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+
+        
+        function updateSummary() {
+            const highCount = allRecommendations.filter(r => r.priority === 'high').length;
+            const mediumCount = allRecommendations.filter(r => r.priority === 'medium').length;
+            const lowCount = allRecommendations.filter(r => r.priority === 'low').length;
+            const hygieneCount = allRecommendations.filter(r => r.type === 'jira_hygiene').length;
+            const priorityCount = allRecommendations.filter(r => r.type === 'jira_priority').length;
+            const customerImpactCount = allRecommendations.filter(r => r.type === 'jira_customer_impact').length;
+            const resourceAllocationCount = allRecommendations.filter(r => r.type === 'jira_resource_allocation' || r.type === 'jira_resource_allocation_summary').length;
+            const totalCount = allRecommendations.length;
+            
+            document.getElementById('highCount').textContent = highCount;
+            document.getElementById('mediumCount').textContent = mediumCount;
+            document.getElementById('lowCount').textContent = lowCount;
+            document.getElementById('hygieneCount').textContent = hygieneCount;
+            document.getElementById('priorityCount').textContent = priorityCount;
+            document.getElementById('customerImpactCount').textContent = customerImpactCount;
+            document.getElementById('resourceAllocationCount').textContent = resourceAllocationCount;
+            document.getElementById('totalCount').textContent = totalCount;
+        }
+        
+        function closeTicket(ticketId, ticketType) {
+            if (confirm(`Are you sure you want to close ticket ${ticketId}?`)) {
+                fetch('/api/tickets/close', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        ticket_id: ticketId,
+                        ticket_type: ticketType
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(`Ticket ${ticketId} has been marked for closure.`);
+                        refreshAnalysis();
+                    } else {
+                        alert('Error closing ticket: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    alert('Error closing ticket: ' + error.message);
+                });
+            }
+        }
+        
+        function viewTicket(ticketId, ticketType) {
+            // This would open the ticket in JIRA or Intercom
+            if (ticketType.startsWith('jira_')) {
+                window.open(`https://brightmove.atlassian.net/browse/${ticketId}`, '_blank');
+            } else if (ticketType === 'intercom_old') {
+                window.open(`https://app.intercom.com/a/apps/your-app-id/conversations/${ticketId}`, '_blank');
+            }
+        }
+        
+        function exportRecommendations() {
+            const dataStr = JSON.stringify(allRecommendations, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `ticket-recommendations-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+        }
+        
+        // Event listeners for filters
+        document.getElementById('priorityFilter').addEventListener('change', updateRecommendations);
+        document.getElementById('typeFilter').addEventListener('change', updateRecommendations);
+        document.getElementById('projectFilter').addEventListener('change', refreshAnalysis);
+        
+        // Load projects and recommendations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProjects();
+            refreshAnalysis();
+        });
+    </script>
+</body>
+</html> 

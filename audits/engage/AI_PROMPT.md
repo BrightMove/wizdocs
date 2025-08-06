@@ -1,0 +1,4 @@
+You are a solution architect and software engineer.  Help me create a robust project plan that includes regular and frequest releases of new agentic AI capabilities within Engage.  Assist me to accelerate the delivery of the Engage app so that a MVP version is available on 9/1/2025.  Start with the creation of a robust plan, based on the deep analysis of the current state of the ATS and Engage products.  Look at the source code and recent github activities to see what has changed recently.
+
+# Guidance
+Consider the README.md file in the wizdocs directory for general parameters, high level instructions and directions to code assets. 

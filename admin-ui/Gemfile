@@ -1,0 +1,11 @@
+source 'https://rubygems.org'
+
+gem 'sinatra', '~> 2.2'
+gem 'jira-ruby', '~> 2.0'
+gem 'intercom-ruby', '~> 9001.0'
+gem 'httparty', '~> 0.21'
+gem 'json', '~> 2.6'
+gem 'dotenv', '~> 0.3'
+gem 'chronic', '~> 0.10'
+gem 'activesupport', '~> 6.1' 
+gem "sqlite3", "~> 1.6"

@@ -1,0 +1,59 @@
+System Prompt
+User PromptSubmittal AI
+Scoring ModelWiz Recruiter: Pre-screen Submittal AI
+Agentic AI for automated application screening
+Advance 
+85-100
+Consider
+70-84
+Decline
+0-69Core Quality Metrics
+FPR: False Positive Rate - incorrectly Advanced
+Target: < 5%
+Definition: Incorrectly advanced / Total non-qualified
+Impact: High FPR results in wasted interviewer time
+FNR: False Negative Rate - Incorrectly Declined
+Target: < 3%
+Definition: Incorrectly declined / Total qualified
+Impact: High FNR results in missed candidates
+CR: Consistency Rate - Identical Profiles / Same
+Disposition
+Target: > 95%
+Definition:
+Impact:
+Advanced Quality Metrics
+Decision distribution analysis, borderline
+decision accuracy, bias detection, time-
+to-decision efficiency, human agreement
+rate, predictive validity to hire System PromptArea Weight Details of Evaluation 
+Job Duties 35%Evaluate how well the candidate's work experience aligns with the required job duties in the
+description. For entry-level positions or those explicitly requiring minimal experience, focus on
+transferable skills, education, projects, and potential rather than years of direct experience.
+Tech Skills 25%Assess the candidate's technical skills relative to the requirements. For junior positions, weigh
+aptitude, educational background, and willingness to learn more heavily than extensive
+professional experience with specific technologies.
+Soft Skills 15%Evaluate evidence of relevant soft skills (leadership, communication, problem-solving, etc.) as
+required in the job description. Recognize that soft skills can be demonstrated through
+academic, volunteer, and personal projects for candidates with limited work history.
+Related Activities 10%Consider relevant projects, volunteer work, or extracurricular activities. For entry-level positions,
+these may be the primary evidence of capabilities rather than supplementary information.
+Professional Associations 5%Assess membership in relevant professional organizations or industry groups. For early-career
+positions, consider educational affiliations and student memberships as equivalent to
+professional associations.
+Location 10%Evaluate the candidate's proximity to the job location or remote work capability as specified in
+the job description.  If the job posting indicates "remote" or "flexible location," assign high scores
+(80-100) to all candidates regardless of location.Wiz Recruiter: Pre-screen Submittal AI
+Prompt & Model Overview
+Submittal AI
+Scoring Model User PromptWiz Recruiter: Pre-screen Submittal AI
+Prompt & Model OverviewInput Details of Evaluation 
+Job Description Always treat the job description as the definitive reference point for evaluation criteria.
+ResumeMaintain objectivity and fairness in assessment.
+- Consider both explicit and implicit evidence of skills and experience.
+- Be specific in identifying strengths and gaps.
+- When comparing locations, calculate approximate distance and consider commuting feasibility.
+- Account for candidates who indicate willingness to relocate in their resume.
+- Do not penalize candidates for lacking experience when the job explicitly states minimal experience is required
+Cover Letter Cover letters and their contents are in scope for Submittal AI
+Basic Qualitifications Basic qualifications questions and answers are in scope for Submittal AISubmittal AI
+Scoring Model

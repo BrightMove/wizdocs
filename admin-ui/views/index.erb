@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizdocs - Veracity Audit System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 4px;
+            margin-top: 20px;
+        }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 12px 20px;
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #667eea;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
+        .dashboard-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        
+        .dashboard-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            box-shadow: 0 2px 10px rgba(240, 147, 251, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            box-shadow: 0 2px 10px rgba(79, 172, 254, 0.3);
+        }
+        
+        .btn-success:hover {
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-connected {
+            background: #27ae60;
+        }
+        
+        .status-disconnected {
+            background: #e74c3c;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Wizdocs Veracity Audit System</h1>
+            <p>Ensure consistency between source code, documentation, and project management</p>
+            
+            <div class="nav-tabs">
+                <a href="/" class="nav-tab active">Dashboard</a>
+                <a href="/tickets" class="nav-tab">Development & Support Tickets</a>
+                <a href="/audits" class="nav-tab">Veracity Audits</a>
+                <a href="/settings" class="nav-tab">Sync Services</a>
+            </div>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h3>🎫 Development & Support Tickets</h3>
+                <p>Analyze JIRA development tickets and Intercom customer support tickets for consistency and accuracy.</p>
+                <ul class="feature-list">
+                    <li>JIRA: Epics, features, improvements, bug fixes</li>
+                    <li>Intercom: Customer interactions and support history</li>
+                    <li>Find tickets older than 6 months</li>
+                    <li>Detect potential duplicate issues</li>
+                </ul>
+                <a href="/tickets" class="btn">Analyze Tickets</a>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>📋 Comprehensive Ticket View</h3>
+                <p>View all tickets across all JIRA projects with advanced search and filtering capabilities.</p>
+                <ul class="feature-list">
+                    <li>View all tickets from all projects</li>
+                    <li>Advanced search and filtering</li>
+                    <li>Cross-project statistics</li>
+                    <li>Local caching for performance</li>
+                </ul>
+                <a href="/comprehensive-tickets" class="btn">View All Tickets</a>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>📚 Customer & Internal Content</h3>
+                <p>Analyze Intercom Help Center (LightHub) and Confluence content for consistency and accuracy.</p>
+                <ul class="feature-list">
+                    <li>Intercom: Customer-facing documentation (LightHub)</li>
+                    <li>Confluence: Internal knowledge base</li>
+                    <li>Detect content duplications</li>
+                    <li>Identify accuracy issues</li>
+                </ul>
+                <a href="/content-analysis" class="btn">Analyze Content</a>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>📁 Veracity Audits</h3>
+                <p>Manage your veracity audits, upload input files, and track analysis results in one centralized location.</p>
+                <ul class="feature-list">
+                    <li>Create and organize audits</li>
+                    <li>Upload input and output files</li>
+                    <li>Execute audit commands</li>
+                    <li>View analysis logs</li>
+                </ul>
+                <a href="/audits" class="btn btn-secondary">Manage Audits</a>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>⚙️ Sync Services</h3>
+                <p>Configure and monitor your Atlassian JIRA, Confluence, and Intercom API connections.</p>
+                <ul class="feature-list">
+                    <li>JIRA: Development tickets and projects</li>
+                    <li>Confluence: Internal documentation</li>
+                    <li>Intercom: Customer support and LightHub</li>
+                    <li>Real-time status monitoring</li>
+                </ul>
+                <a href="/settings" class="btn btn-success">Configure APIs</a>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>📊 Quick Stats</h3>
+                <p>Get an overview of your current project status and ticket analysis results.</p>
+                <div id="quick-stats">
+                    <p>Loading statistics...</p>
+                </div>
+                <button onclick="refreshStats()" class="btn">Refresh Stats</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function refreshStats() {
+            fetch('/api/tickets/analysis')
+                .then(response => response.json())
+                .then(data => {
+                    const statsDiv = document.getElementById('quick-stats');
+                    statsDiv.innerHTML = `
+                        <ul class="feature-list">
+                            <li>JIRA Obsolete: ${data.summary?.jira_obsolete_count || 0}</li>
+                            <li>JIRA Duplicates: ${data.summary?.jira_duplicate_groups || 0}</li>
+                            <li>Intercom Old: ${data.summary?.intercom_old_count || 0}</li>
+                            <li>Total Issues: ${data.summary?.total_issues || 0}</li>
+                        </ul>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Error fetching stats:', error);
+                    document.getElementById('quick-stats').innerHTML = '<p>Error loading statistics</p>';
+                });
+        }
+        
+        // Load stats on page load
+        document.addEventListener('DOMContentLoaded', refreshStats);
+    </script>
+</body>
+</html> 
