@@ -322,4 +322,7 @@ snowflake_connector_python.log
 
 # Application specific
 cache/
-*.cache 
+*.cache
+
+# Environment configuration files
+admin-ui/config.env 
