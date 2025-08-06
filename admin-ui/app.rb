@@ -148,7 +148,7 @@ class JiraService
     
     return issues if issues.is_a?(Hash) && issues[:error]
     
-    # Group by similar titles
+    # Group by similar titles and content
     duplicates = []
     processed = Set.new
     
@@ -157,15 +157,31 @@ class JiraService
       
       similar = []
       title_words = issue[:summary].downcase.split(/\s+/)
+      description_words = issue[:description]&.downcase&.split(/\s+/) || []
       
       issues.each_with_index do |other_issue, j|
         next if i == j || processed.include?(j)
         
-        other_words = other_issue[:summary].downcase.split(/\s+/)
-        common_words = title_words & other_words
+        other_title_words = other_issue[:summary].downcase.split(/\s+/)
+        other_description_words = other_issue[:description]&.downcase&.split(/\s+/) || []
         
-        # If more than 50% of words match, consider it a potential duplicate
-        if common_words.length > 0 && (common_words.length.to_f / [title_words.length, other_words.length].max) > 0.5
+        # Calculate similarity scores
+        title_common = title_words & other_title_words
+        description_common = description_words & other_description_words
+        
+        # Title similarity (more weight)
+        title_similarity = title_common.length > 0 ? 
+          (title_common.length.to_f / [title_words.length, other_title_words.length].max) : 0
+        
+        # Description similarity (less weight)
+        description_similarity = description_common.length > 0 ? 
+          (description_common.length.to_f / [description_words.length, other_description_words.length].max) : 0
+        
+        # Combined similarity score
+        combined_similarity = (title_similarity * 0.7) + (description_similarity * 0.3)
+        
+        # If combined similarity is high enough, consider it a potential duplicate
+        if combined_similarity > 0.4
           similar << other_issue
           processed.add(j)
         end
@@ -717,6 +733,9 @@ class TicketAnalysisService
       jira_priority_issues: [],
       jira_customer_impact: [],
       jira_resource_allocation: [],
+      jira_quality_issues: [],
+      jira_closure_candidates: [],
+      jira_priority_definitions: [],
       intercom_old: [],
       summary: {},
       projects: []
@@ -736,6 +755,9 @@ class TicketAnalysisService
       priority_issues = analyze_priority_issues(project_key)
       customer_impact_issues = analyze_customer_impact_issues(project_key)
       resource_allocation_issues = analyze_resource_allocation(project_key)
+      quality_issues = analyze_ticket_quality_and_ideas(project_key)
+      closure_candidates = analyze_tickets_for_closure(project_key)
+      priority_definitions = analyze_priority_definitions(project_key)
       
       results[:jira_obsolete] = obsolete_issues unless obsolete_issues.is_a?(Hash) && obsolete_issues[:error]
       results[:jira_duplicates] = duplicate_candidates unless duplicate_candidates.is_a?(Hash) && duplicate_candidates[:error]
@@ -743,6 +765,9 @@ class TicketAnalysisService
       results[:jira_priority_issues] = priority_issues
       results[:jira_customer_impact] = customer_impact_issues
       results[:jira_resource_allocation] = resource_allocation_issues
+      results[:jira_quality_issues] = quality_issues
+      results[:jira_closure_candidates] = closure_candidates
+      results[:jira_priority_definitions] = priority_definitions
     end
 
     # Analyze Intercom conversations
@@ -759,11 +784,15 @@ class TicketAnalysisService
       jira_priority_count: results[:jira_priority_issues].length,
       jira_customer_impact_count: results[:jira_customer_impact].length,
       jira_resource_allocation_count: results[:jira_resource_allocation].length,
+      jira_quality_count: results[:jira_quality_issues].length,
+      jira_closure_count: results[:jira_closure_candidates].length,
+      jira_priority_definitions_count: results[:jira_priority_definitions].length,
       intercom_old_count: results[:intercom_old].length,
       total_issues: results[:jira_obsolete].length + results[:jira_duplicates].flatten.length + 
                    results[:jira_hygiene_issues].length + results[:jira_priority_issues].length + 
                    results[:jira_customer_impact].length + results[:jira_resource_allocation].length + 
-                   results[:intercom_old].length,
+                   results[:jira_quality_issues].length + results[:jira_closure_candidates].length + 
+                   results[:jira_priority_definitions].length + results[:intercom_old].length,
       selected_project: project_key
     }
 
@@ -777,24 +806,42 @@ class TicketAnalysisService
     
     hygiene_issues = []
     issues.each do |issue|
+      # Skip closed tickets for hygiene analysis
+      next if issue[:status]&.downcase == 'closed' || issue[:status]&.downcase == 'resolved'
+      
       problems = []
+      
+      # Founder rule: Check for missing description, parent, priority, or customer association
+      has_description = issue[:description] && !issue[:description].strip.empty?
+      has_priority = issue[:priority] && !issue[:priority].empty?
+      has_customer_ref = issue[:description]&.downcase&.include?('customer') || 
+                        issue[:summary]&.downcase&.include?('customer') ||
+                        issue[:labels]&.any? { |label| label.downcase.include?('customer') }
+      
+      # Check for parent ticket (we'll need to add this to the JIRA service)
+      # For now, we'll assume parent is missing if it's not a sub-task
+      has_parent = issue[:issue_type] == 'Sub-task'  # This is a simplification
+      
+      # Founder rule: If missing any of these, categorize as hygiene issue
+      unless has_description && has_priority && has_customer_ref && has_parent
+        if !has_description
+          problems << "Missing description"
+        end
+        if !has_priority
+          problems << "Missing priority"
+        end
+        if !has_customer_ref
+          problems << "No customer association"
+        end
+        if !has_parent && issue[:issue_type] != 'Epic'
+          problems << "Missing parent ticket"
+        end
+      end
       
       # Check for proper type (Epic, Improvement, Feature, Story, Bug)
       valid_types = ['Epic', 'Improvement', 'Feature', 'Story', 'Bug', 'Sub-task']
       unless valid_types.include?(issue[:issue_type])
         problems << "Invalid issue type: #{issue[:issue_type]}"
-      end
-      
-      # Check for proper priority
-      unless issue[:priority] && !issue[:priority].empty?
-        problems << "Missing priority"
-      end
-      
-      # Check for customer reference
-      unless issue[:description]&.include?('customer') || 
-             issue[:summary]&.downcase&.include?('customer') ||
-             issue[:labels]&.any? { |label| label.downcase.include?('customer') }
-        problems << "No customer reference found"
       end
       
       # Check for review status
@@ -812,7 +859,11 @@ class TicketAnalysisService
           status: issue[:status],
           created: issue[:created],
           updated: issue[:updated],
-          project: issue[:project]
+          project: issue[:project],
+          has_description: has_description,
+          has_priority: has_priority,
+          has_customer_ref: has_customer_ref,
+          has_parent: has_parent
         }
       end
     end
@@ -827,6 +878,9 @@ class TicketAnalysisService
     
     priority_issues = []
     issues.each do |issue|
+      # Skip closed tickets - they don't need priority analysis
+      next if issue[:status]&.downcase == 'closed' || issue[:status]&.downcase == 'resolved'
+      
       priority_score = 0
       reasons = []
       
@@ -874,6 +928,33 @@ class TicketAnalysisService
         reasons << "Technical debt/operational task (20% resource allocation target)"
       end
       
+      # Founder rule: Poor description quality reduces priority
+      if !issue[:description] || issue[:description].strip.empty?
+        priority_score -= 3
+        reasons << "No description - treat as idea, reduce priority"
+      elsif issue[:description] && issue[:description].length < 50
+        priority_score -= 2
+        reasons << "Minimal description - may be just an idea"
+      end
+      
+      # Founder rule: No recent customer activity suggests low priority
+      if issue[:updated]
+        days_since_update = (Time.now - Time.parse(issue[:updated])) / (24 * 60 * 60)
+        if days_since_update > 365 && !issue[:description]&.downcase&.include?('customer')
+          priority_score -= 4
+          reasons << "No recent updates and no customer activity - consider closing"
+        end
+      end
+      
+      # Founder rule: Low priority tickets with no progress for 6+ months should become high priority
+      if issue[:priority]&.downcase == 'low' && issue[:updated]
+        days_since_update = (Time.now - Time.parse(issue[:updated])) / (24 * 60 * 60)
+        if days_since_update > 180  # 6 months
+          priority_score += 5
+          reasons << "Low priority ticket with no progress for #{days_since_update.to_i} days - escalate to high priority"
+        end
+      end
+      
       if priority_score > 0
         priority_issues << {
           key: issue[:key],
@@ -884,7 +965,9 @@ class TicketAnalysisService
           status: issue[:status],
           created: issue[:created],
           updated: issue[:updated],
-          project: issue[:project]
+          project: issue[:project],
+          description_length: issue[:description]&.length || 0,
+          current_priority: issue[:priority]
         }
       end
     end
@@ -900,6 +983,9 @@ class TicketAnalysisService
     
     customer_impact_issues = []
     issues.each do |issue|
+      # Skip closed tickets - they don't need customer impact analysis
+      next if issue[:status]&.downcase == 'closed' || issue[:status]&.downcase == 'resolved'
+      
       impact_score = 0
       reasons = []
       
@@ -966,6 +1052,9 @@ class TicketAnalysisService
     total_issues = 0
     
     issues.each do |issue|
+      # Skip closed tickets for resource allocation analysis
+      next if issue[:status]&.downcase == 'closed' || issue[:status]&.downcase == 'resolved'
+      
       total_issues += 1
       
       # Categorize by resource allocation
@@ -1023,6 +1112,239 @@ class TicketAnalysisService
     end
     
     resource_allocation_issues
+  end
+
+  def analyze_ticket_quality_and_ideas(project_key = nil)
+    # Analyze tickets for quality issues and idea classification based on founder rules
+    issues = @jira_service.get_issues("", 500, project_key)
+    return [] if issues.is_a?(Hash) && issues[:error]
+    
+    quality_issues = []
+    issues.each do |issue|
+      # Skip closed tickets
+      next if issue[:status]&.downcase == 'closed' || issue[:status]&.downcase == 'resolved'
+      
+      problems = []
+      quality_score = 0
+      
+      # Check for missing or poor description
+      if !issue[:description] || issue[:description].strip.empty?
+        problems << "No description provided"
+        quality_score -= 5
+      elsif issue[:description] && issue[:description].length < 50
+        problems << "Minimal description (may be just an idea)"
+        quality_score -= 3
+      end
+      
+      # Founder rule: Check for comments (we'll need to add this to JIRA service)
+      # For now, we'll use description length as a proxy for engagement
+      has_comments = issue[:description] && issue[:description].length > 100  # Simplified check
+      
+      # Check for customer references
+      has_customer_ref = issue[:description]&.downcase&.include?('customer') || 
+                        issue[:summary]&.downcase&.include?('customer') ||
+                        issue[:labels]&.any? { |label| label.downcase.include?('customer') }
+      
+      unless has_customer_ref
+        problems << "No customer reference found"
+        quality_score -= 2
+      end
+      
+      # Check for old tickets with no activity
+      if issue[:updated]
+        days_since_update = (Time.now - Time.parse(issue[:updated])) / (24 * 60 * 60)
+        if days_since_update > 365 && !has_customer_ref
+          problems << "No recent activity and no customer reference - consider closing"
+          quality_score -= 4
+        end
+      end
+      
+      # Check for proper issue type
+      valid_types = ['Epic', 'Improvement', 'Feature', 'Story', 'Bug', 'Sub-task']
+      unless valid_types.include?(issue[:issue_type])
+        problems << "Invalid issue type: #{issue[:issue_type]}"
+        quality_score -= 2
+      end
+      
+      # Check for proper priority
+      unless issue[:priority] && !issue[:priority].empty?
+        problems << "Missing priority"
+        quality_score -= 2
+      end
+      
+      if problems.any?
+        quality_issues << {
+          key: issue[:key],
+          summary: issue[:summary],
+          problems: problems,
+          quality_score: quality_score,
+          issue_type: issue[:issue_type],
+          status: issue[:status],
+          created: issue[:created],
+          updated: issue[:updated],
+          project: issue[:project],
+          description_length: issue[:description]&.length || 0,
+          has_customer_reference: has_customer_ref,
+          days_since_update: issue[:updated] ? ((Time.now - Time.parse(issue[:updated])) / (24 * 60 * 60)).to_i : nil
+        }
+      end
+    end
+    
+    # Sort by quality score (lowest first - most problematic)
+    quality_issues.sort_by { |issue| issue[:quality_score] }
+  end
+
+  def analyze_tickets_for_closure(project_key = nil)
+    # Analyze tickets that should be closed based on founder rules
+    issues = @jira_service.get_issues("", 500, project_key)
+    return [] if issues.is_a?(Hash) && issues[:error]
+    
+    closure_candidates = []
+    issues.each do |issue|
+      # Skip already closed tickets
+      next if issue[:status]&.downcase == 'closed' || issue[:status]&.downcase == 'resolved'
+      
+      closure_reasons = []
+      closure_score = 0
+      
+      # Founder rule: Old tickets (365+ days) with no customer activity
+      if issue[:updated]
+        days_since_update = (Time.now - Time.parse(issue[:updated])) / (24 * 60 * 60)
+        if days_since_update > 365
+          has_customer_ref = issue[:description]&.downcase&.include?('customer') || 
+                           issue[:summary]&.downcase&.include?('customer')
+          
+          if !has_customer_ref
+            closure_reasons << "No recent activity and no customer reference"
+            closure_score += 8
+          else
+            closure_reasons << "No recent activity (#{days_since_update.to_i} days)"
+            closure_score += 5
+          end
+        end
+      end
+      
+      # Founder rule: Tickets with no description
+      if !issue[:description] || issue[:description].strip.empty?
+        closure_reasons << "No description provided"
+        closure_score += 6
+      end
+      
+      # Founder rule: Minimal description (likely just an idea)
+      if issue[:description] && issue[:description].length < 30
+        closure_reasons << "Minimal description - likely just an idea"
+        closure_score += 4
+      end
+      
+      # Founder rule: No description and no comments
+      has_comments = issue[:description] && issue[:description].length > 100  # Simplified check
+      if (!issue[:description] || issue[:description].strip.empty?) && !has_comments
+        closure_reasons << "No description and no comments - treat as idea"
+        closure_score += 5
+      end
+      
+      # Founder rule: No description and no comments for 365+ days
+      if issue[:updated] && (!issue[:description] || issue[:description].strip.empty?) && !has_comments
+        days_since_update = (Time.now - Time.parse(issue[:updated])) / (24 * 60 * 60)
+        if days_since_update > 365
+          closure_reasons << "No description and no comments for #{days_since_update.to_i} days - treat as idea"
+          closure_score += 7
+        end
+      end
+      
+      # Founder rule: No customer reference
+      unless issue[:description]&.downcase&.include?('customer') || 
+             issue[:summary]&.downcase&.include?('customer') ||
+             issue[:labels]&.any? { |label| label.downcase.include?('customer') }
+        closure_reasons << "No customer reference found"
+        closure_score += 3
+      end
+      
+      # Founder rule: Invalid issue type
+      valid_types = ['Epic', 'Improvement', 'Feature', 'Story', 'Bug', 'Sub-task']
+      unless valid_types.include?(issue[:issue_type])
+        closure_reasons << "Invalid issue type: #{issue[:issue_type]}"
+        closure_score += 2
+      end
+      
+      if closure_score > 0
+        closure_candidates << {
+          key: issue[:key],
+          summary: issue[:summary],
+          closure_score: closure_score,
+          closure_reasons: closure_reasons,
+          issue_type: issue[:issue_type],
+          status: issue[:status],
+          created: issue[:created],
+          updated: issue[:updated],
+          project: issue[:project],
+          description_length: issue[:description]&.length || 0,
+          days_since_update: issue[:updated] ? ((Time.now - Time.parse(issue[:updated])) / (24 * 60 * 60)).to_i : nil
+        }
+      end
+    end
+    
+    # Sort by closure score (highest first - most likely to close)
+    closure_candidates.sort_by { |issue| -issue[:closure_score] }
+  end
+
+  def analyze_priority_definitions(project_key = nil)
+    # Analyze tickets based on founder priority definitions
+    issues = @jira_service.get_issues("", 500, project_key)
+    return [] if issues.is_a?(Hash) && issues[:error]
+    
+    priority_issues = []
+    issues.each do |issue|
+      # Skip closed tickets
+      next if issue[:status]&.downcase == 'closed' || issue[:status]&.downcase == 'resolved'
+      
+      priority_analysis = {
+        key: issue[:key],
+        summary: issue[:summary],
+        current_priority: issue[:priority],
+        issue_type: issue[:issue_type],
+        status: issue[:status],
+        created: issue[:created],
+        updated: issue[:updated],
+        project: issue[:project],
+        priority_definition: nil,
+        priority_recommendation: nil,
+        reasons: []
+      }
+      
+      # Founder rule: High priority = important and urgent (1-3 sprints)
+      if issue[:priority]&.downcase == 'high'
+        priority_analysis[:priority_definition] = "Important and urgent - needs completion within 1-3 sprints"
+        priority_analysis[:priority_recommendation] = "high"
+        priority_analysis[:reasons] << "High priority tickets should be completed ASAP"
+      end
+      
+      # Founder rule: Low priority = important but not urgent (3-12 months)
+      if issue[:priority]&.downcase == 'low'
+        priority_analysis[:priority_definition] = "Important but not urgent - complete when resources available or within 3-12 months"
+        priority_analysis[:priority_recommendation] = "low"
+        priority_analysis[:reasons] << "Low priority tickets can be completed when resources are available"
+        
+        # Check if low priority ticket has been stagnant for 6+ months
+        if issue[:updated]
+          days_since_update = (Time.now - Time.parse(issue[:updated])) / (24 * 60 * 60)
+          if days_since_update > 180  # 6 months
+            priority_analysis[:priority_recommendation] = "high"
+            priority_analysis[:reasons] << "Low priority ticket with no progress for #{days_since_update.to_i} days - should be escalated to high priority"
+          end
+        end
+      end
+      
+      # Check for missing priority
+      unless issue[:priority] && !issue[:priority].empty?
+        priority_analysis[:priority_recommendation] = "medium"
+        priority_analysis[:reasons] << "Missing priority - assign appropriate priority level"
+      end
+      
+      priority_issues << priority_analysis
+    end
+    
+    priority_issues
   end
 
   def get_ticket_recommendations(project_key = nil)
@@ -1155,6 +1477,70 @@ class TicketAnalysisService
           category: issue[:category]
         }
       end
+    end
+
+    # JIRA quality and idea recommendations
+    analysis[:jira_quality_issues].each do |issue|
+      quality_level = issue[:quality_score] <= -5 ? 'high' : 
+                     issue[:quality_score] <= -3 ? 'medium' : 'low'
+      
+      recommendations << {
+        type: 'jira_quality',
+        id: issue[:key],
+        title: issue[:summary],
+        reason: "Quality score: #{issue[:quality_score]} - #{issue[:problems].join(', ')}",
+        action: 'Review ticket quality and consider closing if just an idea',
+        priority: quality_level,
+        created: issue[:created],
+        updated: issue[:updated],
+        project: issue[:project],
+        quality_score: issue[:quality_score],
+        problems: issue[:problems],
+        description_length: issue[:description_length],
+        has_customer_reference: issue[:has_customer_reference],
+        days_since_update: issue[:days_since_update]
+      }
+    end
+
+    # JIRA closure recommendations
+    analysis[:jira_closure_candidates].each do |issue|
+      closure_level = issue[:closure_score] >= 8 ? 'high' : 
+                     issue[:closure_score] >= 5 ? 'medium' : 'low'
+      
+      recommendations << {
+        type: 'jira_closure',
+        id: issue[:key],
+        title: issue[:summary],
+        reason: "Closure score: #{issue[:closure_score]} - #{issue[:closure_reasons].join(', ')}",
+        action: 'Consider closing this ticket',
+        priority: closure_level,
+        created: issue[:created],
+        updated: issue[:updated],
+        project: issue[:project],
+        closure_score: issue[:closure_score],
+        closure_reasons: issue[:closure_reasons],
+        description_length: issue[:description_length],
+        days_since_update: issue[:days_since_update]
+      }
+    end
+
+    # JIRA priority definition recommendations
+    analysis[:jira_priority_definitions].each do |issue|
+      recommendations << {
+        type: 'jira_priority_definition',
+        id: issue[:key],
+        title: issue[:summary],
+        reason: "Priority definition: #{issue[:priority_definition]} - #{issue[:reasons].join(', ')}",
+        action: 'Review priority definition and timeline',
+        priority: issue[:priority_recommendation] || 'medium',
+        created: issue[:created],
+        updated: issue[:updated],
+        project: issue[:project],
+        current_priority: issue[:current_priority],
+        priority_definition: issue[:priority_definition],
+        priority_recommendation: issue[:priority_recommendation],
+        reasons: issue[:reasons]
+      }
     end
 
     # Intercom old conversations
