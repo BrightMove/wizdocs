@@ -198,6 +198,49 @@ class IntercomService
     @access_token
   end
 
+  def make_request(endpoint, method = :get, data = nil)
+    require 'net/http'
+    require 'uri'
+    require 'json'
+
+    uri = URI.parse("https://api.intercom.io#{endpoint}")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+
+    request = case method
+              when :get
+                Net::HTTP::Get.new(uri.request_uri)
+              when :post
+                Net::HTTP::Post.new(uri.request_uri, 'Content-Type' => 'application/json')
+              when :put
+                Net::HTTP::Put.new(uri.request_uri, 'Content-Type' => 'application/json')
+              else
+                raise "Unsupported HTTP method: #{method}"
+              end
+
+    request['Authorization'] = "Bearer #{@access_token}"
+    request['Accept'] = 'application/json'
+    request.body = data.to_json if data
+
+    response = http.request(request)
+    
+    puts "Intercom API Request: #{method.upcase} #{endpoint}"
+    puts "Response Code: #{response.code}"
+    puts "Response Body Length: #{response.body.length}"
+    
+    if response.code == '200'
+      parsed_response = JSON.parse(response.body)
+      puts "Response Keys: #{parsed_response.keys}" if parsed_response.is_a?(Hash)
+      parsed_response
+    else
+      puts "Error Response: #{response.body}"
+      { error: "Intercom API HTTP #{response.code}: #{response.body}" }
+    end
+  rescue => e
+    puts "Request Error: #{e.message}"
+    { error: "Intercom API request error: #{e.message}" }
+  end
+
   def get_conversations(days_back = 30)
     return { error: 'Intercom not configured' } unless connected?
 
@@ -208,6 +251,139 @@ class IntercomService
   def get_old_conversations
     # Get conversations older than 3 months
     get_conversations(90)
+  end
+
+  def get_help_center_articles
+    return { error: 'Intercom not configured' } unless connected?
+
+    begin
+      # Try different possible endpoints for Help Center articles
+      endpoints = ['/articles', '/help_center/articles', '/help-center/articles', '/content/articles']
+      
+      articles = []
+      endpoints.each do |endpoint|
+        begin
+          response = make_request(endpoint)
+          if response.is_a?(Hash) && response[:error]
+            puts "Tried #{endpoint}: #{response[:error]}"
+            next
+          end
+          
+          if response['data'] && response['data'].is_a?(Array)
+            articles = response['data']
+            puts "Found articles using endpoint: #{endpoint}"
+            break
+          elsif response.is_a?(Array)
+            articles = response
+            puts "Found articles using endpoint: #{endpoint}"
+            break
+          end
+        rescue => e
+          puts "Error with endpoint #{endpoint}: #{e.message}"
+          next
+        end
+      end
+      
+      articles.map do |article|
+        {
+          id: article['id'] || article['article_id'],
+          title: article['title'] || article['name'],
+          body: article['body'] || article['content'] || article['description'],
+          url: article['url'] || article['link'],
+          author_id: article['author_id'],
+          state: article['state'] || article['status'],
+          translated_content_url: article['translated_content_url'],
+          created_at: article['created_at'],
+          updated_at: article['updated_at'],
+          type: 'help_center_article'
+        }
+      end
+    rescue => e
+      { error: "Intercom Help Center API error: #{e.message}" }
+    end
+  end
+
+  def get_light_hub_content
+    return { error: 'Intercom not configured' } unless connected?
+
+    begin
+      # Try different possible endpoints for Light Hub content
+      endpoints = ['/light_hub', '/light-hub', '/content/light_hub', '/help_center/light_hub']
+      
+      content = []
+      endpoints.each do |endpoint|
+        begin
+          response = make_request(endpoint)
+          if response.is_a?(Hash) && response[:error]
+            puts "Tried #{endpoint}: #{response[:error]}"
+            next
+          end
+          
+          if response['data'] && response['data'].is_a?(Array)
+            content = response['data']
+            puts "Found content using endpoint: #{endpoint}"
+            break
+          elsif response.is_a?(Array)
+            content = response
+            puts "Found content using endpoint: #{endpoint}"
+            break
+          end
+        rescue => e
+          puts "Error with endpoint #{endpoint}: #{e.message}"
+          next
+        end
+      end
+      
+      content.map do |item|
+        {
+          id: item['id'] || item['content_id'],
+          title: item['title'] || item['name'],
+          body: item['body'] || item['content'] || item['description'],
+          url: item['url'] || item['link'],
+          type: item['type'] || 'light_hub',
+          created_at: item['created_at'],
+          updated_at: item['updated_at'],
+          content_type: 'light_hub'
+        }
+      end
+    rescue => e
+      { error: "Intercom Light Hub API error: #{e.message}" }
+    end
+  end
+
+  def get_public_content
+    return { error: 'Intercom not configured' } unless connected?
+
+    # First test if the token is valid
+    test_response = make_request('/me')
+    if test_response.is_a?(Hash) && test_response[:error]
+      if test_response[:error].include?('unauthorized') || test_response[:error].include?('Access Token Invalid')
+        return { 
+          error: 'Invalid Intercom access token. Please generate a new token from your Intercom developer settings.',
+          details: 'The current token is either expired, incorrect, or lacks proper permissions. Visit https://developers.intercom.com/ to generate a new access token.'
+        }
+      end
+    end
+
+    help_center = get_help_center_articles
+    light_hub = get_light_hub_content
+
+    all_content = []
+    
+    if help_center.is_a?(Array)
+      all_content.concat(help_center)
+    end
+    
+    if light_hub.is_a?(Array)
+      all_content.concat(light_hub)
+    end
+
+    {
+      content: all_content,
+      count: all_content.length,
+      help_center_count: help_center.is_a?(Array) ? help_center.length : 0,
+      light_hub_count: light_hub.is_a?(Array) ? light_hub.length : 0
+    }
   end
 end
 
@@ -1005,6 +1181,7 @@ class TicketCacheService
     @tickets_file = File.join(@cache_dir, 'tickets.json')
     @projects_file = File.join(@cache_dir, 'projects.json')
     @confluence_file = File.join(@cache_dir, 'confluence.json')
+    @intercom_file = File.join(@cache_dir, 'intercom.json')
     @content_analysis_file = File.join(@cache_dir, 'content_analysis.json')
     @last_sync_file = File.join(@cache_dir, 'last_sync.json')
     
@@ -1122,22 +1299,52 @@ class TicketCacheService
     end
   end
 
+  def sync_intercom_content
+    puts "Starting Intercom public content sync..."
+    
+    intercom_service = IntercomService.new
+    return { error: 'Intercom not configured' } unless intercom_service.connected?
+    
+    begin
+      public_content = intercom_service.get_public_content
+      
+      if public_content[:content]
+        save_intercom_content(public_content[:content])
+        puts "Intercom sync completed: #{public_content[:count]} content items"
+        puts "  - Help Center articles: #{public_content[:help_center_count]}"
+        puts "  - Light Hub content: #{public_content[:light_hub_count]}"
+        
+        { success: true, count: public_content[:count], help_center: public_content[:help_center_count], light_hub: public_content[:light_hub_count] }
+      else
+        { error: 'Failed to get Intercom public content' }
+      end
+    rescue => e
+      { error: "Intercom sync error: #{e.message}" }
+    end
+  end
+
   def analyze_content_duplication_and_accuracy
     puts "Starting content analysis..."
     
     confluence_content = get_confluence_content
+    intercom_content = get_intercom_content
     jira_tickets = get_all_tickets
     
-    return { error: 'No content available for analysis' } if confluence_content.empty? || jira_tickets.empty?
+    return { error: 'No content available for analysis' } if confluence_content.empty? && intercom_content.empty? || jira_tickets.empty?
     
     content_analysis_service = ContentAnalysisService.new
     
+    # Combine all content sources
+    all_content = confluence_content + intercom_content
+    
     analysis_results = {
-      duplications: content_analysis_service.analyze_content_duplication(confluence_content, jira_tickets),
-      accuracy_issues: content_analysis_service.analyze_content_accuracy(confluence_content, jira_tickets),
-      orphaned_content: content_analysis_service.find_orphaned_content(confluence_content, jira_tickets),
+      duplications: content_analysis_service.analyze_content_duplication(all_content, jira_tickets),
+      accuracy_issues: content_analysis_service.analyze_content_accuracy(all_content, jira_tickets),
+      orphaned_content: content_analysis_service.find_orphaned_content(all_content, jira_tickets),
       summary: {
         total_confluence_items: confluence_content.length,
+        total_intercom_items: intercom_content.length,
+        total_content_items: all_content.length,
         total_jira_tickets: jira_tickets.length,
         duplications_found: 0,
         accuracy_issues_found: 0,
@@ -1157,6 +1364,8 @@ class TicketCacheService
     puts "  - Duplications: #{analysis_results[:summary][:duplications_found]}"
     puts "  - Accuracy issues: #{analysis_results[:summary][:accuracy_issues_found]}"
     puts "  - Orphaned content: #{analysis_results[:summary][:orphaned_content_found]}"
+    puts "  - Confluence items: #{confluence_content.length}"
+    puts "  - Intercom items: #{intercom_content.length}"
     
     analysis_results
   end
@@ -1241,6 +1450,17 @@ class TicketCacheService
     end
   end
 
+  def get_intercom_content
+    return [] unless File.exist?(@intercom_file)
+    
+    begin
+      JSON.parse(File.read(@intercom_file))
+    rescue => e
+      puts "Error reading Intercom cache: #{e.message}"
+      []
+    end
+  end
+
   def get_content_analysis
     return {} unless File.exist?(@content_analysis_file)
     
@@ -1304,6 +1524,10 @@ class TicketCacheService
 
   def save_content_analysis(analysis)
     File.write(@content_analysis_file, JSON.pretty_generate(analysis))
+  end
+
+  def save_intercom_content(content)
+    File.write(@intercom_file, JSON.pretty_generate(content))
   end
 end
 
@@ -1481,6 +1705,43 @@ class AdminUI < Sinatra::Base
       content: content,
       count: content.length,
       space_key: space_key
+    }.to_json
+  end
+
+  # Intercom Integration Routes
+  get '/api/intercom/sync' do
+    content_type :json
+    sync_stats = @ticket_cache.sync_intercom_content
+    sync_stats.to_json
+  end
+
+  get '/api/intercom/content' do
+    content_type :json
+    content = @ticket_cache.get_intercom_content
+    {
+      content: content,
+      count: content.length,
+      last_sync: @ticket_cache.get_sync_stats['last_sync']
+    }.to_json
+  end
+
+  get '/api/intercom/help-center' do
+    content_type :json
+    intercom_service = IntercomService.new
+    articles = intercom_service.get_help_center_articles
+    {
+      articles: articles,
+      count: articles.is_a?(Array) ? articles.length : 0
+    }.to_json
+  end
+
+  get '/api/intercom/light-hub' do
+    content_type :json
+    intercom_service = IntercomService.new
+    content = intercom_service.get_light_hub_content
+    {
+      content: content,
+      count: content.is_a?(Array) ? content.length : 0
     }.to_json
   end
 

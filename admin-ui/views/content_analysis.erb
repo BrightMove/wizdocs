@@ -346,6 +346,7 @@
         <div class="controls">
             <div class="control-row">
                 <button class="btn btn-success" onclick="syncConfluence()">🔄 Sync Confluence</button>
+                <button class="btn btn-info" onclick="syncIntercom()">📚 Sync Intercom</button>
                 <button class="btn btn-primary" onclick="analyzeContent()">🔍 Analyze Content</button>
                 <button class="btn btn-warning" onclick="loadAnalysis()">📊 Load Analysis</button>
                 <span id="sync-status"></span>
@@ -433,6 +434,27 @@
                 });
         }
 
+        function syncIntercom() {
+            showMessage('📚 Starting Intercom sync...', 'info');
+            document.getElementById('loading-indicator').style.display = 'block';
+            
+            fetch('/api/intercom/sync')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('loading-indicator').style.display = 'none';
+                    if (data.error) {
+                        showMessage(`❌ Sync failed: ${data.error}`, 'error');
+                    } else {
+                        showMessage(`✅ Intercom sync completed! ${data.count} content items (${data.help_center} Help Center, ${data.light_hub} Light Hub)`, 'success');
+                        loadSyncStatus();
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('loading-indicator').style.display = 'none';
+                    showMessage(`❌ Sync error: ${error.message}`, 'error');
+                });
+        }
+
         function analyzeContent() {
             showMessage('🔍 Starting content analysis...', 'info');
             document.getElementById('loading-indicator').style.display = 'block';
@@ -486,6 +508,10 @@
                     <div class="stat-label">Confluence Items</div>
                 </div>
                 <div class="stat-card">
+                    <div class="stat-number">${summary.total_intercom_items || 0}</div>
+                    <div class="stat-label">Intercom Items</div>
+                </div>
+                <div class="stat-card">
                     <div class="stat-number">${summary.total_jira_tickets || 0}</div>
                     <div class="stat-label">JIRA Tickets</div>
                 </div>
@@ -504,7 +530,7 @@
             `;
             document.getElementById('statistics').innerHTML = statsHtml;
             document.getElementById('analysis-count').textContent = 
-                `${summary.total_confluence_items + summary.total_jira_tickets} items analyzed`;
+                `${(summary.total_confluence_items || 0) + (summary.total_intercom_items || 0) + (summary.total_jira_tickets || 0)} items analyzed`;
         }
 
         function displayAnalysis(analysis) {
