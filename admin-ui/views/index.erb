@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wizdocs - Veracity Audit System</title>
+    <title>WizDocs - Agentic AI Platform for BrightMove</title>
     <style>
         * {
             margin: 0;
@@ -140,6 +140,15 @@
             box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
         }
         
+        .btn-warning {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            box-shadow: 0 2px 10px rgba(250, 112, 154, 0.3);
+        }
+        
+        .btn-warning:hover {
+            box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4);
+        }
+        
         .status-indicator {
             display: inline-block;
             width: 12px;
@@ -177,20 +186,45 @@
         .feature-list li:last-child {
             border-bottom: none;
         }
+        
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            margin: 30px 0 20px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .section-header h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .section-header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Wizdocs Veracity Audit System</h1>
-            <p>Ensure consistency between source code, documentation, and project management</p>
+            <h1>WizDocs</h1>
+            <p>Agentic AI Platform for BrightMove Product Management</p>
             
             <div class="nav-tabs">
                 <a href="/" class="nav-tab active">Dashboard</a>
-                <a href="/tickets" class="nav-tab">Tickets</a>
-                <a href="/audits" class="nav-tab">Veracity Audits</a>
-                <a href="/settings" class="nav-tab">Sync Services</a>
+                <a href="/audits" class="nav-tab">Audits</a>
+                <a href="/sales-tools" class="nav-tab">Sales Tools</a>
+                <a href="/settings" class="nav-tab">Settings</a>
             </div>
+        </div>
+        
+        <div class="section-header">
+            <h2>📊 Audits & Analysis</h2>
+            <p>Comprehensive audit tools for development tickets, content analysis, and veracity verification</p>
         </div>
         
         <div class="dashboard-grid">
@@ -243,6 +277,57 @@
             </div>
             
             <div class="dashboard-card">
+                <h3>🔗 GitHub Impact Analysis</h3>
+                <p>Monitor pull request impact on knowledge base and automatically detect conflicts between code changes and documentation.</p>
+                <ul class="feature-list">
+                    <li>Webhook integration for automatic analysis</li>
+                    <li>Conflict detection between code and KB</li>
+                    <li>Impact assessment on documentation</li>
+                    <li>JIRA ticket creation for updates</li>
+                    <li>Slack/email notifications</li>
+                </ul>
+                <a href="/github-impact" class="btn btn-success">View Impact Reports</a>
+            </div>
+        </div>
+        
+        <div class="section-header">
+            <h2>💼 Sales Tools</h2>
+            <p>AI-powered tools for RFP responses and Statement of Work generation</p>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h3>📋 RFP Machine</h3>
+                <p>Automated RFP response generation with AI-powered requirement analysis and gap identification.</p>
+                <ul class="feature-list">
+                    <li>AI-powered requirement extraction</li>
+                    <li>Automated gap analysis</li>
+                    <li>Response template generation</li>
+                    <li>Project organization and management</li>
+                </ul>
+                <a href="/sales-tools" class="btn btn-warning">Manage RFP Projects</a>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>📄 SOW Machine</h3>
+                <p>Generate comprehensive Statements of Work with automated scope definition and deliverable tracking.</p>
+                <ul class="feature-list">
+                    <li>Automated scope definition</li>
+                    <li>Deliverable tracking</li>
+                    <li>Timeline generation</li>
+                    <li>Resource allocation planning</li>
+                </ul>
+                <a href="/sales-tools" class="btn btn-warning">Manage SOW Projects</a>
+            </div>
+        </div>
+        
+        <div class="section-header">
+            <h2>⚙️ System Management</h2>
+            <p>Configuration and monitoring for all integrated services</p>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
                 <h3>⚙️ Sync Services</h3>
                 <p>Configure and monitor your Atlassian JIRA, Confluence, and Intercom API connections.</p>
                 <ul class="feature-list">
@@ -261,19 +346,6 @@
                     <p>Loading statistics...</p>
                 </div>
                 <button onclick="refreshStats()" class="btn">Refresh Stats</button>
-            </div>
-            
-            <div class="dashboard-card">
-                <h3>🔗 GitHub Impact Analysis</h3>
-                <p>Monitor pull request impact on knowledge base and automatically detect conflicts between code changes and documentation.</p>
-                <ul class="feature-list">
-                    <li>Webhook integration for automatic analysis</li>
-                    <li>Conflict detection between code and KB</li>
-                    <li>Impact assessment on documentation</li>
-                    <li>JIRA ticket creation for updates</li>
-                    <li>Slack/email notifications</li>
-                </ul>
-                <a href="/github-impact" class="btn btn-success">View Impact Reports</a>
             </div>
         </div>
     </div>

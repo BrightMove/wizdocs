@@ -15,6 +15,9 @@ require_relative 'github_webhook_handler'
 # Load environment variables
 Dotenv.load('config.env') if File.exist?('config.env')
 
+# WizDocs - Agentic AI Platform for BrightMove Product Management
+# Main sections: Audits and Sales Tools
+
 # JIRA Integration using direct HTTP calls
 class JiraService
   def initialize
@@ -2237,6 +2240,75 @@ class AdminUI < Sinatra::Base
     result.to_json
   end
 
+  # Sales Tools Routes
+  get '/sales-tools' do
+    @sales_tools_manager = SalesToolsManager.new
+    @rfp_projects = @sales_tools_manager.list_rfp_projects.map { |p| @sales_tools_manager.get_rfp_project_info(p) }
+    @sow_projects = @sales_tools_manager.list_sow_projects.map { |p| @sales_tools_manager.get_sow_project_info(p) }
+    erb :sales_tools
+  end
+
+  get '/sales-tools/rfp/:name' do
+    @sales_tools_manager = SalesToolsManager.new
+    @project = @sales_tools_manager.get_rfp_project_info(params[:name])
+    erb :rfp_project_detail
+  end
+
+  get '/sales-tools/sow/:name' do
+    @sales_tools_manager = SalesToolsManager.new
+    @project = @sales_tools_manager.get_sow_project_info(params[:name])
+    erb :sow_project_detail
+  end
+
+  # API routes for Sales Tools management
+  post '/api/sales-tools/rfp/create' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    sales_tools_manager = SalesToolsManager.new
+    result = sales_tools_manager.create_rfp_project(data['name'])
+    result.to_json
+  end
+
+  post '/api/sales-tools/sow/create' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    sales_tools_manager = SalesToolsManager.new
+    result = sales_tools_manager.create_sow_project(data['name'])
+    result.to_json
+  end
+
+  post '/api/sales-tools/rfp/delete' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    sales_tools_manager = SalesToolsManager.new
+    result = sales_tools_manager.delete_rfp_project(data['name'])
+    result.to_json
+  end
+
+  post '/api/sales-tools/sow/delete' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    sales_tools_manager = SalesToolsManager.new
+    result = sales_tools_manager.delete_sow_project(data['name'])
+    result.to_json
+  end
+
+  post '/api/sales-tools/rfp/run-script' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    sales_tools_manager = SalesToolsManager.new
+    result = sales_tools_manager.run_rfp_script(data['project_name'], data['script_name'])
+    result.to_json
+  end
+
+  post '/api/sales-tools/sow/run-script' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    sales_tools_manager = SalesToolsManager.new
+    result = sales_tools_manager.run_sow_script(data['project_name'], data['script_name'])
+    result.to_json
+  end
+
   # GitHub Webhook Routes
   post '/webhook/github' do
     content_type :json
@@ -2379,6 +2451,180 @@ class AdminUI < Sinatra::Base
     
     # Sort by timestamp (newest first)
     preliminary_analyses.sort_by { |r| r[:timestamp] }.reverse.to_json
+  end
+end
+
+# Sales Tools Management
+class SalesToolsManager
+  def initialize
+    @rfp_dir = File.expand_path('../../sales-tools/rfp-machine/projects', __FILE__)
+    @sow_dir = File.expand_path('../../sales-tools/sow-machine/projects', __FILE__)
+  end
+
+  def list_rfp_projects
+    return [] unless Dir.exist?(@rfp_dir)
+    
+    Dir.entries(@rfp_dir).select do |entry|
+      next if entry.start_with?('.')
+      File.directory?(File.join(@rfp_dir, entry))
+    end.sort.reverse
+  end
+
+  def list_sow_projects
+    return [] unless Dir.exist?(@sow_dir)
+    
+    Dir.entries(@sow_dir).select do |entry|
+      next if entry.start_with?('.')
+      File.directory?(File.join(@sow_dir, entry))
+    end.sort.reverse
+  end
+
+  def get_rfp_project_info(project_name)
+    project_path = File.join(@rfp_dir, project_name)
+    return nil unless Dir.exist?(project_path)
+
+    input_dir = File.join(project_path, 'input')
+    output_dir = File.join(project_path, 'output')
+    
+    {
+      name: project_name,
+      type: 'RFP',
+      input_files: Dir.exist?(input_dir) ? Dir.entries(input_dir).reject { |f| f.start_with?('.') } : [],
+      output_files: Dir.exist?(output_dir) ? Dir.entries(output_dir).reject { |f| f.start_with?('.') } : [],
+      python_files: Dir.entries(project_path).select { |f| f.end_with?('.py') && !f.start_with?('.') },
+      text_files: Dir.entries(project_path).select { |f| f.end_with?('.txt', '.md') && !f.start_with?('.') },
+      input_count: Dir.exist?(input_dir) ? Dir.entries(input_dir).reject { |f| f.start_with?('.') }.size : 0,
+      output_count: Dir.exist?(output_dir) ? Dir.entries(output_dir).reject { |f| f.start_with?('.') }.size : 0,
+      last_modified: File.mtime(project_path).strftime('%Y-%m-%d %H:%M:%S')
+    }
+  end
+
+  def get_sow_project_info(project_name)
+    project_path = File.join(@sow_dir, project_name)
+    return nil unless Dir.exist?(project_path)
+
+    input_dir = File.join(project_path, 'input')
+    output_dir = File.join(project_path, 'output')
+    
+    {
+      name: project_name,
+      type: 'SOW',
+      input_files: Dir.exist?(input_dir) ? Dir.entries(input_dir).reject { |f| f.start_with?('.') } : [],
+      output_files: Dir.exist?(output_dir) ? Dir.entries(output_dir).reject { |f| f.start_with?('.') } : [],
+      python_files: Dir.entries(project_path).select { |f| f.end_with?('.py') && !f.start_with?('.') },
+      text_files: Dir.entries(project_path).select { |f| f.end_with?('.txt', '.md') && !f.start_with?('.') },
+      input_count: Dir.exist?(input_dir) ? Dir.entries(input_dir).reject { |f| f.start_with?('.') }.size : 0,
+      output_count: Dir.exist?(output_dir) ? Dir.entries(output_dir).reject { |f| f.start_with?('.') }.size : 0,
+      last_modified: File.mtime(project_path).strftime('%Y-%m-%d %H:%M:%S')
+    }
+  end
+
+  def create_rfp_project(project_name)
+    project_path = File.join(@rfp_dir, project_name)
+    return { success: false, error: 'Project already exists' } if Dir.exist?(project_path)
+
+    begin
+      Dir.mkdir(project_path)
+      Dir.mkdir(File.join(project_path, 'input'))
+      Dir.mkdir(File.join(project_path, 'output'))
+      { success: true, message: "RFP Project '#{project_name}' created successfully" }
+    rescue => e
+      { success: false, error: e.message }
+    end
+  end
+
+  def create_sow_project(project_name)
+    project_path = File.join(@sow_dir, project_name)
+    return { success: false, error: 'Project already exists' } if Dir.exist?(project_path)
+
+    begin
+      Dir.mkdir(project_path)
+      Dir.mkdir(File.join(project_path, 'input'))
+      Dir.mkdir(File.join(project_path, 'output'))
+      { success: true, message: "SOW Project '#{project_name}' created successfully" }
+    rescue => e
+      { success: false, error: e.message }
+    end
+  end
+
+  def delete_rfp_project(project_name)
+    project_path = File.join(@rfp_dir, project_name)
+    return { success: false, error: 'Project does not exist' } unless Dir.exist?(project_path)
+
+    begin
+      FileUtils.rm_rf(project_path)
+      { success: true, message: "RFP Project '#{project_name}' deleted successfully" }
+    rescue => e
+      { success: false, error: e.message }
+    end
+  end
+
+  def delete_sow_project(project_name)
+    project_path = File.join(@sow_dir, project_name)
+    return { success: false, error: 'Project does not exist' } unless Dir.exist?(project_path)
+
+    begin
+      FileUtils.rm_rf(project_path)
+      { success: true, message: "SOW Project '#{project_name}' deleted successfully" }
+    rescue => e
+      { success: false, error: e.message }
+    end
+  end
+
+  def run_rfp_script(project_name, script_name)
+    project_path = File.join(@rfp_dir, project_name)
+    return { success: false, error: 'Project does not exist' } unless Dir.exist?(project_path)
+
+    script_path = File.join(project_path, script_name)
+    return { success: false, error: 'Script does not exist' } unless File.exist?(script_path)
+
+    begin
+      Dir.chdir(project_path) do
+        stdout, stderr, status = Open3.capture3("python3 #{script_name}")
+        
+        # Save execution log
+        log_file = File.join(project_path, 'output', "#{script_name}_execution.log")
+        File.write(log_file, "Script: #{script_name}\n\nSTDOUT:\n#{stdout}\n\nSTDERR:\n#{stderr}\n\nExit Code: #{status.exitstatus}")
+        
+        {
+          success: status.success?,
+          stdout: stdout,
+          stderr: stderr,
+          exit_code: status.exitstatus,
+          log_file: log_file
+        }
+      end
+    rescue => e
+      { success: false, error: e.message }
+    end
+  end
+
+  def run_sow_script(project_name, script_name)
+    project_path = File.join(@sow_dir, project_name)
+    return { success: false, error: 'Project does not exist' } unless Dir.exist?(project_path)
+
+    script_path = File.join(project_path, script_name)
+    return { success: false, error: 'Script does not exist' } unless File.exist?(script_path)
+
+    begin
+      Dir.chdir(project_path) do
+        stdout, stderr, status = Open3.capture3("python3 #{script_name}")
+        
+        # Save execution log
+        log_file = File.join(project_path, 'output', "#{script_name}_execution.log")
+        File.write(log_file, "Script: #{script_name}\n\nSTDOUT:\n#{stdout}\n\nSTDERR:\n#{stderr}\n\nExit Code: #{status.exitstatus}")
+        
+        {
+          success: status.success?,
+          stdout: stdout,
+          stderr: stderr,
+          exit_code: status.exitstatus,
+          log_file: log_file
+        }
+      end
+    rescue => e
+      { success: false, error: e.message }
+    end
   end
 end
 

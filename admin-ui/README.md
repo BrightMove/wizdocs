@@ -1,37 +1,44 @@
-# Admin UI - Wizdocs Veracity Audit System
+# WizDocs - Agentic AI Platform for BrightMove
 
-A modern web application built with Ruby/Sinatra that provides comprehensive sync services and analysis tools for veracity audits across multiple platforms.
+A modern web application built with Ruby/Sinatra that provides comprehensive audit tools and sales automation for BrightMove product management.
 
 ## Overview
 
-The Admin UI is part of the Wizdocs ecosystem, designed to use AI to summarize the technical ecosystem of the BrightMove technical stack and keep documents in sync with actual source code. It provides sync services to connect to Atlassian Jira, Atlassian Confluence, Intercom, and Github to support veracity audits.
+WizDocs is an agentic AI platform designed to support BrightMove product management through two main areas:
+
+### 📊 Audits & Analysis
+- **Development Tickets**: Analyze JIRA development tickets and Intercom customer support tickets for consistency and accuracy
+- **Content Analysis**: Analyze Intercom Help Center (LightHub) and Confluence content for consistency and accuracy
+- **Veracity Audits**: Manage veracity audits, upload input files, and track analysis results
+- **GitHub Impact**: Monitor pull request impact on knowledge base and automatically detect conflicts between code changes and documentation
+
+### 💼 Sales Tools
+- **RFP Machine**: Automated RFP response generation with AI-powered requirement analysis and gap identification
+- **SOW Machine**: Generate comprehensive Statements of Work with automated scope definition and deliverable tracking
+
+The platform provides sync services to connect to Atlassian Jira, Atlassian Confluence, Intercom, and Github to support comprehensive analysis and automation.
 
 ## Features
+
+### 📊 Audits & Analysis
+- **Development Tickets**: Analyze JIRA development tickets and Intercom customer support tickets for consistency and accuracy
+- **Comprehensive Ticket View**: View all tickets across all JIRA projects with advanced search and filtering capabilities
+- **Content Analysis**: Analyze Intercom Help Center (LightHub) and Confluence content for consistency and accuracy
+- **Veracity Audits**: Manage veracity audits, upload input files, and track analysis results
+- **GitHub Impact**: Monitor pull request impact on knowledge base and automatically detect conflicts between code changes and documentation
+
+### 💼 Sales Tools
+- **RFP Machine**: Automated RFP response generation with AI-powered requirement analysis and gap identification
+- **SOW Machine**: Generate comprehensive Statements of Work with automated scope definition and deliverable tracking
+- **Project Management**: Create, organize, and manage RFP and SOW projects
+- **Script Execution**: Run AI-powered analysis scripts directly from the web interface
 
 ### 🔄 Sync Services
 - **JIRA Integration**: Comprehensive ticket and project synchronization
 - **Confluence Integration**: Wiki content and space management
 - **Intercom Integration**: Conversation and customer data analysis
-- **Github Integration**: Repository and code analysis (planned)
+- **Github Integration**: Repository and code analysis with webhook support
 - **Local Caching**: File-based caching for performance and offline analysis
-
-### 📊 Comprehensive Analysis
-- **Cross-Platform Analysis**: Detect duplications between JIRA tickets and Confluence content
-- **Content Accuracy**: Identify outdated or orphaned content
-- **Relationship Mapping**: Find connections between tickets and documentation
-- **Orphaned Content Detection**: Identify content with no related tickets
-
-### 🎫 Ticket Management
-- **All Tickets View**: Comprehensive view of all tickets across all JIRA projects
-- **Advanced Search**: Search and filter capabilities across all cached data
-- **Statistics**: Cross-project analytics and reporting
-- **Local Database**: File-based storage for comprehensive analysis
-
-### 📚 Content Analysis
-- **Confluence Content**: Sync and analyze all wiki content
-- **Duplication Detection**: Find similar content across platforms
-- **Accuracy Issues**: Identify outdated or broken references
-- **Orphaned Content**: Find content with no related JIRA tickets
 
 ### ⚙️ API Connections
 - JIRA Cloud integration with API token authentication
