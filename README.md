@@ -4,6 +4,7 @@
 - [Overview](#overview)
 - [Architecture](#architecture)
 - [Admin UI](#admin-ui)
+- [Sales Tools](#sales-tools)
 - [Usage](#usage)
 - [Veracity Audits](#veracity-audits)
 - [Content Analysis](#content-analysis)
@@ -22,6 +23,7 @@ The platform helps ensure that customer support tickets, project management tick
 The Wizdocs system consists of several key components:
 
 - **Admin UI**: A Ruby Sinatra web application for managing audits and analyzing content
+- **Sales Tools**: AI-powered tools for RFP responses and SOW generation
 - **Sync Services**: Integration with Atlassian Jira, Confluence, Intercom, and GitHub
 - **Content Analysis**: AI-powered analysis of documentation and ticket consistency
 - **Veracity Audits**: Structured audit processes for specific features or areas
@@ -50,6 +52,44 @@ The Admin UI is a Ruby Sinatra application located in the `admin-ui/` subdirecto
 - **Accuracy Analysis**: Identify outdated or inconsistent information
 - **Orphaned Content**: Find content without related tickets
 - **Resource Allocation**: Analyze ticket distribution and priorities
+
+## Sales Tools
+
+The sales-tools directory contains AI-powered automation tools for sales processes:
+
+### RFP Machine
+Located in `sales-tools/rfp-machine/`, this tool automates the creation of Request for Proposal (RFP) responses:
+
+- **Project-Based Organization**: Each RFP project is organized in its own directory with input/output structure
+- **AI-Powered Analysis**: Uses AI to analyze RFP requirements and generate structured responses
+- **Template-Based Responses**: Creates standardized table-formatted responses with Yes/No/Not Applicable answers
+- **Multi-Format Output**: Generates HTML, PDF, and other formats for easy integration into proposals
+- **Stakeholder Management**: Tracks team members and contact information for joint venture responses
+- **Pricing Integration**: Incorporates updated pricing models and service delivery partnerships
+
+### SOW Machine
+Located in `sales-tools/sow-machine/`, this tool automates Statement of Work (SOW) generation:
+
+- **Template-Based Generation**: Uses standardized templates for consistent SOW creation
+- **Project-Specific Customization**: Adapts content based on specific project requirements
+- **Output Management**: Organizes generated SOWs with input materials and final outputs
+
+### Usage
+Both tools follow a similar project structure:
+```
+sales-tools/
+├── rfp-machine/
+│   └── projects/
+│       └── project-name/
+│           ├── input/          # RFP documents and requirements
+│           ├── output/         # Generated responses
+│           └── final/          # Final formatted outputs
+└── sow-machine/
+    └── projects/
+        └── project-name/
+            ├── input/          # Project requirements and templates
+            └── output/         # Generated SOW documents
+```
 
 ## Usage
 
@@ -147,6 +187,9 @@ wizdocs/
 │   ├── views/         # ERB templates
 │   ├── cache/         # Local data cache
 │   └── config.env     # API configuration
+├── sales-tools/        # AI-powered sales automation tools
+│   ├── rfp-machine/   # RFP response automation
+│   └── sow-machine/   # SOW generation automation
 ├── audits/            # Veracity audit projects
 │   ├── audit-name/
 │   │   ├── input/     # Audit input materials
