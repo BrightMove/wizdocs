@@ -1,0 +1,270 @@
+TTTThhhhuuuurrrrssssddddaaaayyyy,,,, JJJJuuuullllyyyy 22224444,,,, 2222000022225555 aaaatttt 11114444::::44441111::::55559999 EEEEaaaasssstttteeeerrrrnnnn DDDDaaaayyyylllliiiigggghhhhtttt TTTTiiiimmmmeeee
+SSSSuuuubbbbjjjjeeeecccctttt:::: Re: BrightMove SSO
+DDDDaaaatttteeee:::: Friday, July 18, 2025 at 10:36:09 AM Eastern Daylight Time
+FFFFrrrroooommmm:::: Karen Millard
+TTTToooo:::: Jimmy HurM, Eugene Chang, David T. Webb, Kaysie McCormick, Ashok Vcrothimaswamypandian
+CCCCCCCC:::: Jaune Little, Jalyn Noel, Kevin Dietzel, Joseph Cooper, Vinay Menasinakai, Andrea Walter, John
+Schlotfeldt, Martha Vera, Maria Davidson, Dane Woodall
+AAAAttttttttaaaacccchhhhmmmmeeeennnnttttssss::::image001.png, image002.png, image003.png, image004.png, image005.png, image006.png,
+image007.png, image008.png, image009.png, image010.png, image011.png, image012.png,
+image013.png, image014.png, image015.png, image016.png, image018.png, image019.png,
+image020.png, image021.png, image022.png, image017.png, Outlook-jtphygrx.png, Outlook-
+0oxc0puv.png
+Good morning, Jimmy,
+Looking into this now. I'll follow up shortly.
+Karen Millard
+Product Manager, Strategic Development
+19001 Crescent Springs Drive | Kingwood, TX 77339
+Office: 281-312-2086
+https://www.insperity.com
+Book time to meet with me
+FFFFrrrroooommmm:::: Jimmy Hurff <jimmy@brightmove.com>
+SSSSeeeennnntttt:::: Thursday, July 17, 2025 3:08 PM
+TTTToooo:::: Eugene Chang <eugene.chang@workday.com>; David T. Webb <david.webb@brightmove.com>;
+Kaysie McCormick <Kaysie.Mccormick@insperity.com>; Ashok Vcrothimaswamypandian
+<Ashok.Vcrothimaswamypandian@insperity.com>
+CCCCcccc:::: Jaune LiVle <Jaune.LiVle@insperity.com>; Jalyn Noel <Jalyn.Noel@insperity.com>; Kevin Dietzel
+<Kevin.Dietzel@insperity.com>; Joseph Cooper <Joseph.Cooper@insperity.com>; Vinay Menasinakai
+<Vinay.Menasinakai@insperity.com>; Andrea Walter <andrea.walter@workday.com>; John SchloYeldt
+<j.schloYeldt@workday.com>; Martha Vera <Martha.Vera@insperity.com>; Maria Davidson
+<Maria.Davidson@insperity.com>; Dane Woodall <dane.woodall@brightmove.com>; Karen Millard
+<Karen.Millard@insperity.com>
+SSSSuuuubbbbjjjjeeeecccctttt:::: Re: BrightMove SSO
+CCCCAAAAUUUUTTTTIIIIOOOONNNN:::: This email originated from outside of the organiza`on. Do not click links or open aVachments unless
+you recognize the sender and know the content is safe.
+1 of 9
+
+--- PAGE BREAK ---
+
+Some people who received this message don't often get email from jimmy@brightmove.com. Learn why this is
+important
+Hey Karen, can you help us coordinate a meeting to discuss with the Workday team on
+these open issues? We need to get to ground on closing the gap on two items:
+What is approved key encryption (our assumption is that Insperity wishes to use the
+same type/level of encryption with Workday as is in place with Premier today)?
+How will Insperity/Workday map Workday-based Employee ID to BrightMove userGk
+(currently Insperity SSO sends userGk and companyGk in the SSO request)?
+I believe these items to be blockers to SSO enablement from Workday into BrightMove.
+Jimmy Hurff
+Co-Founder & Head of Customer Success
+O: 305-602-8998
+320 High Tide Dr., Suite 201
+Saint Augustine Beach, FL 32080
+FFFFrrrroooommmm:::: Eugene Chang <eugene.chang@workday.com>
+DDDDaaaatttteeee:::: Monday, July 14, 2025 at 4:10 PM
+TTTToooo:::: David T. Webb <david.webb@brightmove.com>, Kaysie McCormick
+<Kaysie.Mccormick@insperity.com>, Ashok Vcrothimaswamypandian
+<ashok.vcrothimaswamypandian@insperity.com>
+CCCCcccc:::: Jimmy HurM <jimmy@brightmove.com>, Jaune Little <Jaune.Little@insperity.com>,
+Jalyn Noel <Jalyn.Noel@insperity.com>, Kevin Dietzel <Kevin.Dietzel@insperity.com>,
+Joseph Cooper <Joseph.Cooper@insperity.com>, Vinay Menasinakai
+<Vinay.Menasinakai@insperity.com>, Andrea Walter <andrea.walter@workday.com>, John
+Schlotfeldt <j.schlotfeldt@workday.com>, Martha Vera <Martha.Vera@insperity.com>,
+Maria Davidson <Maria.Davidson@insperity.com>, Dane Woodall
+2 of 9
+
+--- PAGE BREAK ---
+
+<dane.woodall@brightmove.com>
+SSSSuuuubbbbjjjjeeeecccctttt:::: RE: BrightMove SSO
+Hi David,
+FYI, Insperity has several SSO links from WD to other vendors and they all do not have PGP encryp`on.
+Thanks,
+Eugene
+FFFFrrrroooommmm:::: David T. Webb <david.webb@brightmove.com>
+SSSSeeeennnntttt:::: Monday, July 14, 2025 1:07 PM
+TTTToooo:::: Eugene Chang <eugene.chang@workday.com>; Kaysie McCormick
+<Kaysie.Mccormick@insperity.com>; Ashok Vcrothimaswamypandian
+<ashok.vcrothimaswamypandian@insperity.com>
+CCCCcccc:::: Jimmy Hurff <jimmy@brightmove.com>; Jaune LiVle <Jaune.LiVle@insperity.com>; Jalyn Noel
+<Jalyn.Noel@insperity.com>; Kevin Dietzel <Kevin.Dietzel@insperity.com>; Joseph Cooper
+<Joseph.Cooper@insperity.com>; Vinay Menasinakai <Vinay.Menasinakai@insperity.com>; Andrea
+Walter <andrea.walter@workday.com>; John SchloYeldt <j.schloYeldt@workday.com>; Martha Vera
+<Martha.Vera@insperity.com>; Maria Davidson <Maria.Davidson@insperity.com>; Dane Woodall
+<dane.woodall@brightmove.com>
+SSSSuuuubbbbjjjjeeeecccctttt:::: Re: BrightMove SSO
+Hi Eugene. The userGK is the BrightMove Unique ID, but I do not think it will be the same as the WD EmployeeID. Currently, Insperity maps userGK to the used of their ITC system so that would need to be done on the WD side as well. RE: The assertion
+Hi Eugene.
+The userGK is the BrightMove Unique ID, but I do not think it will be the same as the WD
+EmployeeID. Currently, Insperity maps userGK to the used of their ITC system so that would need to
+be done on the WD side as well.
+RE: The assertion encryption - That is a change that we will discuss with Insperity in our next call
+with them. I am not sure of their security requirements and we can discuss their options with them.
+Thanks,
+Dave
+David Webb
+CEO
+O: 904.861.2396
+3 of 9
+
+--- PAGE BREAK ---
+
+320 High Tide Dr., Suite 201
+Saint Augustine Beach, FL 32080
+FFFFrrrroooommmm:::: Eugene Chang <eugene.chang@workday.com>
+DDDDaaaatttteeee:::: Monday, July 7, 2025 at 12:44 PM
+TTTToooo:::: David T. Webb <david.webb@brightmove.com>, Kaysie McCormick
+<Kaysie.Mccormick@insperity.com>, Ashok Vcrothimaswamypandian
+<ashok.vcrothimaswamypandian@insperity.com>
+CCCCcccc:::: Jimmy HurM <jimmy@brightmove.com>, Jaune Little <Jaune.Little@insperity.com>,
+Jalyn Noel <Jalyn.Noel@insperity.com>, Kevin Dietzel <Kevin.Dietzel@insperity.com>,
+Joseph Cooper <Joseph.Cooper@insperity.com>, Vinay Menasinakai
+<Vinay.Menasinakai@insperity.com>, Andrea Walter <andrea.walter@workday.com>, John
+Schlotfeldt <j.schlotfeldt@workday.com>, Martha Vera <Martha.Vera@insperity.com>,
+Maria Davidson <Maria.Davidson@insperity.com>, Dane Woodall
+<dane.woodall@brightmove.com>
+SSSSuuuubbbbjjjjeeeecccctttt:::: RE: BrightMove SSO
+Hi David,
+Thank you for the informa`on below. I have setup the BrightMove SAML SSO Link per the info provided
+from the WD insperitypeo2 E2E test tenant.
+For the “userGK” asser`on that is the unique ID of the recruiter or hiring manager in BrightMove, would
+we be able to assume this would be the same as the employee ID of the user that is clicking on the SSO
+link from WD? We would need to have this assump`on since we would not be able to dynamically
+determine the recruiter/hiring manager ID if that is different from the employee ID who is clicking on the
+SSO link from WD.
+Also, WD does not currently have the ability to PGP encrypt the SSO link asser`on.
+@Ashok Vcrothimaswamypandian – I have placed a “BrightMove_SSO_x509_public_peo2_250705.txt”
+x509 public key out on the /outgoing/Integra`ons/Transfers/BrightMove folder on the WD SFTP. Can
+you retrieve this public key and send to technicians@brightmove.com?
+Thanks,
+Eugene
+FFFFrrrroooommmm:::: David T. Webb <david.webb@brightmove.com>
+4 of 9
+
+--- PAGE BREAK ---
+
+SSSSeeeennnntttt:::: Thursday, June 26, 2025 12:11 PM
+TTTToooo:::: Kaysie McCormick <Kaysie.Mccormick@insperity.com>
+CCCCcccc:::: Jimmy Hurff <jimmy@brightmove.com>; Jaune LiVle <Jaune.LiVle@insperity.com>; Jalyn Noel
+<Jalyn.Noel@insperity.com>; Kevin Dietzel <Kevin.Dietzel@insperity.com>; Joseph Cooper
+<Joseph.Cooper@insperity.com>; Vinay Menasinakai <Vinay.Menasinakai@insperity.com>; Andrea
+Walter <andrea.walter@workday.com>; Eugene Chang <eugene.chang@workday.com>; John SchloYeldt
+<j.schloYeldt@workday.com>; Martha Vera <Martha.Vera@insperity.com>; Maria Davidson
+<Maria.Davidson@insperity.com>; Dane Woodall <dane.woodall@brightmove.com>
+SSSSuuuubbbbjjjjeeeecccctttt:::: Re: BrightMove SSO
+Hi Kaysie and Team, Here are the answers you requested regarding BrightMove’s SAML SSO endpoint and configuration: What is the Assertion Consumer Service and Recipient URL we should specify? Endpoints which require POST of the SAML Response
+Hi Kaysie and Team,
+Here are the answers you requested regarding BrightMove’s SAML SSO endpoint and
+configuration:
+WWWWhhhhaaaatttt iiiissss tttthhhheeee AAAAsssssssseeeerrrrttttiiiioooonnnn CCCCoooonnnnssssuuuummmmeeeerrrr SSSSeeeerrrrvvvviiiicccceeee aaaannnndddd RRRReeeecccciiiippppiiiieeeennnntttt UUUURRRRLLLL wwwweeee sssshhhhoooouuuulllldddd ssssppppeeeecccciiiiffffyyyy????
+Endpoints which require POST of the SAML Response Message:
+l. QA - http://app-qa.brightmove.com/ATS/app/auth/saml
+n. Prod - http://app.brightmove.com/ATS/app/auth/saml
+WWWWDDDD wwwwiiiillllllll sssseeeennnndddd EEEEmmmmppppllllooooyyyyeeeeeeee IIIIDDDD aaaassss tttthhhheeee NNNNaaaammmmeeee IIIIddddeeeennnnttttiiiififififieeeerrrr ((((uuuunnnniiiiqqqquuuueeee vvvvaaaalllluuuueeee)))).... IIIIssss iiiitttt OOOOKKKK iiiiffff WWWWDDDD
+ddddooooeeeessss nnnnooootttt sssseeeennnndddd CCCCoooommmmppppaaaannnnyyyyIIIIdddd,,,, GGGGKKKKIIIIDDDD aaaannnndddd AAAAPPPPIIIIKKKKeeeeyyyy????
+The Issuer must be the Insperity Company API Key: C2BEFA19-2088-7795-E040-
+007F01003E6A
+<saml:Issuer>C2BEFA19-2088-7795-E040-007F01003E6A</saml:Issuer>
+If Employee ID is the Insperity AIMS ID, then that is one of the required assertions.
+The comprehensive list required assertions are:
+l. EmployeeId – The AIMS ID of the Insperity user.
+n. userGK – The unique ID of the recruiter or hiring manager in BrightMove
+p. APIKey – The Company API Key for the company that the user belongs to.
+q. keyVersion – This should be “2” for the payloads coming from WorkDay
+<saml:Assertion>
+<saml:AttributeStatement>
+<saml:Attribute Name="EmployeeId">
+<saml:AttributeValue>9876543</saml:AttributeValue>
+</saml:Attribute>
+5 of 9
+
+--- PAGE BREAK ---
+
+<saml:Attribute Name="userGK">
+<saml:AttributeValue>12345</saml:AttributeValue>
+</saml:Attribute>
+<saml:Attribute Name="APIKey">
+<saml:AttributeValue>company-guid-
+here</saml:AttributeValue>
+</saml:Attribute>
+<saml:Attribute Name="keyVersion">
+<saml:AttributeValue>2</saml:AttributeValue>
+</saml:Attribute>
+</saml:AttributeStatement>
+</saml:Assertion>
+DDDDoooo wwwweeee ssssiiiiggggnnnn tttthhhheeee mmmmeeeessssssssaaaaggggeeee,,,, aaaasssssssseeeerrrrttttiiiioooonnnn oooorrrr bbbbooootttthhhh oooonnnn tttthhhheeee SSSSAAAAMMMMLLLL rrrreeeeqqqquuuueeeesssstttt????
+Both, you will encrypt the assertions with the BrightMove public key and you will sign the
+payload with your private key.
+AAAAssssssssuuuummmmiiiinnnngggg wwwweeee wwwwiiiillllllll uuuusssseeee SSSSSSSSHHHH aaaauuuutttthhhheeeennnnttttiiiiccccaaaattttiiiioooonnnn,,,, wwwwhhhhoooo sssshhhhoooouuuulllldddd wwwweeee sssseeeennnndddd tttthhhheeee xxxx555500009999 ppppuuuubbbblllliiiicccc
+kkkkeeeeyyyy ttttoooo????
+Please send the X509 Cert to technicians@brightmove.com – Once we receive the certs we will
+send you the BrightMove Public key for encrypting assertions.
+Thanks and please let us know if you have any other questions.
+David Webb
+CEO
+O: 904.861.2396
+320 High Tide Dr., Suite 201
+Saint Augustine Beach, FL 32080
+6 of 9
+
+--- PAGE BREAK ---
+
+FFFFrrrroooommmm:::: Jimmy HurM <jimmy@brightmove.com>
+DDDDaaaatttteeee:::: Tuesday, June 24, 2025 at 10:29 AM
+TTTToooo:::: Kaysie McCormick <Kaysie.Mccormick@insperity.com>
+CCCCcccc:::: Jaune Little <Jaune.Little@insperity.com>, Jalyn Noel <Jalyn.Noel@insperity.com>,
+Kevin Dietzel <Kevin.Dietzel@insperity.com>, Joseph Cooper
+<Joseph.Cooper@insperity.com>, Vinay Menasinakai
+<Vinay.Menasinakai@insperity.com>, Andrea Walter <andrea.walter@workday.com>,
+Eugene Chang <eugene.chang@workday.com>, John Schlotfeldt
+<j.schlotfeldt@workday.com>, Martha Vera <Martha.Vera@insperity.com>, Maria Davidson
+<Maria.Davidson@insperity.com>, David T. Webb <david.webb@brightmove.com>
+SSSSuuuubbbbjjjjeeeecccctttt:::: Re: BrightMove SSO
+Good Morning Kaysie and team.
+I’m acknowledging receipt and will get a comprehensive response back to your questions.
+One thing I wanted to reiterate that we shared with Insperity in previous conversations
+around SSO is we believe the current SSO configuration should work without any changes
+and coexist within the WD platform as well. We recently shared the original SSO
+implementation guide that we co-authored with Insperity support in 2014. We
+implemented to the specs within based on Insperity’s request and there have been no
+substantive changes since then. While testing of our theory should be performed, we
+believe Insperity could use the same keys & endpoints it has in place today, for connecting
+to BrightMove through WD.
+Have you received the guide with those specifications and do you have access to the PKI
+assets that are live in production today?
+I am sharing two emails from earlier this year for background, and will confirm your
+questions below.
+Jimmy Hurff
+Co-Founder & Head of Customer Success
+7 of 9
+
+--- PAGE BREAK ---
+
+O: 305-602-8998
+320 High Tide Dr., Suite 201
+Saint Augustine Beach, FL 32080
+FFFFrrrroooommmm:::: Kaysie McCormick <Kaysie.Mccormick@insperity.com>
+DDDDaaaatttteeee:::: Tuesday, June 24, 2025 at 10:15 AM
+TTTToooo:::: Jimmy HurM <jimmy@brightmove.com>
+CCCCcccc:::: Jaune Little <Jaune.Little@insperity.com>, Jalyn Noel <Jalyn.Noel@insperity.com>,
+Kevin Dietzel <Kevin.Dietzel@insperity.com>, Joseph Cooper
+<Joseph.Cooper@insperity.com>, Vinay Menasinakai
+<Vinay.Menasinakai@insperity.com>, Andrea Walter <andrea.walter@workday.com>,
+Eugene Chang <eugene.chang@workday.com>, John Schlotfeldt
+<j.schlotfeldt@workday.com>, Martha Vera <Martha.Vera@insperity.com>, Maria Davidson
+<Maria.Davidson@insperity.com>
+SSSSuuuubbbbjjjjeeeecccctttt:::: BrightMove SSO
+Good morning Jimmy,
+The BrightMove document you shared outlines the parameters for the SSO set up with
+AIMS. The implementation of WD SSO will be completely diMerent. Can you clarify a few
+WD SSO items:
+What is the Assertion Consumer Service and Receipient URL we should specify?
+WD will send Employee ID as the Name Identifier (unique value). Is it OK if WD does
+not send CompanyId, GKID and APIKey?
+Do we sign the message, assertion or both on the SAML request?
+Assuming we will use SSH authentication, who should we send the x509 public key
+to?
+I’ve included the WD team in case there are additional questions.
+Thank you,
+KKKKaaaayyyyssssiiiieeee MMMMccccCCCCoooorrrrmmmmiiiicccckkkk,,,, CCCCSSSSMMMM
+Agile PM, Enterprise Project Management
+19001 Crescent Springs Dr. | Kingwood, TX 77339
+OFFICE: 281-348-3237 | MOBILE: 336-995-4311
+8 of 9
+
+--- PAGE BREAK ---
+
+9 of 9
+
+--- PAGE BREAK ---
+

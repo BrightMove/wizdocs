@@ -1,0 +1,1 @@
+Use the file called AI_SYSTEM_PROMPT.md as the official instructions for project work.  In each project folder, use the AI_USER_PROMPT.md file for the specific project input.

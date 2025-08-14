@@ -1,0 +1,39 @@
+BRIGHTMOVE SUPPORT - API DOCUMENTATION
+=====================================
+
+• <h1 class="mb-1 font-primary text-2xl font-bold leading-10 text-body-primary-color">Webhooks</h1>
+• Note for RPO: Due to Zapier's architecture this integration is only possible using an API Key for a licensed user on each individual account. This means a parent user cannot create Zaps for child accounts and must use a separate login/license on the child account.
+• If you do not have a Zapier account, please set one up prior to attempting this integration.
+• Log into your BrightMove account> Settings> "API Key". You will need to know both your Company API Key and Personal User API Key.
+• <h1 class="mb-1 font-primary text-2xl font-bold leading-10 text-body-primary-color">API Documentation</h1>
+• As of April 2017 Zapier offers a Free version. This Free version will work with the BrightMove Zaps and allows
+• . Certain account plans with BrightMove have access to our development team for troubleshooting any API issues. Contact the
+• Products
+• <h1 class="mb-1 font-primary text-2xl font-bold leading-10 text-body-primary-color">Zapier Integration</h1>
+• Now you are ready to make a Zap!
+• <h1 id="ZapierIntegration-HowtoCreateaZap">How to Create a Zap</h1>
+• <h1 id="ZapierIntegration-SetUp">Set Up</h1>
+• Here are two helpful Zapier links on how to build a Zap and Zap Workflow:
+• Solutions
+• <h1 id="h_01HFS1C2VV27FG1N9MXHFH033T">In this Article:</h1>
+• Next, log into your Zapier account. Go to "Explore Apps" (in upper menu).
+• Zapier connects with hundreds of software applications that can be used with BrightMove. To view the full list of choices in Zapier, click on "Explore" in your Zapier Dashboard.
+• if you want to verify if API troubleshooting is included in your package or not.
+• ​
+• <h1 id="h_99fe417c41">In this Article:</h1>
+• <h1 class="mb-1 font-primary text-2xl font-bold leading-10 text-body-primary-color">API Keys</h1>
+• *If you would like to suggest future Triggers for Zaps, please enter your suggestion in your BrightMove Help menu option "Request a BrightMove Feature".
+• button.
+• <h1 id="ZapierIntegration-CurrentAvailableBrightMoveTriggers">Current Available BrightMove Triggers</h1>
+• A Zap is a blueprint for a workflow you want to do over and over automatically. Creating a Zap involves choosing a trigger, adding one or more action steps, testing the Zap, and finally, turning the Zap on.
+• Connect BrightMove to your Zapier account by clicking the
+• From there, you can view Popular Apps or search for specific Apps.
+• <h1 id="ZapierIntegration-ZapierIntegrationOptions">Zapier Integration Options</h1>
+• . They also have additional paid plans to allow for more than 5 Zaps and more advanced options.
+• BrightMove will be adding to this list over time. Below are examples of what is currently available.
+• About
+• Zapier allows you to connect the apps you know and love to build workflows, automate repetitive tasks, and save time.
+• BrightMove has an open API. You can access our full API docs
+• . API Keys are needed to work with third party integrations. Each user will have a unique User API Key and a Company API Key. Both keys are needed when interacting with our API or with third party integrations. You can find you API Keys in Settings > API Key.
+• Search for "BrightMove" under "Explore Apps".
+• You will then be prompted to enter your BrightMove Company API Key and User API Key.

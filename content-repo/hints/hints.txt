@@ -1,0 +1,34 @@
+# Feature Organization
+
+BrightMove organizes its features into 3 specific feature areas.  This grouping is called SET, for Source, Engage and Track
+
+# Source - Sourcing tools from BrightMove
+
+- People Parser
+    - Using the People Parser, a chrome plugin, BrightMove can be used for sourcing candidate profiles into the ATS from popular sites like LikedIn
+- BrightMove does not have a built-in sourcing function within the ATS service.  People Parser is the primary tool for sourcing.
+
+# Engage - Engagement and communication tools from BrightMove
+
+- Engage is the next generation chat platform with AI integration
+- Engage brings together job seekers, hiring managers and recruiters in a familiar chat-style interface
+- Engage is integrated with an AI agent named Wiz
+
+# Track - Applicant tracking tools from BrightMove
+
+- Core ATS enables the ability to record activities, notes, files and other details about applicants, jobs, hiring managers, submittals, offers, placements and more
+- Wisdom
+    - Wisdom is BrightMove's advanced analytics, reporting and business intelligence data platform
+    - The Wisdom data platform exposes data through a scalable enterprise data warehouse
+    - Wisdom uses near realtime replication in order to promptly make data available to consumers
+    - Through data pipelines, data within Wisdom is curated into high veracity data marts
+    - A modern business intelligence suite is integrated within the Wisdom platform which enables robust dashboard creation and reporting
+
+# Integrations
+
+- BrightMove Merge
+    - BrightMove can integrate with many 3rd party HRIS, CRM and ATS platforms via BrightMove Merge.  
+    - BrightMove Merge does have additional licensing costs and there are specific technical integrations that vary platform by platform.
+- Docusign for Offer Letter Generation
+    - If you have an existing subscription with Docusign, BrightMove can streamline the offer letter process using an integration with their e-signature service
+    - This requires a valid Docusign subscription and a paid add-on with BrightMove

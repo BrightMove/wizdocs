@@ -1,0 +1,1245 @@
+Page 1 
+Table of Contents  
+ 
+   
+REQUEST FOR PROPOSALS  
+ 
+Applicant Tracking System (ATS) Replacement  
+RFP No.  RFP_F -0000000061  
+ 
+August 4, 2025   
+ 
+ 
+ 
+ 
+ 
+  
+
+ 
+ RFP_F -0000000061   Page 2  
+REQUEST FOR PROPOSALS (RFP)  
+  
+     
+Procurement Service Center (PSC)  
+University of Colorado  
+1800 Grant Street, Suite 400  
+Denver, CO 80203  
+ 
+Purchasing Agent  (PA):  Chrissy Alexander  
+E-Mail:     chrissy.alexander@cu.edu     
+ 
+Request for Proposals # :  RFP_F -0000000061  
+ 
+PROPOSALS MUST BE RECEIVED BY: September 4, 2025 . 
+E-MAIL OR FACSIMILE RESPONSES WILL NOT BE ACCEPTED .  
+ 
+Rocky Mountain E -Purchasing System (BidNet ) website link:  
+https://www.bidnetdirect.com/colorado/universityofcolorado   
+ 
+ 
+ 
+Schedule of Activities:  
+This projected schedule is an estimated timeline and is subject to change at the sole discretion of the 
+University . All times listed in this document are understood to be Denver local time . 
+ 
+Event  Date  
+RFP Advertisement  August 4, 2025  
+Last Date to Submit Written Questions  August 14, 2025  at 2:00 PM 
+Proposal Due Date  September 4, 2025 at 2:00PM  
+ 
+ 
+RFP Questions  
+The University  will not answer any telephone inquiries about this RFP . Written questions are due by the 
+deadline for questions listed in the Schedule of Activities above and  shall be submitted electronically via 
+the Rocky Mountain E -Purchasing System (BidNet) website. CU requires all questions to be submitted 
+individually on this site.  
+ 
+Questions will be responded to by CU as deemed appropriate.  If the Proposers ’ questions are unclear or 
+non-substantive in nature, CU may request clarifications or decline to answer.  
+ 
+Note: BidNet limits the characters available to input for the University  to respond to each question. For 
+this reason, multiple questions may not be submitted as a single question, as the University  is unable to 
+respond to multiple questions in the space provided. Because of this limitation, the University  reserves 
+the right to reject groups of questions submitted  in a single question box or to select and respond to only 
+one question posed. A multi -part question containing an initial question and a follow -up is the exception 
+to this rule. All questions and answers will be posted on the BidNet website as an ad dendum to the RFP 
+at the link below following the deadline for submittal of questions : 
+ 
+ 
+ RFP_F -0000000061   Page 3  
+Proposal Submittal  
+The proposal shall be prepared in accordance with the Preparation of Proposal  as described in Section V I 
+of this RFP . Proposer s shall submit their proposal and all required forms via the BidNet  website . Proposals 
+are due by the date and time listed in the Schedule of Activities above.  
+ 
+Allow ample time for the electronic submission of your proposal. Following are links to a BidNet Electronic 
+Bid Submission (EBS) guide and EBS FAQ site. CU strongly encourages Proposer s to review this information 
+prior to starting your  submission  in addition to starting the submission process at least one business day 
+prior to the proposal due date . CU will not extend the submission deadline due to any technical issues or 
+outages you may experience . Also provided below are links to a webinar recording and slide deck related 
+to a vendor training that was conducted on November 8, 2023.  
+ 
+Proposer  EBS Guide  and FAQs :  
+https://faq.bidnetdirect.com/electronic -bid-submission/  
+ 
+Bidnet Webinar Recording and Slide Deck:  
+https://player.vimeo.com/video/886645835?h=6d7aea788f   
+https://communications.bidnet.com/hubfs/University -of-Colorado -Vendor -Webinar -November -8-
+2023.pdf   
+ 
+General Statement of Work  
+The University of Colorado seeks proposals for the launch  of a new system to support hiring across all 
+campuses. This project aims to find a turnkey, off -the-shelf solution that is configurable to  the varied 
+recruiting needs of a university environment, including different types of employees, workflows, and 
+policies across campuses.  
+ 
+ RFP_F -0000000061  Page 4 
+PROPOSAL SUBMITTAL REQUIREMENTS  
+The following is a checklist for reference when compiling the proposal submission . The documents listed 
+below are required:  
+•Technical Proposal:
+oComplete responses to the Technical Proposal Content as outlined in Section 
+IV
+oSystems Requirements Gathering Document is required to be included in the 
+technical proposal
+•Cost Proposal
+•Proposal Form(s) - all complete and signed
+oCU Solicitation Form
+•Variances:
+oList of all proposed modifications and/or legal issues regarding terms of the 
+solicitation document and/or the Sample Agreement and Special Provisions,  
+Attachment C.
+ 
+ RFP_F -0000000061   Page 5  
+TABLE OF CONTENTS  
+ 
+REQUEST FOR PROPOSALS (RFP)  ................................ ................................ ................................ ..................  2 
+PROPOSAL SUBMITTAL REQUIREMENTS  ................................ ................................ ................................ ...... 4 
+I. UNIVERSITY AND PROJECT OVERVIEW  ................................ ................................ ..............................  7 
+II. SCOPE OF WORK, QUALIFICATIONS AND REQUIREMENTS  ................................ ...............................  8 
+III. ADMINISTRATION INFORMATION  ................................ ................................ ................................ ... 13 
+1. Issuing Office  ................................ ................................ ................................ ......................  13 
+2. Introduction and Acceptance of RFP Terms  ................................ ................................ .......  13 
+3. Means of Communication  ................................ ................................ ................................ .. 13 
+4. Interpretation of Proposal Documents  ................................ ................................ ..............  14 
+5. Addenda  ................................ ................................ ................................ .............................  14 
+6. CU BidNet Website  ................................ ................................ ................................ .............  14 
+7. Withdrawal of Proposal  ................................ ................................ ................................ ...... 15 
+8. Award  ................................ ................................ ................................ ................................ . 15 
+9. Protested Solicitation and Award  ................................ ................................ .......................  15 
+10. Rights of CU  ................................ ................................ ................................ ........................  15 
+11. Confidentiality of Records  ................................ ................................ ................................ .. 16 
+12. Proposer Agreements  ................................ ................................ ................................ .........  17 
+13. Certification of Independent Price and Work Determination  ................................ ............  17 
+14. Designation of Subcontractors  ................................ ................................ ...........................  18 
+15. Payment  ................................ ................................ ................................ ..............................  18 
+16. Insurance Requirements  ................................ ................................ ................................ .... 18 
+17. Governmental Immunity  ................................ ................................ ................................ .... 18 
+18. Conflicts of Interest  ................................ ................................ ................................ ............  18 
+19. Form of the Contract  ................................ ................................ ................................ ..........  18 
+20. Solicitation Response and Material Ownership  ................................ ................................ . 19 
+21. Incurring Costs  ................................ ................................ ................................ ....................  19 
+22. Determination of the Responsibility of the Proposer  ................................ ........................  19 
+23. Amendment Process  ................................ ................................ ................................ ..........  20 
+24. Invoicing  ................................ ................................ ................................ .............................  20 
+25. Procedure for Invoice Payments  ................................ ................................ ........................  20 
+26. Audit  ................................ ................................ ................................ ................................ ... 20 
+27. Travel Expenses  ................................ ................................ ................................ ..................  20 
+28. Non -Exclusive Agreement  ................................ ................................ ................................ .. 21 
+ 
+ RFP_F -0000000061   Page 6  
+29. Non -Discrimination  ................................ ................................ ................................ ............  21 
+30. News Releases  ................................ ................................ ................................ ....................  21 
+31. Taxes  ................................ ................................ ................................ ................................ ... 21 
+32. Assignment and Delegation  ................................ ................................ ................................  21 
+33. Standard of Conduct  ................................ ................................ ................................ ...........  21 
+34. Other Applicable Statutes  ................................ ................................ ................................ .. 21 
+35. Cooperative Purchasing  ................................ ................................ ................................ ...... 22 
+36. IT Security and Compliance  ................................ ................................ ................................  22 
+IV. PREPARATION OF PROPOSAL  ................................ ................................ ................................ ..........  24 
+1. Preparation of Proposal – Proposal Forms  ................................ ................................ .........  24 
+2. Preparation of Proposal – Technical Proposal  ................................ ................................ ... 24 
+3. Technical Proposal Contents  ................................ ................................ ..............................  25 
+4. Cost Proposal Form and Content  ................................ ................................ .......................  26 
+V. EVALUATION OF PROPOSALS  ................................ ................................ ................................ ..........  27 
+1. Evaluation of Proposals  ................................ ................................ ................................ ...... 27 
+2. Past Performance  ................................ ................................ ................................ ...............  27 
+3. Shortlisting and Oral Presentations (If Necessary)  ................................ .............................  27 
+4. Best and Final Offers  ................................ ................................ ................................ ..........  28 
+5. Evaluation Criteria  ................................ ................................ ................................ ..............  28 
+VI. ATTACHMENTS  ................................ ................................ ................................ ................................  29 
+A. CU Solicitation Form  ................................ ................................ ................................ ...........  29 
+B. Insurance Requirements  ................................ ................................ ................................ .... 29 
+C. Sample Agreement and Special Provisions  ................................ ................................ ........  29 
+D. Systems Requirements Gathering Document  ................................ ................................ .... 29 
+ 
+ 
+ 
+ RFP_F -0000000061   Page 7  
+I. UNIVERSITY  AND PROJECT OVERVIEW  
+This solicitation is issued by the University of Colorado (CU  or University ), through the Procurement  
+Service  Center  (PSC) .  
+ 
+CU is the state’s largest and most influential public research university,  a community of approximately 
+67,000 stu dents and 28,000 employees spanning four campuses and system administration.  Every 
+year CU graduates are thousands of stu dents who fill critical workforce needs across the state. CU is 
+the state’s third largest  public  employer with an annual operating budget of $ 6.3 billion. CU faculty 
+attracted $ 1.6 billion in  sponsored research awards to conduct research in economic sectors critical 
+to the state and nation, including energy, bioscience, aerospace, and health care. Overall, CU  and its 
+CU Anschutz affiliate hospitals  contribute  approximately $ 17.2  billion annually to the state’s economy.  
+ 
+The proposal must be prepared and submitted in accordance with the requirements and procedures 
+contained in this RFP document and the University’s  policies , rules, and procedures . Compliance with 
+these requirements by the Proposer is mandatory and is a condition of responsiveness. Any failure to 
+satisfy these requirements will be a sufficient basis for the University  to disqualify the Proposer . The 
+University  shall not be liable for any of the Proposer’s expenses associated with its preparation of the 
+propo sal or University ’s consideration of it. The Proposer, if selected, shall not include any such 
+expenses as part of its fee for performing the Scope of Work.  
+ 
+As a result of this solicitation, CU intends to award a contract to a single  proposer . The anticipated 
+starting date for any resulting contract is May 2 6, 2026 . By submitting a signed proposal in response 
+to this solicitation, the Proposer  represents and warrants that it will honor its proposal as being held 
+open as irrevocable until time of award.  The term of the contract resulting from the award  of this 
+solicitation shall begin upon execution of the contract, and end three  (3) year s later. The contract may 
+be renewed upon mutual agreement for up to two (2) additional one -year periods for a total term 
+not to exceed five (5)  years.  CU, at its discretion, may terminate the contract with thirty (30) days’ 
+notice by stating so in writing.  
+ 
+  
+ 
+ RFP_F -0000000061   Page 8  
+II. SCOPE OF WORK , QUALIFICATIONS AND REQUIREMENTS  
+ 
+1. Introduction  
+ 
+A. BACKGROUND:  
+The University of Colorado (CU) is a multi -campus public university that provides education, research, 
+and healthcare services across Colorado and beyond. Each campus has its own unique mission and 
+way of operating.  
+ 
+CU’s current recruitment system, will reach the end of its contract in 2027. We're now preparing to 
+select and launch a new system to support hiring across the campuses. This project aims to find a 
+solution that fits the varied recruiting needs of a university environment, including different types of 
+employees, workflows, and policies across campuses.  
+ 
+B. PROJECT OVERVIEW:  
+We are looking for a modern, cloud -based Applicant Tracking System (ATS). This tool will help CU 
+manage every stage of the hiring process — from writing job descriptions and posting open positions 
+to reviewing applicants, scheduling interviews, making offe rs, and onboarding new employees.  
+ 
+The goal is to:  
+- Make recruiting easier and faster for hiring teams  
+- Improve the experience for job candidates  
+- Meet legal and university hiring requirements  
+ 
+We need a system that supports the following key features:  
+- Easy review and approval of job descriptions, with those details connected to job postings  
+- Automatic posting to internal and external job boards  
+- Custom hiring workflows to match campus -specific practices  
+- Tools to manage candidates — filter resumes, send emails, schedule interviews  
+- Collaboration features so teams can review applicants and share feedback  
+- Reporting tools to track hiring speed, diversity data, and where applicants are coming from  
+- Integration with CU’s existing tools, like our HR system (Oracle PeopleSoft HCM 9.2), single 
+sign-on (SSO), and background checks  
+- Simple and accessible user experience for applicants and CU employees  
+ 
+CU uses a position -based staffing model. That means instead of tracking jobs by employee or job title, 
+we define jobs by positions in the HR system. Each position holds its own data, like salary and working 
+hours. These details stay tied to the position, e ven when different employees occupy it over time. 
+Each position needs a unique job description and approval before recruiting starts. Ideally, the new 
+ATS will manage this step and link key details directly into job postings once approved.  
+ 
+C. PROJECT GOALS:  
+Our new ATS should help CU:  
+1. Stay compliant with employment laws and university policies  
+2. Reduce manual steps by automating workflows and features  
+3. Organize job -related documents clearly and securely  
+4. Include job description approvals and workflows in the system  
+5. Generate useful hiring reports and data dashboards  
+ 
+ RFP_F -0000000061   Page 9  
+6. Create a smooth experience for candidates and CU staff  
+ 
+The system should work well for both faculty and staff hiring, across the CU campuses. We want 
+something that’s flexible, easy to use, and aligns with our current and future needs — from 
+creating job descriptions and postings to managing candidate materials securely.  
+ 
+D. DELIVERABLES  
+The ideal system should work well for both faculty and staff hiring across different CU campuses , each 
+of which has unique needs.  
+ 
+The proposed system must be able to : 
+- Support all types of hiring — faculty and staff, across System Administration, with the 
+opportunity for the  four campuses  to use the system if they choose . 
+- Integrate  easily with our current HR tools like Oracle PeopleSoft and other internal systems.  
+- Improve the experience for everyone — from job seekers to hiring teams.  
+- Handle every part of hiring: writing job descriptions, posting jobs, reviewing applicants, 
+coordinating interviews, and making offers.  
+ 
+In addition, proposals must be  clear in their submissions about the following:  
+- All data storage limitations  
+- All email sending limits  
+- System configuration limits, such as:  
+o Number of custom fields  
+o Email templates  
+o Forms  
+o Workflow steps  
+o Data lists  
+o Any other system limitations, or limitations of the platform itself  
+ 
+CU also seeks the following capabilities : 
+- Secure and organized storage of applicant materials that meets legal and university standards, 
+with audit trails.  
+- Tools for different users like recruiters, hiring managers, HR staff, search committees, and job 
+applicants.  
+- A simple and intuitive design so it’s easy to use and collaborate, even with complex workflows.  
+- Built -in tools for job description review and approval, with automatic updates to job postings 
+once a position is approved.  
+- Reporting capabilities to meet federal hiring requirements (EEO and OFCCP) and support 
+custom reports as needed.  
+- Strong integration with CU's existing systems and tools — including Outlook, OnBase, Textio, 
+CrossChq, and others.  
+- Customizable templates and workflows that CU staff can easily adjust without vendor 
+assistance.  
+- Communication tools that support both scheduled messages and on -the-fly emails — for 
+internal teams and external candidates.  
+- Flexibility to serve CU’s four campuses, each with its own hiring process and employee 
+population . 
+ 
+ 
+ 
+ RFP_F -0000000061   Page 10  
+ 
+E. RESPONSIBILITIES  
+CU is looking for a vendor that will be a strong partner — helping not only with setting up the new 
+hiring system but also supporting it throughout the life of the contract.  
+What the Vendor Will Do:  
+- Set up and validate the system, and support CU with final User Acceptance Testing (UAT) for 
+the system to be ready and usable by May 2027.  
+- Work alongside CU staff for implementation  
+- Configure  the system to match CU’s needs and technology  
+- Provide training and helpful documentation for CU employees  
+- Ensure the system works well through quality checks  
+- Offer ongoing support after the system goes live  
+- Help plan and carry out the move of existing data into the new system  
+- Build system integrations  between the ATS and CU’s existing tech  
+- Create dashboards and reports to help track hiring data  
+ 
+What CU Will Provide:  
+- Access to staff, systems, and resources needed for planning and setup  
+- Dedicated employees to work with the vendor during the project  
+- IT support to help with system setup and integrations  
+- CU will retain full ownership of its data  
+- CU must comply with the Colorado Public Records Act, which overrides any other agreements 
+about confidentiality.  
+ 
+F. SYSTEM REQUIREMENTS  
+CU has outlined a full list of detailed requirements in a spreadsheet  (Attachment D - Systems 
+Requirements Gathering Document .xlsx)  covering everything from technical features to business 
+needs. This document must be completed as a part of the technical proposal submission, confirming 
+all mandatory requirements are met, or a fit -gap analysis is provided for the requirements not met 
+and are  detailed clearly for CU to review for consideration. Desired features must also be addressed 
+in the same manner as the mandatory requirements; with confirmation that the proposed solution 
+meets the desired feature request, or a fit -gap analysis where the proposed solution does not meet 
+the desired feature re quest. The document must be completed with the existing formatting; 
+proposers must not delete, edit, or alter the document in any other way than completing Columns E 
+and F for each requirement and requested feature s. 
+ 
+Key System Needs:  
+- A turnkey, off -the-shelf solution, with configuration options.  
+- Smooth integration  with CU’s existing systems (like PeopleSoft, HireRight, HireVue, Outlook, 
+OnBase, Textio, and more)  
+- Help desk support that works across different browsers , devices , and time zones  
+- Ability for CU admins to configure the system — templates, dashboards, workflows, access, 
+and troubleshooting  
+- Respond to both CU and outside email addresses  
+- Cloud -based software that meets security and accessibility standards  
+- Provide thorough training and easy -to-use documentation for CU staff  
+- Organize and store applicant data and job documents in a secure and accessible way  
+- Have expert staff help CU with setup and support through the implementation  
+- Transfer data from current system s into the new system smoothly  
+ 
+ RFP_F -0000000061   Page 11  
+- Built -in tools for job description review and automatic updates to job postings  
+- Meet hiring data reporting requirements, including EEO and custom reports  
+- Let CU staff customize email templates and workflows for different audiences  
+- Must support System administration, with the ability to support all four CU campuses, each 
+with their own hiring processes  
+ 
+For this project, CU will not consider professional services to develop a third -party platform  to meet 
+the requirements of the solicitation. The platform proposed must be a turnkey, off -the-shelf solution  
+developed by, implemented by, and supported by the same single supplier . 
+ 
+G. SERVICE EXPECTATIONS  
+Vendors must be able to install and launch a fully working ATS system that:  
+- Allows  CU staff to configure  workflows, reports, templates, and security features themselves  
+- Supports “Train the Trainer” method — CU experts will teach other staff  
+- Includes strong support for each campus during the setup phase  
+- Offers clear documentation and plans for going live  
+- Integrates with CU’s other systems, with technical experts to help  
+- Includes a working test environment just like the live system  
+- Teaches CU’s tech team how to manage the system after launch  
+ 
+Before rollout, CU and the vendor will agree on a formal plan that lays out:  
+- The final deliverables  
+- The individuals  responsible for each final deliverable  
+- A timeline for completion  including key milestones  
+- Criteria for acceptance  
+ 
+Must offer additional services that add value, like:  
+- On-site visits or training  
+- Long -term support  – dedicated Account Manager  
+- Industry partnerships  
+- Knowledge base  
+- User communities  
+ 
+2. Minimum Mandatory Qualifications  
+Proposers must meet these minimum requirements to be considered for evaluation and award.  
+a. The proposed solution must be a turnkey, off -the-shelf solution, with the ability to 
+support CU configurations  and must be developed by, implemented by, and 
+supported by the same single supplier . 
+b. The proposed solution must  be able to support over 100 licensed users with personas 
+specific to their area of work (i.e. administrators, HR staff, etc.).  
+c. The proposed solution must also be able to support unlimited non -licensed users with 
+personas specific to their association with the platform (i.e. applicants, hiring 
+managers, etc.).  
+d. The proposed solution must have security lockdown  features for each persona, i.e., 
+Administrators have access to only the specific data they need, HR staff have access 
+to only the specific data they need, etc. to conduct their work in their roles.  
+e. Proposers must have a minimum of 3 years’  experience in project setup, training, data 
+migration, and support  higher education institutions, or institutions of similar size and 
+scope.  
+ 
+ RFP_F -0000000061   Page 12  
+f. Must have an assigned service representative/account manager.  
+g. Must have an assigned technical support contact or team.  
+ 
+3. Minimum Service Requirements  
+Proposers must agree to provide the following Minimum Service Requirements during the life of 
+any contract awarded.  
+h. Planned Downtime: System updates will be scheduled ahead of time and done during 
+low-use periods. Downtime will be short — 30 minutes or less.  
+i. Browser Compatibility: Works with current versions of all major web browsers.  
+j. Mobile Access: compatible with mobile devices.  
+k. 24/7 Reporting: Vendors must allow around -the-clock issue reporting, especially for 
+security concerns.  
+l. Quick Response Times:  
+m. Critical issues: Respond within 1 –2 hours, resolved in 1 –3 days depending on severity  
+n. Minor issues: Respond within 48 hours  
+o. Security Incident Notifications: CU must be notified of any data breach within 24 
+hours of detection.  
+p. Availability Goals: System should be up and running  99% of the time during busy 
+hours  
+q. Performance Goal: Page load times and system responses should take 3 seconds or 
+less on average.  
+r. Disaster Recovery: Vendor should have a solid backup plan in case of major service 
+disruptions.  
+s. Backups: Data should be backed up regularly — at least once a week.  
+t. Data Security: Vendor must follow industry -standard security practices and have 
+strong safeguards in place.  
+u. Data Storage Rules: CU data must stay in the U.S. unless CU gives written permission 
+otherwise.  
+v. Ongoing Protection: Vendor must regularly review and update security to keep up 
+with new risks.  
+w. Must provide a proposal for training staff on use of the platform.  
+x. Must provide clear documentation for implementation, maintenance, and 
+troubleshooting.  
+y. Must provide a proposal for ongoing customer support, including software updates 
+and security patches.  
+z. Must confirm the proposed solution is in compliance with Colorado Senate Bill 24 -
+205; Attachment E of this solicitation.  
+ 
+ 
+ 
+ 
+ 
+ 
+ RFP_F -0000000061   Page 13  
+III. ADMINISTRATION INFORMATION   
+ 
+1. Issuing Office   
+This RFP is being issued by the University of Colorado (CU  or University ) through the Procurement 
+Service Center (PSC). This RFP is governed by the University ’s policies  and Procurement Rules in 
+effect at the time of its issuance.  The PSC Purchasing Agent listed herein  is the sole point of 
+contact concerning this RFP . All communication must be done through the PSC. Prospective and 
+actual Proposers shall not directly contact other CU personnel regarding matters concerning this 
+solicitation . 
+ 
+2. Introduction  and Acceptance of RFP Terms  
+The Proposer , by submitting its proposal, acknowledges that it understands  and will agree to  the 
+corresponding Exhibits and the Scope of Work , and that the Proposer  shall be able to perform as 
+required.  Acknowledgement of this condition shall be indicated by the signature of  an officer or 
+authorized agent of  the Proposer  on the CU Solicitation Form  which is attached hereto and 
+incorporated here in as Attachment A. A submission in response to this RFP acknowledges 
+acceptance by the Proposer  of all terms and conditions as set forth herein . The Proposer  shall  
+identify  clearly and thoroughly any variations between its proposal and this RFP. Failure to do so 
+shall be deemed a waiver of any rights to subsequently modify the terms of performance, except 
+as outlined or specified in this RFP.  
+ 
+Proposer s shall undertake a detailed review of Attachment C, Sample  Agreement  and Special 
+Provisions , and submit with their proposal a list of all legal  issues or proposed modifications which 
+the Proposer  would like CU to consider , should they be selected for award . The Proposer may 
+submit questions regarding the Sample Agreement  and Special Provisions  using the same method 
+designated for other questions related to this  RFP.  Proposer s are strongly advised to seek legal 
+counsel for advice regarding the Sam ple Agreement  and Special Provisions . CU will not respond 
+to legal questions about the interpretation of a provision of the Sample Agreement  and Special 
+Provisions  or provide legal advice regarding the Agreement to proposers. CU shall assume that 
+the Sample Agreement  and Special Provisions  have  been thoroughly reviewed and discussed with 
+legal counsel prior to submission of the Proposal.  If the Proposer does not identify any issues or 
+proposed modifications to the Sample Agreement  and Special Provisions , CU may refuse to 
+consider any proposed revisions received  later  from the Proposer, if they are selected for award . 
+CU may consider the Proposer’s comments in considering whether to select  Proposer  for award.  
+ 
+The Sample Agreement  and Special Provisions  are subject to revision or modification by CU at any 
+time. CU reserves the right to modify any term or condition of this Agreement, and to add, delete 
+or modify terms and conditions, as CU’s interests may require, prior to execution of a final 
+agreement. The Sample Agreement and Special Provisions may contain provisions required by 
+Federal, State, and /or University policy, and these provisions may not be revised or negotiated.   
+ 
+3. Means of Communication  
+During the solicitation process for this RFP, all communication between the PSC and Proposer s 
+will be made via postings on CU’s Rocky Mountain E -Purchasing System’s (BidNet’s)  website:   
+ 
+https://www.bidnetdirect.com/colorado/universityofcolorado   
+  
+ 
+ RFP_F -0000000061   Page 14  
+The PSC  will post notices, which include, but are not limited to, any modifications to 
+administrative or performance requirements, answers to inquiries received, clarifications to 
+requirements, ad denda, and the announcement of the awarded  Proposer . It is the responsibility 
+of each potential Proposer  to monitor the BidNet website regularly to be aware of changes, 
+communications and/or ad denda to solicitation .  
+  
+4. Interpretation of Proposal Documents  
+The Proposer  may request, in writing, a clarification or interpretation of any aspect of the RFP 
+documents . Such requests must be made via the BidNet website by the due date and time 
+specified in the Schedule of Activities listed on Page 2 . CU shall post all questions and answers on 
+the BidNet website following the deadline for submittal of questions as an ad dendum to the bid. 
+CU will not accept or respond to oral inquiries except for those made at the Pre -Proposal  
+Conference , if applicable . The only ‘official’ responses are those that are posted to the BidNet 
+website for this RFP.  
+ 
+Should any interested Proposer, sales representative, or manufacturer find any part of the listed 
+specifications or terms and conditions to be discrepant, incomplete, or otherwise questionable, it 
+shall be the responsibility of the concerned party to notif y the Purchasing Agent of such matters 
+immediately upon discovery.  
+ 
+Proposers  cannot rely on any other statements that clarify or alter any specification or other term 
+or condition of the solicitation.  
+ 
+5. Addenda 
+CU reserves the right to revise the RFP documents at any time up to the time set for submission 
+of the proposals . Any such revision(s) shall be described in an ad dendum to the RFP and shall be 
+posted on CU’s  BidNet  website .  
+  
+If CU determines that the ad dendum may require significant changes to the Scope of Work, the 
+deadline for submitting the proposals may be postponed by the number of days that CU 
+determines will allow Proposer s sufficient time to revise their proposals . Any new submittal 
+deadline date for delivering proposals to CU shall be included in the ad dendum.   
+  
+Proposer s must acknowledge in the proposal submission that they received all ad denda to the 
+proposal documents (see Attachment A). Failure to acknowledge receipt of ad denda may 
+disqualify the proposal .  
+ 
+6. CU BidNet  Website  
+It shall be conclusively presumed that the Proposer  did, before submitting a proposal  and prior to 
+the final proposal deadline , read all ad denda, posted decisions and other information items 
+relevant to the RFP which appeared on CU’s  BidNet  website . Proposer  may also contact the 
+Purchasing Agent by email a t Procurement@cu.edu  to confirm all posted information.   
+  
+Please visit CU’s  BidNet  website which contains such services and information as:   
+  
+a. Advertisements for Documented Quote, RFx and IFB opportunities  
+b. Status of Documented Quote, RFx and IFB opportunities  
+c. Addendums including Proposer  questions and responses  
+d. Award information  
+ 
+ RFP_F -0000000061   Page 15  
+  
+7. Withdrawal of Proposal  
+A Proposer  may withdraw its proposal , up until time of award, by submitting to CU a written 
+request signed by the Proposer ’s authorized representative . The withdrawal of a proposal does 
+not prejudice the right of the Proposer  to submit future proposals.  
+ 
+8. Award  
+Any resulting contract from this solicitation will be awarded to the Proposer whose overall offer 
+is deemed to be the most advantageous to CU as determined by the evaluation team. The PSC, 
+after review and approval of the evaluation team's written recommen dation, will notify all 
+Proposers via a posting on CU’s BidNet website  of the results of the solicitation evaluation. The 
+posting will be an announcement of the award.  
+ 
+The contents of the proposal (including persons specified to implement the project) of the 
+Proposer  will become contractual obligations if acquisition action ensues. Failure of the successful 
+Proposer  to accept these obligations in a contract, purchase order, or similar authorized 
+acquisition document may result in cancellation of the award and such Proposer  may be removed 
+from future solicitations.  
+ 
+9. Protested Solicitation and Award  
+Any actual  or prospective  Proposer  who  is aggrieved  in connection  with  either  the solicitation  or 
+subsequent  award  of a contract may protest to the University of Colorado, Associate Vice 
+President/Chief Procurement Officer. The protest shall be submitted in writing within seven 
+working days after such aggrieved person knows, or should have known, of the facts giving rise 
+thereto. Sections IX, C. and IX, D. University of Colorado Procurement Rules.  
+ 
+Regarding the language above, it is important for proposers  to note that a protest to the 
+solicitation’s  requirements or specifications should be made within seven (7) working days of 
+when the item being protested is known or after the Award date whichever comes first.  
+ 
+The announcement of the  Award will be made via a posting on CU’s BidNet w ebsite. The 
+requirement for timely submission of any protest (7 working days) will begin on the first working 
+day following  posting of the  Award.  
+ 
+10. Rights of CU 
+CU reserves the right  to cancel or modify this RFP at any time and to reject any or all proposals 
+for any reason or for no reason. This RFP is an open and equitable invitation for proposals, and 
+each proposal constitutes an offer to contract that CU may consider in its sole and absolute 
+discretion. Any errors or omissions in a proposal may result in the rejection and disqualification 
+of the entire proposal . Errors, omissions, and other acts that may result in proposal rejection and 
+disqualification include, but are not limited to, failure to strictly comply with the RFP requirements 
+or any applicable policies , rules, or policies; the submission of any inaccurate or false information; 
+any improper communications or collusion involving Proposer s; default or termination for cause 
+of any public or private contracts within the past five years; delinquent arrearages owed to CU; 
+and failure to submit proof of licensing or franchise authority and any related exclusivity 
+requirements.  
+ 
+Notwithstanding the broad rights reserved to CU to reject and disqualify any or all proposals, CU 
+may waive any immaterial deficiencies in proposals and may allow Proposer s to cure any such 
+ 
+ RFP_F -0000000061   Page 16  
+deficiencies if an opportunity to cure is determined by CU to be in  CU’s best interests. If given an 
+opportunity to cure, Proposer s will be notified of the allotted time to correct the i dentified 
+deficiency; failure to correct the deficiency in the time allotted may result in proposals being 
+deemed non -responsive and disqualified.  CU’s waiver of an immaterial deficiency will in no way 
+modify the RFP or excuse Proposer s from full compliance with all RFP specifications . CU may 
+exercise the foregoing rights at  any time without notice and without any liability whatsoever to 
+any Proposer  or other party . By responding to this RFP, each Proposer  is deemed to accept and 
+agree to all terms and conditions and to waive any rights to challenge CU’s determinations 
+regarding proposal deficiencies in accordance with this section.  
+ 
+During the evaluation process,  CU reserves the right to request additional information from any 
+Proposer , to seek clarification of information provided, to conduct its own due diligence with 
+respect to any Proposer  or proposal, reference checks, or any other investigations deemed 
+necessary.  
+ 
+11. Confi dentiality of Records  
+Documents submitted to or created by the University in response to this solicitation are subject 
+to the Colorado Open Records Act (C.R.S. § 24 -72-201 et seq .) (“CORA”). In accordance with the 
+University policies and procedures, all documents submitted to or created by the University in 
+response to this solicitation are confidential and privileged and may not be inspected until an 
+award is made or the solicita tion is cancelled by the University.  An award is made when the 
+University formally executes a contra ct resulting from this solicitation. A solicitation is cancelled 
+when notice of such cancellation is posted on University’s BidNet Website.  
+  
+CORA requires the University to withhold certain information, including trade secrets, confidential 
+commercial and financial data, or privileged information. To designate portions of the solicitation 
+as confidential, Proposer must:  
+  
+1. Mark the cover page as follows: “This response to the Solicitation Name and Number 
+includes trade secrets, confidential financial data, or other privileged information.”  
+2. Mark each sheet or data to be restricted with the following: “Confidential: Use or 
+disclosure of data contained on this sheet is subject to the restriction on the cover page 
+of this response to the solicitation.”  
+3. Provide a separate secondary proposal in BidNet with a redacted copy of your entire 
+response to this solicitation. Proposer is responsible for properly and adequately 
+redacting any data which Proposer desires to remain confidential. If entire pages or 
+sections are removed, a page indicating that the page or section has been redacted must 
+represent the redacted pages.  Failure to provide a secondary response with a redacted 
+copy may result in disclosure of an unredacted copy under CORA.  
+4. Provide a written explanation of the basis under which each redacted item has been 
+deemed confidential, making refence to the exception under CORA and/or any other law 
+restricting disclosure.  
+ 
+Neither a proposal in its entirety, nor proposal price information will be considered 
+confidential/proprietary .  
+ 
+A request for non -disclosure of your proposal under the guidelines stated above does not 
+guarantee it can be withheld under CORA.  The Proposer's opinion as to what constitutes trade 
+secret, confidential financial data, or privileged information is not bind ing on the University when 
+ 
+ RFP_F -0000000061   Page 17  
+responding to a CORA request. Where a CORA request is made to inspect or copy proposals or 
+other documents related to this opportunity, the University has sole discretion to determine 
+whether information or records must be provided under CORA.   
+ 
+12. Proposer  Agreements  
+Proposer s may submit proposed agreements  of any form (contracts or documents) that contain 
+supplemental terms and conditions that the Proposer  desires to be considered by CU for inclusion 
+in the contract . Such forms may include Proposer ’s software licensing agreements, maintenance 
+contracts, and technical support agreements. By accepting delivery of these items, CU is not 
+bound to accept them as part of an ensuing contract. CU may negotiate such supplemental terms 
+and conditions that do not materially conflict with the contract terms and conditio ns detailed in 
+this RFP and do not materially change the nature of this solicitation or adversely affect 
+competition. If the parties cannot agree on the terms of the contract, including any terms desired 
+by Proposer, CU may terminate negotiations with the Proposer and enter into a contract with 
+another responsive Proposer.   
+ 
+13. Certification of Indepen dent Price and Work Determination  
+By submission of this proposal, each Proposer , and in the case of a joint proposal, each party 
+thereto, certified, that, in connection with this procurement:  
+ 
+a. Prices  and specific work processes  in this proposal have been arrived at indepen dently, 
+without consultation, communication,  or agreement, for the purpose of restricting 
+competition, as to any matter relating to such prices with any other Proposer  or with any 
+competitor , or with any party contracted by CU to design and/or manage all or part of the 
+program or work of which this RFP is a part ; 
+b. Unless otherwise required by law, the prices  quoted and specific work processes described  
+in this proposal have not been knowingly disclosed by the Proposer  and will not knowingly 
+be disclosed by the Proposer  prior to opening, directly or indirectly to any other Proposer  
+or to any competitor  or to any party contracted by CU to design and/or manage all or part 
+of the program or work of which this RFP is a part ; and  
+c. No attempt has been made or will be made by the Proposer  to induce any other person or 
+firm to submit or not to submit a proposal for the purpose of restricting competition.  
+ 
+Further, each person signing Attachment A, CU Solicitation Form , for this proposal certified that:  
+ 
+d. They are  the person in the Proposer ’s organization responsible for the decision as to the 
+prices being offered herein and that they have  not participated, and will not participate, in 
+any action contrary to subsection  a through c above; or  
+e. He / She is not the person in the Proposer ’s organization responsible for the decision as to 
+the prices being offered herein but that they have  been authorized in writing to act as 
+agent for the persons responsible for such decision in certifying that such persons have not 
+participated, and will not participate, in any action contrary to subsections (a) through (c) , 
+above, and as their agent does hereby so certify; and they have  not participated, and will 
+not participate, in any action contrary to  subsec tions  (a) through (c) , above.  
+ 
+A proposal will not be considered for award where subsections (a), (c), (d) or (e) , above , have  been 
+deleted or modified. Where (b) above has been deleted or modified, the proposal will not be 
+considered for award unless the Proposer  furnishes with the proposal a signed statement which 
+sets forth in detail the circumstances of the disclosure and CU’s Sr. Director of Procurement  & 
+ 
+ RFP_F -0000000061   Page 18  
+Sourcing , or their  designee, determines that such disclosure was not made for the purpose of 
+restricting competition.  
+ 
+14. Designation of Subcontractors  
+The Proposer  shall describe the qualifications of each subcontractor which it intends to use and 
+the percentage and scope of the work which will be assigned to each of them. Resumes for the 
+subcontractor’s key personnel must be included.  CU encourages use of small businesses wherever 
+viable.  CU will need to vet and approve i dentified subcontractor(s).  
+ 
+Proposer s who submit a proposal in response to this RFP are precluded from participation as a 
+subcontractor with any other Proposer s who submit a proposal for this RFP. However, 
+subcontractors may be named on more than one (1) proposal.  Subcontractors who are named in 
+more than one proposal are prohibited from sharing information about one Proposer with 
+another Proposer or utilizing such information to assist in the preparation of another proposal.  
+ 
+15. Payment  
+Appropriate clarifications and additions to the Scope of Work may be made during negotiations 
+with the successful Proposer . It is the intent of  CU to enter into a Contract in which the Proposer  
+will be paid pursuant to the terms of the Contract .  
+ 
+16. Insurance Requirements  
+Proposer  shall adhere to all insurance requirements stated in Attachment B, which are attached 
+hereto and incorporated herein by reference.   
+ 
+17. Governmental Immunity  
+No term or condition of this contract shall be construed or interpreted as a waiver, express or 
+implied, of any of the immunities, rights, benefits, protections, or other provisions, of the 
+Colorado Governmental Immunity Act, CRS §24 -10-101 et seq., or the  Federal Tort Claims Act, 28 
+U.S.C. §§1346(b)  and 2671  et seq.,  as applicable  now  or hereafter amended.  
+ 
+18. Conflicts of Interest  
+Pursuant to CRS §§24 -18-201 and 24-50-507, t he signatories aver that to their knowledge, no 
+employee of the University has any personal or beneficial interest whatsoever in the service or 
+property described in this contract. Proposer  has no interest and shall not acquire any interest, 
+direct or indirect, that would conflict in any manner or degree with the performance of Proposer’s  
+services and Proposer  shall not employ any person having such known interests.  
+ 
+19. Form of the Contract  
+A condition of the Proposer’s  response shall be that the contract resulting from the award to the 
+Proposer  shall be in  the form required by current Colorado statutes, University of Colorado 
+Procurement rules and Fiscal Procedures. The contract will include all such terms and conditions 
+required by these statutes and rules. If the  Proposer’s  forms (or parts of forms) are included as 
+attachments or exhibits in the final contract, the Proposer  agrees that where there are 
+contradictions or inconsistencies, the terms of the contract shall al ways supersede, manage, and 
+control those of any such attachment or exhibit. Further, the terms of the solicitation and of the 
+successful Proposer’s  response to the solicitation (the “Response”) shall be incorporated into the 
+final contract, with the contract taking  precedence over either the solicitation or the Response, 
+and the solicitation taking precedence over the Response in the event the documents conflict.  
+ 
+ 
+ RFP_F -0000000061   Page 19  
+The contract will state that Colorado law shall govern the contract and that the Proposer  must 
+agree to indemnify the University. A commercially reasonable version of the following language 
+shall appear in the contract:  
+ 
+“The supplier shall indemnify, save, and hold harmless the University , its employees and agents, 
+against any and all claims, damages, liability and court awards including costs, expenses, and 
+attorney fees incurred as a result of any  act or omission by the supplier, or its employees, agents, 
+subcontractor or assignees pursuant to the terms of this Contract”.  
+ 
+The University  is precluded  from  indemnifying  any parties,  including  proposers . 
+ 
+The contract  shall  include  the “Special  Provisions”  which  are required  pursuant  to the 
+University  of Colorado Fiscal Procedures. The “Special Provisions” are included with the Sample 
+Agreement . 
+ 
+Proposer  and the University agree to incorporate RFP requirements and  Proposer ’s Response into 
+the resulting contract . In the event of any conflict or inconsistency among the following 
+documents, the documents will control in the following order: (a) the contract , any addenda or 
+exhibits, as amended from time to time , (b) the RFP including any attachments or addenda , and 
+(c) Proposer ’s Response including any attachments and addenda . 
+ 
+20. Solicitation Response  and Material Ownership  
+All material  submitted  regarding  this solicitation  becomes  the property  of the University,  unless  
+otherwise  noted  in the solicitation . 
+ 
+21. Incurring Costs  
+The University is not liable for any cost incurred prior to issuance of a legally executed contract or 
+a purchase order. No property interest, of any nature  shall occur until a contract is awarded and 
+signed by all concerned parties.  
+ 
+22. Determination of the Responsibility of the Proposer  
+The University of Colorado Procurement Rules state that a Purchasing Agent shall make purchases 
+from, and award Contracts to, Responsible Proposer s only . CU reserves the right to make its 
+Proposer  responsibility determination at any time in this solicitation process . 
+ 
+Factors to be considered in determining whether the standard of responsibility has been met 
+include whether a Proposer  has:  
+a. availability of the appropriate financial, material, equipment, facility, and personnel 
+resources and expertise, or the ability to obtain them , necessary to indicate the capability 
+to meet all contractual requirements;  
+b. a satisfactory record of performance;  
+c. a satisfactory record of integrity;  
+d. the legal authority to contract with CU; and  
+e. supplied all necessary information in connection with the inquiry concerning 
+responsibility.  
+ 
+The Proposer  shall supply information requested by CU via email  concerning the Proposer ’s 
+responsibility. CU reserves the right to request further information as it deems necessary to 
+determine the Proposer ’s responsibility.  If the Proposer  fails to supply the requested information, 
+ 
+ RFP_F -0000000061   Page 20  
+CU shall base the determination of responsibility upon any available information or may find the 
+Proposer  non-responsible if such failure is unreasonable.  
+ 
+23. Amendment  Process  
+The successful Proposer will notify CU in advance of any expected charges due to general changes 
+requested. The successful Proposer will submit a written amendment request  which will contain 
+an estimate of the additional charges for written approval. Work shall not proceed with the 
+requested changes until a fully signed amendment  is received by the successful Prop oser from 
+CU. 
+ 
+24. Invoicing  
+All out -of-pocket expenses such as production, subcontractor, messenger, and shipping charges 
+will be billed at direct cost with no markup. The CU team must approve all invoices and expenses 
+in advance before they are submitted for payment.  
+ 
+25. Procedure for Invoice Payments  
+Successful Proposer will facilitate monthly review of invoices to deliverables received before 
+invoices are submitted for payment and any burn rate to budget. If the pre -agreed upon 
+deliverables are not 100% satisfactory to CU, then CU reserves the right to contest the invoic e. 
+CU will provide a written explanation as to what deliverables were not met and both parties will 
+agree to seek resolution. During this period CU may release partial payment for invoiced 
+deliverables that were satisfied. Should partial payment be require d, or a credit, a revised invoice 
+and/or credit memo, based on deliverables met will be supplied by the successful Proposer . 
+ 
+26. Audit  
+CU reserves the right to conduct a price verification review and/or contract compliance audit of 
+the successful Proposer  at least twice yearly and more often if deemed necessary. The successful 
+Proposer  shall be willing to provide information on cost without reservation. The purpose of 
+conducting a routine  price verification review is to confirm that the amounts  invoiced are in 
+accordance with the terms of the contract . Under normal circumstances CU will give a lead -time 
+of approximately one month for routi ne price verification review for a period not exceeding six 
+months prior to the audit date.  
+ 
+If during a price verification review sufficient irregularities are detected to cause concern on the 
+part of CU, additional information may be requested including any history during the life of the 
+contract.  
+ 
+If at any other time CU identifies any irregularities in the administration of the contract, or the 
+successful Proposer  as acted in such a way as to give just cause to suspect a violation of the 
+contract , a price verification review and/or audit may be conducted with a minimum notice to 
+investigate and correct a problem.  
+ 
+CU expects full restitution of any mistakes found to be in CU’s favor during an audit, and that full 
+action is taken to correct any procedures that allowed the mistake to happen. Recurring  
+discrepancies could result in termination of the contract.  
+ 
+27. Travel Expenses  
+All travel must be pre -approved by CU. Reasonable travel, meals, and lodging expenses shall be 
+charged in accordance with and shall not exceed State of Colorado travel, meal, and lodging 
+ 
+ RFP_F -0000000061   Page 21  
+reimbursement guidelines applicable to employees of the State of Colorado 
+(https://osc.colorado.gov/financial -operations/fiscal -rules -procedures/travel -fiscal -rule).  
+Certain Colorado travel policies cite the GSA policies, which are located here: 
+https://www.gsa.gov/travel/plan -book/per -diem -rates . 
+ 
+28. Non -Exclusive Agreement  
+It is expressly understood that the resulting contract will  not grant the Proposer  an exclusive 
+privilege to furnish to the University any or all types of products and services which are the subject 
+of this agreement that the University may require. The University reserves the right to contract 
+with others for the purchase of products an d services that are identical to the products and 
+services which are the subject of this RFP. 
+ 
+29. Non -Discrimination  
+The Proposer  shall comply with all applicable state and federal laws, rules and regulations 
+involving non -discrimination based on  race, color, religion, national origin, age,  or sex.  
+ 
+30. News Releases  
+Neither the University, nor the Proposer , shall make news releases pertaining to this RFP prior to 
+execution of the contract without prior written approval.  
+ 
+31. Taxes  
+The University of Colorado, as a public institution of higher education of the State of Colorado, is 
+exempt from all federal excise taxes under Chapters 32 and 33 of the Internal Revenue Code and 
+from all Colorado State and local government sales and use t axes (see C.R.S. 39 -26-114(a) and 
+203).  
+ 
+For General Information: http://www.cu.edu/psc/tax -exempt -status -0 
+For Certificate Information: https://www.cu.edu/psc/policies/tax -exempt -certificates  
+ 
+32. Assignment and Delegation  
+Neither  party  to any resulting  contract  may  assign  or delegate  any portion  of the contract  without  
+the prior written consent of the other party.  
+ 
+33. Standard of Conduct  
+The successful Proposer  shall be responsible for maintaining satisfactory standards of employees' 
+competency, conduct, courtesy, appearance, honesty, and integrity, and shall be responsible for 
+taking such disciplinary action with respect to any employee, as may be necessary. Th e University 
+may request the successful Proposer  to immediately remove from this assignment any employee 
+found  unfit to perform duties due to one or more of the following reasons:  
+ 
+a. Neglect  of duty.  
+b. Disorderly  conduct,  use of abusive  or offensive  language,  quarreling,  intimidation  by 
+words  or actions  or fighting.  
+c. Theft,  vandalism,  immoral  conduct,  or any other  criminal  action.  
+d. Selling,  consuming,  possessing,  or being  under  the influence  of intoxicants,  including  
+alcohol,  or illegal  substances while on assignment for the University.  
+ 
+34. Other Applicable Statutes  
+a. By submission of a response, the Proposer  avers that he/she is familiar with Colorado 
+ 
+ RFP_F -0000000061   Page 22  
+Revised Statutes, 18 -8-301, et seq. (Bribery and Corrupt Influence) and 18 -8-401, et seq. 
+(Abuse of Public Office) as amended, and that no violation of such provisions is present.  
+b. By submission of a response, the Proposer  avers that to his/her knowledge, no University 
+of Colorado employee has any personal or beneficial interest whatsoever in the service 
+or property described herein. See CRS 24 -18-201 and CRS 24 -50-5. 
+ 
+35. Cooperative Purchasing  
+Successful proposer (s) shall make available to other University departments, and Colorado state 
+agencies or political subdivisions (“Participating Entity”) any and all items specified herein at the 
+contract prices(s) established herein.   If a Participating Entity exercises this option, it shall be 
+understood and agreed that such an arr angement does not bind either the Participating Entity or 
+the successful proposer (s) to the terms, conditions or prevailing awards generated through this 
+RFP; nor does it prec lude any Participating Entity from pursuing a purchase or purchases through 
+their own contracting methods with another vendor.  
+ 
+It shall be further understood and agreed that CU is  not a legally binding party to any contractual 
+agreement made between a Participating Entity and the successful proposer (s) as a result of this 
+RFP.   Each Participating Entity which determines to enter into a contractual arrangement with the 
+successful proposer (s) shall establish its own contract, place its own orders, issue its on purchase 
+orders, be invoiced there from and make its own payments, and issue its own exemption 
+certificates as required by th e successful proposer (s). 
+ 
+36. IT Security and Compliance  
+A. Proposer shall use its reasonable best efforts to ensure that the Platform/Proposed 
+Solution is developed and deployed using secure coding practices and business processes in a 
+manner that minimizes security flaws within the Platform. Proposer will notify  the University in 
+the event that Proposer makes material changes in those practices and processes.  
+B. Proposer will maintain and enforce safety and security procedures with respect to its 
+access and maintenance of Client Data (i) that are at least equal to industry standards for such 
+types of locations, (ii) that are in accordance with reasonable The Univ ersity security 
+requirements, and (iii) that provide reasonable appropriate technical and organizational 
+safeguards against accidental or unlawful destruction, loss, alteration, or unauthorized 
+disclosure of Client Data accessible by Proposer. Proposer w ill not be responsible for the 
+accidental or unlawful destruction, loss, alteration, or unauthorized disclosure of Client Data by 
+The University or its service providers.  
+C. All Client Data must be stored in an encrypted format and secure environment that 
+protects the Client Data from unauthorized access, modification, theft, misuse, and destruction 
+whether it resides in a repository or while in transit over networks.  
+D.  All Client Data shall be stored in the United States at all times.  
+E.  At the time of signing an Agreement with The University, Proposer shall provide the 
+name and address of any third party host who will be storing Client Data, and Proposer shall 
+provide The University at least thirty (30) days’ prior written notice of a c hange of the third 
+party host of the Client Data, unless an emergency requires otherwise.  
+ 
+ RFP_F -0000000061   Page 23  
+F.  Proposer shall notify The University within twenty -four (24) hours of any breach of 
+security (whether physical, data, or network) that results in the unauthorized access to Client 
+Data.  
+G.  Proposer shall notify The University within seventy -two (72) hours of any dispute 
+between Proposer and its third -party host.  
+H.  During the term of any Agreement between The University and Success Proposer, The 
+University may, but is not obligated to, perform audits of the Proposer environment, including 
+unannounced penetration and security tests, as it relates to the receipt, main tenance, use, or 
+retention of Client Data. The University agrees to give Proposer twenty -four (24) hours prior 
+notice of any such audit. The security audit may include, but not be limited to, the use of any 
+third party commercially available software/platf orm security testing tools. If, based on the 
+security audit, the software/platform is determined to be insecure, then upon written notice of 
+such non -secure status, Proposer, at its cost and expense, shall use its commercially reasonable 
+best efforts to re medy the security flaws by modifying or replacing the software/platform within 
+thirty (30) days of receipt of such written notice (the “Security Remedy Period”). Upon receipt of 
+revised software/platform and notice from Proposer that the security flaws hav e been remedied 
+prior to the end of the Security Remedy Period, the software/platform shall again be subject to a 
+security audit at Proposer's expense. Notwithstanding any provision of the Proposal to the 
+contrary, if the software/platform is determined to  be insecure and remains insecure at the end 
+of the Security Remedy Period, The University shall be deemed to have not accepted the 
+software/platform under the terms of any Agreement unless The University in its sole discretion 
+otherwise expressly agrees i n writing to accept the software/platform notwithstanding that it is 
+deemed to be insecure in accordance with this paragraph. With respect to any Agreement 
+between Proposer and The University, Proposer agrees to comply with all reasonable 
+recommendations t hat result from such inspections, tests, and audits with reasonable time 
+frames.  
+I.  Proposer agrees to only use Client Data for its intended use under executed Contract 
+Documents, and not to “mine” any of the Client Data for any purpose.  
+J.  Services provided by Proposer and any associated cloud service provider must comply 
+with the requirements of the most current Criminal Justice Information Services (“CJIS”) Security 
+Policy.  
+K. Proposer and any associated cloud service provider must ensure that Client Data is 
+portable to other systems and interoperable with other operating systems to an extent that 
+does not compromise the security and integrity of the Client Data.  
+M.         FERPA .  Student education records are subject to the Family Educational Rights and 
+Privacy Act (FERPA), 20 U.S.C. 1232g, et seq. and the regulations promulgated thereunder. Such 
+information is considered confidential and is therefore protected. To the extent th at Contractor 
+has access to “education records” under this contract, Contractor acknowledges it will be 
+considered a “school official,” as each of these terms are defined under FERPA, and agrees it will 
+comply with the requirements in FERPA concerning the confidentiality and release of education 
+records. In compliance with FERPA, Contractor agrees that it shall not use education records for 
+any purpose other than in the performance of this Agreement.  
+ 
+ 
+ RFP_F -0000000061   Page 24  
+ 
+IV. PREPARATION OF PROPOSAL  
+ 
+1. Preparation of Proposal – Proposal Forms  
+The proposal shall be submitted in accordance with and meet all requirements set forth herein. 
+The Proposer shall fill in all blank spaces in the applicable Proposal Forms and initial all 
+interlineations, alterations, or erasures in its proposal . The Proposer shall not delete, modify, or 
+supplement the printed matter on the forms which are included in “ Attachment A, CU Solicitation 
+Form ” or make substitutions thereon. The Proposer’s completed Proposal Forms , Technical 
+Proposal , and Cost Proposal Form  shall constitute its proposal. It shall be conclusively presumed 
+that the Proposer did, before submitting a proposal, read all addenda, posted decisions and other 
+information items relevant to the RFP that appeared on CU ’s BidNet  Website.  
+ 
+An authorized representative of the Proposer shall execute Attachment A, CU Solicitation Form .  
+a. If the Proposer is a corporation, it shall  prior to  execution of the  resulting  Contract , 
+provide a certificate from the Secretary of State, showing that it is qualified to do business 
+in the State of Colorado. Contact  the Secretary of State for Colorado at (303) 894 -2200 
+for information on obtaining such certification . 
+ 
+2. Preparation of Proposal – Technical Proposal  
+A. GENERAL  
+The Proposer  shall prepare its proposal in the format described below and must ensure that 
+each page of its proposal is i dentified with the:  
+a. RFP #  
+b. Proposer ’s name  
+c. Page number  
+ 
+B. FORMAT  
+ Proposals shall meet the following formatting requirements:  
+a. Proposals shall be printable on 8 ½” x 11” paper.  
+b. Proposals shall use the font type and size of Times New Roman 12 point.  
+c. Proposals shall be in a format and in the  order the Technical Proposal  is listed  
+below . 
+d. Proposals shall include a table of contents.  
+e. Proposals shall include tabbed or bookmarked sections as appropriate.  
+f. The Technical Proposal  shall not exceed 2 5 pages.  This page limit does not include 
+the cover letter, table of contents, resumes,  additional pages (which must be 
+separate) with comments or proposed changes to the Sample  Agreement  and Special 
+Provisions , tabs , or CU-required forms .  
+g. Resumes sh all be limited to (1) page per individual. Please attach resumes to the end 
+of your proposal after additional information.  
+h. Proposals which contain unnecessarily elaborate artwork  are discouraged.  
+i. Proposal  shall be submitted as an electronic document in an un -secured/un -password 
+protected Adobe Acrobat (.pdf) format.  
+j. The cost proposal  shall be submitted separately from the main proposal.  
+ 
+ 
+ RFP_F -0000000061   Page 25  
+3. Technical Proposal  Contents  
+This section describes the required contents for your proposal. The proposal is to be organized as 
+follows:  
+ 
+Cover Letter  
+The Proposer  shall prepare a cover letter, not exceedin g (2) pages in length, which 
+summarizes the key points in the proposal . It shall include the following:  
+a. Provide key contact information, including phone number  and email address.  
+b. Confirm that you meet the Minimum Mandatory Qualifications listed in Section II 
+above . 
+c. Confirm that you will comply with the Minimum Service Requirements listed  in 
+Section II above . 
+d. State any proposed exceptions or deviations you may have with any term, condition, 
+or requirement listed in this solicitation, including the sample contract terms . CU 
+reserves the right to summarily decline any proposed exceptions, or deviations which 
+are not included in the Cover Letter.  
+  
+Technical Proposal  Contents  
+A. Software features and technical capabilities  
+B. Document management handling  
+C. Project timeline and rollout plan  
+D. Support and training offerings  
+E. Proposer experience and qualifications  
+  
+A. Software features and technical capabilities:  Provide a synopsis of the proposed 
+software platform. Identify the features and main benefits of the proposed solution. 
+Details its features and technical capabilities, and how it meets or exceeds the minimum 
+requirements as defined in the scope of work. Complete the Systems Requirements 
+Gathering Docume nt for the proposed software platform and attach it to this section.  
+Confirm the proposed software platform is in compliance with Colorado Senate Bill 24 -
+205;  Attachment E of this solicitation.  
+B. Document management handling : Provide a comprehensive description of the proposed 
+platform’s document management capabilities. Explain how documents are uploaded, 
+stored, organized, and retrieved within the platform. Detail supported file types and size 
+limitations. Describe the vers ion control features, including tracking changes, rollback 
+capabilities, and audit trails. Detail role -based access controls and permission settings 
+for document viewing, editing, sharing, and deletion. Describe customization op tions for 
+document workflows or templates.  
+C. Project timeline and rollout plan : Provide an estimated timeline for when major 
+milestones and deliverables will be completed. Provide a description of the work to be 
+performed, including goals, methods, deliverables, and appropriate technical details. 
+This section should include a comprehe nsive list and description of proposed 
+deliverables and milestones and how they meet the university’s described needs in the 
+RFP and associated materials like business requirements.  Outline how the proposed 
+scope of work will be accomplished. Detail the me thod and approach used to manage 
+the overall project, including how the proposer will work with and correspond with the 
+university.  
+ 
+ RFP_F -0000000061   Page 26  
+D. Support and training offerings : Provide a description of your technical support model, 
+including hours of availability, support channels (e.g., phone, email, chat), and 
+geographic coverage. Include an overview of your escalation procedures and how critical 
+issues are handled. Detail ho w your support model meets the minimum service 
+requirements in the scope of work. Provide information on dedicated account 
+management or customer success services. Provide a description of your onboarding 
+and training approach  for both administrators and end -users.  Describe your proposed 
+training formats (e.g., live virtual sessions, on -demand videos, documentation, in -
+person training). Confirm and describe if there are any ongoing training opportunities, 
+including updates aligned with product changes or enhancement s. Confirm and detail 
+any options for customized training tailored to our organization’s needs.  
+E. Proposer experience and qualifications: Provide a summary of the company’s 
+background and experience, that addresses: company history; vision, mission, and core 
+values; and the 3 years’ experience with implementing projects to higher education, or 
+other similar markets, consistent with the stated Scope of Work as described in this 
+solicitation. Provide a brief description of the company’s financial standing that 
+demonstrates the company’s  financial stability.  
+ 
+ 
+4. Cost Proposal Form and Content  
+a. Provide a rate sheet that details your pricing structure for services relevant to the goals, 
+objectives and deliverables outlined in Section II, Scope of Work, such as: account 
+management, public procurement and responsible procurement principles developme nt, 
+selecting sub -tier suppliers process development, data and analytics reporting, etc. This 
+breakdown of your pricing structure should include any and all hourly rates, project fees, 
+contingency fees, retainer fees, and terms of payment that may apply to  the Scope of 
+Work.  
+b. Renewal pricing shall be determined prior to renewal. The successful Proposer shall 
+submit pricing the renewal periods and documentation/justification of any price 
+increases.  
+c. Offer of Value -Added Products and/or Services  
+i. If a solicitation response includes an offer of value -added products and/or 
+services, such an offer shall be inserted in this section and include associated 
+pricing and any other information relevant to such value -added offer. However, 
+the University is no t obligated to purchase value -added products or services.  
+ 
+IMPORTANT:  Remember the following as you complete  the cost proposal sheet:  
+ 
+Estimated proposal prices are not acceptable . Proposal prices shall be your best offer, unless 
+otherwise stated in the solicitation . The proposal price, while an important part of the offer, is 
+not the only criterion that will be considered in determining the apparent successful Proposer . 
+ 
+ 
+ RFP_F -0000000061   Page 27  
+V. EVALUATION  OF PROPOSAL S 
+ 
+1. Evaluation of Proposals  
+CU’s Evaluation and Selection Committee (Evaluation Committee) will review and evaluate the 
+proposals in accordance with the Evaluation Criteria below, the Proposer ’s demonstrated 
+experience and the Proposer ’s qualifications as they relate to the scope of services required . The 
+Proposer ’s ability to present its proposal in writing in a clear, concise,  and organized manner will 
+be considered in the evaluation. Responsive Proposer s may be required to participate in oral 
+presentations  to be held in the presence of  the Evaluation Committee. CU may, in its sole 
+discretion, consider the Proposer’s  comments on the Sample Agreement  and Special Provisions . 
+CU shall then, taking into consideration the recommendations of the Evaluation Committee, 
+attempt to negotiate a Contract with the Proposer  which it considers the most qualified, 
+responsive,  and responsible.  
+ 
+Any scoresheets, notes, deliberations, and ultimate conclusions of the Evaluation Committee will 
+be kept strictly confi dential up through and after award of the opportunity and are protected by 
+the deliberative process privilege. The Evaluation Committee’s function is to assist the  PSC in 
+determining which proposal(s) to recommend for award. However, the PSC has the sole and 
+absolute discretion to recommend any proposal for award deemed to be in accordance with the 
+best interests of CU. Proposer s may not co ntact members of the Evaluation Committee for any 
+reason whatsoever once this RFP is issued.  
+ 
+2. Past Performance  
+Each Proposers  past performance may  be reviewed as part of the University’s overall evaluation. 
+This evaluation will consider past performance information submitted as a part of such Proposers  
+proposal , including but not limited to, information regarding predecessor companies, key 
+personnel who have relevant experience, and subcontractors performing major or critical aspects 
+of the service(s ) if such information is relevant. Proposers  without a record of relevant past 
+performance or for whom information on past performance is not available will receive a neutral 
+past p erformance rating. The University will consider Proposers  performance on past or current 
+University contracts with requirements similar to the University requirements for this Contract. 
+The University will consider information provided by Proposer  regarding any problems 
+encountered on the identified contracts and any associated corrective actions.  
+ 
+3. Shortlisting and Oral Presentations  (If Necessary)  
+The Evaluation Committee will prepare an initial evaluation, in accordance with Section  VI. The 
+Evaluation Committee  may, at its discretion, invite the highest ranked Proposer s for virtual or in-
+person  interviews. Such presentations and/or site visits will be at the Proposer ’s expense.  
+ 
+Interviews are an opportunity for members of the Evaluation Committee to ask questions and/or 
+seek clarification of proposals from Proposer s. The Evaluation Committee may provide questions 
+to Proposer s in advance of the interview. In the interest of minimizing Proposer s’ costs, the 
+following rules will apply to interviews:  
+ 
+Proposer s invited to an interview may not : 
+a. Bring merchandise, gifts, or any other leave -behinds for the Evaluation Committee ; 
+b. Introduce new information at interviews not in the original written proposal;  
+c. Change or alter the proposed business terms or concept in any way.  
+ 
+ RFP_F -0000000061   Page 28  
+ 
+Proposer s may provide written answers to any questions provided in advance by the Evaluation 
+Committee .  
+ 
+All invited Proposer s may be asked to prepare a presentation, lasting no longer than 90 minutes,  
+explaining the company’s strong points in each area of the evaluation criteria. The presentation 
+will be incorporated into the time allotted for the interview;  no additional time will be provided .  
+ 
+Following interviews, if any, each member of the Evaluation Committee may revise its initial 
+evaluation. The Evaluation Committee’s  work is complete when the award is published on the 
+BidNet website .  
+ 
+4. Best and Final Offers  
+CU, at its discretion, may utilize a Best and Final Offer (BAFO) stage after submission and prior to 
+award to clarify the Scope of Work, assure full understanding of, and responsiveness to, the 
+solicitation requirement,  update pricing, or any other component of the RFP i dentified by CU. In 
+BAFO discussions, there shall be no disclosure of any information derived from proposals 
+submitted by competing Proposer s. The Contract Administrator Agent shall coordinate the 
+Proposer ’s responses for review by the Evaluation Committee. The Contract Administrator shall 
+be the SOLE point of contact throughout the process for all Proposer s. If CU requests a BAFO 
+stage, Evaluation Committee members may revise their initial scores based upon additional 
+information and clarification received in this phase. I n lieu of revising scoring, CU reserves the 
+right to evaluate BAFOs by use of a narrative.   
+ 
+5. Evaluation Criteria  
+In preparing responses, Proposer s sh all describe in detail how they propose to meet the 
+specifications detailed in Section II, Scope of Work . Specific factors will be applied to the proposal 
+information to assist CU in selecting the most qualified Proposer (s) for this opportunity . The 
+evaluation criteria  that will be used  to evaluate submitted proposals is listed below , in no 
+particular order of preference .  
+ 
+Evaluation Criteria  
+Software features and technical capabilities  
+Document management handling  
+Project timeline and rollout plan  
+Support and training offerings  
+Proposer experience and qualifications  
+Overall cost  
+ 
+ RFP_F -0000000061   Page 29  
+VI. ATTACHMENTS  
+ 
+The following attachments relative to this RFP are provided through BidNet as separate attachments 
+to this solicitation.  
+ 
+A. CU Solicitation Form  
+B. Sample Agreement and Special Provisions  
+C. Insurance Requirements  
+D. Systems Requirements Gathering Document   
+E. Colorado Senate Bill 24 -205 

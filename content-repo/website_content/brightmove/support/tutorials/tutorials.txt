@@ -1,0 +1,57 @@
+BRIGHTMOVE SUPPORT - TUTORIALS
+=============================
+
+• BrightMove includes a real time posting mechanism for most of the major job boards, and batch posting for a handful of other free boards. Our product called
+• To add a Submittal Activity:
+• To see activity associated with job board posting, see the
+• Want a confidential listing for your job? As long as a company name is not included in the job description, there will only be your company name associated with the job listing.
+• <h2 id="h_981df88890">Step-by-Step Solution</h2>
+• Enter a
+• Products
+• , is a proprietary job distribution engine (JDE). JobGorilla is a flexible and robust platform that has been designed to make it easy to plug new job boards and APIs into BrightMove. This is how we enable the
+• Navigate to the
+• Select a
+• You can also choose to
+• Solutions
+• Click
+• philosophy.
+• .
+• This is accomplished from within the Submittals Tab of either the candidate's profile or the associated job's profile.
+• With your jobs posted out to the web, you will begin to receive applications. These applications will create an associated candidate profile along with a submittal record. Now, you can move the applied candidates through the stages of your workflow.
+• <h1 id="h_01J15BEBENPFF0H40NS2RVF1G5">Overriding a Template</h1>
+• To override a Communication Template assigned to a Submittal Status select the checkbox for the specific template to replace.
+• This bypasses the need for right-clicking and works in most text editors.
+• If you’re trying to paste a job description into a Job Description editor and find that the right-click “Paste” option isn’t working, don’t worry—there is a simple workaround to get your content in smoothly. Here’s a quick guide to help you paste job descriptions effectively.
+• These can change depending on the submittal status selected.
+• <h1 id="h_01JADDXTYFHCB75Q1BB62DBFVA">Confidential Job Postings for Staffing Companies</h1>
+• <h1 id="h_01JADDXTYFHAYF7JV14Z81R34N">Overview of JobGorilla</h1>
+• <h1 class="mb-1 font-primary text-2xl font-bold leading-10 text-body-primary-color">How To Post a Job</h1>
+• Each Submittal Status will also show if email templates are assigned to go out to different entities, if selected. Hover over the icon, and it will display the template name that will go out.
+• Choose a
+• <h1 id="h_01J15BEBEMDVX3JDND2M8732V8">Updating a Submittal Status</h1>
+• In this article, you will learn how to move an applicant through the submittal workflow.
+• In this article, we will explain how BrightMove posts your jobs to job boards.
+• : Press Ctrl + V to paste your job description.
+• <h2 id="h_b023674def">Why Can’t I Right-Click and Paste?</h2>
+• <h2 id="h_068a8ee1b5">The Issue</h2>
+• <h1 class="mb-1 font-primary text-2xl font-bold leading-10 text-body-primary-color">How To Update A Submittal</h1>
+• <h1 id="h_01JAE6N1EFP5TXHKDMQE3XNSJ0">Tracking Job Postings</h1>
+• Some web applications, including those using the Job Description editor, disable the right-click paste option to prevent formatting issues or enhance security. This can block the context menu, making it tricky to paste content directly. Fortunately, there is an alternative method to achieve the same result.
+• tab of either the Candidate Profile or the Job Profile.
+• button on the
+• for the activity.
+• and
+• Add a Reminder or Follow Up Activity, if desired.
+• : Press Cmd + V.
+• BrightMove has developed relationships with
+• on the Job screen.
+• To post a job externally, simply select the
+• About
+• <h1 class="mb-1 font-primary text-2xl font-bold leading-10 text-body-primary-color">How to Paste Job Descriptions: When Right-Click Paste Isn’t Working</h1>
+• <h1 id="h_01JAE6B9ZQA9SWXSPGWE6FCCZT">Posting Jobs</h1>
+• Submittal Statuses are color-coded so they can be viewed at a glance. If a status is Declined, it will be red, green is for Placement, or blue for anything else.
+• the activity to yourself or mark it
+• and has integrated JobGorilla with their respect feed formats and requirements. We have a special way of sending them jobs from BrightMove so that the jobs will post on their sites just as if you had gone to the site and manually posted it yourself. When you add, edit or delete a job in BrightMove, the respective changes are made on the job boards, eliminating hours of job posting management on the various job boards.
+• of the Job Screen. This will queue the job for posting using JobGorilla.
+• Select an
+• <h1 id="h_01JADDXTYF81AFWNWPZGC6RGDC">How it Works</h1>

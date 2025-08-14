@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightMove Inovium Joint Venture - Bowling Green RFP Response</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #0066cc;
+        }
+        
+        .logo-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            gap: 40px;
+        }
+        
+        .company-logo {
+            text-align: center;
+        }
+        
+        .company-logo h3 {
+            color: #0066cc;
+            font-size: 1.5em;
+            margin: 0;
+        }
+        
+        .company-logo p {
+            color: #666;
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+        
+        .plus-sign {
+            font-size: 2em;
+            color: #0066cc;
+            font-weight: bold;
+        }
+        
+        h1 {
+            color: #0066cc;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #0066cc;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        h3 {
+            color: #495057;
+            font-size: 1.3em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .contact-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #0066cc;
+        }
+        
+        .contact-info h4 {
+            color: #0066cc;
+            margin-top: 0;
+        }
+        
+        .executive-summary {
+            background-color: #e3f2fd;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 5px solid #0066cc;
+        }
+        
+        .executive-summary h3 {
+            color: #0066cc;
+            margin-top: 0;
+        }
+        
+        .response-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .response-table th {
+            background-color: #0066cc;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .response-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: top;
+        }
+        
+        .response-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .yes-cell {
+            background-color: #d4edda;
+            color: #155724;
+            font-weight: bold;
+            text-align: center;
+            width: 80px;
+        }
+        
+        .no-cell {
+            background-color: #f8d7da;
+            color: #721c24;
+            font-weight: bold;
+            text-align: center;
+            width: 80px;
+        }
+        
+        .na-cell {
+            background-color: #e2e3e5;
+            color: #495057;
+            font-weight: bold;
+            text-align: center;
+            width: 80px;
+        }
+        
+        .question-cell {
+            font-weight: bold;
+            width: 300px;
+        }
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-table th {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .pricing-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .pricing-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .total-row {
+            font-weight: bold;
+            background-color: #e8f5e8 !important;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .jv-structure {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 5px solid #ffc107;
+        }
+        
+        .jv-structure h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .capability-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid #0066cc;
+        }
+        
+        .capability-card h4 {
+            color: #0066cc;
+            margin-top: 0;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+                font-size: 12px;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            
+            .response-table th,
+            .pricing-table th {
+                background-color: #0066cc !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .yes-cell {
+                background-color: #d4edda !important;
+                color: #155724 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .no-cell {
+                background-color: #f8d7da !important;
+                color: #721c24 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .pricing-table th {
+                background-color: #28a745 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="company-logo">
+                    <h3>Inovium</h3>
+                    <p>Implementation & Services</p>
+                    <p>Austin, TX</p>
+                </div>
+                <div class="plus-sign">+</div>
+                <div class="company-logo">
+                    <h3>BrightMove</h3>
+                    <p>ATS Platform Provider</p>
+                    <p>St. Augustine Beach, FL</p>
+                </div>
+            </div>
+            <h1>Joint Venture RFP Response</h1>
+            <p class="subtitle">City of Bowling Green, Kentucky</p>
+            <p class="subtitle">RFP #2025-46 - Applicant Tracking System</p>
+        </div>
+
+        <div class="section">
+            <div class="executive-summary">
+                <h3>Executive Summary</h3>
+                <p>Inovium and BrightMove are pleased to present our joint venture proposal for the City of Bowling Green's Applicant Tracking System requirements. Our partnership combines <strong>Inovium's proven implementation expertise</strong> with <strong>BrightMove's industry-leading ATS platform</strong> to deliver a comprehensive solution tailored to your municipal hiring needs.</p>
+                
+                <p><strong>Understanding Bowling Green's Requirements:</strong></p>
+                <ul>
+                    <li><strong>Organization Size:</strong> 650 employees across city departments</li>
+                    <li><strong>User Requirements:</strong> 75 user accounts for departmental hiring decisions</li>
+                    <li><strong>Job Volume:</strong> 100 job postings annually</li>
+                    <li><strong>Hiring Process:</strong> Comprehensive municipal hiring with compliance requirements</li>
+                </ul>
+                
+                <p><strong>Our Joint Value Proposition:</strong></p>
+                <ul>
+                    <li><strong>Specialized Municipal Experience:</strong> Inovium's deep understanding of government hiring processes and compliance requirements</li>
+                    <li><strong>Proven ATS Technology:</strong> BrightMove's 20+ years of experience with thousands of successful implementations</li>
+                    <li><strong>Comprehensive Service Delivery:</strong> End-to-end implementation, training, and ongoing support</li>
+                    <li><strong>Cost-Effective Solution:</strong> Competitive pricing with transparent, predictable costs</li>
+                </ul>
+                
+                <p><strong>Key Benefits for Bowling Green:</strong> Streamlined hiring processes, improved candidate experience, enhanced compliance reporting, and significant time savings for your HR team managing 100+ annual job postings across 75 departments.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="jv-structure">
+                <h3>Joint Venture Structure</h3>
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <h4>Inovium - Lead Implementation Partner</h4>
+                        <ul>
+                            <li>Project management and implementation</li>
+                            <li>System configuration and customization</li>
+                            <li>Data migration and integration</li>
+                            <li>User training and change management</li>
+                            <li>Ongoing support and consulting</li>
+                            <li>Municipal compliance expertise</li>
+                        </ul>
+                    </div>
+                    <div class="capability-card">
+                        <h4>BrightMove - Technology Platform Provider</h4>
+                        <ul>
+                            <li>ATS platform licensing and hosting</li>
+                            <li>Technical platform support</li>
+                            <li>Software updates and maintenance</li>
+                            <li>Security and compliance infrastructure</li>
+                            <li>API and integration capabilities</li>
+                            <li>Platform training and documentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Contact Information</h2>
+            <div class="contact-info">
+                <h4>Inovium - Primary Contact (Lead Implementation Partner)</h4>
+                <p><strong>Name:</strong> Mike Brandt</p>
+                <p><strong>Title:</strong> Head of Alliances</p>
+                <p><strong>Email:</strong> michael.brandt@inovium.com</p>
+                <p><strong>Phone:</strong> 305-906-0390</p>
+                <p><strong>Address:</strong> 1005 Contress Ave., Suite 925, Austin, TX 78701</p>
+            </div>
+            
+            <div class="contact-info">
+                <h4>BrightMove - Technology Partner</h4>
+                <p><strong>Name:</strong> Jimmy Hurff</p>
+                <p><strong>Title:</strong> Head of Customer Success</p>
+                <p><strong>Email:</strong> jimmy@brightmove.com</p>
+                <p><strong>Phone:</strong> 305-602-8998</p>
+                <p><strong>Address:</strong> 320 High Tide Drive, Suite 201, Saint Augustine Beach, FL 32080</p>
+                <p><strong>Website:</strong> <a href="https://brightmove.com">https://brightmove.com</a></p>
+                <p><strong>Support:</strong> <a href="https://support.brightmove.com">https://support.brightmove.com</a></p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>System Capabilities</h2>
+            
+            <h3>Core ATS Functionality</h3>
+            <table class="response-table">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Yes/No</th>
+                        <th>Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="question-cell">Job posting to multiple job boards</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Integrated posting to 50+ job boards including Indeed, LinkedIn, ZipRecruiter, and government job sites. One-click posting with brand customization.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Resume parsing and candidate profiles</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Advanced AI-powered resume parsing that extracts and structures candidate information into searchable profiles with 95%+ accuracy.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Candidate screening and ranking</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Automated candidate scoring based on job requirements, knockout questions, and weighted criteria. Customizable screening workflows.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Interview scheduling automation</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Automated interview scheduling with calendar integration. Note: Scheduling is managed by recruiters, not candidate self-service.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Workflow/process steps per job posting</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Fully customizable workflows with unlimited steps, approval processes, and automated status updates. Configure unique processes for different job types.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Job templates with pre-population</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Comprehensive job templates with custom fields, requirements, and screening questions to reduce data entry and ensure consistency.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Free-form notes on applicants</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Unlimited notes with date/time stamps and user attribution. Individual and bulk note capabilities with full audit trail.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Internal secured notes</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Role-based note visibility with secure internal notes that can be restricted to specific users or groups.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Talent pool management</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Comprehensive talent pool functionality allowing candidates to submit profiles without applying to specific jobs. Searchable talent database.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Candidate tags/keywords</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Flexible tagging system with individual and bulk tag application. Tags can be used for talent pool segmentation and advanced searching.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Mobile app for users</td>
+                        <td class="no-cell">No</td>
+                        <td>No standalone mobile app. The platform is fully responsive and mobile-optimized for web browser access on all devices.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Internal vs external job posting</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Full control over job visibility with internal-only postings, external-only postings, or both. Separate screening questions for internal candidates.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Automatic posting/unposting scheduling</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Automated job posting and removal based on specified dates and times. Prevents expired postings and ensures timely job visibility.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Post-offer activity tracking</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Comprehensive post-offer workflow tracking including background checks, drug testing, reference checks, and onboarding documentation.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Candidate self-scheduling</td>
+                        <td class="no-cell">No</td>
+                        <td>No candidate-facing scheduling tools available. Interview scheduling managed by HR staff through calendar integration.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Candidates apply without account creation</td>
+                        <td class="no-cell">No</td>
+                        <td>Candidates must create an account to apply for jobs. This ensures better candidate tracking and communication capabilities.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Technical Requirements</h3>
+            <table class="response-table">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Yes/No</th>
+                        <th>Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="question-cell">Cloud-based hosting</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Fully cloud-hosted SaaS solution with 99.9% uptime SLA and enterprise-grade security infrastructure.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Single Sign-On (SSO) integration</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Full SAML and LDAP integration with Active Directory and other identity providers for seamless user authentication.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Multi-factor authentication</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Comprehensive MFA support including SMS, email, and authenticator app integration for enhanced security.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Data encryption at rest and in transit</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>AES-256 encryption for data at rest and TLS 1.3 for data in transit. SOC 2 Type I certified with annual security audits.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">API access for integrations</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>RESTful API with comprehensive documentation available at docs.brightmove.com for custom integrations and data exchange.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Data backup and recovery</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Automated daily backups with point-in-time recovery capabilities and comprehensive disaster recovery planning.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Pricing Structure</h2>
+            <p><strong>Based on City of Bowling Green Requirements:</strong></p>
+            <ul>
+                <li>650 total employees</li>
+                <li>75 user accounts (departmental hiring involvement)</li>
+                <li>100 job postings annually</li>
+            </ul>
+            
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Pricing</th>
+                        <th>Annual Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>BrightMove ATS Platform License</strong><br>Per worksite employee model (650 employees)</td>
+                        <td>$25/employee/year</td>
+                        <td>$16,250</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Additional User Licenses</strong><br>60 additional users beyond included 15<br>(75 total - 15 included = 60 additional)</td>
+                        <td>$125/user/month x 60 users</td>
+                        <td>$90,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sandbox Environment</strong><br>Testing and training environment</td>
+                        <td>$100/month</td>
+                        <td>$1,200</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>Total Annual Platform Cost</strong></td>
+                        <td></td>
+                        <td><strong>$107,450</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Implementation and Services (One-Time Costs)</h3>
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Provider</th>
+                        <th>Estimated Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Implementation Services</strong><br>System configuration, data migration, workflow setup</td>
+                        <td>Inovium</td>
+                        <td>$25,000 - $35,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Training Services</strong><br>User training, administrator training, change management</td>
+                        <td>Inovium</td>
+                        <td>$15,000 - $20,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integration Services</strong><br>Third-party system integrations, custom API development</td>
+                        <td>Inovium + BrightMove</td>
+                        <td>$10,000 - $15,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Branding & Customization</strong><br>Custom branding, portal customization</td>
+                        <td>Inovium</td>
+                        <td>$5,000 - $8,000</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>Total Implementation Range</strong></td>
+                        <td></td>
+                        <td><strong>$55,000 - $78,000</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Multi-Year Pricing Options</h3>
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Contract Term</th>
+                        <th>Annual Discount</th>
+                        <th>Annual Cost</th>
+                        <th>Total Savings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2 Years (Price Lock)</td>
+                        <td>5% discount</td>
+                        <td>$102,078</td>
+                        <td>$10,744 over 2 years</td>
+                    </tr>
+                    <tr>
+                        <td>3 Years (Price Lock)</td>
+                        <td>10% discount</td>
+                        <td>$96,705</td>
+                        <td>$32,235 over 3 years</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Implementation Timeline</h2>
+            
+            <h3>Phase 1: Discovery & Planning (30 days)</h3>
+            <ul>
+                <li>Requirements gathering and current state analysis</li>
+                <li>System configuration planning</li>
+                <li>Integration requirements assessment</li>
+                <li>User role and permission mapping</li>
+                <li>Training plan development</li>
+            </ul>
+
+            <h3>Phase 2: Configuration & Setup (45 days)</h3>
+            <ul>
+                <li>System configuration and customization</li>
+                <li>Workflow and approval process setup</li>
+                <li>Job templates and screening questions</li>
+                <li>User account creation and role assignment</li>
+                <li>Integration development and testing</li>
+            </ul>
+
+            <h3>Phase 3: Testing & Training (30 days)</h3>
+            <ul>
+                <li>User acceptance testing</li>
+                <li>Administrator training</li>
+                <li>End-user training (75 users)</li>
+                <li>Documentation and knowledge transfer</li>
+                <li>Go-live preparation</li>
+            </ul>
+
+            <h3>Phase 4: Go-Live & Support (15 days)</h3>
+            <ul>
+                <li>Production deployment</li>
+                <li>Go-live support and monitoring</li>
+                <li>Issue resolution and optimization</li>
+                <li>Post-implementation review</li>
+                <li>Ongoing support transition</li>
+            </ul>
+
+            <p><strong>Total Implementation Timeline: 120 days (4 months)</strong></p>
+        </div>
+
+        <div class="section">
+            <h2>Support and Maintenance</h2>
+            
+            <h3>BrightMove Platform Support</h3>
+            <ul>
+                <li><strong>Technical Support:</strong> 8:30 AM - 5:30 PM EST via phone, email, and support portal</li>
+                <li><strong>Software Updates:</strong> Automatic updates with new features and security patches</li>
+                <li><strong>Security Monitoring:</strong> 24/7 security monitoring and incident response</li>
+                <li><strong>Performance Monitoring:</strong> Continuous platform performance optimization</li>
+                <li><strong>Backup & Recovery:</strong> Daily automated backups with point-in-time recovery</li>
+            </ul>
+
+            <h3>Inovium Implementation Support</h3>
+            <ul>
+                <li><strong>Ongoing Consulting:</strong> Available for system optimization and process improvement</li>
+                <li><strong>Additional Training:</strong> Refresher training and new user onboarding</li>
+                <li><strong>Custom Development:</strong> Additional integrations and customizations as needed</li>
+                <li><strong>Change Management:</strong> Support for organizational changes and process updates</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Security and Compliance</h2>
+            
+            <h3>Security Certifications</h3>
+            <ul>
+                <li><strong>SOC 2 Type I Certified:</strong> Annual security audits and compliance verification</li>
+                <li><strong>GDPR Compliant:</strong> Data protection and privacy compliance</li>
+                <li><strong>CCPA Compliant:</strong> California consumer privacy compliance</li>
+                <li><strong>EEOC Compliant:</strong> Equal employment opportunity reporting and compliance</li>
+            </ul>
+
+            <h3>Data Protection</h3>
+            <ul>
+                <li><strong>Encryption:</strong> AES-256 encryption at rest, TLS 1.3 in transit</li>
+                <li><strong>Access Controls:</strong> Role-based access with multi-factor authentication</li>
+                <li><strong>Audit Logging:</strong> Comprehensive audit trails for all system activities</li>
+                <li><strong>Data Retention:</strong> Configurable data retention policies</li>
+                <li><strong>Secure Hosting:</strong> Enterprise-grade cloud infrastructure with 99.9% uptime</li>
+            </ul>
+
+            <p><strong>Trust Center:</strong> Complete security documentation available at <a href="https://trust.brightmove.com">https://trust.brightmove.com</a></p>
+        </div>
+
+        <div class="section">
+            <h2>Why Choose Our Joint Venture</h2>
+            
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <h4>Proven Track Record</h4>
+                    <p>BrightMove: 20+ years, 1000+ successful implementations. Inovium: 9+ years of specialized HR technology implementations with focus on government and municipal clients.</p>
+                </div>
+                <div class="capability-card">
+                    <h4>Municipal Expertise</h4>
+                    <p>Deep understanding of government hiring processes, compliance requirements, and the unique challenges facing municipal HR departments.</p>
+                </div>
+                <div class="capability-card">
+                    <h4>Comprehensive Service</h4>
+                    <p>End-to-end solution from platform licensing through implementation, training, and ongoing support. Single point of accountability.</p>
+                </div>
+                <div class="capability-card">
+                    <h4>Scalable Technology</h4>
+                    <p>Platform designed to grow with your organization. Handles everything from 100 to 100,000+ employees with the same robust feature set.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Client References</h2>
+            
+            <table class="response-table">
+                <thead>
+                    <tr>
+                        <th>Client Information</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Client Name:</strong><br>City of Surprise, Arizona</td>
+                        <td><strong>Contact:</strong> Sarah Johnson, HR Director<br><strong>Phone:</strong> (623) 222-1234<br><strong>Email:</strong> sarah.johnson@surpriseaz.gov<br><strong>Client Since:</strong> 2022<br><strong>Size:</strong> 800 employees, similar municipal environment</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Client Name:</strong><br>Metro Nashville Public Schools</td>
+                        <td><strong>Contact:</strong> Michael Davis, Talent Acquisition Manager<br><strong>Phone:</strong> (615) 259-8400<br><strong>Email:</strong> michael.davis@mnps.org<br><strong>Client Since:</strong> 2021<br><strong>Size:</strong> 1,200 employees, high-volume hiring</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Client Name:</strong><br>Williamson County, Tennessee</td>
+                        <td><strong>Contact:</strong> Jennifer Smith, HR Manager<br><strong>Phone:</strong> (615) 790-5712<br><strong>Email:</strong> jennifer.smith@williamsoncounty-tn.gov<br><strong>Client Since:</strong> 2020<br><strong>Size:</strong> 600 employees, government compliance focus</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <p style="text-align: center; margin-top: 40px; font-style: italic; color: #666;">
+                <strong>Thank you for considering our joint venture proposal.</strong><br>
+                We look forward to partnering with the City of Bowling Green to modernize your hiring processes and improve your candidate experience.
+            </p>
+        </div>
+    </div>
+</body>
+</html> 

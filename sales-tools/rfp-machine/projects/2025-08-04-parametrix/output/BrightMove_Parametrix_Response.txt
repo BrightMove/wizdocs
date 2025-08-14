@@ -1,0 +1,66 @@
+Hi Brett,
+
+Thanks for the great conversation last week and for looping in Laurel. Appreciate you taking the time to share your specific needs.
+
+Here's how BrightMove addresses everything you mentioned:
+
+🎯 END-TO-END WORKFLOW
+BrightMove provides a complete workflow from job posting to hire. You can create jobs with customizable descriptions that automatically post to LinkedIn, Indeed, and other major boards. The platform offers centralized resume review and sharing with hiring managers, built-in messaging and feedback collection, and a complete audit trail of all decisions.
+
+🔍 LINKEDIN SOURCING
+Yes, absolutely! We use the People Parser Chrome plugin for LinkedIn imports, which automatically parses resumes and creates candidate profiles. You can also forward resumes via email to our parser, and we track source attribution for better analytics.
+
+🚀 ONBOARDING TOOLS
+Once an offer is accepted, BrightMove handles offer management and acceptance tracking, automated document collection, and customizable onboarding workflows. We also offer DocuSign integration, though it requires an existing subscription plus an add-on cost.
+
+📊 APPLICATION QUESTIONS & FILTERING
+You can create custom job-specific questions (yes/no, multiple choice) that automatically filter candidates. The system sorts candidates by their answers, and question responses factor into our scoring algorithm.
+
+👥 REFERRAL MANAGEMENT (PERFECT FOR YOUR 50%!)
+This is where BrightMove really shines for your situation. We track who referred each candidate and allow you to forward referral emails to auto-create candidate records. We provide referral analytics and success tracking, plus an internal referral portal for employees.
+
+Perfect for your scenario: When someone emails "my friend's daughter's cousin's babysitter," just forward it to BrightMove and it creates a candidate record with full attribution.
+
+🌐 COMPANY EXAMPLES & CANDIDATE PORTALS
+I can connect you with similar companies using BrightMove. For example, we have customers like Congruex (engineering/construction) and EG (manufacturing/logistics) who have been with us since 2016. You can see their candidate experience portals at congruex.com/careers and other examples I can share. These companies demonstrate our long-term customer retention - many have been with us for over a decade, like Hueman (healthcare) and Source2 (government) who've been customers since 2011.
+
+🤖 AI DETECTION
+We have built-in AI-generated resume detection, quality scoring and flagging, and manual review options for suspicious applications.
+
+🔗 ADP INTEGRATION
+We have technical integration with the ADP API via BrightMove Merge, but for your hiring volume, manual export/import might be more cost-effective. The setup is simple with our support team.
+
+IMPORTANT: We don't have active customers using ADP integration yet. Merge has additional charges and makes sense for high-volume applications. For your hiring volume, we'd recommend starting with manual export/import.
+
+📋 IMPLEMENTATION & SUPPORT
+Implementation typically takes 2-4 weeks, and we include comprehensive training. You'll have a dedicated customer success manager and 24/7 technical support.
+
+📊 DATA MIGRATION & CONVERSIONS
+We offer data conversion services for ADP Workforce Now with project-based pricing ranging from $1,500 to $10,000 depending on complexity. The conversion takes 2-4 weeks with up to 3 rounds of validation for data completeness. Full payment is due at project inception.
+
+IMPORTANT: We don't have an existing ADP conversion routine, so this would be a new conversion project. Pricing and timeline depend on the complexity of your current ADP setup.
+
+💰 PRICING OPTIONS
+Per User Model (Recommended for Parametrix): Full users (recruiters) are $125/month per user, hiring managers are $30/month per user, and executive users are $30/month per user.
+
+Worksite Employee Model (Alternative): For 101-500 employees, it's $3,750/month minimum and includes up to 15 full users.
+
+Contract: 12-month agreement with additional costs for DocuSign add-on and BrightMove Merge if needed.
+
+🎯 NEXT STEPS
+I can set up a dedicated Parametrix trial account where we'll demo all features in your trial environment. We can schedule a team demo for Laurel and connect you with similar customer references.
+
+I'm available early next week. You can schedule using my calendar: https://help.brightmove.com/meetings/jimmy-hurff
+
+Looking forward to showing you everything in action!
+
+Best regards,
+Jimmy Hurff
+Head of Customer Success
+BrightMove
+
+Contact:
+📧 jimmy@brightmove.com
+📞 305-602-8998
+📍 320 High Tide Drive, Suite 201
+   Saint Augustine Beach, FL 32080 

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightMove ATS Solution for City of Bowling Green, Kentucky</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+            font-size: 14px;
+        }
+        
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 2rem;
+            margin: -0.5in -0.5in 2rem -0.5in;
+            text-align: center;
+            border-bottom: 4px solid #f59e0b;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #e5e7eb;
+        }
+        
+        .header .meta {
+            font-size: 1rem;
+            color: #cbd5e1;
+            margin-top: 1rem;
+        }
+        
+        /* Section Headers */
+        h2 {
+            color: #1e3a8a;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #f59e0b;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #3b82f6;
+        }
+        
+        h3 {
+            color: #1e40af;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem 0;
+            padding-left: 1rem;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        h4 {
+            color: #374151;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem 0;
+        }
+        
+        /* Text Styles */
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
+            padding: 1rem;
+            border-left: 4px solid #f59e0b;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .executive-summary {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        ul li::marker {
+            color: #3b82f6;
+            font-weight: bold;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        tr:hover {
+            background: #f1f5f9;
+        }
+        
+        /* Pricing Tables */
+        .pricing-table {
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+            border: 2px solid #8b5cf6;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+        
+        .pricing-table th {
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            color: white;
+        }
+        
+        .pricing-table .recommended {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border-left: 4px solid #16a34a;
+            font-weight: 600;
+            color: #15803d;
+        }
+        
+        /* Key Points */
+        .key-points {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #16a34a;
+            margin: 1.5rem 0;
+        }
+        
+        .key-points h4 {
+            color: #15803d;
+            margin-bottom: 1rem;
+        }
+        
+        .key-points ul {
+            margin-left: 1.5rem;
+        }
+        
+        .key-points li {
+            color: #166534;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Differentiators */
+        .differentiator {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+        
+        .differentiator h4 {
+            color: #1d4ed8;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Warning/Important Boxes */
+        .important {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #dc2626;
+            margin: 1rem 0;
+        }
+        
+        .important h4 {
+            color: #dc2626;
+        }
+        
+        /* Beta Notice */
+        .beta-notice {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .beta-notice strong {
+            color: #d97706;
+        }
+        
+        /* Contact Information */
+        .contact-info {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 2px solid #3b82f6;
+        }
+        
+        .contact-info h3 {
+            color: #1e3a8a;
+            border-left: none;
+            padding-left: 0;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+            color: white;
+            padding: 2rem;
+            margin: 2rem -0.5in -0.5in -0.5in;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                font-size: 12px;
+            }
+            
+            .container {
+                max-width: none;
+                padding: 0.25in;
+            }
+            
+            .header, .footer {
+                margin: -0.25in -0.25in 1rem -0.25in;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            table {
+                page-break-inside: avoid;
+            }
+            
+            .pricing-table {
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header {
+                margin: -1rem -1rem 2rem -1rem;
+                padding: 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>BrightMove ATS Solution</h1>
+            <div class="subtitle">for City of Bowling Green, Kentucky</div>
+            <div class="subtitle">RFP #2025-46 - Applicant Tracking System</div>
+            <div class="meta">
+                <strong>Submitted by:</strong> BrightMove, Inc.<br>
+                <strong>Date:</strong> July 10, 2025<br>
+                <strong>Prepared for:</strong> City of Bowling Green, Kentucky
+            </div>
+        </div>
+
+        <div class="executive-summary">
+            <h2>Executive Summary</h2>
+            <p>BrightMove is pleased to submit our comprehensive proposal for the City of Bowling Green's Applicant Tracking System (ATS) implementation. Since 2004, BrightMove has been providing award-winning ATS solutions to government agencies, educational institutions, and organizations worldwide, delivering the most configurable ATS platform on the market.</p>
+            
+            <div class="key-points">
+                <h4>Why BrightMove is the Perfect Choice for Bowling Green</h4>
+                <ul>
+                    <li><strong>Government-Focused Expertise:</strong> 20+ years serving municipal governments with unique compliance requirements</li>
+                    <li><strong>Perfect Scale Match:</strong> Designed for organizations of your size (650 employees, 200 monthly applicants)</li>
+                    <li><strong>Comprehensive Solution:</strong> Addresses every RFP requirement with additional value-add features</li>
+                    <li><strong>Proven ROI:</strong> 40% reduction in time-to-hire, 35% improvement in candidate quality</li>
+                </ul>
+            </div>
+            
+            <div class="highlight">
+                <h4>Key Investment Highlights</h4>
+                <ul>
+                    <li><strong>Recommended Annual Cost:</strong> $55,700 (Year 1 with Per-User Model)</li>
+                    <li><strong>Wiz AI Beta:</strong> No additional cost through May 31, 2025</li>
+                    <li><strong>Implementation:</strong> Included at no additional charge</li>
+                    <li><strong>Security:</strong> SOC 2 Type I certified with US-based data storage</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Key Differentiators</h2>
+        
+        <div class="differentiator">
+            <h4>1. The Most Configurable ATS on the Planet</h4>
+            <p>Unlike rigid systems, BrightMove adapts to your existing workflows rather than forcing you to change your processes.</p>
+        </div>
+        
+        <div class="differentiator">
+            <h4>2. Exceptional Candidate Experience</h4>
+            <p>Mobile-responsive applications, ADA-compliant career portals (WCAG 2.0 AAA compliant), and intuitive self-service features ensure qualified candidates complete their applications.</p>
+        </div>
+        
+        <div class="differentiator">
+            <h4>3. Seamless Integration Capabilities</h4>
+            <p>Our open API and extensive integration library (including BrightSync for Office 365) ensure smooth connectivity with your existing Tyler Technologies New World ERP system.</p>
+        </div>
+        
+        <div class="differentiator">
+            <h4>4. Comprehensive Support</h4>
+            <p>US-based support team available Monday-Friday 8:30 AM - 5:30 PM EST, with live chat, phone support (877) 482-8840, and extensive knowledge base (The LightHub) with 466+ articles.</p>
+        </div>
+        
+        <div class="differentiator">
+            <h4>5. Proven Security & Compliance</h4>
+            <p>SOC 2 Type I certified with comprehensive security measures, GDPR compliant, with all data stored in secure US-based AWS data centers.</p>
+        </div>
+
+        <h2>Company Background & Vendor Information</h2>
+        
+        <table>
+            <tr>
+                <th>Company Detail</th>
+                <th>Information</th>
+            </tr>
+            <tr>
+                <td><strong>Year Started</strong></td>
+                <td>2004 (20+ years of experience)</td>
+            </tr>
+            <tr>
+                <td><strong>Headquarters</strong></td>
+                <td>Tampa, Florida, with additional support centers across the US</td>
+            </tr>
+            <tr>
+                <td><strong>Financial Stability</strong></td>
+                <td>Profitable operations and stable growth throughout 20+ year history</td>
+            </tr>
+            <tr>
+                <td><strong>Company Independence</strong></td>
+                <td>Independent company since founding, no acquisitions or mergers</td>
+            </tr>
+            <tr>
+                <td><strong>Data Security Record</strong></td>
+                <td>Exemplary security record with no data breaches</td>
+            </tr>
+            <tr>
+                <td><strong>Support Hours</strong></td>
+                <td>Monday-Friday, 8:30 AM - 5:30 PM EST</td>
+            </tr>
+            <tr>
+                <td><strong>Phone Support</strong></td>
+                <td>(877) 482-8840</td>
+            </tr>
+            <tr>
+                <td><strong>Knowledge Base</strong></td>
+                <td>The LightHub with 466+ articles, video tutorials, and training materials</td>
+            </tr>
+        </table>
+
+        <h2>Platform Capabilities & Technical Requirements</h2>
+        
+        <h3>Core ATS Functionality</h3>
+        
+        <div class="key-points">
+            <h4>Job Management & Posting</h4>
+            <ul>
+                <li>Create jobs from templates or scratch with AI assistance (Wiz AI)</li>
+                <li>Multi-channel job distribution to 100+ job boards</li>
+                <li>Automated job posting and syndication</li>
+                <li>Job approval workflows with delegate functionality</li>
+                <li>Integration with LinkedIn, Indeed, Monster, and other major job boards</li>
+            </ul>
+        </div>
+        
+        <div class="key-points">
+            <h4>Candidate Management</h4>
+            <ul>
+                <li>Drag-and-drop candidate pipeline management</li>
+                <li>PowerSearch with real-time results and advanced filtering</li>
+                <li>Resume parsing and candidate profile creation</li>
+                <li>Automated candidate scoring and ranking</li>
+                <li>Candidate communication tracking and timeline view</li>
+            </ul>
+        </div>
+        
+        <div class="key-points">
+            <h4>Application Process</h4>
+            <ul>
+                <li>Mobile-responsive career portals</li>
+                <li>ADA-compliant applications (WCAG 2.0 AAA)</li>
+                <li>Custom application forms and basic qualifications</li>
+                <li>Automated candidate screening and routing</li>
+                <li>Multi-language support capabilities</li>
+            </ul>
+        </div>
+
+        <h3>Advanced Features</h3>
+        
+        <div class="beta-notice">
+            <h4>🚀 AI-Powered Capabilities (Wiz AI - Currently in Beta)</h4>
+            <p><strong>Beta Period:</strong> Through May 31, 2025, at no additional cost<br>
+            <strong>Includes:</strong> 20 AI job descriptions + 50 AI emails per month<br>
+            <strong>Post-Beta:</strong> Consumption-based pricing model</p>
+        </div>
+        
+        <div class="key-points">
+            <h4>Integration Capabilities</h4>
+            <ul>
+                <li>Open API for custom integrations</li>
+                <li>BrightSync for Office 365 (email, calendar, contacts)</li>
+                <li>Tyler Technologies ERP integration capability</li>
+                <li>Zapier connectivity for 1000+ applications</li>
+                <li>DocuSign integration for document signing</li>
+                <li>QuickBooks integration for financial management</li>
+            </ul>
+        </div>
+        
+        <div class="key-points">
+            <h4>Security & Compliance</h4>
+            <ul>
+                <li>SOC 2 Type I certified (see <a href="https://trust.brightmove.com" style="color: #2563eb;">trust.brightmove.com</a>)</li>
+                <li>GDPR compliant with built-in privacy controls</li>
+                <li>All data stored in secure US-based AWS data centers</li>
+                <li>Encryption at rest and in transit</li>
+                <li>Comprehensive audit logging for all user activities</li>
+            </ul>
+        </div>
+
+        <h2>Pricing Proposal</h2>
+        
+        <p>BrightMove offers <strong>two flexible pricing models</strong> to meet different organizational needs and budget preferences:</p>
+        
+        <h3>Option 1: Worksite Employee Model</h3>
+        <table class="pricing-table">
+            <tr>
+                <th>Component</th>
+                <th>Details</th>
+                <th>Cost</th>
+            </tr>
+            <tr>
+                <td><strong>Based on Total Workforce</strong></td>
+                <td>650 employees × $10 per employee per month</td>
+                <td>$6,500/month</td>
+            </tr>
+            <tr>
+                <td><strong>Annual Cost</strong></td>
+                <td>12 months × $6,500</td>
+                <td><strong>$78,000</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Includes</strong></td>
+                <td colspan="2">
+                    <ul style="margin: 0;">
+                        <li>Unlimited user accounts for all hiring stakeholders</li>
+                        <li>All core ATS functionality</li>
+                        <li>Standard integrations and API access</li>
+                        <li>Basic support and training</li>
+                        <li>Mobile applications and career portals</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        
+        <h3>Option 2: Per-User Model (Recommended)</h3>
+        <table class="pricing-table">
+            <tr>
+                <th>User Type</th>
+                <th>Monthly Cost</th>
+                <th>Recommended Quantity</th>
+                <th>Monthly Total</th>
+            </tr>
+            <tr>
+                <td>Full Users</td>
+                <td>$125/month</td>
+                <td>25 users</td>
+                <td>$3,125</td>
+            </tr>
+            <tr>
+                <td>Hiring Manager Users</td>
+                <td>$30/month</td>
+                <td>50 users</td>
+                <td>$1,500</td>
+            </tr>
+            <tr class="recommended">
+                <td><strong>Total Monthly Cost</strong></td>
+                <td colspan="2"><strong>75 total users</strong></td>
+                <td><strong>$4,625</strong></td>
+            </tr>
+            <tr class="recommended">
+                <td><strong>Annual Cost</strong></td>
+                <td colspan="3"><strong>$55,500</strong></td>
+            </tr>
+        </table>
+        
+        <h3>Pricing Comparison</h3>
+        <table class="pricing-table">
+            <tr>
+                <th>Model</th>
+                <th>Monthly Cost</th>
+                <th>Annual Cost</th>
+                <th>Best For</th>
+            </tr>
+            <tr>
+                <td>Worksite Employee</td>
+                <td>$6,500</td>
+                <td>$78,000</td>
+                <td>Organizations wanting unlimited users</td>
+            </tr>
+            <tr class="recommended">
+                <td><strong>Per-User (Recommended)</strong></td>
+                <td><strong>$4,625</strong></td>
+                <td><strong>$55,500</strong></td>
+                <td><strong>Organizations with defined user count</strong></td>
+            </tr>
+        </table>
+        
+        <div class="highlight">
+            <h4>💡 Recommendation for City of Bowling Green</h4>
+            <p>We recommend the <strong>Per-User Model</strong> as it provides the best value for your specific needs while allowing for controlled user management. This saves you <strong>$22,500 annually</strong> compared to the Worksite Employee Model.</p>
+        </div>
+        
+        <h3>Optional Add-On Modules</h3>
+        <table>
+            <tr>
+                <th>Module</th>
+                <th>Pricing</th>
+                <th>Setup Fee</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><strong>BrightForms</strong></td>
+                <td>$29/form/month or $99/month unlimited</td>
+                <td>None</td>
+                <td>Custom forms and workflows</td>
+            </tr>
+            <tr>
+                <td><strong>Wisdom Data Platform</strong></td>
+                <td>$499/month</td>
+                <td>$499</td>
+                <td>Advanced analytics and reporting</td>
+            </tr>
+            <tr>
+                <td><strong>Back Office</strong></td>
+                <td>$499/month</td>
+                <td>$499</td>
+                <td>Time tracking and management</td>
+            </tr>
+            <tr>
+                <td><strong>Engage (SMS)</strong></td>
+                <td>$999/month</td>
+                <td>$99</td>
+                <td>SMS communication platform</td>
+            </tr>
+            <tr>
+                <td><strong>Wiz AI</strong></td>
+                <td>Consumption-based (post-beta)</td>
+                <td>None</td>
+                <td>AI-powered recruitment assistance</td>
+            </tr>
+        </table>
+        
+        <h3>Total Investment Summary</h3>
+        <table class="pricing-table">
+            <tr>
+                <th>Component</th>
+                <th>Year 1 Cost</th>
+                <th>Ongoing Annual Cost</th>
+            </tr>
+            <tr>
+                <td>Base Licensing (Per-User Model)</td>
+                <td>$55,500</td>
+                <td>$55,500*</td>
+            </tr>
+            <tr>
+                <td>Implementation</td>
+                <td>Included</td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td>Training</td>
+                <td>Included</td>
+                <td>As needed</td>
+            </tr>
+            <tr>
+                <td>Portal Branding</td>
+                <td>$200</td>
+                <td>N/A</td>
+            </tr>
+            <tr class="recommended">
+                <td><strong>Total Year 1</strong></td>
+                <td><strong>$55,700</strong></td>
+                <td><strong>$55,500*</strong></td>
+            </tr>
+        </table>
+        
+        <div class="important">
+            <p><strong>*Annual Price Increases:</strong> 5% or CPI (Consumer Price Index), whichever is greater</p>
+        </div>
+
+        <h2>Implementation & Support</h2>
+        
+        <h3>Implementation Methodology</h3>
+        <table>
+            <tr>
+                <th>Phase</th>
+                <th>Timeline</th>
+                <th>Activities</th>
+            </tr>
+            <tr>
+                <td><strong>Phase 1: Discovery & Planning</strong></td>
+                <td>Weeks 1-2</td>
+                <td>Requirements gathering, system configuration, data migration planning, user account setup</td>
+            </tr>
+            <tr>
+                <td><strong>Phase 2: Configuration & Testing</strong></td>
+                <td>Weeks 3-4</td>
+                <td>System configuration, career portal setup, integration implementation, user acceptance testing</td>
+            </tr>
+            <tr>
+                <td><strong>Phase 3: Training & Go-Live</strong></td>
+                <td>Weeks 5-6</td>
+                <td>Comprehensive training, data migration, system cutover, go-live support</td>
+            </tr>
+        </table>
+        
+        <h3>Training & Support Services</h3>
+        <div class="key-points">
+            <h4>Included Training & Support</h4>
+            <ul>
+                <li>Administrator training for system configuration</li>
+                <li>End-user training for recruiters and hiring managers</li>
+                <li>The LightHub knowledge base with 466+ articles</li>
+                <li>Live chat support during business hours</li>
+                <li>Phone support: (877) 482-8840</li>
+                <li>Email support with ticket tracking</li>
+                <li>Regular webinars and feature updates</li>
+            </ul>
+        </div>
+        
+        <div class="key-points">
+            <h4>Additional Services (Optional)</h4>
+            <ul>
+                <li>Custom training sessions ($200/hour)</li>
+                <li>Advanced configuration assistance</li>
+                <li>Integration development support</li>
+                <li>Performance optimization consulting</li>
+            </ul>
+        </div>
+
+        <h2>Technical Specifications</h2>
+        
+        <h3>System Requirements</h3>
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Requirements</th>
+            </tr>
+            <tr>
+                <td><strong>Browser Compatibility</strong></td>
+                <td>Chrome, Firefox, Safari, Edge (latest versions), Mobile browsers</td>
+            </tr>
+            <tr>
+                <td><strong>Network Requirements</strong></td>
+                <td>Standard internet connection, HTTPS/SSL encryption, Firewall-friendly</td>
+            </tr>
+            <tr>
+                <td><strong>Integration Capabilities</strong></td>
+                <td>REST API, SOAP web services, Real-time webhooks, SSO capability</td>
+            </tr>
+            <tr>
+                <td><strong>Performance</strong></td>
+                <td>99.9% uptime guarantee, Sub-second response times, Unlimited data storage</td>
+            </tr>
+            <tr>
+                <td><strong>Data Management</strong></td>
+                <td>Automated daily backups, Point-in-time recovery, Configurable retention policies</td>
+            </tr>
+        </table>
+
+        <h2>References</h2>
+        <p>BrightMove has extensive experience serving government organizations similar to the City of Bowling Green. References are available upon request and include:</p>
+        
+        <div class="key-points">
+            <h4>Government Sector References</h4>
+            <ul>
+                <li><strong>Municipal Government (800+ employees)</strong> - Implementation: 2023 - Reduced time-to-hire by 45%</li>
+                <li><strong>State Agency (1,200+ employees)</strong> - Implementation: 2022 - Streamlined hiring process and enhanced candidate experience</li>
+                <li><strong>Educational Institution (600+ employees)</strong> - Implementation: 2024 - Improved reporting capabilities and better HR integration</li>
+            </ul>
+        </div>
+
+        <h2>Quality Assurance & Project Management</h2>
+        
+        <div class="key-points">
+            <h4>Dedicated Project Team</h4>
+            <ul>
+                <li>Project Manager assigned to your implementation</li>
+                <li>Technical Implementation Specialist</li>
+                <li>Training Coordinator</li>
+                <li>Customer Success Manager</li>
+            </ul>
+        </div>
+        
+        <div class="key-points">
+            <h4>Quality Assurance Process</h4>
+            <ul>
+                <li>Comprehensive system testing before go-live</li>
+                <li>User acceptance testing with your team</li>
+                <li>Performance testing and optimization</li>
+                <li>Security validation and compliance verification</li>
+            </ul>
+        </div>
+
+        <h2>Conclusion</h2>
+        
+        <p>BrightMove offers the City of Bowling Green a comprehensive, proven ATS solution that will transform your recruitment process. With our 20+ years of experience, government sector expertise, and commitment to customer success, we are confident in our ability to deliver exceptional results.</p>
+        
+        <p>Our flexible pricing models ensure you get the best value for your investment, while our platform's configurability ensures it will adapt to your unique processes. The combination of advanced features, proven security, and comprehensive support makes BrightMove the ideal choice for your ATS needs.</p>
+        
+        <div class="highlight">
+            <h4>🎯 Next Steps</h4>
+            <ol>
+                <li>Reference verification and due diligence</li>
+                <li>Technical demonstration and proof of concept</li>
+                <li>Contract negotiation and finalization</li>
+                <li>Implementation planning and kickoff</li>
+            </ol>
+        </div>
+        
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p>
+                <strong>Phone:</strong> (877) 482-8840<br>
+                <strong>Website:</strong> <a href="https://brightmove.com">https://brightmove.com</a><br>
+                <strong>Support:</strong> <a href="https://support.brightmove.com">https://support.brightmove.com</a><br>
+                <strong>Trust Center:</strong> <a href="https://trust.brightmove.com">https://trust.brightmove.com</a>
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p><strong>This proposal is valid for 30 days from the date of submission.</strong></p>
+            <p>Pricing is subject to final contract terms and conditions. Annual price increases are 5% or CPI, whichever is greater.</p>
+            <p>© 2025 BrightMove, Inc. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

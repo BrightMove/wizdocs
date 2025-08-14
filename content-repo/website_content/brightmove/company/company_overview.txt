@@ -1,0 +1,8 @@
+BRIGHTMOVE COMPANY OVERVIEW
+==================================================
+
+Title: Award-Winning Applicant Tracking System
+Description: BrightMove's award-winning applicant tracking system solves the problem of finding and hiring the right talent quickly and efficiently.
+Keywords: None
+Scraped from: https://brightmove.com
+Scraped at: 2025-07-10T16:42:09.744904

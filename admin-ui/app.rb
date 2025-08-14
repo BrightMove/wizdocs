@@ -9,6 +9,8 @@ require 'time'
 require 'chronic'
 require 'active_support/time'
 require 'dotenv'
+require_relative 'github_integration'
+require_relative 'github_webhook_handler'
 
 # Load environment variables
 Dotenv.load('config.env') if File.exist?('config.env')
@@ -1960,6 +1962,10 @@ class AdminUI < Sinatra::Base
     erb :content_analysis
   end
 
+  get '/github-impact' do
+    erb :github_impact
+  end
+
   get '/api/tickets/analysis' do
     content_type :json
     if @ticket_analysis.nil?
@@ -2229,6 +2235,150 @@ class AdminUI < Sinatra::Base
     project_manager = ProjectManager.new
     result = project_manager.run_audit(data['name'], data['command'])
     result.to_json
+  end
+
+  # GitHub Webhook Routes
+  post '/webhook/github' do
+    content_type :json
+    
+    # Get the webhook payload and signature
+    payload = request.body.read
+    signature = request.env['HTTP_X_HUB_SIGNATURE_256']
+    
+    # Handle the webhook
+    webhook_handler = GitHubWebhookHandler.new
+    result = webhook_handler.handle_webhook(payload, signature)
+    
+    if result[:error]
+      status 400
+      result.to_json
+    else
+      status 200
+      result.to_json
+    end
+  end
+
+  # GitHub PR Analysis Routes
+  get '/api/github/pr/:repo/:pr_number/impact' do
+    content_type :json
+    
+    repo = params[:repo]
+    pr_number = params[:pr_number].to_i
+    
+    begin
+      impact_analyzer = KnowledgeBaseImpactAnalyzer.new
+      impact_report = impact_analyzer.analyze_pr_impact_on_knowledge_base(repo, pr_number)
+      
+      if impact_report.is_a?(Hash) && impact_report[:error]
+        status 400
+        impact_report.to_json
+      else
+        impact_report.to_json
+      end
+    rescue => e
+      status 500
+      { error: "Failed to analyze PR impact: #{e.message}" }.to_json
+    end
+  end
+
+  get '/api/github/pr/:repo/:pr_number/conflicts' do
+    content_type :json
+    
+    repo = params[:repo]
+    pr_number = params[:pr_number].to_i
+    
+    begin
+      github_integration = GitHubIntegration.new
+      conflict_report = github_integration.detect_knowledge_base_conflicts(repo, pr_number)
+      
+      if conflict_report.is_a?(Hash) && conflict_report[:error]
+        status 400
+        conflict_report.to_json
+      else
+        conflict_report.to_json
+      end
+    rescue => e
+      status 500
+      { error: "Failed to detect conflicts: #{e.message}" }.to_json
+    end
+  end
+
+  get '/api/github/pr/:repo/:pr_number/preliminary' do
+    content_type :json
+    
+    repo = params[:repo]
+    pr_number = params[:pr_number].to_i
+    
+    begin
+      github_integration = GitHubIntegration.new
+      preliminary_analysis = github_integration.perform_preliminary_analysis(repo, pr_number)
+      
+      if preliminary_analysis.is_a?(Hash) && preliminary_analysis[:error]
+        status 400
+        preliminary_analysis.to_json
+      else
+        preliminary_analysis.to_json
+      end
+    rescue => e
+      status 500
+      { error: "Failed to perform preliminary analysis: #{e.message}" }.to_json
+    end
+  end
+
+  get '/api/github/impact-reports' do
+    content_type :json
+    
+    cache_dir = 'cache'
+    impact_reports = []
+    
+    if Dir.exist?(cache_dir)
+      Dir.glob(File.join(cache_dir, 'impact_report_*.json')).each do |file|
+        begin
+          report_data = JSON.parse(File.read(file))
+          impact_reports << {
+            filename: File.basename(file),
+            timestamp: report_data['timestamp'],
+            pr_number: report_data['pr_analysis']['pr_number'],
+            repo: report_data['pr_analysis']['repo'],
+            impact_level: report_data['pr_analysis']['impact_level'],
+            title: report_data['pr_analysis']['title']
+          }
+        rescue => e
+          puts "Error reading impact report #{file}: #{e.message}"
+        end
+      end
+    end
+    
+    # Sort by timestamp (newest first)
+    impact_reports.sort_by { |r| r[:timestamp] }.reverse.to_json
+  end
+
+  get '/api/github/preliminary-analyses' do
+    content_type :json
+    
+    cache_dir = 'cache'
+    preliminary_analyses = []
+    
+    if Dir.exist?(cache_dir)
+      Dir.glob(File.join(cache_dir, 'preliminary_analysis_*.json')).each do |file|
+        begin
+          analysis_data = JSON.parse(File.read(file))
+          preliminary_analyses << {
+            filename: File.basename(file),
+            timestamp: analysis_data['timestamp'],
+            pr_number: analysis_data['pr_number'],
+            repo: analysis_data['repo'],
+            impact_level: analysis_data['impact_level'],
+            title: analysis_data['title']
+          }
+        rescue => e
+          puts "Error reading preliminary analysis #{file}: #{e.message}"
+        end
+      end
+    end
+    
+    # Sort by timestamp (newest first)
+    preliminary_analyses.sort_by { |r| r[:timestamp] }.reverse.to_json
   end
 end
 

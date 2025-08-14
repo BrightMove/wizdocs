@@ -1,0 +1,44 @@
+BRIGHTMOVE TECHNICAL SPECIFICATIONS
+========================================
+
+• <h2 class="elementor-heading-title elementor-size-default"> Helpful Links</h2>
+• <h2 class="elementor-heading-title elementor-size-default">Data Analytics</h2>
+• <h2 class="elementor-heading-title elementor-size-default">Follow Us</h2>
+• <h2 class="elementor-heading-title elementor-size-default">Office Hours</h2>
+• <h2 class="jp-carousel-photo-title"></h2>
+• <h2 class="elementor-heading-title elementor-size-default">Background Check</h2>
+• <h2 class="elementor-heading-title elementor-size-default">© 2004, 2025 BrightMove, Inc. All rights reserved.</h2>
+• <h2 class="elementor-heading-title elementor-size-default">The most configurable ATS on the planet</h2>
+• The BrightMove Open API enables organizations to create real-time, custom integrations with their ATS data.
+• <h2 class="elementor-heading-title elementor-size-default">Customer Support Hours</h2>
+• BrightMove provides enterprise-level applicant tracking system and recruiting software integrations with hundreds of vendors. Most integrations are tailored to the specific needs of you, the customer.
+• It’s frustrating to manually copy & paste from one system to another. This is a waste of time. At BrightMove, we believe that the purpose of technology is to enable you to work smarter, not harder. We have directly integrated with many modern tools to enable automation staffing & to optimize your recruiting process.
+• <h2 class="elementor-heading-title elementor-size-default">Make a BrightMove: Sign up for a free applicant tracking system trial</h2>
+• <h2 class="elementor-heading-title elementor-size-default">The Connected ATS</h2>
+• The unemployment rate is lower than it has been decades. Finding candidates is hard but keeping them engaged is even harder. BrightMove’s mobile-responsive job applications allow candidates to quickly apply from any device. BrightMove’s applicant tracking system will help streamline your recruiting process, allowing you to provide a great experience for recruiters, candidates and hiring managers.
+• <h2 class="elementor-heading-title elementor-size-default">Open API</h2>
+• <h2 class="elementor-heading-title elementor-size-default">Our Open API</h2>
+• <h2 class="elementor-heading-title elementor-size-default">Email</h2>
+• <h2 class="elementor-heading-title elementor-size-default">SMS, Video, Communications</h2>
+• <h2 class="elementor-heading-title elementor-size-default">Job Boards</h2>
+• <h2 class="elementor-heading-title elementor-size-default">Feature Overview</h2>
+• Are you wasting time with copy & paste? Is your tech team writing a lot of code from scratch? The main reason to use an API is to avoid having to do repetitive work. Our API is fully public and allows you to interact with any data in the ATS
+• <h2 class="elementor-heading-title elementor-size-default">Zappier Zaps</h2>
+• <h2 class="elementor-heading-title elementor-size-default">Integrations</h2>
+• <h2 class="elementor-heading-title elementor-size-default"><a href="#">Products</a></h2>
+• What is an API? Simply put, an open API is a public application programming interface. The BrightMove API gives software developers programmatic access to our proprietary application called ATS. Through the open API, and using common web service design patterns like REST, a software developer can interact with any data with ATS.
+• <h2 class="elementor-heading-title elementor-size-default"><a href="#">About BrightMove</a></h2>
+• <h2 class="elementor-heading-title elementor-size-default">8:30AM to 5:30pm EST</h2>
+• <h2 class="elementor-heading-title elementor-size-default">Accounting and Back Office</h2>
+• is a term that means different things to people, depending on who you ask. We have deployed a comprehensive and modern data integration platform that enables us to connect to any source. If it gives off a signal, we can connect to it. Try us out!
+• <h2 class="elementor-heading-title elementor-size-default">Contact Us</h2>
+• <h2 class="elementor-heading-title elementor-size-default">Every second matters</h2>
+• Avoid writing lots of code. Use the BrightMove Public API.
+• to
+• The unemployment rate is lower than it has been decades. Finding candidates is hard but keeping them engaged is even harder. BrightMove’s public API allows you to access and interact with all of the data present within your ATS, however you’d like.
+• <h2 class="elementor-heading-title elementor-size-default"><a href="#">Schedule A Demo</a></h2>
+• <h2 class="elementor-heading-title elementor-size-default">Try It Now</h2>
+• <h2 class="elementor-heading-title elementor-size-default">BrightMove is integrated with the most popular apps in the world</h2>
+• <h2 class="elementor-heading-title elementor-size-default">Create Custom Applications With ATS Data</h2>
+• <h2 class="elementor-heading-title elementor-size-default"><a href="#">Solutions</a></h2>
+• <h2 class="jp-carousel-photo-caption"></h2>

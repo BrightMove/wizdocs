@@ -1,0 +1,104 @@
+BRIGHTMOVE SUPPORT KNOWLEDGE BASE INDEX
+==================================================
+
+Total Pages Scraped: 468
+Total Articles: 466
+Total Collections: 71
+Scraped At: 2025-07-10T17:03:28.587944
+
+CONTENT CATEGORIES:
+--------------------
+• Help Articles: 13188 items
+• FAQs: 310 items
+• Tutorials: 63 items
+• Technical Documentation: 268 items
+• User Guides: 605 items
+• API Documentation: 49 items
+• Troubleshooting: 81 items
+
+COLLECTIONS FOUND:
+--------------------
+• Screen | The LightHub - https://support.brightmove.com/en/collections/10783530-screen
+• BrightMove Support Team Guides (Internal Only) | The LightHub - https://support.brightmove.com/en/collections/11168956-brightmove-support-team-guides-internal-only
+• Hire | The LightHub - https://support.brightmove.com/en/collections/10783541-hire
+• Get Started | The LightHub - https://support.brightmove.com/en/collections/10783485-get-started
+• Source | The LightHub - https://support.brightmove.com/en/collections/10783525-source
+• Report & Analyze | The LightHub - https://support.brightmove.com/en/collections/10783544-report-analyze
+• Learn | The LightHub - https://support.brightmove.com/en/collections/10783575-learn
+• Get Help | The LightHub - https://support.brightmove.com/en/collections/10783506-get-help
+• What's New | The LightHub - https://support.brightmove.com/en/collections/10783520-what-s-new
+• Compliance Tools | The LightHub - https://support.brightmove.com/en/collections/10783539-compliance-tools
+• Request a BrightMove Feature | The LightHub - https://support.brightmove.com/en/collections/11168958-request-a-brightmove-feature
+• Time Tracking | The LightHub - https://support.brightmove.com/en/collections/10783543-time-tracking
+• User Journeys | The LightHub - https://support.brightmove.com/en/collections/11168955-user-journeys
+• Candidate Experience Portals | The LightHub - https://support.brightmove.com/en/collections/10783529-candidate-experience-portals
+• Opportunity Reports | The LightHub - https://support.brightmove.com/en/collections/10783574-opportunity-reports
+• Custom Training Sessions | The LightHub - https://support.brightmove.com/en/collections/10783577-custom-training-sessions
+• Security | The LightHub - https://support.brightmove.com/en/collections/10783517-security
+• Older Releases | The LightHub - https://support.brightmove.com/en/collections/10783524-older-releases
+• Important Announcements | The LightHub - https://support.brightmove.com/en/collections/10783523-important-announcements
+• News & Notes | The LightHub - https://support.brightmove.com/en/collections/10783522-news-notes
+• Release Notes | The LightHub - https://support.brightmove.com/en/collections/10783521-release-notes
+• Data Exports & Extracts | The LightHub - https://support.brightmove.com/en/collections/10783516-data-exports-extracts
+• Developer Resources | The LightHub - https://support.brightmove.com/en/collections/10783515-developer-resources
+• Technical Help | The LightHub - https://support.brightmove.com/en/collections/10783514-technical-help
+• 3rd Party Integrations | The LightHub - https://support.brightmove.com/en/collections/10783513-3rd-party-integrations
+• Finance & Accounting Integrations | The LightHub - https://support.brightmove.com/en/collections/10783512-finance-accounting-integrations
+• Communication, Texting & SMS Integrations | The LightHub - https://support.brightmove.com/en/collections/10783509-communication-texting-sms-integrations
+• Email in BrightMove | The LightHub - https://support.brightmove.com/en/collections/10783508-email-in-brightmove
+• Contact Support | The LightHub - https://support.brightmove.com/en/collections/10783507-contact-support
+• New User Training 101 | The LightHub - https://support.brightmove.com/en/collections/10783576-new-user-training-101
+• Time and Billing Reports | The LightHub - https://support.brightmove.com/en/collections/10783573-time-and-billing-reports
+• Forecasting and Sales Reports | The LightHub - https://support.brightmove.com/en/collections/10783572-forecasting-and-sales-reports
+• Management Reports  | The LightHub - https://support.brightmove.com/en/collections/10783571-management-reports
+• Ad Hoc Reports | The LightHub - https://support.brightmove.com/en/collections/10783570-ad-hoc-reports
+• Equal Opportunity Employment Reports  | The LightHub - https://support.brightmove.com/en/collections/10783569-equal-opportunity-employment-reports
+• Manager Reports | The LightHub - https://support.brightmove.com/en/collections/10783566-manager-reports
+• Job Reports | The LightHub - https://support.brightmove.com/en/collections/10783565-job-reports
+• Candidate Reports | The LightHub - https://support.brightmove.com/en/collections/10783563-candidate-reports
+• Activity Reports | The LightHub - https://support.brightmove.com/en/collections/10783551-activity-reports
+• The Basics of Reports | The LightHub - https://support.brightmove.com/en/collections/10783550-the-basics-of-reports
+• User Dashboard | The LightHub - https://support.brightmove.com/en/collections/10783547-user-dashboard
+• Analytics | The LightHub - https://support.brightmove.com/en/collections/10783546-analytics
+• Wisdom | The LightHub - https://support.brightmove.com/en/collections/10783545-wisdom
+• AI | The LightHub - https://support.brightmove.com/en/collections/12325337-ai
+• Recruitment Process | The LightHub - https://support.brightmove.com/en/collections/10783528-recruitment-process
+• Job Posting Management | The LightHub - https://support.brightmove.com/en/collections/10783527-job-posting-management
+• Jobs | Add, Understand, Post, Manage | The LightHub - https://support.brightmove.com/en/collections/10783526-jobs-add-understand-post-manage
+• Opportunities | Setup, View & Manage, Create Opportunity Profile | The LightHub - https://support.brightmove.com/en/collections/10783505-opportunities-setup-view-manage-create-opportunity-profile
+• BrightMove Extras | The LightHub - https://support.brightmove.com/en/collections/10783504-brightmove-extras
+• Back Office | AR/GL Integration | The LightHub - https://support.brightmove.com/en/collections/10783503-back-office-ar-gl-integration
+• Back Office | Invoicing | The LightHub - https://support.brightmove.com/en/collections/10783502-back-office-invoicing
+• Back Office | Fee Realization | The LightHub - https://support.brightmove.com/en/collections/10783501-back-office-fee-realization
+• Back Office | Catalog Management | The LightHub - https://support.brightmove.com/en/collections/10783500-back-office-catalog-management
+• Back Office | Overview | The LightHub - https://support.brightmove.com/en/collections/10783499-back-office-overview
+• RPO Edition | Email & Signature Management | The LightHub - https://support.brightmove.com/en/collections/10783498-rpo-edition-email-signature-management
+• RPO Edition | Adding New RPO Child Accounts | The LightHub - https://support.brightmove.com/en/collections/10783497-rpo-edition-adding-new-rpo-child-accounts
+• RPO Edition | Dashboard | The LightHub - https://support.brightmove.com/en/collections/10783496-rpo-edition-dashboard
+• Clients / Departments | Add, Manage, & Understand | The LightHub - https://support.brightmove.com/en/collections/10783493-clients-departments-add-manage-understand
+• Manage Subscription | The LightHub - https://support.brightmove.com/en/collections/10783492-manage-subscription
+• Data Quality & Clean Up | The LightHub - https://support.brightmove.com/en/collections/10783491-data-quality-clean-up
+• Advanced Account Setup | The LightHub - https://support.brightmove.com/en/collections/10783490-advanced-account-setup
+• Basic Account Setup | The LightHub - https://support.brightmove.com/en/collections/10783489-basic-account-setup
+• Offer Letters & Document Signing | The LightHub - https://support.brightmove.com/en/collections/10783542-offer-letters-document-signing
+• General Company Info | The LightHub - https://support.brightmove.com/en/collections/11168957-general-company-info
+• HR-Related Integrations | The LightHub - https://support.brightmove.com/en/collections/10783538-hr-related-integrations
+• Managers / Contacts | Add, Manage, Communicate, & Hiring Manager Workbench | The LightHub - https://support.brightmove.com/en/collections/10783536-managers-contacts-add-manage-communicate-hiring-manager-workbench
+• Candidates | Add, Organize, Find, Communicate, & Candidate Profile | The LightHub - https://support.brightmove.com/en/collections/10783535-candidates-add-organize-find-communicate-candidate-profile
+• Custom Questions | The LightHub - https://support.brightmove.com/en/collections/10783534-custom-questions
+• Communication | The LightHub - https://support.brightmove.com/en/collections/10783533-communication
+• BrightForms | The LightHub - https://support.brightmove.com/en/collections/10783532-brightforms
+• Power Search | The LightHub - https://support.brightmove.com/en/collections/10783531-power-search
+
+SAMPLE ARTICLES:
+--------------------
+1. Adding a New Manager | The LightHub - https://support.brightmove.com/en/articles/10622321-adding-a-new-manager
+2. Manager Activity Timeline View | The LightHub - https://support.brightmove.com/en/articles/10621873-manager-activity-timeline-view
+3. Automate the Assignment of a BrightForm | The LightHub - https://support.brightmove.com/en/articles/10622247-automate-the-assignment-of-a-brightform
+4. Folders Tab on Manager Profile | The LightHub - https://support.brightmove.com/en/articles/10621875-folders-tab-on-manager-profile
+5. Search Jobs From Skills | The LightHub - https://support.brightmove.com/en/articles/10622318-search-jobs-from-skills
+6. Assignment of Tasks To Alternative Users | The LightHub - https://support.brightmove.com/en/articles/10629007-assignment-of-tasks-to-alternative-users
+7. Manager Communications | The LightHub - https://support.brightmove.com/en/articles/10622329-manager-communications
+8. What is the Score in Power Search? | The LightHub - https://support.brightmove.com/en/articles/10622230-what-is-the-score-in-power-search
+9. Version 2022.3.0 | The LightHub - https://support.brightmove.com/en/articles/10622135-version-2022-3-0
+10. Upcoming Release of Domain and Email Verification at BrightMove | The LightHub - https://support.brightmove.com/en/articles/10622122-upcoming-release-of-domain-and-email-verification-at-brightmove

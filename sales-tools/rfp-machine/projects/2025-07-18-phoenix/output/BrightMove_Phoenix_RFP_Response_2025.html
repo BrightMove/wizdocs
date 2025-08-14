@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightMove - Phoenix RFP Response</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #0066cc;
+        }
+        
+        .logo-section {
+            margin-bottom: 30px;
+        }
+        
+        .company-logo h2 {
+            color: #0066cc;
+            font-size: 2em;
+            margin: 0;
+        }
+        
+        .company-logo p {
+            color: #666;
+            margin: 5px 0;
+            font-size: 1em;
+        }
+        
+        h1 {
+            color: #0066cc;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #0066cc;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        h3 {
+            color: #495057;
+            font-size: 1.3em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .contact-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #0066cc;
+        }
+        
+        .contact-info h4 {
+            color: #0066cc;
+            margin-top: 0;
+        }
+        
+        .executive-summary {
+            background-color: #e3f2fd;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 5px solid #0066cc;
+        }
+        
+        .executive-summary h3 {
+            color: #0066cc;
+            margin-top: 0;
+        }
+        
+        .honest-assessment {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 5px solid #ffc107;
+        }
+        
+        .honest-assessment h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        
+        .response-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .response-table th {
+            background-color: #0066cc;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .response-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: top;
+        }
+        
+        .response-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .yes-cell {
+            background-color: #d4edda;
+            color: #155724;
+            font-weight: bold;
+            text-align: center;
+            width: 80px;
+        }
+        
+        .no-cell {
+            background-color: #f8d7da;
+            color: #721c24;
+            font-weight: bold;
+            text-align: center;
+            width: 80px;
+        }
+        
+        .na-cell {
+            background-color: #e2e3e5;
+            color: #495057;
+            font-weight: bold;
+            text-align: center;
+            width: 80px;
+        }
+        
+        .question-cell {
+            font-weight: bold;
+            width: 300px;
+        }
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-table th {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .pricing-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .pricing-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .total-row {
+            font-weight: bold;
+            background-color: #e8f5e8 !important;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .capability-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid #0066cc;
+        }
+        
+        .capability-card h4 {
+            color: #0066cc;
+            margin-top: 0;
+        }
+        
+        .limitation-card {
+            background-color: #f8d7da;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .limitation-card h4 {
+            color: #721c24;
+            margin-top: 0;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+                font-size: 12px;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            
+            .response-table th,
+            .pricing-table th {
+                background-color: #0066cc !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .yes-cell {
+                background-color: #d4edda !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .no-cell {
+                background-color: #f8d7da !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="company-logo">
+                    <h2>BrightMove</h2>
+                    <p>Applicant Tracking System</p>
+                    <p>St. Augustine Beach, FL</p>
+                </div>
+            </div>
+            <h1>Phoenix RFP Response</h1>
+            <p class="subtitle">Time and Labor Management System Solution</p>
+            <p class="subtitle">RFP-25-0704</p>
+        </div>
+
+        <div class="section">
+            <div class="executive-summary">
+                <h3>Executive Summary</h3>
+                <p>BrightMove appreciates the opportunity to respond to the Phoenix Time and Labor Management System RFP. As a leading <strong>Applicant Tracking System (ATS)</strong> provider with over 20 years of experience, we want to provide you with a transparent and honest assessment of our capabilities in relation to your time and labor management requirements.</p>
+                
+                <p><strong>Our Core Strength:</strong> BrightMove excels in <strong>talent acquisition and recruiting</strong>, providing comprehensive solutions for job posting, candidate management, interview scheduling, and hiring workflows. Our platform is designed specifically for recruiting teams, HR departments, and organizations seeking to optimize their hiring processes.</p>
+                
+                <p><strong>Time and Labor Management Scope:</strong> While BrightMove provides robust recruiting and hiring capabilities, we recognize that a comprehensive Time and Labor Management System typically includes workforce scheduling, time tracking, payroll integration, and labor compliance management beyond the hiring process.</p>
+                
+                <p><strong>Our Recommendation:</strong> BrightMove would be an excellent choice if your organization needs to modernize and streamline your recruiting and hiring processes as part of a broader workforce management strategy. For comprehensive time and labor management functionality, we recommend considering BrightMove as the talent acquisition component within an integrated workforce management ecosystem.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="honest-assessment">
+                <h3>Honest Assessment: BrightMove's Fit for Time and Labor Management</h3>
+                <p>In the spirit of transparency and building a successful partnership, we want to provide you with a clear understanding of where BrightMove excels and where you may need additional solutions:</p>
+                
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <h4>✓ Strong Capabilities</h4>
+                        <ul>
+                            <li>Applicant Tracking & Management</li>
+                            <li>Job Posting & Distribution</li>
+                            <li>Interview Scheduling</li>
+                            <li>Candidate Communication</li>
+                            <li>Hiring Workflows</li>
+                            <li>Recruiting Analytics</li>
+                            <li>Onboarding Documentation</li>
+                            <li>EEO Compliance Reporting</li>
+                        </ul>
+                    </div>
+                    <div class="limitation-card">
+                        <h4>⚠ Limited/Not Available</h4>
+                        <ul>
+                            <li>Time Clock Management</li>
+                            <li>Shift Scheduling</li>
+                            <li>Payroll Processing</li>
+                            <li>Labor Cost Tracking</li>
+                            <li>Workforce Analytics (non-recruiting)</li>
+                            <li>Compliance Reporting (labor laws)</li>
+                            <li>Employee Time Tracking</li>
+                            <li>Overtime Management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Contact Information</h2>
+            <div class="contact-info">
+                <h4>BrightMove - Primary Contact</h4>
+                <p><strong>Name:</strong> Jimmy Hurff</p>
+                <p><strong>Title:</strong> Head of Customer Success</p>
+                <p><strong>Email:</strong> jimmy@brightmove.com</p>
+                <p><strong>Phone:</strong> 305-602-8998</p>
+                <p><strong>Address:</strong> 320 High Tide Drive, Suite 201, Saint Augustine Beach, FL 32080</p>
+                <p><strong>Website:</strong> <a href="https://brightmove.com">https://brightmove.com</a></p>
+                <p><strong>Support:</strong> <a href="https://support.brightmove.com">https://support.brightmove.com</a></p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Core BrightMove Capabilities</h2>
+            
+            <h3>Applicant Tracking & Recruiting</h3>
+            <table class="response-table">
+                <thead>
+                    <tr>
+                        <th>Requirement</th>
+                        <th>Available</th>
+                        <th>Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="question-cell">Job Posting & Distribution</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Comprehensive job posting to 50+ job boards including Indeed, LinkedIn, and specialized platforms. Automated posting with brand customization.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Candidate Application Management</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Full applicant tracking with resume parsing, candidate profiles, and application status tracking. Candidates must create accounts to apply.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Interview Scheduling</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Automated interview scheduling with calendar integration. Note: No candidate-facing scheduling tools; all scheduling managed by recruiters.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Hiring Workflows</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Configurable hiring workflows with approval processes, status tracking, and collaborative hiring tools for recruiters and hiring managers.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Background Check Integration</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Integration with background check providers through API connections and third-party integrations.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Offer Management</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Offer letter generation, document signing integration, and offer tracking through acceptance.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Time and Labor Management (Limited Scope)</h3>
+            <table class="response-table">
+                <thead>
+                    <tr>
+                        <th>Requirement</th>
+                        <th>Available</th>
+                        <th>Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="question-cell">Time Clock Management</td>
+                        <td class="no-cell">No</td>
+                        <td>BrightMove does not provide time clock or punch-in/out functionality. Our platform focuses on recruiting and hiring processes.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Shift Scheduling</td>
+                        <td class="no-cell">No</td>
+                        <td>No employee shift scheduling capabilities. Interview scheduling is available for hiring processes only.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Payroll Integration</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>API integration capabilities with payroll systems for new hire data transfer. No direct payroll processing functionality.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Labor Cost Tracking</td>
+                        <td class="no-cell">No</td>
+                        <td>No labor cost tracking or workforce budgeting capabilities. Focus is on recruiting cost-per-hire metrics.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Workforce Analytics</td>
+                        <td class="no-cell">No</td>
+                        <td>Analytics focus on recruiting metrics (time-to-fill, source effectiveness, hiring pipeline). No workforce productivity or labor analytics.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Compliance Reporting</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>EEO compliance reporting and hiring process audit trails. No labor law compliance or overtime tracking.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>System Integration & Technical Capabilities</h3>
+            <table class="response-table">
+                <thead>
+                    <tr>
+                        <th>Requirement</th>
+                        <th>Available</th>
+                        <th>Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="question-cell">API Access</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>RESTful API with comprehensive documentation available at docs.brightmove.com for custom integrations and data exchange.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Single Sign-On (SSO)</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Full SAML and LDAP integration with Active Directory and other identity providers for seamless user authentication.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Mobile Access</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Responsive web design optimized for mobile devices. No standalone mobile app; mobile-friendly website for all users.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Data Security</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>SOC 2 Type I certified with AES-256 encryption at rest and TLS 1.3 in transit. Annual security audits and compliance verification.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Cloud Hosting</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Fully cloud-hosted SaaS solution with 99.9% uptime SLA and enterprise-grade infrastructure.</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Data Backup</td>
+                        <td class="yes-cell">Yes</td>
+                        <td>Automated daily backups with point-in-time recovery capabilities and disaster recovery planning.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Pricing Structure</h2>
+            <p><strong>Note:</strong> Pricing based on per worksite employee model. Final pricing may vary based on specific requirements and organizational size.</p>
+            
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Pricing</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Annual Platform License</strong></td>
+                        <td>$25/employee/year</td>
+                        <td>Includes up to 10 full users, all recruiting features, 99.9% uptime SLA. Pricing varies by organization size.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Implementation Services</strong></td>
+                        <td>$150/hour</td>
+                        <td>System configuration, data migration, workflow setup, integration development</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Training & Support</strong></td>
+                        <td>$150/hour</td>
+                        <td>User training, change management, ongoing support beyond standard support</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Custom Integrations</strong></td>
+                        <td>$150/hour</td>
+                        <td>API development, custom integrations with payroll, HRIS, and other systems</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sandbox Environment</strong></td>
+                        <td>$100/month</td>
+                        <td>Testing environment for configuration and training (no staging/production promotion)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Multi-Year Pricing Options</h3>
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Contract Term</th>
+                        <th>Annual Discount</th>
+                        <th>Benefits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2 Years (Price Lock)</td>
+                        <td>5% discount</td>
+                        <td>No annual increases, budget predictability</td>
+                    </tr>
+                    <tr>
+                        <td>3 Years (Price Lock)</td>
+                        <td>10% discount</td>
+                        <td>No annual increases, maximum savings</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Implementation Approach</h2>
+            
+            <h3>Phase 1: Discovery & Planning (30 days)</h3>
+            <ul>
+                <li>Requirements analysis and current state assessment</li>
+                <li>Integration planning with existing systems</li>
+                <li>Workflow design and configuration planning</li>
+                <li>Data migration strategy development</li>
+            </ul>
+
+            <h3>Phase 2: Configuration & Integration (60 days)</h3>
+            <ul>
+                <li>Platform configuration and customization</li>
+                <li>Integration development with existing systems</li>
+                <li>Data migration and validation</li>
+                <li>User acceptance testing</li>
+            </ul>
+
+            <h3>Phase 3: Training & Deployment (30 days)</h3>
+            <ul>
+                <li>User training for recruiters and hiring managers</li>
+                <li>System documentation and knowledge transfer</li>
+                <li>Go-live support and monitoring</li>
+                <li>Post-implementation optimization</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Integration Strategy for Workforce Management</h2>
+            <div class="honest-assessment">
+                <h3>Recommended Technology Stack Approach</h3>
+                <p>For organizations requiring comprehensive workforce management functionality, we recommend positioning BrightMove as the <strong>talent acquisition specialist</strong> within a broader workforce management ecosystem:</p>
+                
+                <ul>
+                    <li><strong>BrightMove:</strong> Talent acquisition, recruiting, and hiring processes</li>
+                    <li><strong>Time & Labor Partner:</strong> Time tracking, scheduling, and labor management</li>
+                    <li><strong>Payroll System:</strong> Payroll processing and compliance</li>
+                    <li><strong>Integration:</strong> Seamless data flow between systems via API connections</li>
+                    <li><strong>Result:</strong> Best-of-breed approach with specialized solutions for each workforce function</li>
+                </ul>
+                
+                <p>This approach ensures you get the most advanced recruiting capabilities from BrightMove while maintaining comprehensive workforce management through specialized partners.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Security and Compliance</h2>
+            
+            <h3>Security Certifications</h3>
+            <ul>
+                <li><strong>SOC 2 Type I Certified:</strong> Annual security audits and compliance verification</li>
+                <li><strong>GDPR Compliant:</strong> Data protection and privacy compliance</li>
+                <li><strong>CCPA Compliant:</strong> California consumer privacy compliance</li>
+                <li><strong>EEOC Compliant:</strong> Equal employment opportunity reporting and compliance</li>
+            </ul>
+
+            <h3>Data Protection</h3>
+            <ul>
+                <li><strong>Encryption:</strong> AES-256 encryption at rest, TLS 1.3 in transit</li>
+                <li><strong>Access Controls:</strong> Role-based access with multi-factor authentication</li>
+                <li><strong>Audit Logging:</strong> Comprehensive audit trails for all system activities</li>
+                <li><strong>Data Retention:</strong> Configurable data retention policies</li>
+                <li><strong>Secure Hosting:</strong> Enterprise-grade cloud infrastructure with 99.9% uptime</li>
+            </ul>
+
+            <p><strong>Trust Center:</strong> Complete security documentation available at <a href="https://trust.brightmove.com">https://trust.brightmove.com</a></p>
+        </div>
+
+        <div class="section">
+            <h2>Why Choose BrightMove for Your Talent Acquisition Needs</h2>
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <h4>20+ Years of ATS Experience</h4>
+                    <p>Proven track record with thousands of customers across various industries, including organizations with complex workforce management needs.</p>
+                </div>
+                <div class="capability-card">
+                    <h4>Highly Configurable Platform</h4>
+                    <p>Customize workflows, fields, and processes to match your unique recruiting requirements without compromising functionality.</p>
+                </div>
+                <div class="capability-card">
+                    <h4>Strong Integration Capabilities</h4>
+                    <p>Robust API and integration options to connect with your existing workforce management systems and business applications.</p>
+                </div>
+                <div class="capability-card">
+                    <h4>Dedicated Support Team</h4>
+                    <p>Experienced customer success team with deep recruiting industry knowledge and technical expertise.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Next Steps</h2>
+            <div class="executive-summary">
+                <h3>Recommended Actions</h3>
+                <ol>
+                    <li><strong>Requirements Assessment:</strong> Schedule a detailed discussion about your specific workforce management needs and priorities</li>
+                    <li><strong>BrightMove Demo:</strong> Experience our recruiting capabilities firsthand with a customized demonstration</li>
+                    <li><strong>Integration Planning:</strong> Discuss integration options with your existing or planned workforce management systems</li>
+                    <li><strong>Technology Stack Design:</strong> Collaborate on designing an optimal workforce management architecture</li>
+                </ol>
+                
+                <p><strong>Our Commitment:</strong> We believe in providing honest, transparent guidance to help you make the best decision for your organization, even if that means recommending additional solutions alongside BrightMove.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <p style="text-align: center; margin-top: 40px; font-style: italic; color: #666;">
+                <strong>Thank you for considering BrightMove for your workforce management technology needs.</strong><br>
+                We look forward to discussing how our recruiting expertise can contribute to your overall workforce management strategy and success.
+            </p>
+        </div>
+    </div>
+</body>
+</html> 

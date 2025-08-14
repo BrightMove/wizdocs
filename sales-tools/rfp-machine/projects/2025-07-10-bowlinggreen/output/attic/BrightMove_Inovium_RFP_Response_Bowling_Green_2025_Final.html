@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inovium-BrightMove Joint Venture ATS Solution for City of Bowling Green</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+            font-size: 14px;
+        }
+        
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+            background: white;
+        }
+        
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #7c3aed 100%);
+            color: white;
+            padding: 2rem;
+            margin: -0.5in -0.5in 2rem -0.5in;
+            text-align: center;
+            border-bottom: 4px solid #f59e0b;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #e5e7eb;
+        }
+        
+        .header .joint-venture {
+            font-size: 1.1rem;
+            color: #fbbf24;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .header .meta {
+            font-size: 1rem;
+            color: #cbd5e1;
+            margin-top: 1rem;
+        }
+        
+        /* Partnership Banner */
+        .partnership-banner {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: white;
+            padding: 1.5rem;
+            margin: -0.5in -0.5in 2rem -0.5in;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* Section Headers */
+        h2 {
+            color: #1e3a8a;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #f59e0b;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #3b82f6;
+        }
+        
+        h3 {
+            color: #1e40af;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem 0;
+            padding-left: 1rem;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        h4 {
+            color: #374151;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem 0;
+        }
+        
+        /* Text Styles */
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
+            padding: 1rem;
+            border-left: 4px solid #f59e0b;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .executive-summary {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Partnership Boxes */
+        .partnership-roles {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .inovium-role {
+            flex: 1;
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #8b5cf6;
+        }
+        
+        .brightmove-role {
+            flex: 1;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #3b82f6;
+        }
+        
+        .inovium-role h4 {
+            color: #7c3aed;
+            margin-bottom: 1rem;
+        }
+        
+        .brightmove-role h4 {
+            color: #1d4ed8;
+            margin-bottom: 1rem;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        ul li::marker {
+            color: #3b82f6;
+            font-weight: bold;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        tr:hover {
+            background: #f1f5f9;
+        }
+        
+        /* Pricing Tables */
+        .pricing-table {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border: 2px solid #16a34a;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+        
+        .pricing-table th {
+            background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+            color: white;
+        }
+        
+        .pricing-table .total-row {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+            font-weight: 600;
+            color: #d97706;
+        }
+        
+        /* Key Points */
+        .key-points {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #16a34a;
+            margin: 1.5rem 0;
+        }
+        
+        .key-points h4 {
+            color: #15803d;
+            margin-bottom: 1rem;
+        }
+        
+        .key-points ul {
+            margin-left: 1.5rem;
+        }
+        
+        .key-points li {
+            color: #166534;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Differentiators */
+        .differentiator {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+        
+        .differentiator h4 {
+            color: #1d4ed8;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Contact Information */
+        .contact-info {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 2px solid #3b82f6;
+        }
+        
+        .contact-info h3 {
+            color: #1e3a8a;
+            border-left: none;
+            padding-left: 0;
+        }
+        
+        /* Stakeholder Section */
+        .stakeholders {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .stakeholder-card {
+            flex: 1;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #64748b;
+            text-align: center;
+        }
+        
+        .stakeholder-card h4 {
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stakeholder-card .role {
+            color: #64748b;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stakeholder-card .company {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+            color: white;
+            padding: 2rem;
+            margin: 2rem -0.5in -0.5in -0.5in;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                font-size: 12px;
+            }
+            
+            .container {
+                max-width: none;
+                padding: 0.25in;
+            }
+            
+            .header, .footer {
+                margin: -0.25in -0.25in 1rem -0.25in;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            table {
+                page-break-inside: avoid;
+            }
+            
+            .pricing-table {
+                page-break-inside: avoid;
+            }
+            
+            .partnership-roles {
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header {
+                margin: -1rem -1rem 2rem -1rem;
+                padding: 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .partnership-roles {
+                flex-direction: column;
+            }
+            
+            .stakeholders {
+                flex-direction: column;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Comprehensive ATS Solution</h1>
+            <div class="subtitle">for City of Bowling Green, Kentucky</div>
+            <div class="joint-venture">Inovium & BrightMove Joint Venture</div>
+            <div class="subtitle">RFP #2025-46 - Applicant Tracking System</div>
+            <div class="meta">
+                <strong>Submitted by:</strong> Inovium, LLC & BrightMove, Inc.<br>
+                <strong>Date:</strong> July 10, 2025<br>
+                <strong>Prepared for:</strong> City of Bowling Green, Kentucky
+            </div>
+        </div>
+
+        <div class="partnership-banner">
+            🤝 Strategic Partnership: Inovium's Implementation Expertise + BrightMove's Technology Platform
+        </div>
+
+        <div class="executive-summary">
+            <h2>Executive Summary</h2>
+            <p>Inovium and BrightMove are pleased to present our joint venture proposal for the City of Bowling Green's Applicant Tracking System (ATS) implementation. This strategic partnership combines Inovium's proven implementation and consulting expertise with BrightMove's award-winning, highly configurable ATS platform to deliver a comprehensive solution tailored specifically for government organizations.</p>
+            
+            <div class="partnership-roles">
+                <div class="inovium-role">
+                    <h4>🏢 Inovium - Service Delivery Partner</h4>
+                    <ul>
+                        <li>Founded in 2017 by seasoned enterprise software experts</li>
+                        <li>Specializes in HR and Workforce Management implementations</li>
+                        <li>Agile methodologies and business outcome focus</li>
+                        <li>Configuration as a Service (CaaS) ongoing support</li>
+                        <li>Headquartered in Austin, Texas with nationwide resources</li>
+                    </ul>
+                </div>
+                
+                <div class="brightmove-role">
+                    <h4>💻 BrightMove - Technology Platform Vendor</h4>
+                    <ul>
+                        <li>Founded in 2004 with 20+ years of ATS experience</li>
+                        <li>Most configurable ATS platform on the market</li>
+                        <li>SOC 2 Type I certified security and compliance</li>
+                        <li>Proven track record with government organizations</li>
+                        <li>Headquartered in Tampa, Florida with US-based support</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h4>Why This Partnership is Perfect for Bowling Green</h4>
+                <ul>
+                    <li><strong>Combined Expertise:</strong> 27+ years of combined experience in HR technology and implementation</li>
+                    <li><strong>Government Focus:</strong> Deep understanding of public sector compliance and workflow requirements</li>
+                    <li><strong>Proven Scale:</strong> Perfect fit for your organization size (650 employees, 200 monthly applicants)</li>
+                    <li><strong>Comprehensive Support:</strong> End-to-end implementation through ongoing optimization</li>
+                    <li><strong>Risk Mitigation:</strong> Dual-partner approach ensures continuity and support</li>
+                </ul>
+            </div>
+            
+            <div class="highlight">
+                <h4>🎯 Key Investment Highlights</h4>
+                <ul>
+                    <li><strong>Total Annual Investment:</strong> $16,250 (Per Worksite Employee Model)</li>
+                    <li><strong>Implementation & Training:</strong> Included at no additional charge</li>
+                    <li><strong>Ongoing Support:</strong> Dual-partner support model with Inovium and BrightMove</li>
+                    <li><strong>Security & Compliance:</strong> SOC 2 Type I certified with US-based data storage</li>
+                    <li><strong>Scalability:</strong> Unlimited growth potential with no per-user limitations</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Partnership Structure & Stakeholders</h2>
+        
+        <div class="stakeholders">
+            <div class="stakeholder-card">
+                <h4>Mike Brandt</h4>
+                <div class="role">Head of Alliances</div>
+                <div class="company">Inovium Team</div>
+                <p>Leading the service delivery and implementation strategy for the City of Bowling Green engagement.</p>
+            </div>
+            
+            <div class="stakeholder-card">
+                <h4>Jimmy Hurff</h4>
+                <div class="role">Head of Customer Success</div>
+                <div class="company">BrightMove Team</div>
+                <p>Ensuring platform optimization and long-term success for the City of Bowling Green implementation.</p>
+            </div>
+        </div>
+
+        <h2>Joint Venture Value Proposition</h2>
+        
+        <div class="differentiator">
+            <h4>1. Comprehensive Implementation Excellence</h4>
+            <p>Inovium's proven agile methodologies combined with BrightMove's platform expertise ensure a smooth, risk-free implementation that adapts to your existing processes rather than forcing organizational change.</p>
+        </div>
+        
+        <div class="differentiator">
+            <h4>2. Ongoing Optimization & Support</h4>
+            <p>Through Inovium's Configuration as a Service (CaaS), you'll receive continuous platform optimization and feature updates, ensuring your ATS evolves with your organization's needs.</p>
+        </div>
+        
+        <div class="differentiator">
+            <h4>3. Government-Focused Compliance</h4>
+            <p>Both partners understand public sector requirements including EEO/AA compliance, GDPR regulations, and audit trail requirements essential for government organizations.</p>
+        </div>
+        
+        <div class="differentiator">
+            <h4>4. Scalable Technology Foundation</h4>
+            <p>BrightMove's platform provides unlimited scalability with no per-user restrictions, allowing your organization to grow without technology constraints or additional licensing costs.</p>
+        </div>
+        
+        <div class="differentiator">
+            <h4>5. Dual-Partner Security & Reliability</h4>
+            <p>SOC 2 Type I certified platform with redundant support structures ensures maximum uptime, security, and business continuity for critical hiring operations.</p>
+        </div>
+
+        <h2>Platform Capabilities & Technical Requirements</h2>
+        
+        <h3>Core ATS Functionality</h3>
+        
+        <div class="key-points">
+            <h4>Job Management & Distribution</h4>
+            <ul>
+                <li>Configurable job posting workflows with approval processes</li>
+                <li>Multi-channel distribution to 100+ job boards</li>
+                <li>Integration with LinkedIn, Indeed, Monster, and other major platforms</li>
+                <li>Automated job syndication and performance tracking</li>
+                <li>Custom job templates and standardized posting processes</li>
+            </ul>
+        </div>
+        
+        <div class="key-points">
+            <h4>Candidate Management & Processing</h4>
+            <ul>
+                <li>Drag-and-drop candidate pipeline management</li>
+                <li>Advanced PowerSearch with real-time filtering capabilities</li>
+                <li>Automated resume parsing and candidate profile creation</li>
+                <li>Configurable candidate scoring and ranking systems</li>
+                <li>Comprehensive communication tracking and timeline management</li>
+            </ul>
+        </div>
+        
+        <div class="key-points">
+            <h4>Application Process & Candidate Experience</h4>
+            <ul>
+                <li>Mobile-responsive career portals with city branding</li>
+                <li>ADA-compliant applications (WCAG 2.0 AAA certified)</li>
+                <li>Custom application forms with conditional logic</li>
+                <li>Automated candidate screening and intelligent routing</li>
+                <li>Self-service candidate portal with application status tracking</li>
+            </ul>
+        </div>
+        
+        <div class="key-points">
+            <h4>Integration & Workflow Automation</h4>
+            <ul>
+                <li>Seamless integration with Tyler Technologies New World ERP</li>
+                <li>BrightSync for Office 365 (email, calendar, contacts)</li>
+                <li>Configurable workflow automation and approval processes</li>
+                <li>Automated status updates and stakeholder notifications</li>
+                <li>Custom reporting and analytics dashboards</li>
+            </ul>
+        </div>
+        
+        <div class="key-points">
+            <h4>Security & Compliance Features</h4>
+            <ul>
+                <li>SOC 2 Type I certified security framework (see <a href="https://trust.brightmove.com" style="color: #2563eb;">trust.brightmove.com</a>)</li>
+                <li>GDPR compliant with built-in privacy controls</li>
+                <li>Comprehensive audit logging for all user activities</li>
+                <li>Role-based access control (RBAC) with granular permissions</li>
+                <li>Data stored in secure US-based AWS data centers</li>
+            </ul>
+        </div>
+
+        <h2>Implementation & Service Delivery</h2>
+        
+        <h3>Inovium's Implementation Methodology</h3>
+        <table>
+            <tr>
+                <th>Phase</th>
+                <th>Timeline</th>
+                <th>Inovium Deliverables</th>
+                <th>BrightMove Support</th>
+            </tr>
+            <tr>
+                <td><strong>Discovery & Planning</strong></td>
+                <td>Weeks 1-2</td>
+                <td>Requirements analysis, workflow mapping, project planning</td>
+                <td>Platform configuration guidance, technical architecture</td>
+            </tr>
+            <tr>
+                <td><strong>Configuration & Development</strong></td>
+                <td>Weeks 3-4</td>
+                <td>System configuration, custom workflows, integration setup</td>
+                <td>Platform optimization, integration testing, quality assurance</td>
+            </tr>
+            <tr>
+                <td><strong>Testing & Training</strong></td>
+                <td>Weeks 5-6</td>
+                <td>User acceptance testing, comprehensive training program</td>
+                <td>Technical support, platform training, go-live preparation</td>
+            </tr>
+            <tr>
+                <td><strong>Go-Live & Optimization</strong></td>
+                <td>Weeks 7-8</td>
+                <td>System deployment, change management, post-go-live support</td>
+                <td>24/7 technical support, performance monitoring</td>
+            </tr>
+        </table>
+        
+        <h3>Ongoing Support Structure</h3>
+        <div class="key-points">
+            <h4>Inovium Configuration as a Service (CaaS)</h4>
+            <ul>
+                <li>Annual subscription for ongoing administrative services</li>
+                <li>Continuous platform optimization and feature updates</li>
+                <li>Regular system health checks and performance tuning</li>
+                <li>New feature evaluation and implementation support</li>
+                <li>Dedicated account management and strategic consulting</li>
+            </ul>
+        </div>
+        
+        <div class="key-points">
+            <h4>BrightMove Technical Support</h4>
+            <ul>
+                <li>US-based support team (Monday-Friday, 8:30 AM - 5:30 PM EST)</li>
+                <li>Phone support: (877) 482-8840</li>
+                <li>Live chat support within the platform</li>
+                <li>The LightHub knowledge base with 466+ articles</li>
+                <li>Regular platform updates and security patches</li>
+            </ul>
+        </div>
+
+        <h2>Pricing Proposal</h2>
+        
+        <p>Our joint venture offers a <strong>straightforward, scalable pricing model</strong> based on your total workforce size, providing unlimited user access and eliminating the complexity of per-user licensing management. At only <strong>$25 per employee per year</strong>, this represents exceptional value for a comprehensive ATS solution.</p>
+        
+        <h3>Per Worksite Employee Pricing Model</h3>
+        <table class="pricing-table">
+            <tr>
+                <th>Component</th>
+                <th>Details</th>
+                <th>Monthly Cost</th>
+                <th>Annual Cost</th>
+            </tr>
+            <tr>
+                <td><strong>BrightMove Platform Licensing</strong></td>
+                <td>650 employees × $25 per employee per year</td>
+                <td>$1,354</td>
+                <td>$16,250</td>
+            </tr>
+            <tr>
+                <td><strong>Inovium Implementation Services</strong></td>
+                <td>Complete implementation and go-live support</td>
+                <td>—</td>
+                <td>Included</td>
+            </tr>
+            <tr>
+                <td><strong>Training & Change Management</strong></td>
+                <td>Comprehensive user training and adoption support</td>
+                <td>—</td>
+                <td>Included</td>
+            </tr>
+            <tr>
+                <td><strong>Career Portal Branding</strong></td>
+                <td>Custom City of Bowling Green branded career portal</td>
+                <td>—</td>
+                <td>Included</td>
+            </tr>
+            <tr>
+                <td><strong>Tyler ERP Integration</strong></td>
+                <td>Seamless integration with existing New World ERP</td>
+                <td>—</td>
+                <td>Included</td>
+            </tr>
+            <tr class="total-row">
+                <td><strong>Total Investment</strong></td>
+                <td><strong>Complete ATS solution with joint venture support</strong></td>
+                <td><strong>$1,354</strong></td>
+                <td><strong>$16,250</strong></td>
+            </tr>
+        </table>
+        
+                    <div class="highlight">
+                <h4>💰 Pricing Model Benefits</h4>
+                <ul>
+                    <li><strong>Unlimited Users:</strong> No restrictions on hiring managers, recruiters, or administrative users</li>
+                    <li><strong>Predictable Costs:</strong> Fixed annual pricing based on total workforce size</li>
+                    <li><strong>Exceptional Value:</strong> Only $25 per employee per year for complete ATS solution</li>
+                    <li><strong>Scalability:</strong> Pricing grows only with your total employee count, not user adoption</li>
+                    <li><strong>Comprehensive Value:</strong> All implementation, training, and integration services included</li>
+                    <li><strong>Annual Increases:</strong> Limited to 5% or CPI (Consumer Price Index), whichever is greater</li>
+                </ul>
+            </div>
+        
+        <h3>Investment Summary</h3>
+        <table class="pricing-table">
+            <tr>
+                <th>Investment Component</th>
+                <th>Year 1</th>
+                <th>Ongoing Annual</th>
+                <th>Value Delivered</th>
+            </tr>
+            <tr>
+                <td>Platform Licensing</td>
+                <td>$16,250</td>
+                <td>$16,250*</td>
+                <td>Full ATS platform with unlimited users</td>
+            </tr>
+            <tr>
+                <td>Implementation Services</td>
+                <td>Included</td>
+                <td>—</td>
+                <td>Complete system deployment and integration</td>
+            </tr>
+            <tr>
+                <td>Training & Support</td>
+                <td>Included</td>
+                <td>Included</td>
+                <td>Comprehensive training and ongoing support</td>
+            </tr>
+            <tr>
+                <td>Inovium CaaS (Optional)</td>
+                <td>Available</td>
+                <td>Custom Quote</td>
+                <td>Ongoing optimization and feature updates</td>
+            </tr>
+            <tr class="total-row">
+                <td><strong>Total Investment</strong></td>
+                <td><strong>$16,250</strong></td>
+                <td><strong>$16,250*</strong></td>
+                <td><strong>Complete ATS solution with dual-partner support</strong></td>
+            </tr>
+        </table>
+        
+        <p style="font-style: italic; color: #64748b; margin-top: 1rem;">
+            *Annual price increases limited to 5% or CPI (Consumer Price Index), whichever is greater
+        </p>
+
+        <h2>Technical Specifications</h2>
+        
+        <table>
+            <tr>
+                <th>Technical Component</th>
+                <th>Specifications</th>
+                <th>Benefits</th>
+            </tr>
+            <tr>
+                <td><strong>Browser Compatibility</strong></td>
+                <td>Chrome, Firefox, Safari, Edge (latest versions)</td>
+                <td>Universal access across all devices and platforms</td>
+            </tr>
+            <tr>
+                <td><strong>Mobile Optimization</strong></td>
+                <td>Fully responsive design with mobile applications</td>
+                <td>Candidate and staff access from any device</td>
+            </tr>
+            <tr>
+                <td><strong>Security Framework</strong></td>
+                <td>SOC 2 Type I certified, GDPR compliant</td>
+                <td>Enterprise-grade security and compliance</td>
+            </tr>
+            <tr>
+                <td><strong>Data Storage</strong></td>
+                <td>US-based AWS data centers with encryption</td>
+                <td>Secure, compliant data storage and backup</td>
+            </tr>
+            <tr>
+                <td><strong>Performance</strong></td>
+                <td>99.9% uptime guarantee, sub-second response times</td>
+                <td>Reliable, fast system performance</td>
+            </tr>
+            <tr>
+                <td><strong>Integration Capabilities</strong></td>
+                <td>REST API, SOAP web services, real-time webhooks</td>
+                <td>Seamless integration with existing systems</td>
+            </tr>
+        </table>
+
+        <h2>References & Success Stories</h2>
+        
+        <div class="key-points">
+            <h4>Government Sector References</h4>
+            <ul>
+                <li><strong>Municipal Government (800+ employees)</strong> - Reduced time-to-hire by 45% with improved compliance tracking</li>
+                <li><strong>State Agency (1,200+ employees)</strong> - Streamlined hiring process with enhanced candidate experience</li>
+                <li><strong>Educational Institution (600+ employees)</strong> - Improved reporting capabilities with better HR system integration</li>
+                <li><strong>County Government (500+ employees)</strong> - Achieved 99.9% uptime with significant cost savings</li>
+            </ul>
+        </div>
+        
+        <p>Detailed references with contact information available upon request during the evaluation process.</p>
+
+        <h2>Conclusion</h2>
+        
+        <p>The Inovium-BrightMove joint venture represents the ideal solution for the City of Bowling Green's ATS needs. By combining Inovium's proven implementation expertise with BrightMove's industry-leading platform, we deliver a comprehensive solution that addresses every requirement while providing exceptional value and ongoing support.</p>
+        
+        <p>Our partnership model ensures you receive the benefits of both organizations' strengths: Inovium's deep understanding of government workflows and change management, paired with BrightMove's 20+ years of ATS platform innovation and reliability.</p>
+        
+        <div class="highlight">
+            <h4>🎯 Next Steps</h4>
+            <ol>
+                <li><strong>Reference Verification:</strong> Connect with our government sector clients</li>
+                <li><strong>Technical Demonstration:</strong> Live platform demo tailored to your requirements</li>
+                <li><strong>Proof of Concept:</strong> Pilot implementation with your specific workflows</li>
+                <li><strong>Contract Finalization:</strong> Negotiate terms and finalize partnership agreement</li>
+                <li><strong>Implementation Kickoff:</strong> Begin your transformation journey</li>
+            </ol>
+        </div>
+        
+        <div class="contact-info">
+            <h3>Joint Venture Contact Information</h3>
+            <div style="display: flex; gap: 2rem;">
+                <div style="flex: 1;">
+                    <h4>Inovium - Service Delivery</h4>
+                    <p>
+                        <strong>Mike Brandt</strong><br>
+                        Head of Alliances<br>
+                        <strong>Company:</strong> Inovium, LLC<br>
+                        <strong>Headquarters:</strong> Austin, Texas
+                    </p>
+                </div>
+                <div style="flex: 1;">
+                    <h4>BrightMove - Technology Platform</h4>
+                    <p>
+                        <strong>Jimmy Hurff</strong><br>
+                        Head of Customer Success<br>
+                        <strong>Company:</strong> BrightMove, Inc.<br>
+                        <strong>Phone:</strong> (877) 482-8840<br>
+                        <strong>Website:</strong> <a href="https://brightmove.com">https://brightmove.com</a><br>
+                        <strong>Trust Center:</strong> <a href="https://trust.brightmove.com">https://trust.brightmove.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>This proposal is valid for 30 days from the date of submission.</strong></p>
+            <p>Pricing is subject to final contract terms and conditions. Annual price increases are limited to 5% or CPI, whichever is greater.</p>
+            <p>© 2025 Inovium, LLC & BrightMove, Inc. Joint Venture Partnership. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html> 

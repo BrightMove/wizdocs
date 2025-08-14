@@ -1,0 +1,245 @@
+Brett Angelico - July 30
+VIEW RECORDING - 37 mins (No highlights): https://fathom.video/share/8oHWMPyiBEiDAF9Stv2dK62K5UTZtLys
+
+---
+
+0:02 - Jimmy Hurff (Brightmove)
+  Hey, Brett.
+
+0:03 - Brett Angelico (Parametrix)
+  How's it going, Hey, I am so sorry about jumping on late. We were in the middle of a meeting and we kind of felt like it was going to run over and just...  problem.
+
+0:15 - Jimmy Hurff (Brightmove)
+  It happens, man.
+
+0:16 - Brett Angelico (Parametrix)
+  It happens.
+
+0:17 - Jimmy Hurff (Brightmove)
+  Well, hey, nice to connect with you. Likewise.
+
+0:20 - Brett Angelico (Parametrix)
+  So tell me about you. Where are you guys located?
+
+0:22 - Jimmy Hurff (Brightmove)
+  What are trying to do? Let me be your guide.
+
+0:24 - Brett Angelico (Parametrix)
+  How can I help? Yeah, for sure. So Parametrix, we are a firm where engineering, consulting, and construction kind of collide.  So we're based in the Pacific Northwest. We have offices all around the Seattle area, kind of sprinkled along the western part of the U.S.  I'm actually in Chicago, which is one of our kind of newer markets. We've got about 875 employees. We've seen some exponential growth over the last few years.  We... We are trying to refine our recruiting processes. So I'm relatively new to Parametrix. I'm just a little over a year.  My boss, Laurel, has been a one-person show for many, many years. So lots of things live in her head that aren't necessarily documented in systems, things like that.  So we're trying, as we grow, we're trying to scale and be better. So we are really just looking for a new system that we can basically help manage our workflow.  So we currently use ADP Workforce Now. And I'll be blunt, I hate it. It's clunky. It doesn't. It's just everything is very manual.  We're downloading resumes, sending them to hiring managers. The flow is just not good. We're looking for something that can help save us time, streamline our process, but we're also employee-owned, so we're very budget-conscious.  We have Champagne Taste on a beer budget. Sure, sure. We're really just looking for something that we can get in that's easy to use.  We don't need all the bells and whistles, but just something for a small recruiting team to interact in, and then something for hiring managers to jump in, make decisions on resumes, cut down on emails.  We really just need everything to kind of be in a central place. We're sending resumes on Teams and an email and shared.  We're really looking for something that can kind of help with those pain points, if that makes sense. Absolutely, absolutely.
+
+3:00 - Jimmy Hurff (Brightmove)
+  How you guys find us? We're kind of a niche, so I'm happy.
+
+3:03 - Brett Angelico (Parametrix)
+  Have you ever seen Brightmove before? I haven't. So we're actually hiring a new HR generalist.
+
+3:08 - Jimmy Hurff (Brightmove)
+  Okay.
+
+3:08 - Brett Angelico (Parametrix)
+  And during our interview processes, we've been talking and just saying, hey, you know, we're looking at, you know, so like what systems have you used for ATSs?  And then I'm like, oh, how do you like that one? So one of them mentioned that they use, I couldn't remember, I couldn't tell you who or what company, you know, but I was kind of like, okay, we'll look into it.
+
+3:27 - Jimmy Hurff (Brightmove)
+  Cool. Well, we have our bread and butter is really, and we work a lot with recruitment process outsourcing firms.  So many of our customers' customers are in the platform that I'll show you today, like what we call HR edition.  You would be an HR edition customer, I would imagine. You know, hiring direct employees, wanting to have hiring managers potentially participate in the hiring process and interacting within the platform.  It's very common for our customers to bring HR Edition platform users. So it might have been the person that you were speaking with, how they came to know of us.
+
+4:10 - Brett Angelico (Parametrix)
+  We have a pretty big reseller play in that space.
+
+4:14 - Jimmy Hurff (Brightmove)
+  But anyway, maybe I'll just show you quickly our platform, and then we can kind of drill in. Maybe head to the goal here a little bit.  But usually what we do, we try to understand a little bit about what your needs are. And then a typical outcome of a conversation like this would be to provision a trial demo instance for you if you want to kind of kick the tires yourself.
+
+4:40 - Brett Angelico (Parametrix)
+  Yeah, that'd be awesome.
+
+4:41 - Jimmy Hurff (Brightmove)
+  And then at that point, you can kind of evaluate the platform in your context. And usually we might coincide a demo within that instance for you too, something more specific to your needs.  So, but I can do a quick sort of impromptu run through of like a demo account if you'd like.
+
+4:58 - Brett Angelico (Parametrix)
+  Yeah, that'd be awesome. Okay. Okay.
+  SCREEN SHARING: Jimmy started screen sharing - WATCH: https://fathom.video/share/8oHWMPyiBEiDAF9Stv2dK62K5UTZtLys?timestamp=309.866733
+
+5:00 - Jimmy Hurff (Brightmove)
+  Yeah, so let me just jump in. Can you see that? Yep, I sure can. So this is a fake count.  We're in a company called Smart Brands, and I'm logged in as Tony Stark. And Tony Stark, aka Iron Man, he's the head of talent acquisition at Smart Brands.  And so it's kind of corny, but like all of the jobs are superhero or adjacent roles. And then the hiring managers are folks like Clark Kent and Bruce Raines and stuff.  So it's a little bit corny, but all fake data and just really to kind of give you an idea of the platform.  So when you log in, you come into a dashboard view where you can kind of organize like your different panes.  There's a, we're in the dashboard. There's also what we call Brightflow, which kind of gives you a rundown of all of the open roles that you have in flight and, you know, candidates within the workflow.  Where are they within the submittal workflow? Totally personalizable. You know, if you have a different way you'd like for your layout to be presented, you know, you can go in and, you know, set that to fit your needs.  But this is the UI, you know, search across the top, our power search service, and then left nav is how you would drill into your different, you know, data elements, candidates, departments, managers, jobs, et cetera.  That's the way the site kind of lays out. And then, you know, you've got some manage your account kind of information in the top right under your avatar.  I'll just kind of drop in to maybe start with a candidate. We have a candidate here named Candidate Stephen Strange.  So this is the candidate view. You would have down the left side here, we call this the baseball card.  the summary view of Stephen and all of his attributes. And then in the main window, you'd have a tab view, tabular view of all of the different dimensions of Stephen's candidate record.  So where he came from, his resumes, if he has any resume cloud. There's not a lot of data here on old Stephen, but bad candidate to pick from.  You see submittals, places where Stephen's been submitted. He's been submitted to a couple of roles, the head doctor role, the doctor role.  There's a couple of test jobs in here. I'm just going to jump over from the candidate view to the job view.  so now we're in the job screen, but you'll see the layout's kind of the same. Dashboard, tabbed view across the top.  of how to go into the different elements. And this is really kind of the core of the talent acquisition flow, what we would call the submittal workflow, the process of going from an application to hired or declined.  And this is purely, very, totally configurable, you can make it fit, you know, the parametrics process, whatever you and or your, your leader have, you know, sort of that internal process, or if you don't have one, you can start with ours, and then kind of our boilerplate one and adjust it to fit your, your needs.  So in this case, we have under the head doctor role, there's a handful of candidates. This is terrible data.  Chuck Norris, can see he was a candidate, Mary Todd, Stephen Strange, and various states of sort of the application flow.  You can look at like, uh, uh, Here's of our scoring. So in this case, let's see, before I go into the score, here's the job.  The head doctor, we want him to be able to conduct physical and neurological examinations, order MRIs. Obviously, this is not something that Chuck Norris would be really good at, but maybe a doctor, a real neurosurgeon would.  If we evaluate Chuck, there's some scoring on a scale of zero to 100. He's been evaluated through our algorithm to find him to be really unfit and sort of breaks down what strengths and gaps Chuck has in this particular role.  So top of funnel, we're really focused on candidate to job alignment, broadcasting jobs out to the open internet for candidate acquisition.  Hooray . And to the various job boards, Indeed, LinkedIn, Simply Hire, Glassdoor, places like that, getting candidates into the seminal workflow and then allowing the recruitment team to then try to move them through that process in conjunction with the hiring managers.  This application is accessible. Hiring managers can log in and participate in the flow where they see a smaller view of the candidates that are in flight for them.  So in this particular example, Clark Kent is the manager. If we were to go Clark's screen, this is Clark's detail, the manager screen.  And I'm going to click this button here, this assume. I'm going to assume Clark's identity. And so I'm now logged in as Clark.  And this is what Clark would see from the view as the hiring manager. He would see his current jobs.  He's got head doctor, five candidates in flight. So it's the difference between a user or full user account recruiter user and hiring managers.  Hiring managers can only see jobs and candidates that are in their, you know, repository of open roles. Anyway, both personas, the hiring manager and the recruiter work together through the platform.  You can email out of the platform, but you can also message within the platform across those personas. I was going to ask, when you're in this view, do they see all applicants for their jobs, or are they only seeing the applicants that I want them to see?  Yes. So in this particular example, let me tell you what Clark can see. So if we go and we look at the, I'm drilling down into kind of the bowels of the platform now, but I think this is specific to your question.  These are all the different status. That are available in the workflow. And as you can see, the manager view is toggled on.  So like, let's say hypothetically, you don't want your hiring managers, this is very permissive, meaning the hiring manager can see everything, but like you want to do all the screening.  So you don't want hiring managers to see anything other than internal interviews, submitted to client, client interview, offer, and accept them.  You don't ever want them to have to deal with the clients.
+
+12:27 - Brett Angelico (Parametrix)
+  So you can toggle those on and off.
+
+12:31 - Jimmy Hurff (Brightmove)
+  And now I'm not sure exactly where Clark's candidates were, but if I go back to Clark and just assume his identity, let's see.  It looks like these guys are both in statuses that Clark does have visibility into. But point is, you can configure it to be wide open, or you can restrict it only to a very specific status, depending on what your operational model is.  Okay.
+
+13:00 - Brett Angelico (Parametrix)
+  Make sense?
+
+13:00 - Jimmy Hurff (Brightmove)
+  Yep. And then the other thing about hiring manager views, and this might be, you know, maybe intuitive, but they can only see jobs and candidates that are a part of the jobs that they've been assigned to.  So either jobs where, like, Clark is the primary hiring manager, or let's say Clark and his colleague Batman, you know, Bruce Wayne, Bruce has actually assigned Clark as a second, like an additional hiring manager, where there's a hiring team who are going to participate in the evaluation of candidates.  Clark can also see Bruce's jobs because he's part of that hiring team, but he can't see any other jobs, and he can't see other candidates that are generally not submitted, unless you've enabled him to see all candidates that are in the candidate database.
+
+13:50 - Brett Angelico (Parametrix)
+  Gotcha. Okay.
+
+13:52 - Jimmy Hurff (Brightmove)
+  Yep. Let's see. Let me just kind of run back over here to some of the other points. So I think we'll go back to the, maybe the arch nemesis view and have a little bit of data in here.  So you've got some candidates in consideration. You can do things like you can record attachments and any sort of notes that you might want to share.  You can format questions and questionnaires that have, you know, sort of structured screening questions and then record those questions and answers.  Obviously, you know, in this case, there is no real good description here. Must kill all good heroes. But let's say, let's say, make a, we'll use to improve this a bit.  Say improve this for a better posting. I want a great arch nemesis for this role. And so the. The job description ultimately becomes that's what's posted out to your various destination boards.  And I'm assuming that you're active in places like Indeed and LinkedIn. How do you source candidates? Maybe I should ask.  How do you source candidates today? Yeah, it's a mix.
+
+15:20 - Brett Angelico (Parametrix)
+  You know, we obviously post our positions onto ADP. And then it syncs with all of the major job boards, know, LinkedIn, Indeed, all that good stuff.  I was going to ask, too, we have a very strong referral process and network. About half of our new hires come through referrals.  So do you have any type of, like, referral portal or ways to navigate a high number of candidates that we get that would be referred?  Yeah, there's a few different ways that we can do that.
+
+16:04 - Jimmy Hurff (Brightmove)
+  And it depends on, we have a few features within the platform that could help. I might want to dig in a little bit deeper to really get to, hey, this would be the best option for your scenario.  But to name a few, we have a notion of candidate experience portal. So you can have an internal portal that's like employee only and something that you could publish inside your corporate intranet that only your team could see and password protect, all those sorts of things.  There's also the ability to give, you know, job specific URLs and job specific codes to track to say, hey, this is where this source came.  This is the source, the originating of this. This came from this site or this partner, perhaps a third party agency that might be referring candidates to you that you want to recognize and attribute sources to.  And then there's also just the ability to attribute a reference. Referrer in the application itself. so like, you know, Jimmy Hurff applying for Brett's job, who is your referring party?  I could name you. And that could be included within the application itself. So there's a variety of ways to do attribution for reference.  And we could probably go into a deeper, more, you know, specific solution for you based on what you need.
+
+17:24 - Brett Angelico (Parametrix)
+  Okay, I was gonna say, yeah, we get a lot of people don't necessarily even look at our job board.  And they just say, hey, my best friend's daughter's cousin's babysitter, here's her resume. We should think about hiring her.  So I'm like, where do I put those people?
+
+17:42 - Jimmy Hurff (Brightmove)
+  You know, like, they're not actually going into a job.
+
+17:46 - Brett Angelico (Parametrix)
+  I don't know if you maybe had ways.
+
+17:47 - Jimmy Hurff (Brightmove)
+  One of the things that you might do in that case is if you if you just have like an email that you've got an email from John Doe, your buddy, you know, so I'm at the picnic or whatever this weekend, you take that email that's got the resume.  And you just forward that resume, that email into our inbound email parser. And what it does is it just takes the email and it creates a candidate record with the attached document in it.  And then now you have the candidate in the database and the record of where it came. It came from you.  It would have the original email that your friend, you know, John Doe gave you at the birthday party, all of that.  And that would be part of that candidate record.
+
+18:28 - Brett Angelico (Parametrix)
+  Okay. So you kind of have like separate candidate records, but that candidate wouldn't be attached to a job per se.
+
+18:34 - Jimmy Hurff (Brightmove)
+  absolutely. That's great. That's a great, great, great question. And so yeah, we would, I think some ATSs refer to that as like a candidate pool.  Like there is no requirement that a candidate be established and associated to a job. So like, what I'll do is I'll just, I'm going to throw a new candidate in right now.  And I have a fake candidate database. So I'm just going to pick this. This fellow named Mitchell Myers. So Mitchell just handed me his resume.  Or you could do this too. If Mitchell emailed you your resume, his resume, you could email the contents in, and this process would work exactly the same way.  So I upload this resume document, and now candidate Mitchell Myers, his record exists based on that document that I just uploaded.  And so this is the contents of that file. All of Mitchell's contact info was parsed out of it. And at this point, Mitchell has no submittals.  He hasn't been considered for any roles. I just have his candidate record on file at this point. So his resume, you can see things like his, let's see, his original attachment.  This is the original Word document. When it came in, who it came in from. You know, if this had come in as a email from either, you know, myself.  Or Tony Stark or something, you would see the record of that original email. And then the details of Mitchell.  His resume, we parsed out where he currently works based on his CV resume, where he worked historically, where his education's from.  All of that was parsed from that file.
+
+20:25 - Brett Angelico (Parametrix)
+  Okay. I was going to say, there, aside from you went to activities, you know, so, or wait, I'm sorry, was it attachments?
+
+20:36 - Jimmy Hurff (Brightmove)
+  Attachments, yeah. So then I could see.
+
+20:39 - Brett Angelico (Parametrix)
+  This is the original Word document that was associated.
+
+20:42 - Jimmy Hurff (Brightmove)
+  This is his original email. That's his resume.
+
+20:49 - Brett Angelico (Parametrix)
+  Okay. And you said Tony Stark is the one that emailed it in to you?
+
+20:53 - Jimmy Hurff (Brightmove)
+  I just did it ad hoc. Let me show you the...
+
+20:56 - Brett Angelico (Parametrix)
+  I guess I'm just trying to understand, like, if we've got people...
+
+21:03 - Jimmy Hurff (Brightmove)
+  In this example, what I did in that scenario is I just uploaded and parsed the candidate. So like this one wasn't a, I didn't decorate him with any sort of referral attribute or anything like that.  But if you, and I'm sorry, I did it very quickly. That's okay.
+
+21:22 - Brett Angelico (Parametrix)
+  We go back to the parse resume.
+
+21:25 - Jimmy Hurff (Brightmove)
+  You see here how it's got like the source. I could pick where, where, what source it came from. I could put it into a folder.  I also could put in, I could type in who the referrer is. And I didn't do that a moment ago with Tony Stark.  But, but in this case, let's just say you you're at your party and you have a bunch of technology resumes that somebody hands you these six individuals.  And you want to say these were referred to you. you. you. Freddie Freeman, the baseball player for the Dodgers.  And I'm actually going to put them into a new folder called Techno Stars. Okay. And I'm going to upload those and those six candidates will get parsed.  Okay. Give this a moment to acquiesce. But then I'm like, you know, I want to find all those candidates that Freddie, I know it's Freddie.  I just can't remember who the candidates were. And so what you can do is you can go and search by the referred by, and you can say all the ones by Freddie.  And there's the six that we just loaded. So if you attribute it at the time of the parsing, then we would have that map to those six.  The other thing that you could do is you could say the from email that, like, if you know Freddie.  Email address, and he emailed them to you, you could search by that. So I'm not showing you the inbound email parsing, I'm just showing you the parsing of the resumes, but the referred by attribution could be inferred on an inbound email too.
+
+23:13 - Brett Angelico (Parametrix)
+  Okay. That makes sense?
+
+23:15 - Jimmy Hurff (Brightmove)
+  Yeah.
+
+23:17 - Brett Angelico (Parametrix)
+  I was going to ask too, I know I'm kind of jumping all over the place and I apologize. Can you set up like application questions?  Like, and then can you also sort, so say, you know, do you have AEC experience? Yes, no. And then can I go into those applications and sort by those questions?
+
+23:42 - Jimmy Hurff (Brightmove)
+  Yeah, we have two, we have two ways to do questions. We have what we would call basic qualifications or knockout questions.
+
+23:52 - Brett Angelico (Parametrix)
+  So like, if you want to say, you know, can you lift 75 pounds over your head?
+
+23:57 - Jimmy Hurff (Brightmove)
+  And if they say yes, you want to approve, you know, consider them if no, they do. That would be what we would call a knockout question or basic qualification.  And those are one sort of question that are part of the online application. And then another way to do questions would be through user-defined fields on the job itself, which are just questions.  They're application-level questions that you would go and define. I have a, you know, do you like to lift 75 pounds?  Okay, they have a good example. But anything that, you know, accreditation, certifications, you can include those as dynamic fields on the application itself.  And then they're asked. And those don't knock out. They don't automatically decline or move a candidate through the workflow.  They just simply are recorded for you to then review.
+
+24:52 - Brett Angelico (Parametrix)
+  Okay. Okay. So you can sort by those. Replication questions.
+
+25:01 - Jimmy Hurff (Brightmove)
+  Yep. And we can actually score the candidate's evaluation by those questions as well. So I mentioned, right, so now we've got Mike Hammerschmidt.  Let's actually put Mike into a job. I don't think he's submitted for anything. So I'm just going to send him to this arch nemesis job.  Let's see. Oh, did I do it? I thought I clicked it. There we go. And you can see that this is the only role that he's considered for right now.  I imagine Mike's probably not going to evaluate well on this role because I don't know. He's an IT guy and arch nemesis is that, you know, evil doer.  So he'd probably score pretty lowly. But in this scenario where Mike has answered questions that are part of the...  So the... So The evaluation of candidates' fit for the role, his submittal score, it's a function of his resume, his CV, all the questions and answers that you have asked in the application process.  Those are all the inputs that come from the candidate side. And then on the job side, it's the job description and then the characteristics of the company and the hiring manager.  Those are the six components that are in consideration that go into the scoring evaluation. So if you have a question around like, do you like to lift 75 pounds?  If he's answered that question in such a way, it would score that answer as part of the submittal evaluation also.
+
+26:48 - Brett Angelico (Parametrix)
+  Okay. In this case, he's a very poor candidate.
+
+26:52 - Jimmy Hurff (Brightmove)
+  He's a 48, you know, we would sort of advertise him as a, we recommend decline. And here's... The breakdown as to why.  He's making me laugh. He's got no experience in elaborate trap design, you know, no indication of dark magic or supernatural abilities.  All are obviously not good fits. But this came from that generated job description that we just built together, along with Mike's resume, the score, this is the assessment of his candidacy.  And we think this is a time saver.
+
+27:29 - Brett Angelico (Parametrix)
+  Okay, cool. I know it's kind of a crash course here, Brett.
+
+27:35 - Jimmy Hurff (Brightmove)
+  Like, is this not what you're looking for? Yeah, this is good.
+
+27:42 - Brett Angelico (Parametrix)
+  I guess, too, I just wanted to get an understanding of, like, cost as well, just to make sure that I don't want to go too far and be like, oh, no, you know.  And to be honest with you, I don't have a number. I didn't know how your price... If it's off of number of employees or number of users in the system, or what We can do it both ways, Brett.
+
+28:07 - Jimmy Hurff (Brightmove)
+  We can do it both ways. But our pricing is public. And basically, if you wanted one user, there's no hiring manager.  This is the number. $125 per user per month for recruiters. Hiring managers are $30 per user per month. You can buy as few as one of each.  You can buy a pool of hiring managers. And then, let's say you have five that you want to have actively on the system.  can buy five and grant out to Clark Kent and Bruce Wayne. And then next quarter, you can pull them back and give them out to five other hiring managers.  There's no requirement to license a hiring manager to put them into the system. Only if they want to access the platform for the talent acquisition.  see you on Hope So you can recruit for hiring managers in the platform that don't have access. You don't have to have a license for every hiring manager.  And so typically we do per user pricing. That's usually the most cost effective way. But we also offer like a per employee, per worksite employee model as well.  If you'd prefer that, we can mark that up for you based on whatever your census is. Okay.
+
+29:28 - Brett Angelico (Parametrix)
+  So we can move people around based on jobs that are open and all that?
+
+29:34 - Jimmy Hurff (Brightmove)
+  Is that what you're saying? Okay. You only would be like, so wait, let's just use Bruce Wayne and Batman, Bruce Wayne and Clark Kent as an example.  And you buy one, you buy one hiring manager license. Bruce could log in, Clark could not. If you grant, if you take that license and you pull it back from Bruce and assign it to Clark, Clark would be able to log in, Bruce would not.  So there's, it's a license. This can only be assigned to a hiring manager one at a time. And you can change it every day, but he wouldn't be able to access it tomorrow.
+
+30:08 - Brett Angelico (Parametrix)
+  Does that make sense? Yeah. So say we want to have three people that are super users, right? They're our recruiting team.  So that's $125 a month times three, right?
+
+30:23 - Jimmy Hurff (Brightmove)
+  Right.
+
+30:24 - Brett Angelico (Parametrix)
+  So we're at $375 there. And then say we just want a blanket. We have 15 hiring manager spots, right?  Right. So say I have John Doe on a requisition for two months. Right. I take him off. He's not hiring anymore.  And then I plug him back in. Can he see his old jobs and old history and all the old things that we did?  Okay. Yeah.
+
+30:53 - Jimmy Hurff (Brightmove)
+  The only thing the license gives is access to the hiring manager. So if... We go back to this arch nemesis guy, and this is Clark Kent, right?  So Clark's, all of Clark's jobs are here. All of Clark's submittals are here. Everything about this, about Clark is here.  And then I could assume Clark's identity, and then I am Clark. But if I don't want Clark to have access, I don't want to use one of my provisions.  I've got 15 licenses. Clark's taken up one of those. I want to remove that. And you would be able to do this.  This is all DIY for the admins. You would go into manager access, and you can see in this account, there's actually 19 available.  Clark is one of them. I would simply just remove that license from Clark, and now our inventory goes to 20.  But if you go back to Clark, the only difference is that everything's there. You just no longer have the assumed.  You'd have to give up a license. You'd Grant access to Clark and have him be able to get back in.  But all of Clark's info is still here. It's just, he can't, he can't log in today.
+
+32:08 - Brett Angelico (Parametrix)
+  Okay. Okay. Makes sense. Can you email directly from the system?
+
+32:17 - Jimmy Hurff (Brightmove)
+  Yeah. So like, let's say, let's go back to that example where we've got, you know, Stephen Strange. And, you we want to send Stephen an email.  So you could send it, send a manager, you can send a note to Clark and say, hey, Clark, hey, we got, we got a good candidate here for you.  You could send a template, which is like a boilerplate message that's got the ability to use like substitution variables and things like that to sort of canned messaging.  You could send a message directly to Stephen. So send an email to the, to the actual candidate. And this is.  This, you know, I'm going to send from me to Steven, how's the hunt going? You know, something like that.  I want to send a warm message to Steve. So what this example, we're going to send, and let me make sure one thing here.  I think this, I need to put a better fake email in here. I'm going to send it to testuseradworld.  You can send outbound to anybody besides just users in the system, and I can send. Okay, so that goes out.  It comes, it's sent out through our email infrastructure, and it records it. It came from your email address on file, so if they reply, replies back to you, but it looks like it came from you.  It came from our system through the email message, and then it's recorded in the activities log. So this is the note that we just sent, and you can see whether or not he's opened it and looked at it.  Has he clicked any links in it? All of the email deliverability and engagement is present within that. So if that person then responds, does that go back to your Outlook, or does it go back to the system, or does it sync to both?  It goes back to your Outlook, and then we have an ability to bring your Outlook, sync with your Outlook as well to automatically record replies.
+
+34:51 - Brett Angelico (Parametrix)
+  Okay. Is that included? Is that extra?
+
+34:54 - Jimmy Hurff (Brightmove)
+  I think it's included, but I do have a question. Are you guys using Office? Or I'm sorry, Office 365?  Yeah. So what you would have to do is you would have to go into your account and you would set up your external credentials to Office 365.  There's no cost to do this, but you would have to record your login. And then you would say, you want the replies, this replies, like automatically parsed replies, would need to turn that on.  And then if you did that, it would automatically parse those responses. You have to manually go do some stuff, but there's no additional cost to do that.
+
+35:36 - Brett Angelico (Parametrix)
+  Okay. Okay. Yeah. What?
+
+35:45 - Jimmy Hurff (Brightmove)
+  I mean, I guess I don't want to waste your time.
+
+35:47 - Brett Angelico (Parametrix)
+  No, you're good.
+
+35:48 - Jimmy Hurff (Brightmove)
+  How does this fit your sort of your wish list needs? I mean, is this close or?
+
+35:54 - Brett Angelico (Parametrix)
+  Yeah. I mean, I think that it's cost effective. I like it. So. I Is there a contract associated with it, or is it a monthly?
+
+36:02 - Jimmy Hurff (Brightmove)
+  It's a 12-month agreement. That's right. And we can discount on longer terms, but typically our terms are 12, and then we give discounts on volume of users and length of commitment.  How long have been around and how many customers do you have? Let's see. I'm one of the co-founders. We built the company in 2005, so about 20 years old.  And we've got about 800, between 800 and 900 customers on the platform right now, companies on the platform right now.
+
+36:35 - Brett Angelico (Parametrix)
+  Okay. Okay. Yeah, let me touch base with my boss, Laurel. She wasn't able to be on the call. Chat with her, and then we can kind of go through the next step.  She might want to do something similar, so sorry to have you go through it again.
+
+36:56 - Jimmy Hurff (Brightmove)
+  But I think she...
+
+37:00 - Brett Angelico (Parametrix)
+  You might be interested in seeing it, too. So let me connect with her, talk about the price point, contracts, some of the bells and whistles I saw, and then we can kind of go from there if that works for you.
+
+37:11 - Jimmy Hurff (Brightmove)
+  That was perfect, man. Sounds great. Cool. Hey, it was nice to connect with you, man. Let me know if I can.  Likewise.
+
+37:16 - Brett Angelico (Parametrix)
+  Yeah, thank you, and apologies again for being late.
+
+37:18 - Jimmy Hurff (Brightmove)
+  Sorry about that. No problem. problem at all. It happens. Thanks, Jimmy. Bye.
+
+37:22 - Brett Angelico (Parametrix)
+  Bye.

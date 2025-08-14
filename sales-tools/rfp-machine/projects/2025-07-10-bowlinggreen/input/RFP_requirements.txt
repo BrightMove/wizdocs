@@ -1,0 +1,865 @@
+
+--- PAGE 1 ---
+ 
+  
+ 
+ 
+ 
+Request for Proposals  
+ 
+RFP #2025‐46 
+ 
+Applicant  Tracking System 
+ 
+ 
+ISSUE DATE:  June 18, 2025 
+ 
+DUE DATE:  July 23, 2025 
+ 
+ 
+Prepared by: 
+ 
+The City of Bowling Green 
+1017 College Street 
+Bowling Green, KY 42101 
+ 
+Phone 270‐393‐3000 
+ 
+www.bgky.org  
+ 
+    
+ 
+    
+
+
+--- PAGE 2 ---
+ 
+ 2 REQUEST  FOR PROPOSALS  
+ 
+RFP #2025‐46 
+ 
+Sealed proposals  will be received in the Procurement  Manager’s  Office, City Hall Annex, 1017 College 
+Street, Bowling Green, Kentucky,  until 10:00 a.m. CT, Wednesday,  July 23, 2025 for the 
+ 
+Applicant  Tracking System 
+ 
+All proposals  must be turned in to the Procurement  Manager’s  Office, City Hall Annex, 1017 College 
+Street, Bowling Green, KY, no later than 10:00 a.m. CT on date of proposal opening.  Proposals  cannot 
+be accepted at any other location.  The City will acknowledge  receipt of all proposals  at a public opening 
+thereupon  or about 10:05 a.m. CT via an online Lifesize meeting.  The Lifesize meeting link is 
+https://call.lifesizecloud.com/22870418 .  The passcode  is 1017#.  No cost information  will be 
+announced.   Proposals  must be received by the designated  date and time and none will be considered  
+thereafter.    
+ 
+The City of Bowling Green, Kentucky reserves the right to reject any and all proposals  received, and to 
+select that bid which it determines  to be in its best interest.  The award of this RFP will be made on the 
+basis of the best evaluated  offer as permitted  in KRS 45A.365. 
+ 
+All forms, information,  and specifications  regarding  this request for proposals  are available on the 
+website, www.bgky.org/bids.   Respondents  are to submit their proposal in a clearly marked sealed 
+envelope.   The clearly marked sealed envelope  shall include the proposal number and description  listed 
+above.  Make sure the shipping envelope  has the RFP number listed clearly on the outside as well.  The 
+City of Bowling Green, Kentucky is not responsible  for the premature  opening of, or the failure to open, 
+a sealed proposal not properly addressed  or identified.  
+ 
+Respondents  are invited to attend the public opening of the proposals  submitted  via Lifesize meeting. 
+  
+   FOR THE CITY OF BOWLING  GREEN, KENTUCKY  
+ 
+  
+S/Jeff Meisel, City Manager 
+  ATTEST: 
+ 
+S/Meghan  VanMeter,  Procurement  Manager 
+
+--- PAGE 3 ---
+ 
+ 3 Special Instructions  
+ 
+INTRODUCTION  
+You are invited to submit a proposal to provide a comprehensive  Applicant  Tracking System 
+(ATS) that manages the recruiting  and hiring process, including all job postings and applications.  
+The system should collect searchable  candidate  information,  allowing recruiters  to quickly 
+identify and evaluate qualified candidates.  This solution must help the City of Bowling Green, KY 
+streamline  the recruitment  process by providing  workflow  management,  communication  
+automation,  reporting,  and analytics.  The system should also focus on the applicant  experience  
+and eliminating  barriers for prospective  employees.  
+ 
+The City of Bowling Green, KY is a local government  entity with multiple departments  and a 
+workforce  that varies between 575‐900 employees  (due to part time and seasonal positions).  
+We average around 200 new applicants  a month and 100 job postings per year. The City utilizes 
+Tyler Technologies  New World ERP as the personnel  management  and payroll system.  
+Vendors can provide documentation  about their solution, but should also answer the questions  
+below in their proposal.  Vendors may be asked to provide written clarifications  of their 
+responses  or demonstrations  of the proposed  system at the request of the City.  
+ 
+PROPOSAL  CONTACT  
+Name of Company   
+Software Brand Name  
+Name of Preparer  
+Name of Primary Contact for Follow‐Up Questions   
+        Contact Phone Number  
+        E‐mail Address  
+ 
+EVALUATION  CRITERIA 
+General/Vendor  Requirements  ‐ financial stability, vendor references,  
+quality of proposal,  support services, etc. 20% 
+Functionality  – system capabilities,  security, reporting,  compatibility,  etc.  40% 
+Cost   40% 
+ 
+VENDOR BACKGROUND  
+Vendors should provide information  about the company so that the City of Bowling Green can 
+evaluate the vendor's stability and capability  to support the commitments  set forth in the RFP.  
+The City of Bowling Green, at its option, may ask that a vendor provide additional  
+documentation  to support and/or clarify requested  information.    
+1 Please state the year the Vendor started in the 
+business of selling applicant  tracking solutions.   
+2 Where is the Vendor company’s  headquarters?   
+
+--- PAGE 4 ---
+ 
+ 4 3 Please list the Vendor’s sales in the previous 
+three years: 2024‐ 
+2023‐ 
+2022‐ 
+4 How many total employees  does the vendor 
+have in each of the following  categories:  Sales/Marketing ‐ 
+Management/Administration ‐ 
+Help Desk/Support  Staff‐ 
+Development  Staff‐ 
+Implementation/Training  Staff‐ 
+Other‐ 
+TOTAL ‐  
+5 Has this company or product being proposed  
+ever been purchased  or acquired by another 
+company?  If yes, provide the name of the 
+companies  involved and when the merger or 
+acquisition(s)  took place.  
+6 Indicate if the company incurred an annual 
+operating  loss in the last 5 years.  
+7 Has the company had a workforce  reduction  
+during the past 5 years?  
+8 Has the company had a data breach within the 
+past 5 years?   
+9 Does the vendor have a toll‐free support line? If 
+so, what are the operating  hours?  
+10 Does the vendor have a knowledge  base and 
+updated training documentation  available at no 
+additional  cost?   
+11 Does the vendor offer training videos or 
+recorded webinars at no additional  cost?   
+ 
+REFERENCE  INFORMATION  
+Provide a contact of three (3) clients utilizing the proposed  solution that are similar to the City 
+of Bowling Green, KY. 
+Client Name  
+Contact Name  
+Contact Phone Number  
+Contact Email  
+Been a Client Since (Year)  
+
+--- PAGE 5 ---
+ 
+ 5  
+Client Name  
+Contact Name  
+Contact Phone Number  
+Contact Email  
+Been a Client Since (Year)  
+ 
+Client Name  
+Contact Name  
+Contact Phone Number  
+Contact Email  
+Been a Client Since (Year)  
+ 
+Applicant  Tracking System 
+Vendors should provide detailed documentation  about the proposed  solution. In addition to 
+that, please answer the following questions  about the system. Try to keep these answers 
+concise to help in the review process. If there are any software modifications  or additional  costs 
+related to an answer, please note that in the comment/response  column.  
+  Question    Response  
+12 Please explain how your product is 
+licensed. How are additional  licenses 
+sold?  
+13 How are updates to your product 
+deployed?  How frequently?  Are they 
+manual or automatic?   
+14 Please list the standard job posting/job  
+board integrations  included with the 
+product (Indeed, LinkedIn, etc.).  
+15 Does the vendor offer a free evaluation  
+period for the City to assess usability and 
+functionality?    
+ 
+Please answer yes or no to the following  capabilities/features.   
+Technical  
+   Question    Yes No Comment  
+16 On premises hosting      
+17 If the solution is fully cloud based, 
+does the vendor commit to a 99.9% 
+uptime percentage?     
+18 Second environment  for 
+testing/staging  at no additional  cost    
+19 Integration  with on‐premises Active 
+Directory     
+20 Two‐factor authentication  (2FA)      
+
+--- PAGE 6 ---
+ 
+ 6 21 Mobile application  that supports 
+both iOS and Android operating  
+systems    
+22 Integration  with Tyler Technologies  
+New World ERP HRIS    
+23 Import new applicant  information  
+from .CSV files or other methods    
+24 All data stored within the United 
+States, including backups    
+25 ADA Compliant  applicant website        
+26 Native e‐signature  and/or a fully 
+embedded  integration  with DocuSign     
+27 System leverages  AI to search 
+through the database of prospects  to 
+recommend  matches    
+28 Product integrates  with Microsoft  
+Outlook for interview  scheduling     
+ 
+Notifications/Messaging  
+   Question    Yes No Comment  
+29 Ability to send emails (leveraging  
+templates  or sending ad‐hoc) to 
+candidates,  contacts, and other 
+client users throughout  the entire 
+hiring process.  These emails can be 
+automated  or sent as needed, are 
+configurable  and personalized  to the 
+client, are bi‐directional,  and are 
+automatically  tracked, stored, and 
+organized  in the platform.       
+30 The platform provides the status of 
+emails sent, providing  transparency  
+should an email address bounce or 
+reject the email communication.   It 
+will also provide the results of any 
+mass email actions, including the 
+number of successfully  sent 
+messages  and any bounced email 
+addresses.     
+31 Both bulk and adhoc emails can 
+include attachments  such as images, 
+forms, pdfs, etc.    
+32 Vendor platform provides the ability 
+to text candidates  (leveraging  
+templates  or sending ad‐hoc) 
+throughout  the entire hiring process.      
+
+--- PAGE 7 ---
+ 
+ 7 This text engagement  can be 
+automated  or sent as needed, are 
+configurable  and personalized  to the 
+client, are bi‐directional,  and are 
+automatically  tracked, stored, and 
+organized  in the platform.    
+33 Native SMS text capabilities  and the 
+ability to send individually  or in bulk.    
+34 System stores a detailed bi‐
+directional  communication  log 
+including date/time  of all 
+communication  methods.     
+35 Email, mobile push, and in platform 
+notifications  to alert users when key 
+workflow  tasks are ready for action 
+as it relates to them.    
+36 Configurable  reminder  notifications  
+are automatically  sent out to task 
+holders to help ensure tasks are 
+completed.      
+ 
+Searching/Reporting  
+   Question    Yes No Comment  
+37 Detailed audit logs and/or reporting  
+that can be automatically  generated  
+on a schedule.     
+38 System provides out of the box 
+reports and also supports building 
+ad‐hoc reports that can be viewed 
+within the platform.     
+39 All fields, including custom fields, are 
+available for reporting  and analytics.     
+40 Out of the box reports that can be 
+further configured  to meet the needs 
+of the organization  including:  activity 
+workflow,  time‐to‐fill, hiring 
+manager productivity,  etc.    
+41 Ability to report on how much time 
+applicants  spend in each hiring 
+stage/pipeline.     
+42 Users can easily export search results 
+and report data to Microsoft  Excel in 
+.CSV or .XLS format.    
+43 Applicant  search criteria can be 
+saved as templates  for recurring use.    
+
+--- PAGE 8 ---
+ 
+ 8 44 Ability for individual  users to adjust 
+what data is returned with searches 
+(configurable  grid columns).     
+45 Ability to report and analyze trends 
+in sources of candidates  to 
+determine  effectiveness  of 
+recruitment  efforts.     
+46 System collects and provides 
+reporting  for Equal Employment  
+Opportunity  (EEO) data.    
+47 Configurable  dashboard  for user 
+groups that can be further 
+personalized  for each individual  user.    
+ 
+Candidate  Facing 
+   Question    Yes No Comment  
+48 Self‐scheduling  capabilities  for 
+qualified candidates  for interviews  
+and other events.     
+49 Automated  candidate  messaging  at 
+different stages of the hiring process.    
+50 Resume parsing to improve the 
+candidate’s  application  experience  
+and reduced data entry.    
+51 Candidates  can create a user account 
+to make updating application  
+information,  resumes, and applying 
+for multiple jobs convenient.     
+52 Candidates  can apply for a job 
+posting without creating a user 
+account.    
+ 
+53 Mobile friendly career site that 
+allows candidates  to view, search, 
+and filter job opportunities.     
+54 Digital offer process ‐ ability to send 
+customized  offer letter to candidate  
+that they can reject/accept  and 
+notification  be sent back to offer 
+owner.     
+ 
+Configuration/Administration  
+   Question    Yes No Comment  
+55 Ability to create custom user groups 
+and multiple user roles.    
+56 Ability to limit user access to certain 
+application  pages and questions     
+
+--- PAGE 9 ---
+ 
+ 9 (confidential  information  for public 
+safety positions).  
+57 Flexibility  to create different types of 
+custom questions  including:  multiple 
+choice, rating scale, open‐ended, 
+checkbox,  drop down validation  sets, 
+yes/no, and file upload.    
+58 Create, configure,  and manage 
+multiple workflows  from within the 
+product.    
+59 Ability to create custom fields on 
+both job postings and applicants  that 
+can be organized  into 
+sections/groups.     
+60 Job postings can be organized  and 
+grouped based on user defined 
+categories.     
+61 All fields (standard  or custom) can be 
+set as required, hidden, or read‐only 
+throughout  the platform for each 
+individual  user group.    
+ 
+62 Ability to create job specific 
+screening  questions.     
+63 Ability to prevent applicant from 
+proceeding  if they don’t meet 
+minimum  qualifications.     
+64 Create, configure,  and manage a 
+library of form, letter, and email 
+templates.     
+65 Ability to set user viewing 
+permissions  at the job posting level.    
+66 System offers career site (displaying  
+information  about the organization  
+and current job offerings)  that is fully 
+customizable  within the product 
+without the need for an outside 
+design agency. The site also allows 
+for embedded  videos.    
+67 Ability to create and track custom 
+sources of candidates  (specific job 
+fair, specific social media sites, etc.).    
+68 Toolset provided to create 
+assessments,  forms, and surveys for 
+applicants  to complete  during the 
+application  process.    
+ 
+
+--- PAGE 10 ---
+ 
+ 10 69 Workflow/process  steps/pipelines  
+can be created per job posting.    
+70 Job templates  that contain 
+foundational  data and custom job 
+fields can be used during job 
+creation to pre‐populate and reduce 
+data entry.    
+ 
+General Functionality  
+   Question    Yes No Comment  
+71 System allows for free‐form notes on 
+applicants.  Each note includes the 
+date, time, and user created 
+information.  These notes can be 
+added individually  or in bulk.    
+72 Internal secured notes can be 
+created that can only be viewed by 
+specific users.     
+73 System can manage applicant/talent  
+pools, allowing individuals  to submit 
+personal data and resumes without 
+applying for a job opening.     
+74 Users can add tags/keywords  to 
+candidates  that can be used for easy 
+searching.  These can be added 
+individually  or in bulk.    
+75 Tags/keywords  can be used to add 
+candidates  to specific talent pool(s).    
+76 Ability to filter candidates  by 
+individual  responses  and/or overall 
+rank based on weighted  questions  or 
+knockout  questions.      
+77 Mobile app that allows users to 
+search and view candidate  
+information,  jobs they have applied 
+to, and the ability to add 
+notes/feedback  on candidates.     
+78 Mobile app provides a “to‐do” page 
+for each system user with 
+unviewed/actionable  items.    
+79 Job postings can be posted to display 
+internally  or externally.     
+80 Ability for internal‐only jobs to have 
+internal screening  questions  and 
+messaging.     
+
+--- PAGE 11 ---
+ 
+ 11 81 User can specify the date/time  to 
+automatically  post and unpost the 
+job.    
+82 Ability to track post offer activity 
+(reference  checking,  drug/alcohol  
+test results, background  check, 
+physical fitness exam, etc.) within 
+the application.      
+ 
+  
+
+--- PAGE 12 ---
+ 
+ 12 GENERAL  INSTRUCTIONS  TO RESPONDENTS  
+ 
+A.  OFFICIAL CLOCK 
+  Proposals  will be accepted until 10:00 a.m. CT in the Procurement  Manager’s  Office, City Hall 
+Annex, 1017 College Street, Bowling Green, Kentucky.   Proposals  cannot be accepted at any other 
+location.  The official clock is the digital, radio controlled,  automatically  synchronized  clock located in the 
+Procurement  Manager’s  Office, City Hall Annex, 1017 College Street, Bowling Green, Kentucky.  
+ 
+B.  CALCULATION  ERROR(S)  
+  In the event of a calculation  error on the Bid Form, unit price shall prevail. 
+ C.  QUESTIONS  AND ADDENDA  
+  This RFP is offered by the Procurement  Manager.   Respondents  shall carefully examine this RFP 
+and any addenda issued by the Procurement  Manager and posted on the website.  
+Respondents  are 
+responsible  for making themselves  aware of, obtaining  and incorporating  any changes made in any 
+addendum  to their final proposal.   Failure of any Respondent  to receive any such addendum  or 
+interpretation  shall not relieve such proposer from any obligation  under his/her proposal as submitted.  
+All addenda issued shall become part of the contract documents.   Acknowledgement  of Addendums  on 
+the Bid Form must be signed (if applicable).   Respondents  shall seek clarification  of any ambiguity,  
+conflict, omission,  or other error in this RFP “in writing.”  Oral comments  or communications  do not 
+form any part of this RFP offering.  Questions  should be addressed  to the Procurement  Manager in 
+writing by July 7, 2025 .  Questions  submitted  after this date will not be answered.  If the answer 
+materially  affects this procurement,  the information  will be issued in an addendum  and posted on the 
+website.  Written communications  should be addressed  as follows: 
+ 
+City of Bowling Green 
+Procurement  Manager’s  Office 
+1017 College Street 
+Bowling Green, Kentucky 42101 
+OR 
+E‐Mail purchasing@bgky.org  
+ 
+D.  PRE‐PROPOSAL  CONFERENCE  and INSPECTION  OF FACILITIES  
+No conference  is planned. 
+ E.  RESPONSIBILITY  OF BIDDER FORM 
+The City of Bowling Green, Kentucky  issues in all proposal offerings a Responsibility  of Bidder 
+form that MUST be completed  by the Respondent  and attached to the Bid Form in order for the 
+Respondent  to be considered  for an award.  This is a mandatory  form that must be attached to the Bid 
+Form and in accordance  with KRS 45A.395, all information  submitted  thereon is deemed to be 
+confidential  and therefore  exempt from Kentucky  Open Records Law. 
+ 
+F.  BASIS OF AWARD 
+The City of Bowling Green, Kentucky has selected to award this RFP in compliance  with KRS 
+45A.365 that allows the award to be made on the basis of: 
+ 
+(   )  Lowest proposal price, or 
+ 
+(X)  Best evaluated  offer 
+ 
+
+--- PAGE 13 ---
+ 
+ 13 GENERAL  INSTRUCTIONS  TO RESPONDENTS  
+ 
+G.   COOPERATIVE  USE OF CONTRACT  
+  This agreement  may be extended  for use by other governmental  agencies and political 
+subdivisions  of the State.  Any such usage by other entities must be in accord with the ordinances,  
+charter, rules and regulations  of the respective  entity and the approval of the governmental  agency. 
+ 
+H.  INSPECTION  OF RESPONDENT’S  PLANT AND PLACE OF BUSINESS  
+The City of Bowling Green, Kentucky reserves the right to inspect the plant facilities and place of 
+business of any Respondent  participating  in this offering. 
+ I.  RETENTION  OF RECORDS  
+The successful  Respondent  shall be required to maintain,
+ for a period of five (5) years from the 
+date of final payment to the Respondent,  all books and records pertaining  to this proposal offering. 
+ J.  BUSINESS  TAX STATUS 
+In order to receive an award from the City of Bowling Green, Kentucky,  a Respondent  must not 
+be delinquent  on any 
+ad valorem taxes, including penalty and interest charges, due to the City for real or 
+personal properties  owned by the Respondent,  or any one or more of its corporate  officers.  Inquiries 
+can be directed to the Treasury Division, City Hall Annex, 270‐393‐3000. 
+ K.  BUSINESS  STATUS AND REGISTRATION  REQUIREMENTS  
+In
+ order to receive an award from the City of Bowling Green, Kentucky,  the successful  
+Respondent,  and the Respondent’s  subcontractor(s),  must be properly registered  with the Occupational  
+License Division to do business in the City.  If a Respondent  is already registered,  all of their applicable  
+license accounts must be in “good standing”  with the City.  Good standing is defined as having all fees, 
+including penalty and interest charges, relating to employee  wages, and business net profits, paid in full 
+with appropriate  reporting  forms filed in the offices of the City’s License Division.  Inquiries can be 
+directed to the License Division, City Hall Annex, 270‐393‐3000. 
+ L.  CONFLICTS,  GRATUITIES,  AND KICK‐BACKS PROHIBITED  
+The City of Bowling Green, Kentucky adheres to the provisions  of KRS 45A.455, paragraphs  (1) 
+through (5) relative to conflicts of interests,  gratuities,  kick‐backs, and use of confidential  information  in 
+all offerings.  
+ 
+M.   RESTRICTIONS  ON COMMUNICATIONS  
+The following
+ restrictions  on communications  apply to this solicitation:  Respondents  are 
+prohibited  from contacting  1) City officials regarding  the bid from the time the bid has been released 
+until the award is posted for consideration  as an agenda item during a Board of Commissioners  meeting; 
+and 2) City employees  from the time the bid has been released until the contract is approved.   
+Restrictions  extend to “thank you” letters, phone calls, e‐mails, and any contact that results in the direct 
+or indirect discussion  of the bid submitted  by the Respondent.  
+ N.  SUPPORTING  DOCUMENTATION  
+Respondents  are encouraged  to submit with their proposal any literature,
+ warranty information,  
+and other documentation  to support the Respondent’s  compliance  with the specifications  contained  in 
+this RFP package. 
+   
+
+--- PAGE 14 ---
+ 
+ 14 GENERAL  INSTRUCTIONS  TO RESPONDENTS  
+ 
+O.  PROPOSAL  RETRACTION  
+Respondents  are advised that proposals  submitted  as part of this proposal offering may not be 
+withdrawn  for a minimum  of 120 days following  the public opening unless circumstances  justify 
+consideration  by the Procurement  Manager of a release from this provision.   Requests to withdraw  a 
+proposal must be in writing and received by the City of Bowling Green, Kentucky within twenty‐four 
+hours of the public proposal opening. 
+ P.  RIGHT TO REJECT AND AWARD PROPOSAL  
+The City of Bowling Green, Kentucky
+ reserves the right to reject any and all proposals  received in 
+response to this RFP, and to waive any informality  in this offering.  The award of a contract shall be at 
+the sole discretion  of the City of Bowling Green, Kentucky.   The award will be made to the responsible  
+Respondent  whose proposal is determined  to be the most advantageous  to the City, taking into 
+consideration  the evaluation  factors set forth in this proposal package.  The City of Bowling Green may 
+make the award without further discussion  of the proposals  submitted.   Therefore,  the proposal should 
+be submitted  initially on the most favorable  terms which the Respondent  can propose with respect to 
+price, product, service, and technical capability.   The contents of the proposal of the selected 
+Respondent  will become the basis for the City of Bowling Green, Kentucky’s  contractual  obligation  when 
+the award is made.   
+ Q.  PROPOSAL  IDENTIFICATION  
+Respondents  are to submit their 
+proposal in a clearly marked sealed envelope.   The Respondent  
+is required to clearly mark their proposal material with the proposal number and description  set forth in 
+the “Request for Proposals.”   This instruction  is provided as a means to ensure proper delivery, handling,  
+and public announcement  of a Respondent’s  response at the official proposal opening date and time.  
+Proposals  in the form of e‐mails, telegrams,  telephone  calls, facsimiles,  or telex messages  will not be 
+accepted.  
+ 
+R.  PROPOSAL  SUBMISSION  
+Prior to entering into a contract with the City of Bowling Green, the successful  Respondent(s)  
+must provide the following  information:  
+ 
+1.  The name of every company bearing an interest in the proposed  goods and services to 
+be provided in this RFP. 
+ 
+2.  The name, title, address, and telephone  number of individuals  with authority  to 
+contractually  bind the Respondent;  and, 
+ 3.        A designated  person(s)  who can be contacted  by the City of Bowling 
+Green,      
+Kentucky,  during the proposal evaluation  period.  This information  shall include the 
+person’s name, title, address, telephone  number, FAX number, and E‐mail   address. 
+ S.  PRESENTATIONS  AND DEMONSTRATIONS  
+If, in the opinion of the City of Bowling Green, Kentucky,  Respondent  presentations  or 
+demonstrations  are desired as part of the evaluation  process,
+ the City of Bowling Green, Kentucky will 
+notify one or more of the responsive  Respondents  to make arrangements  for the date, time, and place 
+for such a presentation  or demonstration.  
+  
+
+--- PAGE 15 ---
+ 
+ 15 GENERAL  INSTRUCTIONS  TO RESPONDENTS  
+ 
+T.   CONSTRUCTION  
+The parties agree that in the event there are conflicts between the proposal,  Respondent’s  
+proposal,  and the contract, the language of the proposal shall prevail first, followed by the Agreement,  
+and then Respondent’s  proposal.  
+ 
+U.  DISPOSITION  OF PROPOSALS  
+All materials  submitted  in response to this RFP will become the property of the City of Bowing 
+Green, Kentucky.   One (1) copy of each proposal shall be retained for the official files and will become a 
+public record after an award is made by the City of Bowling Green, Kentucky,  and thus open for public 
+inspection.   It is understood  that the proposal will become a part of the official file without obligation  on 
+the part of the City of Bowling Green, Kentucky except as to the disclosure  restrictions  contained  in 
+paragraph  V below. 
+ V.  DISCLOSURE  
+In compliance  with Kentucky Revised Statutes, Chapter 45A, and the Kentucky Open
+ Records 
+Act, trade secrets or proprietary  information  submitted  by a Respondent  in connection  with this 
+procurement  shall not be subject to public disclosure.   However,  the Respondent  must invoke this 
+protection  prior to, or upon submission  of the data or other materials,  and must identify the specific 
+area or scope of data or other materials  to be protected  and state the reasons why protection  is 
+necessary.   An all‐inclusive statement  that the entire proposal is proprietary  is unacceptable.   A 
+statement  that costs are to be protected  is also unacceptable.   Disputes over disclosure  will be resolved 
+by the City Manager based on legal advice provided by the City of Bowling Green, Kentucky’s  Law 
+Department.  
+ 
+W.  COST INCURRED  IN RESPONDING  
+This RFP does not commit the City of Bowling Green, Kentucky to pay any costs incurred in the 
+preparation  and submission  of proposals  or in making necessary  studies or designs, nor does it commit 
+the City of Bowling Green, Kentucky to enter into a contract. 
+ 
+X.  PRIME RESPONDENT  RESPONSIBILITIES  
+If the Respondent’s  response includes goods and services provided by others, the Respondent  
+will be required to act as the prime contractor  for all such items and must assume full responsibility  for 
+the procurement,  delivery, and quality of such goods and services.  The Respondent  will be considered  
+the sole point of contact with regard to all stipulations,  including payment of all charges and the 
+meeting of all contractual  requirements  resulting from this proposal offering. 
+ Y.  LAWS AND REGULATIONS  
+This RFP shall be governed  by the 
+applicable  Model Procurement  Code of the Commonwealth  of 
+Kentucky and any applicable  regulations  of the City of Bowling Green, Kentucky.  
+ 
+Z.   FAILURE TO PERFORM  
+  Any vendor awarded a contract who fails to fulfill all obligations  on this contract, may be 
+disqualified  from bidding on any City proposal/bid  for a period of up to five (5) years.  Should the 
+contactor  fail to perform as indicated  herein, the City reserves the right to procure the required services 
+elsewhere  at its discretion,  either temporarily  or permanently,  and to either suspend or cancel all or 
+part of the contract. 
+  
+
+--- PAGE 16 ---
+ 
+ 16 GENERAL  INSTRUCTIONS  TO RESPONDENTS  
+ 
+AA.  DISPUTE RESOLUTION  
+  Contract documents  establish a procedure  to resolve conflicts that may arise during 
+construction.   The procedures  include identifying  the causes of the conflict, the filing and handling of 
+claims and the uses of consultants  in resolving conflicts.  The City of Bowling Green eliminates  
+mandatory  binding arbitration  language in the contract documents,  but attempts to resolve conflicts 
+without the necessity of litigation through negotiation  and mediation.  
+ 
+ 
+  
+ 
+   
+ 
+
+--- PAGE 17 ---
+ 
+ 17  BID FORM, Page 1 
+RFP #2025‐46 
+ (Shall be included in sealed proposal)  
+ 
+TO:       City of Bowling Green                               
+               c/o Procurement  Manager’s  Office                                   
+               1017 College Street                  
+               Bowling Green, KY 42101                 
+        FROM:   ____________________________________      Phone:  ________________________  
+                              ____________________________________      Fax:  __________________________  
+ 
+                ____________________________________      E‐Mail:  ________________________  
+ 
+   The undersigned  hereby certifies that to
+ the best of his/her knowledge  and belief, the cost or pricing 
+data submitted  herein is accurate,  complete,  and current as of the date set forth here on. 
+ The undersigned  hereby certifies that he/she has carefully examined  the plans and/or specifications.   
+The undersigned  is familiar with the type of service/ equipment/  
+supplies to be furnished  as set forth for 
+a complete  installation/  supply. 
+ 
+The undersigned  proposes to furnish the supplies and/ or equipment  which will perform in a satisfactory  
+manner and that is in accordance  with the plans and specifications  set forth, for the price that follows 
+on Attachment  1: Cost Proposal .  
+ 
+The Respondent,  herein certifies by signature,  that all specifications  have been reviewed  and that any 
+variations  to the City’s specifications,  including both exceptions  to, or enhancements  of same, are 
+clearly spelled out in an attachment  to this proposal.   
+ 
+The Respondent,  herein certifies by signature,  that all addendums  issued to this proposal offering, if any, 
+have been reviewed  and the Respondent  is fully aware of the implications  of the addendums  on the 
+proposal offering. 
+ 
+Acknowledgment  of Addendum(s)  (If Applicable)  
+ 
+Addendum  #1: _______________________  Addendum  #2: _______________________  
+Addendum  #3: _______________________  Addendum  #4: _______________________  
+ 
+The Respondent,  herein certifies by signature,  that the Responsibility  of Respondents  Form has been 
+fully completed  and attached hereto as part of the proposal.  
+ 
+Are there any exceptions  to the specific specifications  set forth on bid? Yes _______ No _______             
+ 
+If yes, please explain. ___________________________________________________________________                               
+ Company  or Individual  Name      ___________________________________________  
+ 
+ 
+
+--- PAGE 18 ---
+ 
+ 18 BID FORM, Page 2 
+RFP #2025‐46 
+ (Shall be included in sealed proposal)  
+ Doing business as (DBA)             ___________________________________________  
+ Street Address                              ___________________________________________  
+ 
+P.O. Box Number                         ___________________________________________  
+ City, State, Extended  Zip Code   ___________________________________________  
+ 
+If the above address is not in Bowling Green, KY, please note if the Company  has an office 
+or satellite 
+location in Bowling Green, KY: 
+ 
+Street Address in Bowling Green, KY _______________________________________________________  
+                                                                                       
+Purpose of this location in Bowling Green, KY _______________________________________________                                 
+  _________________________________________________  
+Official Name (Printed) 
+ 
+_________________________________________________  
+Official Signature  
+ _________________________________________________  
+Date Signed  
+  Please respond with three (3) complete  copies of the proposal.  The original shall be clearly marked.  
+ 
+  
+
+--- PAGE 19 ---
+ 
+ 19 Attachment  1: Cost Proposal 
+(Shall be included in sealed proposal)  
+ 
+This is an evaluated  bid. The one (1) year licensing/subscription  cost will be used for general 
+comparison  between vendors. Other listed costs will be evaluated  and would be further 
+determined  by the decisions of the City. We fully understand  that different providers  handle 
+licensing differently,  so please utilize the information  below to provide a one (1) year licensing 
+cost. Additional  one time modification,  implementation,  or training costs should be listed in the 
+grid below, but not be included on the estimated  licensing cost line. Please feel free to attach 
+your own pricing estimate but you must also fill out the information  below.  
+ 
+ Pay per recruiter/user  model – 75 user accounts (each department  is involved in hiring 
+decisions)  
+ Pay per job posting/vacancy  model – 100 job postings annually 
+ Pay per organization  size – 650 employees  
+ 
+One (1) Year Licensing/Subscription  Cost  
+(Do not include one‐time costs in this amount). 
+ 
+ESTIMATED  LICENSING  COST $______________________________  
+ 
+Possible additional/optional  costs based on decisions by the City of Bowling Green, KY or 
+anticipated  costs based on a new implementation  should be listed below.  
+Item  Cost 
+Licensing/Subscription  for three (3) years 
+(useful to see discounts  for multi‐year 
+subscriptions)    
+Known or anticipated  modification  costs 
+(based on response/comment  columns)  
+Known or anticipated  implementation  costs  
+Known or anticipated  training costs  
+Any other one time or anticipated  expenses   
+ 
+ 
+ 
+    
+ 
+   
+ 
+ 
+
+--- PAGE 20 ---
+ 
+ 20 RESPONSIBILITY  OF BIDDER FORM 
+ 
+This form must be completed  in full and submitted  with the proposal.   Misrepresentation  or failure to 
+complete  will automatically  disqualify  proposal.   All information  is confidential  and exempt from the 
+Open Records Law, pursuant to KRS 45A.395. 
+ 
+NAME ______________________________________  Phone# (___)______________________  
+ 
+ADDRESS ____________________________________________________________________  
+                         Street or PO Box                    City                                      State                            Zip Code 
+   1.  Type of services/supplies  provided in normal course of business:___________________________  
+   2.  Length of time in business:________________  
+   3. Experience  in providing  proposal‐required 
+        services/supplies:_________________________________________________________________  
+                                                                                                                                                            
+   4.  Currently  a party/defendant  in lawsuit(s)?   (   ) Yes   (   ) No    If yes, explain._________________  
+   5.  State past history as party/defendant  in lawsuit(s)  _______________________________________  
+        _______________________________________________________________________________                                     
+   6.  Name of contract/product  liability insurance  
+            Carrier:_______________________________________________________________________  
+            Limits: $____________________________________  
+   7.  If construction  proposal:   
+              (a) how many other projects currently ongoing?______________________________________                                    
+  (b) how many proposals  currently submitted  
+elsewhere?____________________________________  
+              (c) have books been audited by CPA?     (      ) Yes           (      ) No 
+                   Date of last audit______________________  
+* 8.  City of Bowling Green Occupational  License No.  _________________________________  
+   9.  List of references  (public or private) and contact person for whom similar services/supplies  
+        provided:  
+ 
+_____________________________________________________________________________________                               
+Name of Firm     Address     Contact Person 
+_____________________________________________________________________________________                               
+Name of Firm     Address     Contact Person 
+_____________________________________________________________________________________                               
+   Name of Firm     Address     Contact Person 
+ 
+Note: If more space is needed, please attach separate sheet(s) . 
+ 
+I, _____________________________,  do solemnly  swear that to the best of my knowledge  and belief 
+the above is true and accurate statement  of facts . 
+ 
+Signed ________________________________________  Date ______________________  
+ 
+State of____________________   County of  __________________  
+ 
+Sworn to and subscribed  before, me, a Notary Public, this _____day  of ___________,  20____. 
+ 
+My commission  expires ___________________            
+_________________________________  Notary Public  
+* Required by City of Bowling Green Code of Ordinances   

@@ -1,0 +1,1 @@
+/Users/jhurff/projects/brightmove/wizdocs/wiz-agent-instructions/business-rules/COMPANY-DETAILS.md

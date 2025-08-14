@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Impact Analysis - Wizdocs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 4px;
+            margin-top: 20px;
+        }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 12px 20px;
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #667eea;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
+        .dashboard-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        
+        .dashboard-card .metric {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .dashboard-card .label {
+            color: #666;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .content-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+        
+        .impact-reports {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .impact-report {
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        
+        .impact-report:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+        }
+        
+        .impact-report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .impact-report-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .impact-level {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .impact-level.high {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .impact-level.medium {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+        
+        .impact-level.low {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+        
+        .impact-report-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .detail-label {
+            font-size: 0.8em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .impact-report-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5a6fd8;
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .manual-analysis {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .manual-analysis h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>GitHub Impact Analysis</h1>
+            <p>Monitor pull request impact on knowledge base and documentation</p>
+            
+            <div class="nav-tabs">
+                <a href="#impact-reports" class="nav-tab active" onclick="showTab('impact-reports')">Impact Reports</a>
+                <a href="#conflict-detection" class="nav-tab" onclick="showTab('conflict-detection')">Conflict Detection</a>
+                <a href="#preliminary-analyses" class="nav-tab" onclick="showTab('preliminary-analyses')">Preliminary Analyses</a>
+                <a href="#manual-analysis" class="nav-tab" onclick="showTab('manual-analysis')">Manual Analysis</a>
+            </div>
+        </div>
+
+        <div id="impact-reports" class="tab-content">
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Total Impact Reports</h3>
+                    <div class="metric" id="total-reports">-</div>
+                    <div class="label">Reports Generated</div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>High Impact PRs</h3>
+                    <div class="metric" id="high-impact">-</div>
+                    <div class="label">Critical Changes</div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Recent Activity</h3>
+                    <div class="metric" id="recent-activity">-</div>
+                    <div class="label">Last 7 Days</div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Impact Reports</h2>
+                <div id="impact-reports-list" class="impact-reports">
+                    <div class="loading">Loading impact reports...</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="conflict-detection" class="tab-content" style="display: none;">
+            <div class="content-section">
+                <h2>Knowledge Base Conflict Detection</h2>
+                <p>Detect conflicts between code changes and existing documentation</p>
+                
+                <div class="manual-analysis">
+                    <h3>Detect Conflicts for Pull Request</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="conflict-repo-input">Repository (owner/repo)</label>
+                            <input type="text" id="conflict-repo-input" placeholder="e.g., BrightMove/brightmove-ats">
+                        </div>
+                        <div class="form-group">
+                            <label for="conflict-pr-number-input">PR Number</label>
+                            <input type="number" id="conflict-pr-number-input" placeholder="e.g., 123">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="detectConflicts()">Detect Conflicts</button>
+                </div>
+                
+                <div id="conflict-detection-result"></div>
+            </div>
+        </div>
+
+        <div id="preliminary-analyses" class="tab-content" style="display: none;">
+            <div class="content-section">
+                <h2>Preliminary Analyses</h2>
+                <p>Early impact assessments for open pull requests</p>
+                <div id="preliminary-analyses-list" class="impact-reports">
+                    <div class="loading">Loading preliminary analyses...</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="manual-analysis" class="tab-content" style="display: none;">
+            <div class="content-section">
+                <h2>Manual PR Analysis</h2>
+                <p>Analyze a specific pull request for knowledge base impact</p>
+                
+                <div class="manual-analysis">
+                    <h3>Analyze Pull Request</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="repo-input">Repository (owner/repo)</label>
+                            <input type="text" id="repo-input" placeholder="e.g., BrightMove/brightmove-ats">
+                        </div>
+                        <div class="form-group">
+                            <label for="pr-number-input">PR Number</label>
+                            <input type="number" id="pr-number-input" placeholder="e.g., 123">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="analyzePR()">Analyze PR</button>
+                </div>
+                
+                <div id="manual-analysis-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadImpactReports();
+            loadPreliminaryAnalyses();
+        });
+
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).style.display = 'block';
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        async function loadImpactReports() {
+            try {
+                const response = await fetch('/api/github/impact-reports');
+                const reports = await response.json();
+                
+                updateDashboardMetrics(reports);
+                displayImpactReports(reports);
+            } catch (error) {
+                console.error('Error loading impact reports:', error);
+                document.getElementById('impact-reports-list').innerHTML = 
+                    '<div class="error">Error loading impact reports: ' + error.message + '</div>';
+            }
+        }
+
+        async function loadPreliminaryAnalyses() {
+            try {
+                const response = await fetch('/api/github/preliminary-analyses');
+                const analyses = await response.json();
+                displayPreliminaryAnalyses(analyses);
+            } catch (error) {
+                console.error('Error loading preliminary analyses:', error);
+                document.getElementById('preliminary-analyses-list').innerHTML = 
+                    '<div class="error">Error loading preliminary analyses: ' + error.message + '</div>';
+            }
+        }
+
+        function updateDashboardMetrics(reports) {
+            document.getElementById('total-reports').textContent = reports.length;
+            
+            const highImpact = reports.filter(r => r.impact_level === 'high').length;
+            document.getElementById('high-impact').textContent = highImpact;
+            
+            const sevenDaysAgo = new Date();
+            sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+            const recent = reports.filter(r => new Date(r.timestamp) > sevenDaysAgo).length;
+            document.getElementById('recent-activity').textContent = recent;
+        }
+
+        function displayImpactReports(reports) {
+            const container = document.getElementById('impact-reports-list');
+            
+            if (reports.length === 0) {
+                container.innerHTML = '<div class="loading">No impact reports found</div>';
+                return;
+            }
+            
+            container.innerHTML = reports.map(report => `
+                <div class="impact-report">
+                    <div class="impact-report-header">
+                        <div class="impact-report-title">${report.title}</div>
+                        <span class="impact-level ${report.impact_level}">${report.impact_level}</span>
+                    </div>
+                    <div class="impact-report-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Repository</div>
+                            <div class="detail-value">${report.repo}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">PR Number</div>
+                            <div class="detail-value">#${report.pr_number}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Timestamp</div>
+                            <div class="detail-value">${new Date(report.timestamp).toLocaleString()}</div>
+                        </div>
+                    </div>
+                    <div class="impact-report-actions">
+                        <a href="/api/github/pr/${report.repo}/${report.pr_number}/impact" 
+                           class="btn btn-primary" target="_blank">View Full Report</a>
+                        <button class="btn btn-secondary" onclick="downloadReport('${report.filename}')">Download</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function displayPreliminaryAnalyses(analyses) {
+            const container = document.getElementById('preliminary-analyses-list');
+            
+            if (analyses.length === 0) {
+                container.innerHTML = '<div class="loading">No preliminary analyses found</div>';
+                return;
+            }
+            
+            container.innerHTML = analyses.map(analysis => `
+                <div class="impact-report">
+                    <div class="impact-report-header">
+                        <div class="impact-report-title">${analysis.title}</div>
+                        <span class="impact-level ${analysis.impact_level}">${analysis.impact_level}</span>
+                    </div>
+                    <div class="impact-report-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Repository</div>
+                            <div class="detail-value">${analysis.repo}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">PR Number</div>
+                            <div class="detail-value">#${analysis.pr_number}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Timestamp</div>
+                            <div class="detail-value">${new Date(analysis.timestamp).toLocaleString()}</div>
+                        </div>
+                    </div>
+                    <div class="impact-report-actions">
+                        <a href="/api/github/pr/${analysis.repo}/${analysis.pr_number}/preliminary" 
+                           class="btn btn-primary" target="_blank">View Analysis</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function analyzePR() {
+            const repo = document.getElementById('repo-input').value.trim();
+            const prNumber = document.getElementById('pr-number-input').value.trim();
+            
+            if (!repo || !prNumber) {
+                alert('Please enter both repository and PR number');
+                return;
+            }
+            
+            const resultContainer = document.getElementById('manual-analysis-result');
+            resultContainer.innerHTML = '<div class="loading">Analyzing PR...</div>';
+            
+            try {
+                const response = await fetch(`/api/github/pr/${repo}/${prNumber}/impact`);
+                const result = await response.json();
+                
+                if (result.error) {
+                    resultContainer.innerHTML = `<div class="error">Error: ${result.error}</div>`;
+                } else {
+                    resultContainer.innerHTML = `
+                        <div class="success">
+                            <h3>Analysis Complete</h3>
+                            <p><strong>Impact Level:</strong> ${result.pr_analysis.impact_level}</p>
+                            <p><strong>Changed Files:</strong> ${result.pr_analysis.changed_files}</p>
+                            <p><strong>Recommendations:</strong> ${result.recommendations.length}</p>
+                            <pre>${JSON.stringify(result, null, 2)}</pre>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultContainer.innerHTML = `<div class="error">Error analyzing PR: ${error.message}</div>`;
+            }
+        }
+
+        function downloadReport(filename) {
+            // This would implement file download functionality
+            console.log('Downloading report:', filename);
+            alert('Download functionality would be implemented here');
+        }
+
+        async function detectConflicts() {
+            const repo = document.getElementById('conflict-repo-input').value.trim();
+            const prNumber = document.getElementById('conflict-pr-number-input').value.trim();
+            
+            if (!repo || !prNumber) {
+                alert('Please enter both repository and PR number');
+                return;
+            }
+            
+            const resultContainer = document.getElementById('conflict-detection-result');
+            resultContainer.innerHTML = '<div class="loading">Detecting conflicts...</div>';
+            
+            try {
+                const response = await fetch(`/api/github/pr/${repo}/${prNumber}/conflicts`);
+                const result = await response.json();
+                
+                if (result.error) {
+                    resultContainer.innerHTML = `<div class="error">Error: ${result.error}</div>`;
+                } else {
+                    displayConflictResults(result, resultContainer);
+                }
+            } catch (error) {
+                resultContainer.innerHTML = `<div class="error">Error detecting conflicts: ${error.message}</div>`;
+            }
+        }
+
+        function displayConflictResults(conflictReport, container) {
+            const summary = conflictReport.summary;
+            
+            let html = `
+                <div class="success">
+                    <h3>Conflict Detection Complete</h3>
+                    <div class="impact-report-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Total Conflicts</div>
+                            <div class="detail-value">${conflictReport.conflicts_found}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Critical</div>
+                            <div class="detail-value">${summary.by_severity.critical}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">High</div>
+                            <div class="detail-value">${summary.by_severity.high}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Medium</div>
+                            <div class="detail-value">${summary.by_severity.medium}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Low</div>
+                            <div class="detail-value">${summary.by_severity.low}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            if (conflictReport.conflicts_found > 0) {
+                html += '<h4>Detailed Conflicts:</h4>';
+                html += '<div class="impact-reports">';
+                
+                conflictReport.conflicts.forEach(conflict => {
+                    html += `
+                        <div class="impact-report">
+                            <div class="impact-report-header">
+                                <div class="impact-report-title">${conflict.description}</div>
+                                <span class="impact-level ${conflict.severity}">${conflict.severity}</span>
+                            </div>
+                            <div class="impact-report-details">
+                                <div class="detail-item">
+                                    <div class="detail-label">File</div>
+                                    <div class="detail-value">${conflict.file}</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">KB Item</div>
+                                    <div class="detail-value">${conflict.kb_item.type} - ${conflict.kb_item.title}</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Type</div>
+                                    <div class="detail-value">${conflict.type}</div>
+                                </div>
+                            </div>
+                            <div class="impact-report-actions">
+                                <div class="btn btn-secondary">${conflict.action}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += '</div>';
+            } else {
+                html += '<div class="success"><p>No conflicts detected! Documentation is in sync with code changes.</p></div>';
+            }
+            
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
