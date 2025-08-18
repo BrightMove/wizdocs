@@ -20,9 +20,10 @@ The platform helps ensure that customer support tickets, project management tick
 
 ## Architecture
 
-The Wizdocs system consists of several key components:
+The Wiseguy system consists of several key components:
 
 - **Admin UI**: A Ruby Sinatra web application for managing audits and analyzing content
+- **Wiz Agent**: A Python microservice to connect to Langchain+AWS Bedrock for AI services
 - **Sales Tools**: AI-powered tools for RFP responses and SOW generation
 - **Sync Services**: Integration with Atlassian Jira, Confluence, Intercom, and GitHub
 - **Content Analysis**: AI-powered analysis of documentation and ticket consistency
