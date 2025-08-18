@@ -54,6 +54,13 @@ The Admin UI is a Ruby Sinatra application located in the `admin-ui/` subdirecto
 - **Orphaned Content**: Find content without related tickets
 - **Resource Allocation**: Analyze ticket distribution and priorities
 
+## Wiz Agent
+
+The chatbot and LLM agent service that powers the Wiz modal.
+
+### Langchain+Bedrock Agent
+Located in `wiz-agent`, this python microservice connects to AWS Bedrock using the Langchain framework.
+
 ## Sales Tools
 
 The sales-tools directory contains AI-powered automation tools for sales processes:
