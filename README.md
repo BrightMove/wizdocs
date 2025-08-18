@@ -1,4 +1,4 @@
-# Wizdocs - Veracity Audit System
+# Wiseguy
 
 ## Table of Contents
 - [Overview](#overview)
@@ -14,7 +14,7 @@
 
 ## Overview
 
-Wizdocs is a comprehensive veracity audit system designed to ensure consistency between source code, documentation, and project management information across the BrightMove technical ecosystem. The system uses AI to analyze and summarize technical documentation while keeping all content in sync with actual source code.
+Wiseguy is a comprehensive veracity audit system designed to ensure consistency between source code, documentation, and project management information across the BrightMove technical ecosystem. The system uses AI to analyze and summarize technical documentation while keeping all content in sync with actual source code.
 
 The platform helps ensure that customer support tickets, project management tickets, knowledge base content, and application functionality are synchronized and accurate.
 
