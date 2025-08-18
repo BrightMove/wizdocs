@@ -93,10 +93,52 @@ class GitHubIntegration
     make_request(endpoint)
   end
 
-  def get_repository_content(repo, path, ref = 'main')
+  def get_repository_content(repo, path, ref = 'develop')
     return { error: 'GitHub not configured' } unless connected?
     
     endpoint = "/repos/#{repo}/contents/#{path}?ref=#{ref}"
+    make_request(endpoint)
+  end
+
+  def get_organization_repositories(org_name = 'brightmove')
+    return { error: 'GitHub not configured' } unless connected?
+    
+    puts "Fetching repositories from organization: #{org_name}"
+    
+    # Get all repositories from the organization
+    endpoint = "/orgs/#{org_name}/repos?per_page=100&type=all"
+    repos = make_request(endpoint)
+    
+    if repos.is_a?(Hash) && repos[:error]
+      puts "Error fetching organization repositories: #{repos[:error]}"
+      return repos
+    end
+    
+    # Filter to only include repositories that the token has access to
+    accessible_repos = repos.select do |repo|
+      # Check if we have access to the repository
+      access_check = check_repository_access(repo['full_name'])
+      access_check != { error: 'GitHub permission denied' }
+    end
+    
+    puts "Found #{accessible_repos.length} accessible repositories in #{org_name} organization"
+    
+    # Return repository names in the format "org/repo"
+    accessible_repos.map { |repo| repo['full_name'] }
+  end
+
+  def check_repository_access(repo_name)
+    return { error: 'GitHub not configured' } unless connected?
+    
+    # Try to get repository info to check access
+    endpoint = "/repos/#{repo_name}"
+    make_request(endpoint)
+  end
+
+  def get_user_organizations
+    return { error: 'GitHub not configured' } unless connected?
+    
+    endpoint = "/user/orgs"
     make_request(endpoint)
   end
 

@@ -1,0 +1,334 @@
+<div class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">Your AI assist for building great products</h1>
+            <p class="hero-subtitle">Wiseguy connects your technical platform, source code, documentation and sales efforts with high veracity.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="section-title">Trusted by teams building the future</h2>
+    <p class="section-subtitle">Comprehensive audit tools and AI-powered sales automation for modern product teams</p>
+    
+    <!-- Primary Features Grid -->
+    <div class="cards-grid">
+        <!-- Sales Tools Card -->
+        <div class="card fade-in-up" onclick="window.location.href='/sales-tools'" style="animation-delay: 0.1s;">
+            <div class="card-header">
+                <div class="card-icon warning">💼</div>
+                <h3 class="card-title">Sales Tools</h3>
+            </div>
+            <p class="card-description">
+                AI-powered tools for RFP responses and Statement of Work generation with automated value estimation and pipeline tracking.
+            </p>
+            <div class="card-features">
+                <div class="feature-item">
+                    <span class="feature-icon">📋</span>
+                    <span>RFP Machine</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📄</span>
+                    <span>SOW Machine</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🤖</span>
+                    <span>AI Analysis</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">⚡</span>
+                    <span>Auto Generation</span>
+                </div>
+            </div>
+            <a href="/sales-tools" class="btn warning">Manage Sales Tools</a>
+        </div>
+        
+        <!-- Knowledge Base Card -->
+        <div class="card fade-in-up" onclick="window.location.href='/knowledge-base'" style="animation-delay: 0.2s;">
+            <div class="card-header">
+                <div class="card-icon success">🧠</div>
+                <h3 class="card-title">Knowledge Base</h3>
+            </div>
+            <p class="card-description">
+                LLM-powered content analysis and RAG-based search across JIRA, Intercom, GitHub, and documentation with vector relationships.
+            </p>
+            <div class="card-features">
+                <div class="feature-item">
+                    <span class="feature-icon">🔍</span>
+                    <span>Smart Search</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🔗</span>
+                    <span>Vector Links</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📚</span>
+                    <span>Content Sync</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🤖</span>
+                    <span>RAG Analysis</span>
+                </div>
+            </div>
+            <a href="/knowledge-base" class="btn success">Explore Knowledge Base</a>
+        </div>
+        
+        <!-- Audits & Analysis Card -->
+        <div class="card fade-in-up" onclick="window.location.href='/audits'" style="animation-delay: 0.3s;">
+            <div class="card-header">
+                <div class="card-icon primary">📊</div>
+                <h3 class="card-title">Audits & Analysis</h3>
+            </div>
+            <p class="card-description">
+                Comprehensive audit tools for JIRA ticket analysis, content veracity verification, and GitHub impact assessment.
+            </p>
+            <div class="card-features">
+                <div class="feature-item">
+                    <span class="feature-icon">🎫</span>
+                    <span>JIRA Audits</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📝</span>
+                    <span>Content Analysis</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🔍</span>
+                    <span>Veracity Check</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📈</span>
+                    <span>Impact Assessment</span>
+                </div>
+            </div>
+            <a href="/audits" class="btn">Manage Audits</a>
+        </div>
+    </div>
+    
+    <!-- Secondary Features Grid (Lower Tier) -->
+    <div class="secondary-features">
+        <h3 class="secondary-title">System Management</h3>
+        <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <!-- System Management Card -->
+            <div class="card fade-in-up" onclick="window.location.href='/settings'" style="animation-delay: 0.5s;">
+                <div class="card-header">
+                    <div class="card-icon success">⚙️</div>
+                    <h3 class="card-title">System Configuration</h3>
+                </div>
+                <p class="card-description">
+                    Configuration and monitoring for all integrated services and API connections with real-time performance tracking.
+                </p>
+                <div class="card-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">🔗</span>
+                        <span>API Connections</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📊</span>
+                        <span>System Stats</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🔧</span>
+                        <span>Configuration</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📈</span>
+                        <span>Monitoring</span>
+                    </div>
+                </div>
+                <a href="/settings" class="btn success">Configure System</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Stats Overview -->
+    <div class="stats-overview">
+        <h3 class="section-title">System Overview</h3>
+        <div class="stats-grid">
+            <!-- Sales Tools Stats Section -->
+            <div class="stats-section fade-in-up" style="animation-delay: 0.5s;">
+                <div class="stats-header">
+                    <div class="stats-icon warning">💼</div>
+                    <h3 class="stats-title">Sales Tools Overview</h3>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @sales_summary[:total_rfp_projects] || 0 %></div>
+                        <div class="stat-label">RFP Projects</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @sales_summary[:total_sow_projects] || 0 %></div>
+                        <div class="stat-label">SOW Projects</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">$<%= (@sales_summary[:total_pipeline_value] || 0).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></div>
+                        <div class="stat-label">Pipeline Value</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @sales_summary[:active_projects] || 0 %></div>
+                        <div class="stat-label">Active Projects</div>
+                    </div>
+                </div>
+                <button onclick="refreshStats()" class="btn refresh-btn">🔄 Refresh Stats</button>
+            </div>
+            
+            <!-- Knowledge Base Stats Section -->
+            <div class="stats-section fade-in-up" style="animation-delay: 0.45s;">
+                <div class="stats-header">
+                    <div class="stats-icon success">🧠</div>
+                    <h3 class="stats-title">Knowledge Base Overview</h3>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @knowledge_summary[:total_sources] || 0 %></div>
+                        <div class="stat-label">Connected Sources</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @knowledge_summary[:total_content] || 0 %></div>
+                        <div class="stat-label">Total Content Items</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @knowledge_summary[:vector_relationships] || 0 %></div>
+                        <div class="stat-label">Vector Relationships</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @knowledge_summary[:recent_searches]&.length || 0 %></div>
+                        <div class="stat-label">Recent Searches</div>
+                    </div>
+                </div>
+                
+                <!-- Knowledge Base Status -->
+                <div style="margin-top: 20px; padding: 16px; background: var(--bg-secondary); border-radius: 12px; border: 1px solid var(--border-secondary);">
+                    <h4 style="color: var(--text-primary); margin-bottom: 12px; font-size: 16px;">📊 Knowledge Base Status</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div>
+                            <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 4px;">Last Sync</div>
+                            <div style="font-size: 16px; font-weight: 600; color: var(--accent-success);"><%= @knowledge_summary[:last_sync] || 'Never' %></div>
+                        </div>
+                        <div>
+                            <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 4px;">Status</div>
+                            <div style="font-size: 16px; font-weight: 600; color: <%= @knowledge_summary[:error] ? 'var(--accent-danger)' : 'var(--accent-success)' %>;">
+                                <%= @knowledge_summary[:error] ? 'Error' : 'Healthy' %>
+                            </div>
+                        </div>
+                    </div>
+                    <% if @knowledge_summary[:error] %>
+                    <div style="margin-top: 12px; padding: 8px; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.2);">
+                        <div style="font-size: 12px; color: var(--accent-danger);"><%= @knowledge_summary[:error] %></div>
+                    </div>
+                    <% end %>
+                </div>
+                
+                <a href="/knowledge-base" class="btn success" style="margin-top: 16px; width: auto; padding: 10px 20px;">🔍 Explore Knowledge Base</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Secondary Features Styles */
+    .secondary-features {
+        margin-top: 40px;
+    }
+    
+    .secondary-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--text-secondary);
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .stats-overview {
+        margin-top: 60px;
+    }
+    
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+    }
+    
+    .stats-section {
+        background: var(--bg-card);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 32px;
+        border: 1px solid var(--border-primary);
+        box-shadow: var(--shadow-primary);
+    }
+    
+    .stats-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+    
+    .stats-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+    }
+    
+    .stats-icon.warning {
+        background: var(--gradient-warning);
+    }
+    
+    .stats-icon.success {
+        background: var(--gradient-secondary);
+    }
+    
+    .stats-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0;
+    }
+    
+    .stat-item {
+        text-align: center;
+        padding: 16px;
+        background: var(--bg-secondary);
+        border-radius: 12px;
+        border: 1px solid var(--border-secondary);
+    }
+    
+    .stat-number {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+    }
+    
+    .stat-label {
+        font-size: 14px;
+        color: var(--text-tertiary);
+        font-size: 12px;
+    }
+    
+    .refresh-btn {
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        border: 1px solid var(--border-primary);
+        margin-top: 16px;
+        width: auto;
+        padding: 10px 20px;
+    }
+    
+    .refresh-btn:hover {
+        background: var(--bg-tertiary);
+    }
+</style>
+
+<script>
+    function refreshStats() {
+        location.reload();
+    }
+</script>

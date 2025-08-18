@@ -1,382 +1,187 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="system">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RFP Project: <%= @project[:name] %> - WizDocs</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        
-        .header h1 {
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-        
-        .header p {
-            opacity: 0.9;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        
-        .nav-tabs {
-            display: flex;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 4px;
-            margin-top: 20px;
-        }
-        
-        .nav-tab {
-            flex: 1;
-            padding: 12px 20px;
-            text-align: center;
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-        
-        .nav-tab:hover, .nav-tab.active {
-            background: rgba(255,255,255,0.2);
-            color: white;
-        }
-        
-        .project-info {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
-        }
-        
-        .project-info h2 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.8em;
-            font-weight: 600;
-        }
-        
-        .project-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .stat-item {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #667eea;
-        }
-        
-        .stat-label {
-            font-size: 0.9em;
-            color: #666;
-            margin-top: 5px;
-        }
-        
-        .section {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
-        }
-        
-        .section h3 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-size: 1.4em;
-            font-weight: 600;
-        }
-        
-        .file-list {
-            list-style: none;
-        }
-        
-        .file-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-            transition: background-color 0.3s;
-        }
-        
-        .file-item:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .file-item:last-child {
-            border-bottom: none;
-        }
-        
-        .file-name {
-            font-weight: 500;
-            color: #2c3e50;
-        }
-        
-        .file-size {
-            font-size: 0.9em;
-            color: #666;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 8px 16px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 500;
-            transition: all 0.3s;
-            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
-            margin-left: 10px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn-warning {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            box-shadow: 0 2px 10px rgba(250, 112, 154, 0.3);
-        }
-        
-        .btn-warning:hover {
-            box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4);
-        }
-        
-        .btn-success {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            box-shadow: 0 2px 10px rgba(79, 172, 254, 0.3);
-        }
-        
-        .btn-success:hover {
-            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
-        }
-        
-        .btn-danger {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
-        }
-        
-        .btn-danger:hover {
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-        }
-        
-        .back-btn {
-            background: #6c757d;
-            margin-bottom: 20px;
-        }
-        
-        .back-btn:hover {
-            background: #5a6268;
-        }
-        
-        .script-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .script-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            border-left: 4px solid #667eea;
-        }
-        
-        .script-card h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-        
-        .script-card p {
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-        }
-        
-        .execution-log {
-            background: #2c3e50;
-            color: #ecf0f1;
-            padding: 15px;
-            border-radius: 8px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            white-space: pre-wrap;
-            max-height: 300px;
-            overflow-y: auto;
-            margin-top: 15px;
-        }
-        
-        .project-type-badge {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            font-weight: 500;
-            margin-bottom: 10px;
-            background: #e3f2fd;
-            color: #1976d2;
-        }
-        
-        .last-modified {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 15px;
-        }
-    </style>
+    <title>RFP Project: <%= @project[:name] %> - Wiseguy</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/theme.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <a href="/sales-tools" class="btn back-btn">← Back to Sales Tools</a>
-        
-        <div class="header">
-            <h1>RFP Project: <%= @project[:name] %></h1>
-            <p>AI-powered RFP analysis and response generation</p>
-            
-            <div class="nav-tabs">
-                <a href="/" class="nav-tab">Dashboard</a>
-                <a href="/audits" class="nav-tab">Audits</a>
-                <a href="/sales-tools" class="nav-tab">Sales Tools</a>
-                <a href="/settings" class="nav-tab">Settings</a>
-            </div>
-        </div>
-        
-        <div class="project-info">
-            <div class="project-type-badge">RFP</div>
-            <h2><%= @project[:name] %></h2>
-            <div class="last-modified">Last modified: <%= @project[:last_modified] %></div>
-            
-            <div class="project-stats">
-                <div class="stat-item">
-                    <div class="stat-number"><%= @project[:input_count] %></div>
-                    <div class="stat-label">Input Files</div>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🦉</div>
+                    <div class="logo-text">
+                        <h1>Wiseguy</h1>
+                        <p>Agentic AI Platform</p>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number"><%= @project[:output_count] %></div>
-                    <div class="stat-label">Output Files</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number"><%= @project[:python_files].length %></div>
-                    <div class="stat-label">Python Scripts</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number"><%= @project[:text_files].length %></div>
-                    <div class="stat-label">Text Files</div>
+                <div class="header-actions">
+                    <div class="theme-toggle" data-theme="system" onclick="ThemeManager.toggle()">
+                        <span class="theme-icon">🌙</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="section">
-            <h3>📁 Input Files</h3>
-            <% if @project[:input_files].any? %>
-                <ul class="file-list">
-                    <% @project[:input_files].each do |file| %>
-                        <li class="file-item">
-                            <div>
-                                <div class="file-name"><%= file %></div>
-                            </div>
-                        </li>
-                    <% end %>
-                </ul>
-            <% else %>
-                <p>No input files found. Upload RFP documents to the input directory.</p>
-            <% end %>
-        </div>
-        
-        <div class="section">
-            <h3>📄 Output Files</h3>
-            <% if @project[:output_files].any? %>
-                <ul class="file-list">
-                    <% @project[:output_files].each do |file| %>
-                        <li class="file-item">
-                            <div>
-                                <div class="file-name"><%= file %></div>
-                            </div>
-                        </li>
-                    <% end %>
-                </ul>
-            <% else %>
-                <p>No output files found. Run analysis scripts to generate outputs.</p>
-            <% end %>
-        </div>
-        
-        <div class="section">
-            <h3>🐍 Python Scripts</h3>
-            <% if @project[:python_files].any? %>
-                <div class="script-grid">
-                    <% @project[:python_files].each do |script| %>
-                        <div class="script-card">
-                            <h4><%= script %></h4>
-                            <p>AI-powered RFP analysis script</p>
-                            <button onclick="runScript('<%= script %>')" class="btn btn-warning">Run Script</button>
-                            <div id="log-<%= script.gsub(/[^a-zA-Z0-9]/, '-') %>" class="execution-log" style="display: none;"></div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <a href="/" class="nav-tab">Dashboard</a>
+            <a href="/sales-tools" class="nav-tab active">Sales Tools</a>
+            <a href="/audits" class="nav-tab">Audits</a>
+            <a href="/settings" class="nav-tab">Settings</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <div style="margin-bottom: 24px;">
+                    <a href="/sales-tools" class="btn secondary" style="display: inline-flex; align-items: center; gap: 8px; width: auto;">
+                        <span>←</span>
+                        <span>Back to Sales Tools</span>
+                    </a>
+                </div>
+
+                <!-- Project Header -->
+                <div class="card fade-in-up">
+                    <div class="card-header">
+                        <div class="card-icon warning">📋</div>
+                        <div style="flex: 1;">
+                            <h2 class="card-title"><%= @project[:name] %></h2>
+                            <p style="margin: 4px 0 0 0; color: var(--text-secondary); font-size: 14px;">
+                                RFP Project • Last modified: <%= @project[:last_modified] %>
+                            </p>
                         </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 18px; font-weight: 600; color: var(--accent-warning);">
+                                <% estimated_value = @sales_tools.get_project_estimated_value(@project[:name], 'rfp') %>
+                                $<%= number_with_delimiter(estimated_value) %>
+                            </div>
+                            <div style="font-size: 12px; color: var(--text-secondary);">Estimated Value</div>
+                        </div>
+                    </div>
+                    <p class="card-description">
+                        AI-powered RFP analysis and response generation with comprehensive document processing and automated proposal creation.
+                    </p>
+                </div>
+
+                <!-- Project Stats -->
+                <div class="stats-section fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="stats-header">
+                        <div class="stats-icon primary">📊</div>
+                        <h3 class="stats-title">Project Overview</h3>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number"><%= @project[:input_count] %></div>
+                            <div class="stat-label">Input Files</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number"><%= @project[:output_count] %></div>
+                            <div class="stat-label">Output Files</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number"><%= @project[:python_files].length %></div>
+                            <div class="stat-label">Python Scripts</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number"><%= @project[:text_files].length %></div>
+                            <div class="stat-label">Text Files</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CRM Integration -->
+                <%= erb :crm_integration %>
+
+                <!-- Input Files -->
+                <div class="card fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="card-header">
+                        <div class="card-icon primary">📁</div>
+                        <h3 class="card-title">Input Files</h3>
+                    </div>
+                    <% if @project[:input_files].any? %>
+                        <div style="display: grid; gap: 12px;">
+                            <% @project[:input_files].each do |file| %>
+                                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border-secondary);">
+                                    <span style="font-size: 16px;">📄</span>
+                                    <span style="font-weight: 500; color: var(--text-primary);"><%= file %></span>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% else %>
+                        <p style="color: var(--text-secondary); text-align: center; padding: 20px;">No input files found. Upload RFP documents to the input directory.</p>
                     <% end %>
                 </div>
-            <% else %>
-                <p>No Python scripts found in this project.</p>
-            <% end %>
-        </div>
-        
-        <div class="section">
-            <h3>📝 Text Files</h3>
-            <% if @project[:text_files].any? %>
-                <ul class="file-list">
-                    <% @project[:text_files].each do |file| %>
-                        <li class="file-item">
-                            <div>
-                                <div class="file-name"><%= file %></div>
-                            </div>
-                        </li>
+
+                <!-- Output Files -->
+                <div class="card fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="card-header">
+                        <div class="card-icon success">📄</div>
+                        <h3 class="card-title">Output Files</h3>
+                    </div>
+                    <% if @project[:output_files].any? %>
+                        <div style="display: grid; gap: 12px;">
+                            <% @project[:output_files].each do |file| %>
+                                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border-secondary);">
+                                    <span style="font-size: 16px;">📋</span>
+                                    <span style="font-weight: 500; color: var(--text-primary);"><%= file %></span>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% else %>
+                        <p style="color: var(--text-secondary); text-align: center; padding: 20px;">No output files found. Run analysis scripts to generate outputs.</p>
                     <% end %>
-                </ul>
-            <% else %>
-                <p>No text files found.</p>
-            <% end %>
-        </div>
+                </div>
+
+                <!-- Python Scripts -->
+                <div class="card fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="card-header">
+                        <div class="card-icon warning">🐍</div>
+                        <h3 class="card-title">Python Scripts</h3>
+                    </div>
+                    <% if @project[:python_files].any? %>
+                        <div style="display: grid; gap: 16px;">
+                            <% @project[:python_files].each do |script| %>
+                                <div style="background: var(--bg-secondary); border-radius: 12px; padding: 20px; border: 1px solid var(--border-secondary);">
+                                    <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 12px;">
+                                        <h4 style="margin: 0; color: var(--text-primary); font-size: 16px; font-weight: 600;"><%= script %></h4>
+                                        <button onclick="runScript('<%= script %>')" class="btn warning" style="width: auto; padding: 8px 16px; font-size: 14px;">Run Script</button>
+                                    </div>
+                                    <p style="margin: 0; color: var(--text-secondary); font-size: 14px;">AI-powered RFP analysis script</p>
+                                    <div id="log-<%= script.gsub(/[^a-zA-Z0-9]/, '-') %>" class="execution-log" style="display: none; margin-top: 12px; background: var(--bg-tertiary); color: var(--text-primary); padding: 12px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; white-space: pre-wrap; max-height: 200px; overflow-y: auto; border: 1px solid var(--border-primary);"></div>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% else %>
+                        <p style="color: var(--text-secondary); text-align: center; padding: 20px;">No Python scripts found in this project.</p>
+                    <% end %>
+                </div>
+
+                <!-- Text Files -->
+                <div class="card fade-in-up" style="animation-delay: 0.5s;">
+                    <div class="card-header">
+                        <div class="card-icon primary">📝</div>
+                        <h3 class="card-title">Text Files</h3>
+                    </div>
+                    <% if @project[:text_files].any? %>
+                        <div style="display: grid; gap: 12px;">
+                            <% @project[:text_files].each do |file| %>
+                                <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border-secondary);">
+                                    <span style="font-size: 16px;">📄</span>
+                                    <span style="font-weight: 500; color: var(--text-primary);"><%= file %></span>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% else %>
+                        <p style="color: var(--text-secondary); text-align: center; padding: 20px;">No text files found.</p>
+                    <% end %>
+                </div>
+            </div>
+        </main>
     </div>
     
     <script>

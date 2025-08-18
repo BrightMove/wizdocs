@@ -1,388 +1,528 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="system">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Tools - WizDocs</title>
+    <title>Sales Tools - Wiseguy</title>
+    <link rel="stylesheet" href="/styles.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        
-        .header h1 {
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-        
-        .header p {
-            opacity: 0.9;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        
-        .nav-tabs {
-            display: flex;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 4px;
-            margin-top: 20px;
-        }
-        
-        .nav-tab {
-            flex: 1;
-            padding: 12px 20px;
-            text-align: center;
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-        
-        .nav-tab:hover, .nav-tab.active {
-            background: rgba(255,255,255,0.2);
-            color: white;
-        }
-        
-        .section-header {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            color: white;
-            padding: 20px;
-            margin: 30px 0 20px 0;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .section-header h2 {
-            font-size: 1.8em;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-        
-        .section-header p {
-            opacity: 0.9;
-            font-size: 1.1em;
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-        
-        .project-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-left: 4px solid #fa709a;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
-        
-        .project-card h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-            font-weight: 600;
-        }
-        
-        .project-card p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        
-        .project-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .stat-item {
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #667eea;
-        }
-        
-        .stat-label {
-            font-size: 0.9em;
-            color: #666;
-            margin-top: 5px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s;
-            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn-warning {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            box-shadow: 0 2px 10px rgba(250, 112, 154, 0.3);
-        }
-        
-        .btn-warning:hover {
-            box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4);
-        }
-        
-        .btn-danger {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
-        }
-        
-        .btn-danger:hover {
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-        }
-        
-        .btn-success {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            box-shadow: 0 2px 10px rgba(79, 172, 254, 0.3);
-        }
-        
-        .btn-success:hover {
-            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
-        }
-        
-        .create-project {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
-            border: 2px dashed #ddd;
-        }
-        
-        .create-project h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-            font-weight: 600;
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            color: #2c3e50;
-        }
-        
-        .form-group input {
+        .projects-table {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        .projects-table th {
+            background: var(--bg-secondary);
+            padding: 16px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-primary);
         }
         
-        .project-type-badge {
-            display: inline-block;
+        .projects-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid var(--border-secondary);
+            color: var(--text-primary);
+        }
+        
+        .projects-table tr:hover {
+            background: var(--bg-secondary);
+        }
+        
+        .project-type {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
+            border-radius: 6px;
+            font-size: 12px;
             font-weight: 500;
-            margin-bottom: 10px;
         }
         
-        .badge-rfp {
-            background: #e3f2fd;
+        .project-type.rfp {
+            background: rgba(255, 193, 7, 0.1);
+            color: #f57c00;
+        }
+        
+        .project-type.sow {
+            background: rgba(76, 175, 80, 0.1);
+            color: #388e3c;
+        }
+        
+        .project-type.proposal {
+            background: rgba(33, 150, 243, 0.1);
             color: #1976d2;
         }
         
-        .badge-sow {
-            background: #f3e5f5;
-            color: #7b1fa2;
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
         }
         
-        .last-modified {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 15px;
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-view {
+            background: var(--accent-primary);
+            color: white;
+        }
+        
+        .btn-regenerate {
+            background: var(--accent-warning);
+            color: white;
+        }
+        
+        .btn-delete {
+            background: var(--accent-error);
+            color: white;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background-color: var(--bg-primary);
+            margin: 5% auto;
+            padding: 24px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .close {
+            color: var(--text-secondary);
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: var(--text-primary);
+        }
+        
+        .form-row {
+            margin-bottom: 16px;
+        }
+        
+        .form-row label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .form-row select,
+        .form-row input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+        
+        .form-row select:focus,
+        .form-row input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+        
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-group label {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .filter-group select {
+            padding: 8px 12px;
+            border: 1px solid var(--border-primary);
+            border-radius: 6px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+        
+        /* Responsive design for mobile */
+        @media (max-width: 768px) {
+            .projects-table {
+                font-size: 14px;
+            }
+            
+            .projects-table th,
+            .projects-table td {
+                padding: 12px 8px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 4px;
+            }
+            
+            .btn-small {
+                padding: 4px 8px;
+                font-size: 11px;
+            }
+            
+            .filters {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .filter-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Sales Tools</h1>
-            <p>AI-powered tools for RFP responses and Statement of Work generation</p>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🦉</div>
+                    <div class="logo-text">
+                        <h1>Wiseguy</h1>
+                        <p>Agentic AI Platform</p>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="theme-toggle" id="themeToggle" data-theme="system" title="Toggle theme">
+                        <span style="position: absolute; top: 50%; left: 6px; transform: translateY(-50%); font-size: 10px;">☀️</span>
+                        <span style="position: absolute; top: 50%; right: 6px; transform: translateY(-50%); font-size: 10px;">🌙</span>
+                    </div>
+                </div>
+            </div>
             
             <div class="nav-tabs">
                 <a href="/" class="nav-tab">Dashboard</a>
-                <a href="/audits" class="nav-tab">Audits</a>
                 <a href="/sales-tools" class="nav-tab active">Sales Tools</a>
+                <a href="/knowledge-base" class="nav-tab">Knowledge Base</a>
+                <a href="/audits" class="nav-tab">Audits</a>
                 <a href="/settings" class="nav-tab">Settings</a>
             </div>
         </div>
-        
-        <div class="create-project">
-            <h3>Create New Project</h3>
-            <div style="display: flex; gap: 20px; align-items: end;">
-                <div class="form-group" style="flex: 1;">
-                    <label for="new-rfp-project">New RFP Project Name:</label>
-                    <input type="text" id="new-rfp-project" placeholder="e.g., 2025-01-15-client-name">
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                 <div>
+                     <h1 class="section-title">Sales Tools</h1>
+                     <p class="section-subtitle">AI-powered tools for RFP responses and Statement of Work generation</p>
+                     <p id="projectCount" style="margin: 8px 0 0 0; color: var(--text-secondary); font-size: 14px;">
+                         Loading projects...
+                     </p>
+                 </div>
+                 <button onclick="openCreateModal()" class="btn primary">
+                     <span style="margin-right: 8px;">➕</span>
+                     New Project
+                 </button>
+             </div>
+            
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Type:</label>
+                    <select id="typeFilter" onchange="filterProjects()">
+                        <option value="">All Types</option>
+                        <option value="RFP">RFP</option>
+                        <option value="SOW">SOW</option>
+                        <option value="PROPOSAL">Proposal</option>
+                    </select>
                 </div>
-                <button onclick="createRFPProject()" class="btn btn-warning">Create RFP Project</button>
+                <div class="filter-group">
+                    <label>Sort by:</label>
+                    <select id="sortFilter" onchange="filterProjects()">
+                        <option value="date">Date Created</option>
+                        <option value="name">Project Name</option>
+                        <option value="type">Project Type</option>
+                    </select>
+                </div>
             </div>
             
-            <div style="display: flex; gap: 20px; align-items: end; margin-top: 15px;">
-                <div class="form-group" style="flex: 1;">
-                    <label for="new-sow-project">New SOW Project Name:</label>
-                    <input type="text" id="new-sow-project" placeholder="e.g., client-name-sow">
+            <!-- Projects Table -->
+            <div id="projectsTable">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📊</div>
+                    <p>Loading projects...</p>
                 </div>
-                <button onclick="createSOWProject()" class="btn btn-warning">Create SOW Project</button>
             </div>
         </div>
-        
-        <div class="section-header">
-            <h2>📋 RFP Projects</h2>
-            <p>Automated RFP response generation with AI-powered requirement analysis</p>
-        </div>
-        
-        <div class="projects-grid">
-            <% @rfp_projects.each do |project| %>
-                <div class="project-card">
-                    <div class="project-type-badge badge-rfp">RFP</div>
-                    <h3><%= project[:name] %></h3>
-                    <div class="last-modified">Last modified: <%= project[:last_modified] %></div>
-                    
-                    <div class="project-stats">
-                        <div class="stat-item">
-                            <div class="stat-number"><%= project[:input_count] %></div>
-                            <div class="stat-label">Input Files</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number"><%= project[:output_count] %></div>
-                            <div class="stat-label">Output Files</div>
-                        </div>
-                    </div>
-                    
-                    <p>AI-powered RFP analysis and response generation project.</p>
-                    
-                    <a href="/sales-tools/rfp/<%= project[:name] %>" class="btn">View Details</a>
-                    <button onclick="deleteRFPProject('<%= project[:name] %>')" class="btn btn-danger">Delete</button>
-                </div>
-            <% end %>
+    </main>
+    
+    <!-- Create Project Modal -->
+    <div id="createModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Project</h3>
+                <span class="close" onclick="closeCreateModal()">&times;</span>
+            </div>
             
-            <% if @rfp_projects.empty? %>
-                <div class="project-card">
-                    <h3>No RFP Projects</h3>
-                    <p>Create your first RFP project to get started with automated response generation.</p>
-                </div>
-            <% end %>
-        </div>
-        
-        <div class="section-header">
-            <h2>📄 SOW Projects</h2>
-            <p>Generate comprehensive Statements of Work with automated scope definition</p>
-        </div>
-        
-        <div class="projects-grid">
-            <% @sow_projects.each do |project| %>
-                <div class="project-card">
-                    <div class="project-type-badge badge-sow">SOW</div>
-                    <h3><%= project[:name] %></h3>
-                    <div class="last-modified">Last modified: <%= project[:last_modified] %></div>
-                    
-                    <div class="project-stats">
-                        <div class="stat-item">
-                            <div class="stat-number"><%= project[:input_count] %></div>
-                            <div class="stat-label">Input Files</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number"><%= project[:output_count] %></div>
-                            <div class="stat-label">Output Files</div>
-                        </div>
-                    </div>
-                    
-                    <p>Automated Statement of Work generation with scope and deliverable tracking.</p>
-                    
-                    <a href="/sales-tools/sow/<%= project[:name] %>" class="btn">View Details</a>
-                    <button onclick="deleteSOWProject('<%= project[:name] %>')" class="btn btn-danger">Delete</button>
-                </div>
-            <% end %>
+            <div class="form-row">
+                <label for="projectType">Project Type</label>
+                <select id="projectType" required>
+                    <option value="">Select project type...</option>
+                    <option value="RFP">RFP Response</option>
+                    <option value="SOW">Statement of Work</option>
+                    <option value="PROPOSAL">Proposal</option>
+                </select>
+            </div>
             
-            <% if @sow_projects.empty? %>
-                <div class="project-card">
-                    <h3>No SOW Projects</h3>
-                    <p>Create your first SOW project to get started with automated scope definition.</p>
-                </div>
-            <% end %>
+            <div class="form-row">
+                <label for="projectName">Project Name</label>
+                <input type="text" id="projectName" placeholder="Enter project name..." required>
+            </div>
+            
+            <div class="modal-actions">
+                <button onclick="closeCreateModal()" class="btn secondary">Cancel</button>
+                <button onclick="createProject()" class="btn primary">Create Project</button>
+            </div>
         </div>
     </div>
     
+    <script src="/theme.js"></script>
     <script>
-        function createRFPProject() {
-            const projectName = document.getElementById('new-rfp-project').value.trim();
-            if (!projectName) {
-                alert('Please enter a project name');
+        let allProjects = [];
+        
+        // Load projects on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAllProjects();
+        });
+        
+        function loadAllProjects() {
+            Promise.all([
+                fetch('/api/sales-tools/rfp/list').then(r => r.json()),
+                fetch('/api/sales-tools/sow/list').then(r => r.json()),
+                fetch('/api/sales-tools/proposal/list').then(r => r.json())
+            ])
+            .then(([rfpProjects, sowProjects, proposalProjects]) => {
+                allProjects = [
+                    ...rfpProjects.map(p => ({ ...p, type: 'RFP' })),
+                    ...sowProjects.map(p => ({ ...p, type: 'SOW' })),
+                    ...proposalProjects.map(p => ({ ...p, type: 'PROPOSAL' }))
+                ];
+                renderProjectsTable();
+            })
+            .catch(error => {
+                console.error('Error loading projects:', error);
+                document.getElementById('projectsTable').innerHTML = 
+                    '<div class="empty-state"><div class="empty-state-icon">❌</div><p>Error loading projects</p></div>';
+            });
+        }
+        
+                 function renderProjectsTable() {
+             const container = document.getElementById('projectsTable');
+             
+             // Update project count
+             const projectCountElement = document.getElementById('projectCount');
+             if (allProjects.length === 0) {
+                 projectCountElement.textContent = 'No projects found';
+             } else {
+                 const filteredProjects = filterProjectsData();
+                 projectCountElement.textContent = `${filteredProjects.length} of ${allProjects.length} projects`;
+             }
+             
+             if (allProjects.length === 0) {
+                 container.innerHTML = `
+                     <div class="empty-state">
+                         <div class="empty-state-icon">📁</div>
+                         <p>No projects found</p>
+                         <button onclick="openCreateModal()" class="btn primary" style="margin-top: 16px;">Create Your First Project</button>
+                     </div>
+                 `;
+                 return;
+             }
+            
+            const filteredProjects = filterProjectsData();
+            
+            container.innerHTML = `
+                <table class="projects-table">
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Type</th>
+                            <th>Date Created</th>
+                            <th>Files</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${filteredProjects.map(project => `
+                            <tr>
+                                <td>
+                                    <div style="font-weight: 500;">${project.name}</div>
+                                    <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">
+                                        ${project.input_count} input, ${project.output_count} output
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="project-type ${project.type.toLowerCase()}">
+                                        ${getTypeIcon(project.type)} ${project.type}
+                                    </span>
+                                </td>
+                                <td>${formatDate(project.last_modified)}</td>
+                                <td>
+                                    <div style="font-size: 12px;">
+                                        <div>📁 ${project.input_count} input</div>
+                                        <div>📄 ${project.output_count} output</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <a href="/sales-tools/${project.type.toLowerCase()}/${project.name}" class="btn-small btn-view">View</a>
+                                        <button onclick="regenerateProject('${project.name}', '${project.type}')" class="btn-small btn-regenerate">Regenerate</button>
+                                        <button onclick="deleteProject('${project.name}', '${project.type}')" class="btn-small btn-delete">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+        
+        function filterProjectsData() {
+            let filtered = [...allProjects];
+            
+            const typeFilter = document.getElementById('typeFilter').value;
+            const sortFilter = document.getElementById('sortFilter').value;
+            
+            // Filter by type
+            if (typeFilter) {
+                filtered = filtered.filter(p => p.type === typeFilter);
+            }
+            
+            // Sort
+            filtered.sort((a, b) => {
+                switch (sortFilter) {
+                    case 'name':
+                        return a.name.localeCompare(b.name);
+                    case 'type':
+                        return a.type.localeCompare(b.type);
+                    case 'date':
+                    default:
+                        return new Date(b.last_modified) - new Date(a.last_modified);
+                }
+            });
+            
+            return filtered;
+        }
+        
+        function filterProjects() {
+            renderProjectsTable();
+        }
+        
+        function getTypeIcon(type) {
+            switch (type) {
+                case 'RFP': return '📋';
+                case 'SOW': return '📄';
+                case 'PROPOSAL': return '💼';
+                default: return '📁';
+            }
+        }
+        
+        function formatDate(dateString) {
+            if (!dateString || dateString === 'Unknown') return 'Unknown';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        }
+        
+        function openCreateModal() {
+            document.getElementById('createModal').style.display = 'block';
+            document.getElementById('projectName').focus();
+        }
+        
+        function closeCreateModal() {
+            document.getElementById('createModal').style.display = 'none';
+            document.getElementById('projectType').value = '';
+            document.getElementById('projectName').value = '';
+        }
+        
+        function createProject() {
+            const projectType = document.getElementById('projectType').value;
+            const projectName = document.getElementById('projectName').value.trim();
+            
+            if (!projectType || !projectName) {
+                alert('Please fill in all fields');
                 return;
             }
             
-            fetch('/api/sales-tools/rfp/create', {
+            const endpoint = `/api/sales-tools/${projectType.toLowerCase()}/create`;
+            
+            fetch(endpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -392,8 +532,8 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('RFP Project created successfully!');
-                    location.reload();
+                    closeCreateModal();
+                    loadAllProjects();
                 } else {
                     alert('Error: ' + data.error);
                 }
@@ -404,14 +544,14 @@
             });
         }
         
-        function createSOWProject() {
-            const projectName = document.getElementById('new-sow-project').value.trim();
-            if (!projectName) {
-                alert('Please enter a project name');
+        function regenerateProject(projectName, projectType) {
+            if (!confirm(`Are you sure you want to regenerate the ${projectType} project "${projectName}"?`)) {
                 return;
             }
             
-            fetch('/api/sales-tools/sow/create', {
+            const endpoint = `/api/sales-tools/${projectType.toLowerCase()}/run-script`;
+            
+            fetch(endpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -421,24 +561,26 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('SOW Project created successfully!');
-                    location.reload();
+                    alert('Project regenerated successfully!');
+                    loadAllProjects();
                 } else {
                     alert('Error: ' + data.error);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Error creating project');
+                alert('Error regenerating project');
             });
         }
         
-        function deleteRFPProject(projectName) {
-            if (!confirm(`Are you sure you want to delete the RFP project "${projectName}"?`)) {
+        function deleteProject(projectName, projectType) {
+            if (!confirm(`Are you sure you want to delete the ${projectType} project "${projectName}"? This action cannot be undone.`)) {
                 return;
             }
             
-            fetch('/api/sales-tools/rfp/delete', {
+            const endpoint = `/api/sales-tools/${projectType.toLowerCase()}/delete`;
+            
+            fetch(endpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -448,8 +590,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('RFP Project deleted successfully!');
-                    location.reload();
+                    loadAllProjects();
                 } else {
                     alert('Error: ' + data.error);
                 }
@@ -460,31 +601,12 @@
             });
         }
         
-        function deleteSOWProject(projectName) {
-            if (!confirm(`Are you sure you want to delete the SOW project "${projectName}"?`)) {
-                return;
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('createModal');
+            if (event.target === modal) {
+                closeCreateModal();
             }
-            
-            fetch('/api/sales-tools/sow/delete', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name: projectName })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('SOW Project deleted successfully!');
-                    location.reload();
-                } else {
-                    alert('Error: ' + data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error deleting project');
-            });
         }
     </script>
 </body>

@@ -1,0 +1,173 @@
+# Content Categories and Relationship Definitions
+
+categories:
+  knowledge_base:
+    description: "What the application says it does"
+    sources: ["lighthub", "confluence"]
+    vector_dimensions: 1536
+    update_frequency: "daily"
+    content_indicators:
+      - "user guide"
+      - "documentation"
+      - "help article"
+      - "tutorial"
+      - "how to"
+      - "feature description"
+    metadata_fields:
+      - "title"
+      - "content"
+      - "url"
+      - "last_updated"
+      - "author"
+      - "version"
+      - "tags"
+    
+  backlog:
+    description: "What the application should do"
+    sources: ["jira", "intercom"]
+    vector_dimensions: 1536
+    update_frequency: "hourly"
+    content_indicators:
+      - "feature request"
+      - "bug report"
+      - "enhancement"
+      - "user story"
+      - "epic"
+      - "improvement"
+    metadata_fields:
+      - "title"
+      - "description"
+      - "priority"
+      - "status"
+      - "assignee"
+      - "created_date"
+      - "labels"
+      - "story_points"
+    
+  platform:
+    description: "What the application actually does"
+    sources: ["github", "infrastructure"]
+    vector_dimensions: 1536
+    update_frequency: "daily"
+    content_indicators:
+      - "implementation"
+      - "code"
+      - "configuration"
+      - "deployment"
+      - "infrastructure"
+      - "actual behavior"
+    metadata_fields:
+      - "file_path"
+      - "content"
+      - "commit_hash"
+      - "branch"
+      - "last_modified"
+      - "file_type"
+      - "size"
+
+# Relationship Definitions
+relationships:
+  implements:
+    description: "Platform content implements backlog requirements"
+    from_category: "backlog"
+    to_category: "platform"
+    strength_threshold: 0.8
+    indicators:
+      - "implements"
+      - "addresses"
+      - "solves"
+      - "fulfills"
+    vector_similarity_required: true
+    
+  documents:
+    description: "Knowledge base content documents platform implementation"
+    from_category: "platform"
+    to_category: "knowledge_base"
+    strength_threshold: 0.7
+    indicators:
+      - "documents"
+      - "describes"
+      - "explains"
+      - "covers"
+    vector_similarity_required: true
+    
+  requires:
+    description: "Knowledge base content requires backlog items for gaps"
+    from_category: "knowledge_base"
+    to_category: "backlog"
+    strength_threshold: 0.6
+    indicators:
+      - "requires"
+      - "needs"
+      - "missing"
+      - "gap"
+    vector_similarity_required: true
+    
+  affects:
+    description: "Changes in one category affect others"
+    bidirectional: true
+    strength_threshold: 0.5
+    indicators:
+      - "affects"
+      - "impacts"
+      - "influences"
+      - "changes"
+    vector_similarity_required: false
+    
+  depends:
+    description: "Content pieces depend on each other"
+    bidirectional: true
+    strength_threshold: 0.6
+    indicators:
+      - "depends on"
+      - "requires"
+      - "needs"
+      - "prerequisite"
+    vector_similarity_required: false
+    
+  conflicts:
+    description: "Contradictions between content categories"
+    bidirectional: true
+    strength_threshold: 0.4
+    indicators:
+      - "contradicts"
+      - "conflicts"
+      - "disagrees"
+      - "inconsistent"
+    vector_similarity_required: false
+
+# Impact Analysis Settings
+impact_analysis:
+  max_impact_depth: 3
+  impact_threshold: 0.5
+  include_metadata: true
+  cache_results: true
+  cache_duration: 3600  # 1 hour
+  
+# Vector Similarity Settings
+vector_similarity:
+  cosine_threshold: 0.7
+  euclidean_threshold: 0.3
+  max_similar_items: 10
+  include_metadata: true
+  
+# Content Processing Settings
+content_processing:
+  max_content_length: 8192
+  chunk_size: 1024
+  overlap_size: 200
+  remove_html: true
+  normalize_text: true
+  extract_keywords: true
+  language_detection: true
+  
+# Quality Assurance
+quality_assurance:
+  min_content_length: 50
+  max_duplicate_threshold: 0.9
+  required_metadata_fields: ["title", "content"]
+  validation_rules:
+    - "content_not_empty"
+    - "title_not_empty"
+    - "valid_url_format"
+    - "category_matches_source"

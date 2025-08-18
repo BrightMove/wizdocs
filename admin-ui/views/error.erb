@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Wiseguy</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/theme.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🦉</div>
+                    <div class="logo-text">
+                        <h1>Wiseguy</h1>
+                        <p>Agentic AI Platform</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="theme-toggle" data-theme="system" onclick="ThemeManager.toggle()">
+                        <span class="theme-icon">🌙</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <a href="/" class="nav-tab">Dashboard</a>
+            <a href="/sales-tools" class="nav-tab">Sales Tools</a>
+            <a href="/audits" class="nav-tab">Audits</a>
+            <a href="/settings" class="nav-tab">Settings</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <div style="margin-bottom: 24px;">
+                    <a href="javascript:history.back()" class="btn secondary" style="display: inline-flex; align-items: center; gap: 8px; width: auto;">
+                        <span>←</span>
+                        <span>Go Back</span>
+                    </a>
+                </div>
+
+                <!-- Error Card -->
+                <div class="card fade-in-up" style="text-align: center; padding: 48px 24px;">
+                    <div class="card-icon error" style="font-size: 64px; margin: 0 auto 24px;">⚠️</div>
+                    <h2 class="card-title" style="color: var(--accent-error); margin-bottom: 16px;">
+                        <%= @error_message || 'An error occurred' %>
+                    </h2>
+                    <p class="card-description" style="margin-bottom: 32px; color: var(--text-secondary);">
+                        The requested resource could not be found or an error occurred while processing your request.
+                    </p>
+                    
+                    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                        <a href="/" class="btn primary">
+                            Go to Dashboard
+                        </a>
+                        <a href="/sales-tools" class="btn secondary">
+                            Sales Tools
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Help Section -->
+                <div class="card fade-in-up" style="animation-delay: 0.1s; margin-top: 24px;">
+                    <div class="card-header">
+                        <div class="card-icon info">💡</div>
+                        <h3 class="card-title">Need Help?</h3>
+                    </div>
+                    <p class="card-description">
+                        If you believe this is an error or need assistance, please check the following:
+                    </p>
+                    <ul style="margin: 16px 0; padding-left: 24px; color: var(--text-secondary);">
+                        <li>Verify the URL is correct</li>
+                        <li>Check if the project or resource still exists</li>
+                        <li>Try refreshing the page</li>
+                        <li>Contact support if the issue persists</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

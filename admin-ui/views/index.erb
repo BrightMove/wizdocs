@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="system">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WizDocs - Agentic AI Platform for BrightMove</title>
+    <title>Wiseguy - Agentic AI Platform for BrightMove</title>
     <style>
+        :root {
+            /* Light theme variables */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --bg-tertiary: #fafafa;
+            --bg-card: rgba(255, 255, 255, 0.8);
+            --bg-card-hover: rgba(255, 255, 255, 0.95);
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --text-tertiary: #6e6e73;
+            --accent-primary: #007aff;
+            --accent-secondary: #5856d6;
+            --accent-success: #34c759;
+            --accent-warning: #ff9500;
+            --accent-danger: #ff3b30;
+            --border-primary: rgba(0, 0, 0, 0.1);
+            --border-secondary: rgba(0, 0, 0, 0.05);
+            --shadow-primary: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-secondary: 0 2px 10px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --blur-bg: rgba(255, 255, 255, 0.8);
+            --gradient-primary: linear-gradient(135deg, #007aff 0%, #5856d6 100%);
+            --gradient-secondary: linear-gradient(135deg, #34c759 0%, #30d158 100%);
+            --gradient-warning: linear-gradient(135deg, #ff9500 0%, #ffcc02 100%);
+        }
+
+        [data-theme="dark"] {
+            /* Dark theme variables */
+            --bg-primary: #000000;
+            --bg-secondary: #1c1c1e;
+            --bg-tertiary: #2c2c2e;
+            --bg-card: rgba(28, 28, 30, 0.8);
+            --bg-card-hover: rgba(28, 28, 30, 0.95);
+            --text-primary: #ffffff;
+            --text-secondary: #ebebf5;
+            --text-tertiary: #ebebf599;
+            --accent-primary: #0a84ff;
+            --accent-secondary: #5e5ce6;
+            --accent-success: #30d158;
+            --accent-warning: #ff9f0a;
+            --accent-danger: #ff453a;
+            --border-primary: rgba(255, 255, 255, 0.1);
+            --border-secondary: rgba(255, 255, 255, 0.05);
+            --shadow-primary: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-secondary: 0 2px 10px rgba(0, 0, 0, 0.2);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
+            --blur-bg: rgba(0, 0, 0, 0.8);
+            --gradient-primary: linear-gradient(135deg, #0a84ff 0%, #5e5ce6 100%);
+            --gradient-secondary: linear-gradient(135deg, #30d158 0%, #32d74b 100%);
+            --gradient-warning: linear-gradient(135deg, #ff9f0a 0%, #ffd60a 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,42 +64,231 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
         
+        /* Header */
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
             color: white;
-            padding: 30px;
-            margin-bottom: 30px;
+        }
+        
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        /* Wiz Chat Button */
+        .wiz-chat-btn {
+            width: 48px;
+            height: 48px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            background: var(--gradient-primary);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-secondary);
+            position: relative;
         }
         
-        .header h1 {
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            font-weight: 300;
+        .wiz-chat-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
         }
         
-        .header p {
-            opacity: 0.9;
-            font-size: 1.2em;
-            margin-bottom: 20px;
+        .wiz-chat-icon {
+            font-size: 20px;
+            color: white;
         }
         
+        /* Wiz Chat Modal */
+        .wiz-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .wiz-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .wiz-modal-content {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 0;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            box-shadow: var(--shadow-hover);
+            border: 1px solid var(--border-primary);
+            animation: slideIn 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .wiz-modal-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .wiz-modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .wiz-modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .wiz-modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .wiz-modal-body {
+            padding: 24px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            cursor: pointer;
+            border: 1px solid var(--border-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background: var(--bg-secondary);
+        }
+        
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        
+        .theme-toggle[data-theme="dark"]::before {
+            transform: translateX(20px);
+        }
+        
+        .theme-toggle[data-theme="light"]::before {
+            transform: translateX(0);
+        }
+        
+        /* Navigation */
         .nav-tabs {
             display: flex;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
             padding: 4px;
             margin-top: 20px;
         }
@@ -56,323 +297,1328 @@
             flex: 1;
             padding: 12px 20px;
             text-align: center;
-            color: rgba(255,255,255,0.8);
+            color: var(--text-secondary);
             text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.3s;
+            border-radius: 8px;
+            transition: all 0.3s ease;
             font-weight: 500;
+            font-size: 14px;
         }
         
         .nav-tab:hover, .nav-tab.active {
-            background: rgba(255,255,255,0.2);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-secondary);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--border-primary);
+            box-shadow: var(--shadow-primary);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            background: var(--bg-card-hover);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
             color: white;
         }
         
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+        .card-icon.primary {
+            background: var(--gradient-primary);
         }
         
-        .dashboard-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-left: 4px solid #667eea;
+        .card-icon.success {
+            background: var(--gradient-secondary);
         }
         
-        .dashboard-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        .card-icon.warning {
+            background: var(--gradient-warning);
         }
         
-        .dashboard-card h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.4em;
+        .card-title {
+            font-size: 20px;
             font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
         }
         
-        .dashboard-card p {
-            color: #666;
-            line-height: 1.6;
+        .card-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
             margin-bottom: 20px;
         }
         
+        .card-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+        
+        .feature-icon {
+            font-size: 14px;
+        }
+        
         .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--gradient-primary);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 10px;
             border: none;
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
-            transition: all 0.3s;
-            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-secondary);
+            width: 100%;
         }
         
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: var(--shadow-hover);
         }
         
-        .btn-secondary {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            box-shadow: 0 2px 10px rgba(240, 147, 251, 0.3);
+        .btn.success {
+            background: var(--gradient-secondary);
         }
         
-        .btn-secondary:hover {
-            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+        .btn.warning {
+            background: var(--gradient-warning);
         }
         
-        .btn-success {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            box-shadow: 0 2px 10px rgba(79, 172, 254, 0.3);
+        /* Stats Sections */
+        .stats-section {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--border-primary);
+            box-shadow: var(--shadow-primary);
+            margin-bottom: 24px;
         }
         
-        .btn-success:hover {
-            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+        .stats-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
         }
         
-        .btn-warning {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            box-shadow: 0 2px 10px rgba(250, 112, 154, 0.3);
+        .stats-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
         }
         
-        .btn-warning:hover {
-            box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4);
+        .stats-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
         }
         
-        .status-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
         }
         
-        .status-connected {
-            background: #27ae60;
+        .stat-item {
+            text-align: center;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-secondary);
         }
         
-        .status-disconnected {
-            background: #e74c3c;
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 4px;
         }
         
-        .feature-list {
-            list-style: none;
-            margin-top: 15px;
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
         
-        .feature-list li {
+        .recent-projects {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .project-group {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid var(--border-secondary);
+        }
+        
+        .project-group-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .project-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 8px 0;
-            border-bottom: 1px solid #eee;
-            color: #666;
+            font-size: 13px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-secondary);
         }
         
-        .feature-list li:before {
-            content: "✓";
-            color: #27ae60;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .feature-list li:last-child {
+        .project-item:last-child {
             border-bottom: none;
         }
         
-        .section-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .project-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .project-files {
+            color: var(--text-tertiary);
+            font-size: 12px;
+        }
+        
+        .refresh-btn {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-primary);
+            margin-top: 16px;
+            width: auto;
+            padding: 10px 20px;
+        }
+        
+        .refresh-btn:hover {
+            background: var(--bg-tertiary);
+        }
+        
+        /* Wiz Chat Agent Styles */
+        .wiz-chat-section {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid var(--border-primary);
+            box-shadow: var(--shadow-primary);
+            margin-bottom: 40px;
+        }
+        
+        .wiz-chat-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .wiz-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
             color: white;
-            padding: 20px;
-            margin: 30px 0 20px 0;
+            box-shadow: var(--shadow-secondary);
+        }
+        
+        .wiz-info {
+            flex: 1;
+        }
+        
+        .wiz-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 4px 0;
+        }
+        
+        .wiz-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        
+        .wiz-chat-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .wiz-chat-messages {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-secondary);
+        }
+        
+        .wiz-message {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .wiz-message:last-child {
+            margin-bottom: 0;
+        }
+        
+        .wiz-message-avatar {
+            width: 32px;
+            height: 32px;
             border-radius: 8px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .wiz-message-user .wiz-message-avatar {
+            background: var(--gradient-secondary);
+        }
+        
+        .wiz-message-content {
+            flex: 1;
+            background: var(--bg-card);
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-primary);
+        }
+        
+        .wiz-message-content p {
+            margin: 0;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+        
+        .wiz-typing .wiz-message-content p {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .typing-dots::after {
+            content: '';
+            animation: typing 1.5s infinite;
+        }
+        
+        @keyframes typing {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
+        
+        .wiz-chat-input {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .wiz-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid var(--border-primary);
+            border-radius: 12px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .wiz-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+        
+        .wiz-send-btn {
+            padding: 12px 24px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .wiz-send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .wiz-quick-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .wiz-quick-btn {
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .wiz-quick-btn:hover {
+            background: var(--bg-card);
+            border-color: var(--accent-primary);
+            transform: translateY(-1px);
+        }
+        
+        /* Secondary Features Styles */
+        .secondary-features {
+            margin-top: 40px;
+        }
+        
+        .secondary-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
             text-align: center;
         }
         
-        .section-header h2 {
-            font-size: 1.8em;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-        
-        .section-header p {
-            opacity: 0.9;
-            font-size: 1.1em;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .recent-projects {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .section-subtitle {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>WizDocs</h1>
-            <p>Agentic AI Platform for BrightMove Product Management</p>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🦉</div>
+                    <div class="logo-text">
+                        <h1>Wiseguy</h1>
+                        <p>Agentic AI Platform</p>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="wiz-chat-btn" onclick="openWizModal()" title="Chat with Wiz">
+                        <span class="wiz-chat-icon">🦉</span>
+                    </button>
+                    <div class="theme-toggle" id="themeToggle" data-theme="system" title="Toggle theme">
+                        <span style="position: absolute; top: 50%; left: 6px; transform: translateY(-50%); font-size: 10px;">☀️</span>
+                        <span style="position: absolute; top: 50%; right: 6px; transform: translateY(-50%); font-size: 10px;">🌙</span>
+                    </div>
+                </div>
+            </div>
             
             <div class="nav-tabs">
                 <a href="/" class="nav-tab active">Dashboard</a>
-                <a href="/audits" class="nav-tab">Audits</a>
                 <a href="/sales-tools" class="nav-tab">Sales Tools</a>
+                <a href="/knowledge-base" class="nav-tab">Knowledge Base</a>
+                <a href="/audits" class="nav-tab">Audits</a>
                 <a href="/settings" class="nav-tab">Settings</a>
             </div>
         </div>
-        
-        <div class="section-header">
-            <h2>📊 Audits & Analysis</h2>
-            <p>Comprehensive audit tools for development tickets, content analysis, and veracity verification</p>
-        </div>
-        
-        <div class="dashboard-grid">
-            <div class="dashboard-card">
-                <h3>🎫 Development & Support Tickets</h3>
-                <p>Analyze JIRA development tickets and Intercom customer support tickets for consistency and accuracy.</p>
-                <ul class="feature-list">
-                    <li>JIRA: Epics, features, improvements, bug fixes</li>
-                    <li>Intercom: Customer interactions and support history</li>
-                    <li>Find tickets older than 6 months</li>
-                    <li>Detect potential duplicate issues</li>
-                </ul>
-                <a href="/tickets" class="btn">Analyze Tickets</a>
-            </div>
-            
-            <div class="dashboard-card">
-                <h3>📋 Comprehensive Ticket View</h3>
-                <p>View all tickets across all JIRA projects with advanced search and filtering capabilities.</p>
-                <ul class="feature-list">
-                    <li>View all tickets from all projects</li>
-                    <li>Advanced search and filtering</li>
-                    <li>Cross-project statistics</li>
-                    <li>Local caching for performance</li>
-                </ul>
-                <a href="/comprehensive-tickets" class="btn">View All Tickets</a>
-            </div>
-            
-            <div class="dashboard-card">
-                <h3>📚 Customer & Internal Content</h3>
-                <p>Analyze Intercom Help Center (LightHub) and Confluence content for consistency and accuracy.</p>
-                <ul class="feature-list">
-                    <li>Intercom: Customer-facing documentation (LightHub)</li>
-                    <li>Confluence: Internal knowledge base</li>
-                    <li>Detect content duplications</li>
-                    <li>Identify accuracy issues</li>
-                </ul>
-                <a href="/content-analysis" class="btn">Analyze Content</a>
-            </div>
-            
-            <div class="dashboard-card">
-                <h3>📁 Veracity Audits</h3>
-                <p>Manage your veracity audits, upload input files, and track analysis results in one centralized location.</p>
-                <ul class="feature-list">
-                    <li>Create and organize audits</li>
-                    <li>Upload input and output files</li>
-                    <li>Execute audit commands</li>
-                    <li>View analysis logs</li>
-                </ul>
-                <a href="/audits" class="btn btn-secondary">Manage Audits</a>
-            </div>
-            
-            <div class="dashboard-card">
-                <h3>🔗 GitHub Impact Analysis</h3>
-                <p>Monitor pull request impact on knowledge base and automatically detect conflicts between code changes and documentation.</p>
-                <ul class="feature-list">
-                    <li>Webhook integration for automatic analysis</li>
-                    <li>Conflict detection between code and KB</li>
-                    <li>Impact assessment on documentation</li>
-                    <li>JIRA ticket creation for updates</li>
-                    <li>Slack/email notifications</li>
-                </ul>
-                <a href="/github-impact" class="btn btn-success">View Impact Reports</a>
-            </div>
-        </div>
-        
-        <div class="section-header">
-            <h2>💼 Sales Tools</h2>
-            <p>AI-powered tools for RFP responses and Statement of Work generation</p>
-        </div>
-        
-        <div class="dashboard-grid">
-            <div class="dashboard-card">
-                <h3>📋 RFP Machine</h3>
-                <p>Automated RFP response generation with AI-powered requirement analysis and gap identification.</p>
-                <ul class="feature-list">
-                    <li>AI-powered requirement extraction</li>
-                    <li>Automated gap analysis</li>
-                    <li>Response template generation</li>
-                    <li>Project organization and management</li>
-                </ul>
-                <a href="/sales-tools" class="btn btn-warning">Manage RFP Projects</a>
-            </div>
-            
-            <div class="dashboard-card">
-                <h3>📄 SOW Machine</h3>
-                <p>Generate comprehensive Statements of Work with automated scope definition and deliverable tracking.</p>
-                <ul class="feature-list">
-                    <li>Automated scope definition</li>
-                    <li>Deliverable tracking</li>
-                    <li>Timeline generation</li>
-                    <li>Resource allocation planning</li>
-                </ul>
-                <a href="/sales-tools" class="btn btn-warning">Manage SOW Projects</a>
-            </div>
-        </div>
-        
-        <div class="section-header">
-            <h2>⚙️ System Management</h2>
-            <p>Configuration and monitoring for all integrated services</p>
-        </div>
-        
-        <div class="dashboard-grid">
-            <div class="dashboard-card">
-                <h3>⚙️ Sync Services</h3>
-                <p>Configure and monitor your Atlassian JIRA, Confluence, and Intercom API connections.</p>
-                <ul class="feature-list">
-                    <li>JIRA: Development tickets and projects</li>
-                    <li>Confluence: Internal documentation</li>
-                    <li>Intercom: Customer support and LightHub</li>
-                    <li>Real-time status monitoring</li>
-                </ul>
-                <a href="/settings" class="btn btn-success">Configure APIs</a>
-            </div>
-            
-            <div class="dashboard-card">
-                <h3>📊 Quick Stats</h3>
-                <p>Get an overview of your current project status and ticket analysis results.</p>
-                <div id="quick-stats">
-                    <p>Loading statistics...</p>
+    </header>
+
+    <main class="main-content">
+        <div class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Your toolkit for building scalable AI</h1>
+                    <p class="hero-subtitle">Wiseguy expands the scope of what AI can do and what you can bring to production, faster than ever imagined.</p>
                 </div>
-                <button onclick="refreshStats()" class="btn">Refresh Stats</button>
             </div>
         </div>
-    </div>
+        
+        <div class="container">
+            <h2 class="section-title">Trusted by teams building the future</h2>
+            <p class="section-subtitle">Comprehensive audit tools and AI-powered sales automation for modern product teams</p>
+            
+            <!-- Primary Features Grid -->
+            <div class="cards-grid">
+                <!-- Sales Tools Card -->
+                <div class="card fade-in-up" onclick="window.location.href='/sales-tools'" style="animation-delay: 0.1s;">
+                    <div class="card-header">
+                        <div class="card-icon warning">💼</div>
+                        <h3 class="card-title">Sales Tools</h3>
+                    </div>
+                    <p class="card-description">
+                        AI-powered tools for RFP responses and Statement of Work generation with automated value estimation and pipeline tracking.
+                    </p>
+                    <div class="card-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">📋</span>
+                            <span>RFP Machine</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📄</span>
+                            <span>SOW Machine</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🤖</span>
+                            <span>AI Analysis</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">⚡</span>
+                            <span>Auto Generation</span>
+                        </div>
+                    </div>
+                    <a href="/sales-tools" class="btn warning">Manage Sales Tools</a>
+                </div>
+                
+                <!-- Knowledge Base Card -->
+                <div class="card fade-in-up" onclick="window.location.href='/knowledge-base'" style="animation-delay: 0.2s;">
+                    <div class="card-header">
+                        <div class="card-icon success">🧠</div>
+                        <h3 class="card-title">Knowledge Base</h3>
+                    </div>
+                    <p class="card-description">
+                        LLM-powered content analysis and RAG-based search across JIRA, Intercom, GitHub, and documentation with vector relationships.
+                    </p>
+                    <div class="card-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">🔍</span>
+                            <span>Smart Search</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔗</span>
+                            <span>Vector Links</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📚</span>
+                            <span>Content Sync</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🤖</span>
+                            <span>RAG Analysis</span>
+                        </div>
+                    </div>
+                    <a href="/knowledge-base" class="btn success">Explore Knowledge Base</a>
+                </div>
+                
+                <!-- Audits & Analysis Card -->
+                <div class="card fade-in-up" onclick="window.location.href='/audits'" style="animation-delay: 0.3s;">
+                    <div class="card-header">
+                        <div class="card-icon primary">📊</div>
+                        <h3 class="card-title">Audits & Analysis</h3>
+                    </div>
+                    <p class="card-description">
+                        Comprehensive audit tools for development tickets, content analysis, and veracity verification with intelligent insights.
+                    </p>
+                    <div class="card-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">🎫</span>
+                            <span>Ticket Analysis</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📚</span>
+                            <span>Content Review</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📁</span>
+                            <span>Veracity Audits</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔗</span>
+                            <span>GitHub Impact</span>
+                        </div>
+                    </div>
+                    <a href="/audits" class="btn">Manage Audits</a>
+                </div>
+            </div>
+            
+            <!-- Wiz Chat Agent Section -->
+            <div class="wiz-chat-section fade-in-up" style="animation-delay: 0.4s;">
+                <div class="wiz-chat-header">
+                    <div class="wiz-avatar">🦉</div>
+                    <div class="wiz-info">
+                        <h3 class="wiz-title">Wiz - Your AI Assistant</h3>
+                        <p class="wiz-subtitle">Ask me anything about Sales Tools, Knowledge Base, or Audits & Analysis</p>
+                        <div class="wiz-status-indicator" style="font-size: 12px; margin-top: 4px;">🔄 Checking connection...</div>
+                    </div>
+                </div>
+                
+                <div class="wiz-chat-container">
+                    <div class="wiz-chat-messages" id="wizChatMessages">
+                        <div class="wiz-message wiz-message-bot">
+                            <div class="wiz-message-avatar">🦉</div>
+                            <div class="wiz-message-content">
+                                <p>Hello! I'm Wiz, your AI assistant for Wiseguy. I can help you with sales tools, audits, and knowledge base management. What would you like to work on today?</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wiz-chat-input">
+                        <input type="text" id="wizChatInput" placeholder="Ask Wiz anything..." class="wiz-input">
+                        <button onclick="sendWizMessage()" class="wiz-send-btn">Send</button>
+                    </div>
+                    
+                    <div class="wiz-quick-actions">
+                        <button onclick="askWiz('Help me with RFP generation', 'sales')" class="wiz-quick-btn">📋 RFP Help</button>
+                        <button onclick="askWiz('Search the knowledge base for SSO', 'knowledge')" class="wiz-quick-btn">🔍 Search KB</button>
+                        <button onclick="askWiz('Run a JIRA audit', 'audit')" class="wiz-quick-btn">🎫 Audit JIRA</button>
+                        <button onclick="askWiz('What can you do?', 'general')" class="wiz-quick-btn">❓ Help</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Secondary Features Grid (Lower Tier) -->
+            <div class="secondary-features">
+                <h3 class="secondary-title">System Management</h3>
+                <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                    <!-- System Management Card -->
+                    <div class="card fade-in-up" onclick="window.location.href='/settings'" style="animation-delay: 0.5s;">
+                        <div class="card-header">
+                            <div class="card-icon success">⚙️</div>
+                            <h3 class="card-title">System Configuration</h3>
+                        </div>
+                        <p class="card-description">
+                            Configuration and monitoring for all integrated services and API connections with real-time performance tracking.
+                        </p>
+                        <div class="card-features">
+                            <div class="feature-item">
+                                <span class="feature-icon">🔗</span>
+                                <span>API Connections</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📊</span>
+                                <span>System Stats</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🔧</span>
+                                <span>Configuration</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📈</span>
+                                <span>Monitoring</span>
+                            </div>
+                        </div>
+                        <a href="/settings" class="btn success">Configure System</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Stats Section -->
+            <div class="stats-section fade-in-up" style="animation-delay: 0.4s;">
+                <div class="stats-header">
+                    <div class="stats-icon primary">📈</div>
+                    <h3 class="stats-title">Quick Stats</h3>
+                </div>
+                <div class="stats-grid" id="quick-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">-</div>
+                        <div class="stat-label">JIRA Obsolete</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">-</div>
+                        <div class="stat-label">JIRA Duplicates</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">-</div>
+                        <div class="stat-label">Intercom Old</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">-</div>
+                        <div class="stat-label">Total Issues</div>
+                    </div>
+                </div>
+                <button onclick="refreshStats()" class="btn refresh-btn">🔄 Refresh Stats</button>
+            </div>
+            
+            <!-- Knowledge Base Stats Section -->
+            <div class="stats-section fade-in-up" style="animation-delay: 0.45s;">
+                <div class="stats-header">
+                    <div class="stats-icon success">🧠</div>
+                    <h3 class="stats-title">Knowledge Base Overview</h3>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @knowledge_summary[:total_sources] || 0 %></div>
+                        <div class="stat-label">Connected Sources</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @knowledge_summary[:total_content] || 0 %></div>
+                        <div class="stat-label">Total Content Items</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @knowledge_summary[:vector_relationships] || 0 %></div>
+                        <div class="stat-label">Vector Relationships</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @knowledge_summary[:recent_searches]&.length || 0 %></div>
+                        <div class="stat-label">Recent Searches</div>
+                    </div>
+                </div>
+                
+                <!-- Knowledge Base Status -->
+                <div style="margin-top: 20px; padding: 16px; background: var(--bg-secondary); border-radius: 12px; border: 1px solid var(--border-secondary);">
+                    <h4 style="color: var(--text-primary); margin-bottom: 12px; font-size: 16px;">📊 Knowledge Base Status</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div>
+                            <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 4px;">Last Sync</div>
+                            <div style="font-size: 16px; font-weight: 600; color: var(--accent-success);"><%= @knowledge_summary[:last_sync] || 'Never' %></div>
+                        </div>
+                        <div>
+                            <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 4px;">Status</div>
+                            <div style="font-size: 16px; font-weight: 600; color: <%= @knowledge_summary[:error] ? 'var(--accent-danger)' : 'var(--accent-success)' %>;">
+                                <%= @knowledge_summary[:error] ? 'Error' : 'Healthy' %>
+                            </div>
+                        </div>
+                    </div>
+                    <% if @knowledge_summary[:error] %>
+                    <div style="margin-top: 12px; padding: 8px; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.2);">
+                        <div style="font-size: 12px; color: var(--accent-danger);"><%= @knowledge_summary[:error] %></div>
+                    </div>
+                    <% end %>
+                </div>
+                
+                <a href="/knowledge-base" class="btn success" style="margin-top: 16px; width: auto; padding: 10px 20px;">🔍 Explore Knowledge Base</a>
+            </div>
+            
+            <!-- Sales Tools Stats Section -->
+            <div class="stats-section fade-in-up" style="animation-delay: 0.5s;">
+                <div class="stats-header">
+                    <div class="stats-icon warning">💼</div>
+                    <h3 class="stats-title">Sales Tools Overview</h3>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @sales_summary[:open_rfp] || 0 %></div>
+                        <div class="stat-label">Open RFPs</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @sales_summary[:open_sow] || 0 %></div>
+                        <div class="stat-label">Open SOWs</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @sales_summary[:open_proposals] || 0 %></div>
+                        <div class="stat-label">Open Proposals</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><%= @sales_summary[:open_all_proposals] || 0 %></div>
+                        <div class="stat-label">Total Projects</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">$<%= number_with_delimiter(@sales_summary[:total_value] || 0) %></div>
+                        <div class="stat-label">Total Value</div>
+                    </div>
+                </div>
+                
+                <!-- Value Breakdown -->
+                <div style="margin-top: 20px; padding: 16px; background: var(--bg-secondary); border-radius: 12px; border: 1px solid var(--border-secondary);">
+                    <h4 style="color: var(--text-primary); margin-bottom: 12px; font-size: 16px;">💰 Value Breakdown</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+                        <div>
+                            <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 4px;">RFP Pipeline</div>
+                            <div style="font-size: 20px; font-weight: 600; color: var(--accent-warning);">$<%= number_with_delimiter(@sales_summary[:rfp_total_value] || 0) %></div>
+                        </div>
+                        <div>
+                            <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 4px;">SOW Pipeline</div>
+                            <div style="font-size: 20px; font-weight: 600; color: var(--accent-success);">$<%= number_with_delimiter(@sales_summary[:sow_total_value] || 0) %></div>
+                        </div>
+                        <div>
+                            <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 4px;">Proposal Pipeline</div>
+                            <div style="font-size: 20px; font-weight: 600; color: var(--accent-primary);">$<%= number_with_delimiter(@sales_summary[:proposal_total_value] || 0) %></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Projects Preview -->
+                <% if (@sales_summary[:recent_rfp]&.any?) || (@sales_summary[:recent_sow]&.any?) || (@sales_summary[:recent_proposals]&.any?) %>
+                <div class="recent-projects">
+                    <% if @sales_summary[:recent_rfp]&.any? %>
+                    <div class="project-group">
+                        <h4 class="project-group-title">
+                            <span>📋</span>
+                            <span>Recent RFPs</span>
+                        </h4>
+                        <% @sales_summary[:recent_rfp].first(3).each do |project| %>
+                        <div class="project-item">
+                            <span class="project-name"><%= project[:name] %></span>
+                            <span class="project-files"><%= project[:input_count] %> files</span>
+                        </div>
+                        <% end %>
+                    </div>
+                    <% end %>
+                    
+                    <% if @sales_summary[:recent_sow]&.any? %>
+                    <div class="project-group">
+                        <h4 class="project-group-title">
+                            <span>📄</span>
+                            <span>Recent SOWs</span>
+                        </h4>
+                        <% @sales_summary[:recent_sow].first(3).each do |project| %>
+                        <div class="project-item">
+                            <span class="project-name"><%= project[:name] %></span>
+                            <span class="project-files"><%= project[:input_count] %> files</span>
+                        </div>
+                        <% end %>
+                    </div>
+                    <% end %>
+                    
+                    <% if @sales_summary[:recent_proposals]&.any? %>
+                    <div class="project-group">
+                        <h4 class="project-group-title">
+                            <span>💼</span>
+                            <span>Recent Proposals</span>
+                        </h4>
+                        <% @sales_summary[:recent_proposals].first(3).each do |project| %>
+                        <div class="project-item">
+                            <span class="project-name"><%= project[:name] %></span>
+                            <span class="project-files"><%= project[:input_count] %> files</span>
+                        </div>
+                        <% end %>
+                    </div>
+                    <% end %>
+                </div>
+                <% end %>
+                
+                <a href="/sales-tools" class="btn" style="margin-top: 16px; width: auto; padding: 10px 20px;">📊 View All Sales Tools</a>
+            </div>
+        </div>
+    </main>
     
     <script>
+        // Theme Management
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Get saved theme or default to system
+        const savedTheme = localStorage.getItem('wiseguy-theme') || 'system';
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.setAttribute('data-theme', savedTheme);
+        
+        // Check system preference
+        function getSystemTheme() {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        
+        // Apply theme
+        function applyTheme(theme) {
+            const actualTheme = theme === 'system' ? getSystemTheme() : theme;
+            html.setAttribute('data-theme', actualTheme);
+            themeToggle.setAttribute('data-theme', theme);
+            localStorage.setItem('wiseguy-theme', theme);
+        }
+        
+        // Theme toggle click handler
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = themeToggle.getAttribute('data-theme');
+            let newTheme;
+            
+            switch (currentTheme) {
+                case 'light':
+                    newTheme = 'dark';
+                    break;
+                case 'dark':
+                    newTheme = 'system';
+                    break;
+                case 'system':
+                    newTheme = 'light';
+                    break;
+                default:
+                    newTheme = 'system';
+            }
+            
+            applyTheme(newTheme);
+        });
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            const currentTheme = themeToggle.getAttribute('data-theme');
+            if (currentTheme === 'system') {
+                applyTheme('system');
+            }
+        });
+        
+        // Initialize theme
+        applyTheme(savedTheme);
+        
+        // Stats refresh function
         function refreshStats() {
             fetch('/api/tickets/analysis')
                 .then(response => response.json())
                 .then(data => {
                     const statsDiv = document.getElementById('quick-stats');
+                    const stats = data.summary || {};
+                    
                     statsDiv.innerHTML = `
-                        <ul class="feature-list">
-                            <li>JIRA Obsolete: ${data.summary?.jira_obsolete_count || 0}</li>
-                            <li>JIRA Duplicates: ${data.summary?.jira_duplicate_groups || 0}</li>
-                            <li>Intercom Old: ${data.summary?.intercom_old_count || 0}</li>
-                            <li>Total Issues: ${data.summary?.total_issues || 0}</li>
-                        </ul>
+                        <div class="stat-item">
+                            <div class="stat-number">${stats.jira_obsolete_count || 0}</div>
+                            <div class="stat-label">JIRA Obsolete</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${stats.jira_duplicate_groups || 0}</div>
+                            <div class="stat-label">JIRA Duplicates</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${stats.intercom_old_count || 0}</div>
+                            <div class="stat-label">Intercom Old</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${stats.total_issues || 0}</div>
+                            <div class="stat-label">Total Issues</div>
+                        </div>
                     `;
                 })
                 .catch(error => {
                     console.error('Error fetching stats:', error);
-                    document.getElementById('quick-stats').innerHTML = '<p>Error loading statistics</p>';
+                    document.getElementById('quick-stats').innerHTML = '<div class="stat-item"><div class="stat-number">⚠️</div><div class="stat-label">Error loading statistics</div></div>';
                 });
         }
         
         // Load stats on page load
-        document.addEventListener('DOMContentLoaded', refreshStats);
+        document.addEventListener('DOMContentLoaded', function() {
+            refreshStats();
+            checkWizAgentStatus();
+        });
+        
+        // Wiz Chat Agent Functions
+        let wizAgentStatus = 'unknown';
+        
+        // Check Wiz Agent status on page load
+        function checkWizAgentStatus() {
+            fetch('/api/wiz/health')
+                .then(response => response.json())
+                .then(data => {
+                    wizAgentStatus = data.success ? 'connected' : 'disconnected';
+                    updateWizStatusIndicator();
+                })
+                .catch(error => {
+                    console.error('Error checking Wiz Agent status:', error);
+                    wizAgentStatus = 'disconnected';
+                    updateWizStatusIndicator();
+                });
+        }
+        
+        function updateWizStatusIndicator() {
+            const statusElements = document.querySelectorAll('.wiz-status-indicator');
+            statusElements.forEach(element => {
+                if (wizAgentStatus === 'connected') {
+                    element.innerHTML = '<span style="color: #28a745;">🟢 Connected to AI</span>';
+                    element.title = 'Connected to wiz-agent microservice';
+                } else {
+                    element.innerHTML = '<span style="color: #dc3545;">🔴 Local Mode</span>';
+                    element.title = 'Using local responses (wiz-agent unavailable)';
+                }
+            });
+        }
+        
+        function sendWizMessage() {
+            const input = document.getElementById('wizChatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message to chat
+            addWizMessage(message, 'user');
+            input.value = '';
+            
+            // Show typing indicator
+            const typingIndicator = addTypingIndicator();
+            
+            // Send to Wiz API
+            fetch('/api/wiz/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    message: message,
+                    context: 'general'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Remove typing indicator
+                removeTypingIndicator(typingIndicator);
+                
+                if (data.success) {
+                    addWizMessage(data.response, 'bot');
+                } else {
+                    addWizMessage('Sorry, I encountered an error. Please try again.', 'bot');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                removeTypingIndicator(typingIndicator);
+                addWizMessage('Sorry, I encountered an error. Please try again.', 'bot');
+            });
+        }
+        
+        function askWiz(message, context) {
+            // Add user message to chat
+            addWizMessage(message, 'user');
+            
+            // Show typing indicator
+            const typingIndicator = addTypingIndicator();
+            
+            // Send to Wiz API
+            fetch('/api/wiz/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    message: message,
+                    context: context
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Remove typing indicator
+                removeTypingIndicator(typingIndicator);
+                
+                if (data.success) {
+                    addWizMessage(data.response, 'bot');
+                } else {
+                    addWizMessage('Sorry, I encountered an error. Please try again.', 'bot');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                removeTypingIndicator(typingIndicator);
+                addWizMessage('Sorry, I encountered an error. Please try again.', 'bot');
+            });
+        }
+        
+        function addWizMessage(message, sender) {
+            const messagesContainer = document.getElementById('wizChatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `wiz-message wiz-message-${sender}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'wiz-message-avatar';
+            avatar.textContent = sender === 'user' ? '👤' : '🦉';
+            
+            const content = document.createElement('div');
+            content.className = 'wiz-message-content';
+            content.innerHTML = `<p>${message}</p>`;
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(content);
+            messagesContainer.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function addTypingIndicator() {
+            const messagesContainer = document.getElementById('wizChatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'wiz-message wiz-message-bot wiz-typing';
+            typingDiv.id = 'wiz-typing-indicator';
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'wiz-message-avatar';
+            avatar.textContent = '🦉';
+            
+            const content = document.createElement('div');
+            content.className = 'wiz-message-content';
+            content.innerHTML = '<p><span class="typing-dots">Wiz is thinking</span></p>';
+            
+            typingDiv.appendChild(avatar);
+            typingDiv.appendChild(content);
+            messagesContainer.appendChild(typingDiv);
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            return typingDiv;
+        }
+        
+        function removeTypingIndicator(typingIndicator) {
+            if (typingIndicator && typingIndicator.parentNode) {
+                typingIndicator.parentNode.removeChild(typingIndicator);
+            }
+        }
+        
+        // Handle Enter key in chat input
+        document.addEventListener('DOMContentLoaded', function() {
+            const wizInput = document.getElementById('wizChatInput');
+            if (wizInput) {
+                wizInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendWizMessage();
+                    }
+                });
+            }
+        });
+        
+        // Wiz Modal Functions
+        function openWizModal() {
+            const modal = document.getElementById('wizModal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            
+            // Focus on input
+            setTimeout(() => {
+                const input = document.getElementById('wizModalInput');
+                if (input) input.focus();
+            }, 300);
+        }
+        
+        function closeWizModal() {
+            const modal = document.getElementById('wizModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        function sendWizModalMessage() {
+            const input = document.getElementById('wizModalInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message to chat
+            addWizModalMessage(message, 'user');
+            input.value = '';
+            
+            // Send to Wiz API
+            fetch('/api/wiz/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    message: message,
+                    context: 'general'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    addWizModalMessage(data.response, 'bot');
+                } else {
+                    addWizModalMessage('Sorry, I encountered an error. Please try again.', 'bot');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                addWizModalMessage('Sorry, I encountered an error. Please try again.', 'bot');
+            });
+        }
+        
+        function addWizModalMessage(message, sender) {
+            const messagesContainer = document.getElementById('wizModalMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `wiz-message wiz-message-${sender}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'wiz-message-avatar';
+            avatar.textContent = sender === 'user' ? '👤' : '🦉';
+            
+            const content = document.createElement('div');
+            content.className = 'wiz-message-content';
+            content.innerHTML = `<p>${message}</p>`;
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(content);
+            messagesContainer.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function askWizModal(message, context) {
+            // Add user message to chat
+            addWizModalMessage(message, 'user');
+            
+            // Send to Wiz API
+            fetch('/api/wiz/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    message: message,
+                    context: context
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    addWizModalMessage(data.response, 'bot');
+                } else {
+                    addWizModalMessage('Sorry, I encountered an error. Please try again.', 'bot');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                addWizModalMessage('Sorry, I encountered an error. Please try again.', 'bot');
+            });
+        }
+        
+        // Handle Enter key in modal input
+        document.addEventListener('DOMContentLoaded', function() {
+            const wizModalInput = document.getElementById('wizModalInput');
+            if (wizModalInput) {
+                wizModalInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendWizModalMessage();
+                    }
+                });
+            }
+            
+            // Close modal when clicking outside
+            const modal = document.getElementById('wizModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeWizModal();
+                    }
+                });
+            }
+        });
     </script>
+    
+    <!-- Wiz Chat Modal -->
+    <div id="wizModal" class="wiz-modal">
+        <div class="wiz-modal-content">
+            <div class="wiz-modal-header">
+                <h3 class="wiz-modal-title">
+                    <span>🦉</span>
+                    <span>Wiz - Your AI Assistant</span>
+                    <div class="wiz-status-indicator" style="font-size: 11px; margin-top: 2px;">🔄 Checking connection...</div>
+                </h3>
+                <button class="wiz-modal-close" onclick="closeWizModal()">×</button>
+            </div>
+            <div class="wiz-modal-body">
+                <div class="wiz-chat-messages" id="wizModalMessages">
+                    <div class="wiz-message wiz-message-bot">
+                        <div class="wiz-message-avatar">🦉</div>
+                        <div class="wiz-message-content">
+                            <p>Hello! I'm Wiz, your AI assistant for Wiseguy. I can help you with sales tools, audits, and knowledge base management. What would you like to work on today?</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="wiz-chat-input" style="margin-top: 16px;">
+                    <input type="text" id="wizModalInput" placeholder="Ask Wiz anything..." class="wiz-input">
+                    <button onclick="sendWizModalMessage()" class="wiz-send-btn">Send</button>
+                </div>
+                
+                <div class="wiz-quick-actions" style="margin-top: 16px;">
+                    <button onclick="askWizModal('Help me with RFP generation', 'sales')" class="wiz-quick-btn">📋 RFP Help</button>
+                    <button onclick="askWizModal('Search the knowledge base for SSO', 'knowledge')" class="wiz-quick-btn">🔍 Search KB</button>
+                    <button onclick="askWizModal('Run a JIRA audit', 'audit')" class="wiz-quick-btn">🎫 Audit JIRA</button>
+                    <button onclick="askWizModal('What can you do?', 'general')" class="wiz-quick-btn">❓ Help</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html> 

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "db28f6e4-915d-42b0-9123-bd98505415fb",
+    "organization_id": "32327de4-9887-4e68-96fa-7b9c65c254ee",
+    "first_name": "Donnita",
+    "last_name": "Weeks",
+    "title": "IT Director",
+    "email": "Donnita.Weeks@bgky.org",
+    "phone": "270-393-3709",
+    "mobile": "270-792-1795",
+    "linkedin": "",
+    "is_primary": false,
+    "notes": "IT Director for City of Bowling Green",
+    "created_at": "2025-08-18T09:23:09-04:00",
+    "updated_at": "2025-08-18T09:24:13-04:00"
+  }
+]

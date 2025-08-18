@@ -1,0 +1,97 @@
+# Source System Configurations for Vector Relationship Management
+
+knowledge_base:
+  lighthub:
+    base_url: "https://help.lighthub.com"
+    api_token: "${LIGHTHUB_API_TOKEN}"
+    content_types: ["articles", "guides", "tutorials"]
+    update_frequency: "daily"
+    vector_category: "knowledge_base"
+    
+  confluence:
+    base_url: "https://company.atlassian.net/wiki"
+    username: "${CONFLUENCE_USERNAME}"
+    api_token: "${CONFLUENCE_API_TOKEN}"
+    spaces: ["DOCS", "TECH", "USER"]
+    content_types: ["pages", "blogposts"]
+    update_frequency: "daily"
+    vector_category: "knowledge_base"
+
+backlog:
+  jira:
+    base_url: "https://company.atlassian.net"
+    username: "${JIRA_USERNAME}"
+    api_token: "${JIRA_API_TOKEN}"
+    projects: ["BRIGHT", "ATS", "PLATFORM"]
+    issue_types: ["Story", "Bug", "Task", "Epic"]
+    statuses: ["To Do", "In Progress", "Done"]
+    update_frequency: "hourly"
+    vector_category: "backlog"
+    
+  intercom:
+    base_url: "https://api.intercom.io"
+    access_token: "${INTERCOM_ACCESS_TOKEN}"
+    content_types: ["conversations", "articles", "tickets"]
+    tags: ["feature-request", "bug-report", "enhancement"]
+    update_frequency: "hourly"
+    vector_category: "backlog"
+
+platform:
+  github:
+    base_url: "https://api.github.com"
+    token: "${GITHUB_TOKEN}"
+    org: "brightmove"
+    repos: ["brightmove-ats", "brightmove-sync", "admin-ui"]
+    content_types: ["code", "readme", "docs", "issues", "pull_requests"]
+    file_extensions: [".md", ".yml", ".yaml", ".json", ".rb", ".js", ".ts", ".java"]
+    update_frequency: "daily"
+    vector_category: "platform"
+    
+  infrastructure:
+    scan_paths: 
+      - "/etc/brightmove/"
+      - "/opt/brightmove/"
+      - "/var/log/brightmove/"
+      - "./docker/"
+      - "./kubernetes/"
+      - "./terraform/"
+    config_files: 
+      - "docker-compose.yml"
+      - "docker-compose.prod.yml"
+      - "kubernetes/deployment.yml"
+      - "kubernetes/service.yml"
+      - "terraform/main.tf"
+      - "terraform/variables.tf"
+    content_types: ["config", "logs", "deployment", "infrastructure"]
+    update_frequency: "daily"
+    vector_category: "platform"
+
+# Global Settings
+global:
+  vector_dimensions: 1536
+  similarity_threshold: 0.7
+  max_content_length: 8192
+  batch_size: 100
+  retry_attempts: 3
+  timeout_seconds: 30
+  
+# Embedding Settings
+embeddings:
+  model: "amazon.titan-embed-text-v1"
+  batch_size: 50
+  max_tokens: 4096
+  temperature: 0.0
+  
+# Storage Settings
+storage:
+  type: "redis"  # or "file" for local storage
+  redis_url: "${REDIS_URL}"
+  file_path: "./embeddings"
+  backup_frequency: "weekly"
+  
+# Monitoring Settings
+monitoring:
+  health_check_interval: 300  # 5 minutes
+  alert_threshold: 0.8
+  log_level: "info"
+  metrics_enabled: true

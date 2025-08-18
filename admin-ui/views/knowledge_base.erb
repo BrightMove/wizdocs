@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base Management - Wiseguy</title>
+    <link rel="stylesheet" href="/styles.css?v=3">
+    <script src="/theme.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🦉</div>
+                    <div class="logo-text">
+                        <h1>Wiseguy</h1>
+                        <p>Agentic AI Platform</p>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="theme-toggle" id="themeToggle" data-theme="system" title="Toggle theme">
+                        <span style="position: absolute; top: 50%; left: 6px; transform: translateY(-50%); font-size: 10px;">☀️</span>
+                        <span style="position: absolute; top: 50%; right: 6px; transform: translateY(-50%); font-size: 10px;">🌙</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-tabs">
+                <a href="/" class="nav-tab">Dashboard</a>
+                <a href="/sales-tools" class="nav-tab">Sales Tools</a>
+                <a href="/knowledge-base" class="nav-tab active">Knowledge Base</a>
+                <a href="/audits" class="nav-tab">Audits</a>
+                <a href="/settings" class="nav-tab">Settings</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="section-title">Knowledge Base Management</h1>
+            <p class="section-subtitle">LLM-powered content analysis and RAG-based auditing system</p>
+            
+            <!-- Knowledge Base Search -->
+            <div class="stats-section">
+                <div class="stats-header">
+                    <div class="stats-icon success">🔎</div>
+                    <h3 class="stats-title">Knowledge Base Search</h3>
+                </div>
+                <div class="search-container">
+                    <div class="form-group">
+                        <input type="text" id="searchQuery" class="form-input search-input" placeholder="Search knowledge base... (Press Enter to search)" onkeypress="handleSearchKeyPress(event)">
+                        <select id="searchSources" class="form-input search-select">
+                            <option value="">All Sources</option>
+                            <option value="confluence">Confluence</option>
+                            <option value="intercom">Intercom</option>
+                            <option value="jira">JIRA</option>
+                            <option value="github">GitHub</option>
+                            <option value="documentation">Documentation</option>
+                        </select>
+                                                            <button onclick="searchKnowledgeBase()" class="btn success search-btn">Search</button>
+                    </div>
+                </div>
+                <div id="searchResults">
+                    <p style="color: var(--text-secondary); text-align: center;">Enter a query to search the knowledge base</p>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 40px;">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon primary">🔄</div>
+                        <h3 class="card-title">Sync All Sources</h3>
+                    </div>
+                    <p class="card-description">
+                        Synchronize all registered content sources with the latest data.
+                    </p>
+                    <button onclick="syncAllSources()" class="btn primary">Sync Now</button>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon warning">🔍</div>
+                        <h3 class="card-title">Run Comprehensive Audit</h3>
+                    </div>
+                    <p class="card-description">
+                        Perform a complete audit of all knowledge base content.
+                    </p>
+                    <button onclick="runComprehensiveAudit()" class="btn warning">Start Audit</button>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon success">📅</div>
+                        <h3 class="card-title">Schedule Audits</h3>
+                    </div>
+                    <p class="card-description">
+                        Set up automated audits on a recurring schedule.
+                    </p>
+                    <button onclick="showScheduleModal()" class="btn success">Schedule</button>
+                </div>
+            </div>
+
+            <!-- Content Sources Management -->
+            <div class="stats-section">
+                <div class="stats-header">
+                    <div class="stats-icon primary">📚</div>
+                    <h3 class="stats-title">Content Sources</h3>
+                    <button onclick="showAddSourceModal()" class="btn primary" style="margin-left: auto;">Add Source</button>
+                </div>
+                <div id="contentSources">
+                    <p style="color: var(--text-secondary); text-align: center;">Loading content sources...</p>
+                </div>
+            </div>
+
+            <!-- Recent Audits -->
+            <div class="stats-section">
+                <div class="stats-header">
+                    <div class="stats-icon warning">📊</div>
+                    <h3 class="stats-title">Recent Audits</h3>
+                </div>
+                <div id="recentAudits">
+                    <p style="color: var(--text-secondary); text-align: center;">No recent audits found</p>
+                </div>
+            </div>
+
+            <!-- Scheduled Audits -->
+            <div class="stats-section">
+                <div class="stats-header">
+                    <div class="stats-icon info">⏰</div>
+                    <h3 class="stats-title">Scheduled Audits</h3>
+                </div>
+                <div id="scheduledAudits">
+                    <p style="color: var(--text-secondary); text-align: center;">Loading scheduled audits...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Source Modal -->
+    <div id="addSourceModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Content Source</h3>
+                <span class="close" onclick="closeModal('addSourceModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Source Type</label>
+                    <select id="sourceType" class="form-input">
+                        <option value="confluence">Confluence</option>
+                        <option value="intercom">Intercom</option>
+                        <option value="jira">JIRA</option>
+                        <option value="github">GitHub</option>
+                        <option value="documentation">Local Documentation</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Source Name</label>
+                    <input type="text" id="sourceName" class="form-input" placeholder="Enter source name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Sync Interval (seconds)</label>
+                    <input type="number" id="syncInterval" class="form-input" value="3600" min="300">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Configuration (JSON)</label>
+                                            <textarea id="sourceConfig" class="form-input" rows="5" placeholder='{"spaces": ["WISDOM"], "repositories": ["brightmove/wiseguy"]}'></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('addSourceModal')" class="btn secondary">Cancel</button>
+                <button onclick="addContentSource()" class="btn primary">Add Source</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Audit Modal -->
+    <div id="scheduleModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Schedule Audit</h3>
+                <span class="close" onclick="closeModal('scheduleModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Audit Type</label>
+                    <select id="auditType" class="form-input">
+                        <option value="comprehensive">Comprehensive</option>
+                        <option value="consistency">Consistency</option>
+                        <option value="completeness">Completeness</option>
+                        <option value="accuracy">Accuracy</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Schedule (Cron-like)</label>
+                    <input type="text" id="scheduleConfig" class="form-input" placeholder="0 0 * * * (daily at midnight)">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Options (JSON)</label>
+                    <textarea id="auditOptions" class="form-input" rows="3" placeholder='{"include_llm_analysis": true}'></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('scheduleModal')" class="btn secondary">Cancel</button>
+                <button onclick="scheduleAudit()" class="btn primary">Schedule</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadContentSources();
+            loadScheduledAudits();
+        });
+
+        function loadContentSources() {
+            fetch('/api/knowledge-base/sources')
+            .then(response => response.json())
+            .then(sources => {
+                const container = document.getElementById('contentSources');
+                
+                if (Object.keys(sources).length === 0) {
+                    container.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">No content sources configured</p>';
+                    return;
+                }
+                
+                container.innerHTML = Object.entries(sources).map(([type, config]) => {
+                    const status = config.enabled ? '🟢 Enabled' : '🔴 Disabled';
+                    const lastSync = config.last_sync ? new Date(config.last_sync).toLocaleString() : 'Never';
+                    
+                    return `
+                        <div class="card" style="margin-bottom: 16px;">
+                            <div class="card-header">
+                                <div class="card-icon primary">📚</div>
+                                <div style="flex: 1;">
+                                    <h4 style="margin: 0; color: var(--text-primary);">${config.name}</h4>
+                                    <p style="margin: 4px 0 0 0; color: var(--text-secondary); font-size: 14px;">
+                                        Type: ${type} | Status: ${status} | Last Sync: ${lastSync}
+                                    </p>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 14px; color: var(--text-secondary);">
+                                        Sync every ${config.sync_interval} seconds
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; margin-top: 16px;">
+                                <button onclick="syncSource('${type}')" class="btn" style="flex: 1;">Sync Now</button>
+                                <button onclick="toggleSource('${type}', ${!config.enabled})" class="btn secondary" style="flex: 0 0 auto;">
+                                    ${config.enabled ? 'Disable' : 'Enable'}
+                                </button>
+                                <button onclick="removeSource('${type}')" class="btn danger" style="flex: 0 0 auto;">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            })
+            .catch(error => {
+                console.error('Error loading content sources:', error);
+                document.getElementById('contentSources').innerHTML = '<p style="color: var(--accent-danger); text-align: center;">Error loading content sources</p>';
+            });
+        }
+
+        function syncAllSources() {
+            fetch('/api/knowledge-base/sync', { method: 'POST' })
+            .then(response => response.json())
+            .then(results => {
+                alert('Sync completed! Check the results in the console.');
+                console.log('Sync results:', results);
+                loadContentSources();
+            })
+            .catch(error => {
+                console.error('Error syncing sources:', error);
+                alert('Error syncing sources');
+            });
+        }
+
+        function syncSource(sourceType) {
+            fetch(`/api/knowledge-base/sync/${sourceType}`, { method: 'POST' })
+            .then(response => response.json())
+            .then(result => {
+                alert(`Sync completed for ${sourceType}!`);
+                console.log('Sync result:', result);
+                loadContentSources();
+            })
+            .catch(error => {
+                console.error('Error syncing source:', error);
+                alert('Error syncing source');
+            });
+        }
+
+        function runComprehensiveAudit() {
+            fetch('/api/knowledge-base/audit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    audit_type: 'comprehensive',
+                    options: {}
+                })
+            })
+            .then(response => response.json())
+            .then(results => {
+                alert('Comprehensive audit completed! Check the results in the console.');
+                console.log('Audit results:', results);
+                loadRecentAudits();
+            })
+            .catch(error => {
+                console.error('Error running audit:', error);
+                alert('Error running audit');
+            });
+        }
+
+        // Pagination state
+        let currentSearchResults = null;
+        let currentPage = 1;
+        let currentPageSize = 10;
+
+        function searchKnowledgeBase(page = 1) {
+            const query = document.getElementById('searchQuery').value.trim();
+            const sources = document.getElementById('searchSources').value;
+            
+            if (!query) {
+                alert('Please enter a search query');
+                return;
+            }
+            
+            // Update pagination state
+            currentPage = page;
+            
+            // Construct search URL with pagination
+            let searchUrl = `/api/knowledge-base/search?q=${encodeURIComponent(query)}&page=${currentPage}&page_size=${currentPageSize}`;
+            if (sources) {
+                searchUrl += `&sources=${encodeURIComponent(sources)}`;
+            }
+            
+            fetch(searchUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(results => {
+                currentSearchResults = results;
+                displaySearchResults(results);
+            })
+            .catch(error => {
+                console.error('Error searching knowledge base:', error);
+                document.getElementById('searchResults').innerHTML = '<p style="color: var(--accent-danger); text-align: center;">Error searching knowledge base: ' + error.message + '</p>';
+            });
+        }
+
+        function displaySearchResults(results) {
+            const container = document.getElementById('searchResults');
+            
+            if (!results.results || results.results.length === 0) {
+                const sources = document.getElementById('searchSources').value;
+                const message = sources ? 
+                    `No results found for "${results.query}" in ${sources} sources. Try searching all sources or different keywords.` :
+                    `No results found for "${results.query}". Try different keywords or check your spelling.`;
+                container.innerHTML = `<p style="color: var(--text-secondary); text-align: center;">${message}</p>`;
+                return;
+            }
+            
+            // Build search summary
+            const sourcesQueried = results.sources_queried || [];
+            const searchSummary = sourcesQueried.length > 0 ? 
+                `<div style="margin-bottom: 16px; padding: 12px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid var(--accent-primary);">
+                    <strong style="color: var(--accent-primary);">🔍 Search Summary</strong>
+                    <p style="margin: 4px 0 0 0; color: var(--text-secondary); font-size: 14px;">
+                        Found ${results.results.length} results from ${sourcesQueried.length} source(s): ${sourcesQueried.join(', ')}
+                    </p>
+                </div>` : '';
+            
+            // Build results HTML
+            const resultsHtml = results.results.map(result => {
+                const item = result.item;
+                const title = item.title || item.summary || item.key || 'Untitled';
+                const content = item.content || item.description || '';
+                const sourceType = result.source_type;
+                const url = item.url || item.link || '#';
+                const hasValidUrl = url && url !== '#';
+                
+                // Get source-specific icon and styling
+                const sourceInfo = getSourceInfo(sourceType);
+                
+                return `
+                    <div class="card" style="margin-bottom: 16px;">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: ${sourceInfo.color};">
+                                ${sourceInfo.icon}
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="margin: 0; color: var(--text-primary);">
+                                    ${hasValidUrl ? 
+                                        `<a href="${url}" target="_blank" class="search-result-link">
+                                            ${title}
+                                            <span class="external-icon">↗</span>
+                                        </a>` : 
+                                        `<span style="color: var(--text-primary);">${title}</span>`
+                                    }
+                                </h4>
+                                <p style="margin: 4px 0 0 0; color: var(--text-secondary); font-size: 14px;">
+                                    Source: ${sourceInfo.name} | Relevance: ${(result.relevance_score * 100).toFixed(1)}%
+                                </p>
+                            </div>
+                        </div>
+                        <div style="margin-top: 12px;">
+                            <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.4;">
+                                ${content.substring(0, 200)}${content.length > 200 ? '...' : ''}
+                            </p>
+                            ${result.llm_analysis ? `
+                                <div style="margin-top: 12px; padding: 12px; background: var(--bg-secondary); border-radius: 8px;">
+                                    <strong>LLM Analysis:</strong>
+                                    <p style="margin: 4px 0 0 0; font-size: 14px;">${result.llm_analysis}</p>
+                                </div>
+                            ` : ''}
+                            
+                            ${result.vector_relationships && Object.keys(result.vector_relationships).some(key => result.vector_relationships[key] && result.vector_relationships[key].length > 0) ? `
+                                <div style="margin-top: 12px; padding: 12px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid var(--accent-primary);">
+                                    <strong style="color: var(--accent-primary);">🔗 Vector Relationships</strong>
+                                    <div style="margin-top: 8px; font-size: 14px;">
+                                        ${buildVectorRelationshipsHtml(result.vector_relationships)}
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Build pagination controls
+            const paginationHtml = buildPaginationControls(results.pagination);
+            
+            // Combine search summary, results and pagination
+            container.innerHTML = searchSummary + resultsHtml + paginationHtml;
+        }
+
+        function buildPaginationControls(pagination) {
+            if (!pagination || pagination.total_pages <= 1) {
+                return '';
+            }
+            
+            const { current_page, total_pages, total_results, page_size, has_next_page, has_previous_page } = pagination;
+            const startResult = (current_page - 1) * page_size + 1;
+            const endResult = Math.min(current_page * page_size, total_results);
+            
+            return `
+                <div class="pagination-container" style="margin-top: 24px; padding: 16px; background: var(--bg-secondary); border-radius: 12px; border: 1px solid var(--border-primary);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                        <div style="color: var(--text-secondary); font-size: 14px;">
+                            Showing ${startResult}-${endResult} of ${total_results} results
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <label for="pageSizeSelect" style="color: var(--text-secondary); font-size: 14px; margin-right: 8px;">Page size:</label>
+                            <select id="pageSizeSelect" onchange="changePageSize(this.value)" style="padding: 8px 12px; border: 1px solid var(--border-primary); border-radius: 6px; background: var(--bg-primary); color: var(--text-primary); font-size: 14px;">
+                                <option value="5" ${page_size === 5 ? 'selected' : ''}>5</option>
+                                <option value="10" ${page_size === 10 ? 'selected' : ''}>10</option>
+                                <option value="20" ${page_size === 20 ? 'selected' : ''}>20</option>
+                                <option value="50" ${page_size === 50 ? 'selected' : ''}>50</option>
+                            </select>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <button onclick="goToPage(1)" ${current_page === 1 ? 'disabled' : ''} style="padding: 8px 12px; border: 1px solid var(--border-primary); border-radius: 6px; background: var(--bg-primary); color: var(--text-primary); cursor: pointer; ${current_page === 1 ? 'opacity: 0.5; cursor: not-allowed;' : ''}">
+                                « First
+                            </button>
+                            <button onclick="goToPage(${current_page - 1})" ${!has_previous_page ? 'disabled' : ''} style="padding: 8px 12px; border: 1px solid var(--border-primary); border-radius: 6px; background: var(--bg-primary); color: var(--text-primary); cursor: pointer; ${!has_previous_page ? 'opacity: 0.5; cursor: not-allowed;' : ''}">
+                                ‹ Previous
+                            </button>
+                            
+                            <span style="color: var(--text-secondary); font-size: 14px; padding: 8px 12px;">
+                                Page ${current_page} of ${total_pages}
+                            </span>
+                            
+                            <button onclick="goToPage(${current_page + 1})" ${!has_next_page ? 'disabled' : ''} style="padding: 8px 12px; border: 1px solid var(--border-primary); border-radius: 6px; background: var(--bg-primary); color: var(--text-primary); cursor: pointer; ${!has_next_page ? 'opacity: 0.5; cursor: not-allowed;' : ''}">
+                                Next ›
+                            </button>
+                            <button onclick="goToPage(${total_pages})" ${current_page === total_pages ? 'disabled' : ''} style="padding: 8px 12px; border: 1px solid var(--border-primary); border-radius: 6px; background: var(--bg-primary); color: var(--text-primary); cursor: pointer; ${current_page === total_pages ? 'opacity: 0.5; cursor: not-allowed;' : ''}">
+                                Last »
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function goToPage(page) {
+            if (page >= 1 && page <= (currentSearchResults?.pagination?.total_pages || 1)) {
+                searchKnowledgeBase(page);
+            }
+        }
+
+        function changePageSize(newPageSize) {
+            currentPageSize = parseInt(newPageSize);
+            currentPage = 1; // Reset to first page when changing page size
+            searchKnowledgeBase(1);
+        }
+
+        function getSourceInfo(sourceType) {
+            const sourceMap = {
+                'intercom': {
+                    name: 'Intercom Help Center',
+                    icon: '💬',
+                    color: '#1f73b7'
+                },
+                'github': {
+                    name: 'GitHub Documentation',
+                    icon: '🐙',
+                    color: '#24292e'
+                },
+                'jira': {
+                    name: 'JIRA Issues',
+                    icon: '🎫',
+                    color: '#0052cc'
+                },
+                'confluence': {
+                    name: 'Confluence Wiki',
+                    icon: '📚',
+                    color: '#172b4d'
+                },
+                'documentation': {
+                    name: 'Local Documentation',
+                    icon: '📄',
+                    color: '#6c757d'
+                }
+            };
+            
+            return sourceMap[sourceType] || {
+                name: sourceType,
+                icon: '📄',
+                color: '#6c757d'
+            };
+        }
+
+        function buildVectorRelationshipsHtml(relationships) {
+            const relationshipTypes = {
+                'implements': { label: 'Implements', icon: '⚡', color: '#28a745' },
+                'documents': { label: 'Documents', icon: '📝', color: '#17a2b8' },
+                'requires': { label: 'Requires', icon: '🔗', color: '#ffc107' },
+                'affects': { label: 'Affects', icon: '🔄', color: '#6f42c1' },
+                'depends': { label: 'Depends', icon: '🔒', color: '#fd7e14' },
+                'conflicts': { label: 'Conflicts', icon: '⚠️', color: '#dc3545' }
+            };
+            
+            let html = '';
+            
+            Object.entries(relationships).forEach(([type, rels]) => {
+                if (rels && rels.length > 0) {
+                    const typeInfo = relationshipTypes[type] || { label: type, icon: '🔗', color: '#6c757d' };
+                    html += `
+                        <div style="margin-bottom: 12px;">
+                            <span style="color: ${typeInfo.color}; font-weight: 600; font-size: 12px;">
+                                ${typeInfo.icon} ${typeInfo.label} (${rels.length}):
+                            </span>
+                            <div style="margin-left: 16px; margin-top: 6px;">
+                                ${rels.map(rel => {
+                                    // Extract meaningful information from the relationship
+                                    const contentId = rel.to_content_id || rel.content_id || 'Unknown';
+                                    const title = rel.title || rel.content_title || contentId;
+                                    const source = rel.source || rel.source_type || 'Unknown';
+                                    const strength = rel.strength ? ` (${(rel.strength * 100).toFixed(0)}%)` : '';
+                                    
+                                    return `
+                                        <div class="relationship-item" style="display: inline-block; margin: 2px 4px 2px 0; padding: 4px 8px; 
+                                                   background: var(--bg-primary); border: 1px solid var(--border-primary); 
+                                                   border-radius: 6px; color: var(--text-primary); text-decoration: none; 
+                                                   font-size: 12px; ${type === 'conflicts' ? 'border-color: #dc3545; color: #dc3545;' : ''}">
+                                            <div style="font-weight: 500;">${title}</div>
+                                            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
+                                                ${source}${strength}
+                                            </div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            
+            return html || '<span style="color: var(--text-secondary);">No relationships found</span>';
+        }
+
+        function loadScheduledAudits() {
+            fetch('/api/knowledge-base/audit/scheduled')
+            .then(response => response.json())
+            .then(audits => {
+                const container = document.getElementById('scheduledAudits');
+                
+                if (Object.keys(audits).length === 0) {
+                    container.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">No scheduled audits</p>';
+                    return;
+                }
+                
+                container.innerHTML = Object.entries(audits).map(([type, config]) => {
+                    const nextRun = new Date(config.next_run).toLocaleString();
+                    
+                    return `
+                        <div class="card" style="margin-bottom: 16px;">
+                            <div class="card-header">
+                                <div class="card-icon warning">⏰</div>
+                                <div style="flex: 1;">
+                                    <h4 style="margin: 0; color: var(--text-primary);">${type} Audit</h4>
+                                    <p style="margin: 4px 0 0 0; color: var(--text-secondary); font-size: 14px;">
+                                        Next Run: ${nextRun}
+                                    </p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; margin-top: 16px;">
+                                <button onclick="runScheduledAudits()" class="btn warning" style="flex: 1;">Run Now</button>
+                                <button onclick="removeScheduledAudit('${type}')" class="btn danger" style="flex: 0 0 auto;">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            })
+            .catch(error => {
+                console.error('Error loading scheduled audits:', error);
+                document.getElementById('scheduledAudits').innerHTML = '<p style="color: var(--accent-danger); text-align: center;">Error loading scheduled audits</p>';
+            });
+        }
+
+        function showAddSourceModal() {
+            document.getElementById('addSourceModal').style.display = 'block';
+        }
+
+        function showScheduleModal() {
+            document.getElementById('scheduleModal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function addContentSource() {
+            const sourceType = document.getElementById('sourceType').value;
+            const sourceName = document.getElementById('sourceName').value.trim();
+            const syncInterval = document.getElementById('syncInterval').value;
+            const configText = document.getElementById('sourceConfig').value.trim();
+            
+            if (!sourceType || !sourceName) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            let config = {};
+            if (configText) {
+                try {
+                    config = JSON.parse(configText);
+                } catch (e) {
+                    alert('Invalid JSON configuration');
+                    return;
+                }
+            }
+            
+            config.name = sourceName;
+            config.sync_interval = syncInterval.to_i;
+            
+            fetch('/api/knowledge-base/sources/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    source_type: sourceType,
+                    config: config
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert('Content source added successfully!');
+                closeModal('addSourceModal');
+                loadContentSources();
+            })
+            .catch(error => {
+                console.error('Error adding content source:', error);
+                alert('Error adding content source');
+            });
+        }
+
+        function scheduleAudit() {
+            const auditType = document.getElementById('auditType').value;
+            const scheduleConfig = document.getElementById('scheduleConfig').value.trim();
+            const optionsText = document.getElementById('auditOptions').value.trim();
+            
+            if (!auditType || !scheduleConfig) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            let options = {};
+            if (optionsText) {
+                try {
+                    options = JSON.parse(optionsText);
+                } catch (e) {
+                    alert('Invalid JSON options');
+                    return;
+                }
+            }
+            
+            fetch('/api/knowledge-base/audit/schedule', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    audit_type: auditType,
+                    schedule_config: {
+                        cron: scheduleConfig,
+                        options: options
+                    }
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert('Audit scheduled successfully!');
+                closeModal('scheduleModal');
+                loadScheduledAudits();
+            })
+            .catch(error => {
+                console.error('Error scheduling audit:', error);
+                alert('Error scheduling audit');
+            });
+        }
+
+        function runScheduledAudits() {
+            fetch('/api/knowledge-base/audit/run-scheduled', { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(results => {
+                alert('Scheduled audits completed! Check the results in the console.');
+                console.log('Scheduled audit results:', results);
+            })
+            .catch(error => {
+                console.error('Error running scheduled audits:', error);
+                alert('Error running scheduled audits');
+            });
+        }
+
+        function toggleSource(sourceType, enabled) {
+            fetch('/api/knowledge-base/sources/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    source_type: sourceType,
+                    config: { enabled: enabled }
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert(`Source ${enabled ? 'enabled' : 'disabled'} successfully!`);
+                loadContentSources();
+            })
+            .catch(error => {
+                console.error('Error updating source:', error);
+                alert('Error updating source');
+            });
+        }
+
+        function removeSource(sourceType) {
+            if (!confirm(`Are you sure you want to remove the ${sourceType} source?`)) {
+                return;
+            }
+            
+            fetch('/api/knowledge-base/sources/unregister', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ source_type: sourceType })
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert('Source removed successfully!');
+                loadContentSources();
+            })
+            .catch(error => {
+                console.error('Error removing source:', error);
+                alert('Error removing source');
+            });
+        }
+
+        function removeScheduledAudit(auditType) {
+            if (!confirm(`Are you sure you want to remove the scheduled ${auditType} audit?`)) {
+                return;
+            }
+            
+            // This would require an additional API endpoint
+            alert('Remove scheduled audit functionality not implemented yet');
+        }
+
+        function loadRecentAudits() {
+            // This would load recent audit results
+            // For now, just show a placeholder
+            document.getElementById('recentAudits').innerHTML = '<p style="color: var(--text-secondary); text-align: center;">Recent audits will be displayed here</p>';
+        }
+
+
+
+        function handleSearchKeyPress(event) {
+            if (event.key === 'Enter') {
+                searchKnowledgeBase();
+            }
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

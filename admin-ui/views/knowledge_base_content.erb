@@ -1,0 +1,317 @@
+<div class="container">
+    <h1 class="section-title">Knowledge Base Management</h1>
+    <p class="section-subtitle">LLM-powered content analysis and RAG-based auditing system</p>
+    
+    <!-- Knowledge Base Search -->
+    <div class="stats-section">
+        <div class="stats-header">
+            <div class="stats-icon success">🔎</div>
+            <h3 class="stats-title">Knowledge Base Search</h3>
+        </div>
+        <div class="search-container">
+            <div class="form-group">
+                <input type="text" id="searchQuery" class="form-input search-input" placeholder="Search knowledge base... (Press Enter to search)" onkeypress="handleSearchKeyPress(event)">
+                <select id="searchSources" class="form-input search-select">
+                    <option value="">All Sources</option>
+                    <option value="confluence">Confluence</option>
+                    <option value="intercom">Intercom</option>
+                    <option value="jira">JIRA</option>
+                    <option value="github">GitHub</option>
+                    <option value="documentation">Documentation</option>
+                </select>
+                <button onclick="searchKnowledgeBase()" class="btn success search-btn">Search</button>
+            </div>
+        </div>
+        <div id="searchResults">
+            <p style="color: var(--text-secondary); text-align: center;">Enter a query to search the knowledge base</p>
+        </div>
+    </div>
+    
+    <!-- Quick Actions -->
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 40px;">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon primary">🔄</div>
+                <h3 class="card-title">Sync All Sources</h3>
+            </div>
+            <p class="card-description">
+                Synchronize all registered content sources with the latest data.
+            </p>
+            <button onclick="syncAllSources()" class="btn primary">Sync Now</button>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon warning">🔍</div>
+                <h3 class="card-title">Run Comprehensive Audit</h3>
+            </div>
+            <p class="card-description">
+                Perform a complete audit of all knowledge base content.
+            </p>
+            <button onclick="runComprehensiveAudit()" class="btn warning">Start Audit</button>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon success">📅</div>
+                <h3 class="card-title">Schedule Audits</h3>
+            </div>
+            <p class="card-description">
+                Set up automated audits on a recurring schedule.
+            </p>
+            <button onclick="scheduleAudits()" class="btn success">Configure</button>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon info">💻</div>
+                <h3 class="card-title">Sync Source Code</h3>
+            </div>
+            <p class="card-description">
+                Index and analyze source code for consistency verification.
+            </p>
+            <button onclick="syncSourceCode()" class="btn info">Sync Code</button>
+        </div>
+    </div>
+    
+    <!-- Content Sources -->
+    <div class="stats-section">
+        <div class="stats-header">
+            <div class="stats-icon primary">📚</div>
+            <h3 class="stats-title">Content Sources</h3>
+        </div>
+        <div id="contentSources">
+            <p style="color: var(--text-secondary); text-align: center;">Loading content sources...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Load content sources on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        loadContentSources();
+    });
+    
+    function loadContentSources() {
+        fetch('/api/knowledge-base/sources')
+            .then(response => response.json())
+            .then(sources => {
+                const container = document.getElementById('contentSources');
+                if (Object.keys(sources).length === 0) {
+                    container.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">No content sources registered</p>';
+                    return;
+                }
+                
+                let html = '<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">';
+                Object.entries(sources).forEach(([sourceType, config]) => {
+                    html += `
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon success">📄</div>
+                                <h3 class="card-title">${sourceType.charAt(0).toUpperCase() + sourceType.slice(1)}</h3>
+                            </div>
+                            <p class="card-description">
+                                ${config.description || 'Content source configuration'}
+                            </p>
+                            <div class="card-actions">
+                                <button onclick="updateSource('${sourceType}')" class="btn primary">Update</button>
+                                <button onclick="removeSource('${sourceType}')" class="btn danger">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                container.innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error loading content sources:', error);
+                document.getElementById('contentSources').innerHTML = '<p style="color: var(--accent-danger); text-align: center;">Error loading content sources</p>';
+            });
+    }
+    
+    function searchKnowledgeBase() {
+        const query = document.getElementById('searchQuery').value.trim();
+        const sourceFilter = document.getElementById('searchSources').value;
+        
+        if (!query) {
+            alert('Please enter a search query');
+            return;
+        }
+        
+        const resultsContainer = document.getElementById('searchResults');
+        resultsContainer.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">Searching...</p>';
+        
+        const searchData = {
+            query: query,
+            source_types: sourceFilter ? [sourceFilter] : [],
+            page: 1,
+            page_size: 10
+        };
+        
+        fetch('/api/knowledge-base/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(searchData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            displaySearchResults(data);
+        })
+        .catch(error => {
+            console.error('Search error:', error);
+            resultsContainer.innerHTML = '<p style="color: var(--accent-danger); text-align: center;">Error performing search</p>';
+        });
+    }
+    
+    function displaySearchResults(data) {
+        const resultsContainer = document.getElementById('searchResults');
+        
+        if (!data.results || data.results.length === 0) {
+            const filterText = document.getElementById('searchSources').value ? 
+                ` in ${document.getElementById('searchSources').value}` : '';
+            resultsContainer.innerHTML = `<p style="color: var(--text-secondary); text-align: center;">No results found${filterText}</p>`;
+            return;
+        }
+        
+        let html = '<div class="search-results">';
+        html += `<div class="search-summary" style="margin-bottom: 20px; padding: 12px; background: var(--bg-secondary); border-radius: 8px;">`;
+        html += `<strong>Found ${data.results.length} result(s)</strong>`;
+        if (data.sources_queried && data.sources_queried.length > 0) {
+            html += ` from ${data.sources_queried.join(', ')}`;
+        }
+        html += '</div>';
+        
+        data.results.forEach((result, index) => {
+            html += `
+                <div class="search-result" style="margin-bottom: 20px; padding: 20px; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-primary);">
+                    <div class="result-header" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                        <h4 style="margin: 0; color: var(--text-primary);">${result.item.title || 'Untitled'}</h4>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            ${result.item.language ? `<span style="font-size: 11px; color: var(--text-secondary); background: var(--accent-info); padding: 2px 6px; border-radius: 3px;">${result.item.language}</span>` : ''}
+                            <span style="font-size: 12px; color: var(--text-secondary); background: var(--bg-secondary); padding: 4px 8px; border-radius: 4px;">${result.source_type}</span>
+                        </div>
+                    </div>
+                    ${result.item.file_type === 'source_code' ? `
+                        <div style="margin-bottom: 12px; padding: 8px; background: var(--bg-secondary); border-radius: 6px; font-size: 12px;">
+                            <div style="color: var(--text-secondary); margin-bottom: 4px;">📁 ${result.item.file_path}</div>
+                            <div style="display: flex; gap: 12px; color: var(--text-secondary);">
+                                <span>📏 ${result.item.code_analysis?.lines_of_code || 0} lines</span>
+                                <span>⚙️ ${result.item.code_analysis?.functions?.length || 0} functions</span>
+                                <span>🏗️ ${result.item.code_analysis?.classes?.length || 0} classes</span>
+                            </div>
+                        </div>
+                    ` : ''}
+                    <p style="color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5;">${(result.item.content || '').substring(0, 200)}${(result.item.content || '').length > 200 ? '...' : ''}</p>
+                    ${result.item.url ? `<a href="${result.item.url}" target="_blank" style="color: var(--accent-primary); text-decoration: none; font-size: 14px;">View Source →</a>` : ''}
+                    ${result.vector_relationships && Object.keys(result.vector_relationships).some(key => result.vector_relationships[key] && result.vector_relationships[key].length > 0) ? `
+                        <div class="vector-relationships" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-secondary);">
+                            <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;">🔗 Related Content:</div>
+                            ${Object.entries(result.vector_relationships).map(([type, relationships]) => 
+                                relationships && relationships.length > 0 ? relationships.map(rel => `
+                                    <div style="font-size: 12px; color: var(--accent-primary); margin-bottom: 4px;">
+                                        ${rel.title} (${rel.source}) - ${Math.round(rel.strength * 100)}% match
+                                    </div>
+                                `).join('') : ''
+                            ).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        });
+        
+        html += '</div>';
+        resultsContainer.innerHTML = html;
+    }
+    
+    function handleSearchKeyPress(event) {
+        if (event.key === 'Enter') {
+            searchKnowledgeBase();
+        }
+    }
+    
+    function syncAllSources() {
+        if (confirm('Are you sure you want to sync all content sources? This may take a few minutes.')) {
+            // Implementation for syncing all sources
+            alert('Sync started. This may take a few minutes to complete.');
+        }
+    }
+    
+    function runComprehensiveAudit() {
+        if (confirm('Are you sure you want to run a comprehensive audit? This may take several minutes.')) {
+            // Implementation for comprehensive audit
+            alert('Comprehensive audit started. This may take several minutes to complete.');
+        }
+    }
+    
+    function scheduleAudits() {
+        // Implementation for scheduling audits
+        alert('Audit scheduling feature coming soon.');
+    }
+    
+    function syncSourceCode() {
+        if (confirm('Are you sure you want to sync source code from all repositories? This will index and analyze source code files for consistency verification.')) {
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">Syncing source code from repositories...</p>';
+            
+            fetch('/api/knowledge-base/sync/github', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const message = `Source code sync completed!<br>
+                        📚 Documentation: ${data.documentation_count || 0} files<br>
+                        💻 Source Code: ${data.source_code_count || 0} files<br>
+                        📁 Total: ${data.content_count || 0} files<br>
+                        🏢 Repositories: ${data.repositories?.length || 0}`;
+                    resultsContainer.innerHTML = `<div style="padding: 20px; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-primary);">
+                        <h4 style="margin: 0 0 12px 0; color: var(--text-primary);">✅ Source Code Sync Complete</h4>
+                        <p style="color: var(--text-secondary); margin: 0; line-height: 1.6;">${message}</p>
+                    </div>`;
+                } else {
+                    resultsContainer.innerHTML = `<p style="color: var(--accent-danger); text-align: center;">Error syncing source code: ${data.error || 'Unknown error'}</p>`;
+                }
+            })
+            .catch(error => {
+                console.error('Source code sync error:', error);
+                resultsContainer.innerHTML = '<p style="color: var(--accent-danger); text-align: center;">Error syncing source code</p>';
+            });
+        }
+    }
+    
+    function updateSource(sourceType) {
+        // Implementation for updating source configuration
+        alert(`Update configuration for ${sourceType} - feature coming soon.`);
+    }
+    
+    function removeSource(sourceType) {
+        if (confirm(`Are you sure you want to remove the ${sourceType} source?`)) {
+            fetch('/api/knowledge-base/sources/unregister', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ source_type: sourceType })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`${sourceType} source removed successfully`);
+                    loadContentSources();
+                } else {
+                    alert(`Error removing ${sourceType} source: ${data.message}`);
+                }
+            })
+            .catch(error => {
+                console.error('Error removing source:', error);
+                alert(`Error removing ${sourceType} source`);
+            });
+        }
+    }
+</script>

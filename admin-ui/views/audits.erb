@@ -1,444 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="system">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audits - WizDocs</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        
-        .header h1 {
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-        
-        .header p {
-            opacity: 0.9;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        
-        .nav-tabs {
-            display: flex;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 4px;
-            margin-top: 20px;
-        }
-        
-        .nav-tab {
-            flex: 1;
-            padding: 12px 20px;
-            text-align: center;
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-        
-        .nav-tab:hover, .nav-tab.active {
-            background: rgba(255,255,255,0.2);
-            color: white;
-        }
-        
-        .actions {
-            margin-bottom: 30px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s;
-            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
-            margin-right: 10px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn-danger {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            box-shadow: 0 2px 10px rgba(231, 76, 60, 0.3);
-        }
-        
-        .btn-danger:hover {
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
-        }
-        
-        .btn-success {
-            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
-            box-shadow: 0 2px 10px rgba(39, 174, 96, 0.3);
-        }
-        
-        .btn-success:hover {
-            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .project-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-left: 4px solid #667eea;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
-        
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .project-name {
-            font-size: 1.4em;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .project-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .stat {
-            text-align: center;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 3px solid #667eea;
-        }
-        
-        .stat-number {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            font-size: 0.9em;
-            color: #666;
-        }
-        
-        .project-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .project-meta {
-            font-size: 0.9em;
-            color: #666;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-        
-        .modal-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        
-        .modal-content h2 {
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e1e8ed;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        .form-group textarea {
-            height: 100px;
-            resize: vertical;
-        }
-        
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            font-weight: 500;
-        }
-        
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .alert-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-        }
-        
-        .empty-state h3 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-    </style>
+    <title>Audits - Wiseguy</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Audits</h1>
-            <p>Comprehensive audit tools for development tickets, content analysis, and veracity verification</p>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🦉</div>
+                    <div class="logo-text">
+                        <h1>Wiseguy</h1>
+                        <p>Agentic AI Platform</p>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="theme-toggle" id="themeToggle" data-theme="system" title="Toggle theme">
+                        <span style="position: absolute; top: 50%; left: 6px; transform: translateY(-50%); font-size: 10px;">☀️</span>
+                        <span style="position: absolute; top: 50%; right: 6px; transform: translateY(-50%); font-size: 10px;">🌙</span>
+                    </div>
+                </div>
+            </div>
             
             <div class="nav-tabs">
                 <a href="/" class="nav-tab">Dashboard</a>
-                <a href="/audits" class="nav-tab active">Audits</a>
                 <a href="/sales-tools" class="nav-tab">Sales Tools</a>
+                <a href="/audits" class="nav-tab active">Audits</a>
                 <a href="/settings" class="nav-tab">Settings</a>
             </div>
         </div>
-        
-        <div class="actions">
-            <button class="btn" onclick="showCreateAuditModal()">Create New Audit</button>
-            <button class="btn" onclick="refreshAudits()">Refresh</button>
-        </div>
-        
-        <div id="alerts"></div>
-        
-        <div class="projects-grid" id="audits-grid">
-            <% if @audits.empty? %>
-                <div class="empty-state">
-                    <h3>No audits found</h3>
-                    <p>Create your first audit to get started</p>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="section-title">Audits & Analysis</h1>
+            <p class="section-subtitle">Comprehensive audit tools for development tickets, content analysis, and veracity verification</p>
+            
+            <div class="actions">
+                <a href="/tickets" class="btn">🎫 Development & Support Tickets</a>
+                <a href="/comprehensive-tickets" class="btn">📋 Comprehensive Ticket View</a>
+                <a href="/content-analysis" class="btn">📚 Customer & Internal Content</a>
+                <a href="/github-impact" class="btn">🔗 GitHub Impact Analysis</a>
+            </div>
+            
+            <div class="stats-section">
+                <div class="stats-header">
+                    <div class="stats-icon primary">📁</div>
+                    <h3 class="stats-title">Veracity Audits</h3>
                 </div>
-            <% else %>
-                <% @audits.each do |audit| %>
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-name"><%= audit[:name] %></div>
-                            <div class="project-actions">
-                                <a href="/audit/<%= audit[:name] %>" class="btn">View</a>
-                                <button class="btn btn-success" onclick="runAudit('<%= audit[:name] %>')">Run</button>
-                                <button class="btn btn-danger" onclick="deleteAudit('<%= audit[:name] %>')">Delete</button>
+                
+                <div class="actions" style="margin-bottom: 20px;">
+                    <button onclick="createAudit()" class="btn">Create New Audit</button>
+                    <button onclick="refreshAudits()" class="btn secondary">Refresh List</button>
+                </div>
+                
+                <div id="audits-list">
+                    <p style="color: var(--text-secondary); text-align: center;">Loading audits...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="/theme.js"></script>
+    <script>
+        // Load audits on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAudits();
+        });
+        
+        function loadAudits() {
+            fetch('/api/audits/list')
+            .then(response => response.json())
+            .then(audits => {
+                const container = document.getElementById('audits-list');
+                if (audits.length === 0) {
+                    container.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">No audits found</p>';
+                    return;
+                }
+                
+                container.innerHTML = audits.map(audit => `
+                    <div class="card" style="margin-bottom: 16px;">
+                        <div class="card-header">
+                            <div class="card-icon primary">📁</div>
+                            <div style="flex: 1;">
+                                <h4 style="margin: 0; color: var(--text-primary);">${audit.name}</h4>
+                                <p style="margin: 4px 0 0 0; color: var(--text-secondary); font-size: 14px;">
+                                    Last modified: ${audit.last_modified}
+                                </p>
                             </div>
                         </div>
-                        
-                        <div class="project-stats">
-                            <div class="stat">
-                                <div class="stat-number"><%= audit[:input_count] %></div>
-                                <div class="stat-label">Input Files</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number"><%= audit[:output_count] %></div>
-                                <div class="stat-label">Output Files</div>
-                            </div>
-                        </div>
-                        
-                        <div class="project-meta">
-                            Last modified: <%= audit[:last_modified] %>
+                        <div style="display: flex; gap: 12px; margin-top: 16px;">
+                            <a href="/audits/${audit.name}" class="btn" style="flex: 1;">View Details</a>
+                            <button onclick="deleteAudit('${audit.name}')" class="btn secondary" style="flex: 0 0 auto;">Delete</button>
                         </div>
                     </div>
-                <% end %>
-            <% end %>
-        </div>
-    </div>
-    
-    <!-- Create Audit Modal -->
-    <div id="createAuditModal" class="modal">
-        <div class="modal-content">
-            <h2>Create New Audit</h2>
-            <form id="createAuditForm">
-                <div class="form-group">
-                    <label for="auditName">Audit Name:</label>
-                    <input type="text" id="auditName" name="name" required placeholder="Enter audit name">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn">Create Audit</button>
-                    <button type="button" class="btn btn-danger" onclick="hideCreateAuditModal()">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-    <!-- Run Audit Modal -->
-    <div id="runAuditModal" class="modal">
-        <div class="modal-content">
-            <h2>Run Audit</h2>
-            <form id="runAuditForm">
-                <div class="form-group">
-                    <label for="auditNameRun">Audit:</label>
-                    <input type="text" id="auditNameRun" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="command">Command (optional):</label>
-                    <textarea id="command" name="command" placeholder="Leave empty for default command"></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success">Run</button>
-                    <button type="button" class="btn btn-danger" onclick="hideRunAuditModal()">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-    <script>
-        function showCreateAuditModal() {
-            document.getElementById('createAuditModal').style.display = 'block';
+                `).join('');
+            })
+            .catch(error => {
+                console.error('Error loading audits:', error);
+                document.getElementById('audits-list').innerHTML = '<p style="color: var(--accent-danger); text-align: center;">Error loading audits</p>';
+            });
         }
         
-        function hideCreateAuditModal() {
-            document.getElementById('createAuditModal').style.display = 'none';
-            document.getElementById('createAuditForm').reset();
-        }
-        
-        function showRunAuditModal(auditName) {
-            document.getElementById('auditNameRun').value = auditName;
-            document.getElementById('runAuditModal').style.display = 'block';
-        }
-        
-        function hideRunAuditModal() {
-            document.getElementById('runAuditModal').style.display = 'none';
-            document.getElementById('runAuditForm').reset();
-        }
-        
-        function showAlert(message, type = 'success') {
-            const alertsDiv = document.getElementById('alerts');
-            const alert = document.createElement('div');
-            alert.className = `alert alert-${type}`;
-            alert.textContent = message;
-            alertsDiv.appendChild(alert);
-            
-            setTimeout(() => {
-                alert.remove();
-            }, 5000);
-        }
-        
-        function runProject(projectName) {
-            showRunProjectModal(projectName);
-        }
-        
-        function deleteProject(projectName) {
-            if (confirm(`Are you sure you want to delete project '${projectName}'?`)) {
-                fetch('/api/audits/delete', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ name: projectName })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        showAlert(data.message, 'success');
-                        setTimeout(() => location.reload(), 1000);
-                    } else {
-                        showAlert(data.error, 'error');
-                    }
-                })
-                .catch(error => {
-                    showAlert('Error: ' + error.message, 'error');
-                });
-            }
-        }
-        
-        function refreshAudits() {
-            location.reload();
-        }
-        
-        // Event listeners
-        document.getElementById('createAuditForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const auditName = formData.get('name');
+        function createAudit() {
+            const auditName = prompt('Enter audit name:');
+            if (!auditName) return;
             
             fetch('/api/audits/create', {
                 method: 'POST',
@@ -450,60 +120,47 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    showAlert(data.message, 'success');
-                    hideCreateAuditModal();
-                    setTimeout(() => location.reload(), 1000);
+                    alert('Audit created successfully!');
+                    loadAudits();
                 } else {
-                    showAlert(data.error, 'error');
+                    alert('Error: ' + data.error);
                 }
             })
             .catch(error => {
-                showAlert('Error: ' + error.message, 'error');
+                console.error('Error:', error);
+                alert('Error creating audit');
             });
-        });
+        }
         
-        document.getElementById('runAuditForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const auditName = document.getElementById('auditNameRun').value;
-            const command = formData.get('command') || null;
+        function deleteAudit(auditName) {
+            if (!confirm(`Are you sure you want to delete the audit "${auditName}"?`)) {
+                return;
+            }
             
-            fetch('/api/audits/run', {
+            fetch('/api/audits/delete', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ 
-                    name: auditName,
-                    command: command
-                })
+                body: JSON.stringify({ name: auditName })
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    showAlert(`Audit '${auditName}' executed successfully`, 'success');
-                    hideRunAuditModal();
-                    setTimeout(() => location.reload(), 1000);
+                    alert('Audit deleted successfully!');
+                    loadAudits();
                 } else {
-                    showAlert(data.error, 'error');
+                    alert('Error: ' + data.error);
                 }
             })
             .catch(error => {
-                showAlert('Error: ' + error.message, 'error');
+                console.error('Error:', error);
+                alert('Error deleting audit');
             });
-        });
+        }
         
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            const createModal = document.getElementById('createAuditModal');
-            const runModal = document.getElementById('runAuditModal');
-            
-            if (event.target === createModal) {
-                hideCreateAuditModal();
-            }
-            if (event.target === runModal) {
-                hideRunAuditModal();
-            }
+        function refreshAudits() {
+            loadAudits();
         }
     </script>
 </body>

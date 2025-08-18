@@ -11,11 +11,16 @@ require 'active_support/time'
 require 'dotenv'
 require_relative 'github_integration'
 require_relative 'github_webhook_handler'
+require_relative 'knowledge_base_manager'
+require_relative 'models/crm_models'
+
+# Enable static file serving
+set :public_folder, 'public'
 
 # Load environment variables
 Dotenv.load('config.env') if File.exist?('config.env')
 
-# WizDocs - Agentic AI Platform for BrightMove Product Management
+# Wiseguy - Agentic AI Platform for BrightMove Product Management
 # Main sections: Audits and Sales Tools
 
 # JIRA Integration using direct HTTP calls
@@ -1932,19 +1937,62 @@ class AdminUI < Sinatra::Base
     set :session_secret, 'your-secret-key'
   end
 
+  helpers do
+    def number_with_delimiter(number)
+      number.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+    end
+  end
+
   before do
     begin
       @ticket_analysis = TicketAnalysisService.new
       @ticket_cache = TicketCacheService.new
+      @sales_tools_manager = SalesToolsManager.new
+      puts "Initializing KnowledgeBaseManager..."
+      @knowledge_base_manager = KnowledgeBaseManager.new
+      puts "KnowledgeBaseManager initialized successfully"
     rescue => e
       puts "Warning: Could not initialize services: #{e.message}"
+      puts "Error details: #{e.backtrace.first(5).join("\n")}"
       @ticket_analysis = nil
       @ticket_cache = nil
+      @sales_tools_manager = nil
+      @knowledge_base_manager = nil
     end
   end
 
-  get '/' do
-    erb :index
+    get '/' do
+    @active_tab = 'dashboard'
+    @sales_summary = @sales_tools_manager.get_sales_tools_summary
+
+    # Get knowledge base summary
+    begin
+      @knowledge_summary = {
+        total_sources: @knowledge_base_manager.get_content_sources.keys.length,
+        total_content: 0,
+        recent_searches: [],
+        vector_relationships: 0,
+        last_sync: Time.now.strftime("%Y-%m-%d %H:%M")
+      }
+
+      # Get content counts from each source
+      sources = @knowledge_base_manager.get_content_sources
+      sources.each do |source_type, config|
+        content = @knowledge_base_manager.get_content_from_sources([source_type])
+        @knowledge_summary[:total_content] += content[source_type]&.length || 0
+      end
+    rescue => e
+      @knowledge_summary = {
+        total_sources: 0,
+        total_content: 0,
+        recent_searches: [],
+        vector_relationships: 0,
+        last_sync: "Never",
+        error: e.message
+      }
+    end
+
+    erb :index_content, layout: :layout
   end
 
   get '/tickets' do
@@ -2197,22 +2245,44 @@ class AdminUI < Sinatra::Base
   end
 
   get '/settings' do
+    @active_tab = 'settings'
     @jira_connected = JiraService.new.connected?
     @intercom_connected = IntercomService.new.connected?
-    erb :settings
+    
+    # Check Redis connection status
+    begin
+      redis = Redis.new(url: ENV['REDIS_URL'] || 'redis://localhost:6379')
+      redis.ping
+      @redis_connected = true
+      @redis_info = {
+        dbsize: redis.dbsize,
+        memory: redis.info('memory'),
+        keyspace: redis.info('keyspace')
+      }
+    rescue => e
+      @redis_connected = false
+      @redis_error = e.message
+    end
+    
+    # Check GitHub connection status
+    @github_connected = !ENV['GITHUB_TOKEN'].nil? && !ENV['GITHUB_TOKEN'].empty?
+    
+    erb :settings_content, layout: :layout
   end
 
   # Legacy audit management routes (keeping existing functionality)
   get '/audits' do
+    @active_tab = 'audits'
     @project_manager = ProjectManager.new
     @audits = @project_manager.list_audits.map { |a| @project_manager.get_audit_info(a) }
-    erb :audits
+    erb :audits_content, layout: :layout
   end
 
   get '/audit/:name' do
+    @active_tab = 'audits'
     @project_manager = ProjectManager.new
     @audit = @project_manager.get_audit_info(params[:name])
-    erb :audit_detail
+    erb :audit_detail, layout: :layout
   end
 
   # API routes for audit management
@@ -2240,25 +2310,468 @@ class AdminUI < Sinatra::Base
     result.to_json
   end
 
+  # Error handling
+  error 404 do
+    @error_message = "Page not found"
+    erb :error, layout: :layout
+  end
+
+  error 500 do
+    @error_message = "Internal server error"
+    erb :error, layout: :layout
+  end
+
   # Sales Tools Routes
   get '/sales-tools' do
+    @active_tab = 'sales-tools'
     @sales_tools_manager = SalesToolsManager.new
     @rfp_projects = @sales_tools_manager.list_rfp_projects.map { |p| @sales_tools_manager.get_rfp_project_info(p) }
     @sow_projects = @sales_tools_manager.list_sow_projects.map { |p| @sales_tools_manager.get_sow_project_info(p) }
-    erb :sales_tools
+    erb :sales_tools_content, layout: :layout
+  end
+
+  get '/crm' do
+    @active_tab = 'crm'
+    erb :crm_dashboard, layout: :layout
   end
 
   get '/sales-tools/rfp/:name' do
+    @active_tab = 'sales-tools'
     @sales_tools_manager = SalesToolsManager.new
+    @sales_tools = @sales_tools_manager
     @project = @sales_tools_manager.get_rfp_project_info(params[:name])
-    erb :rfp_project_detail
+    
+    if @project.nil?
+      status 404
+      @error_message = "RFP project '#{params[:name]}' not found"
+      erb :error, layout: :layout
+    else
+      erb :rfp_project_detail, layout: :layout
+    end
   end
 
   get '/sales-tools/sow/:name' do
+    @active_tab = 'sales-tools'
     @sales_tools_manager = SalesToolsManager.new
+    @sales_tools = @sales_tools_manager
     @project = @sales_tools_manager.get_sow_project_info(params[:name])
-    erb :sow_project_detail
+    
+    if @project.nil?
+      status 404
+      @error_message = "SOW project '#{params[:name]}' not found"
+      erb :error, layout: :layout
+    else
+      erb :sow_project_detail, layout: :layout
+    end
   end
+
+  get '/sales-tools/proposal/:name' do
+    @active_tab = 'sales-tools'
+    @sales_tools_manager = SalesToolsManager.new
+    @sales_tools = @sales_tools_manager
+    @project = @sales_tools_manager.get_proposal_project_info(params[:name])
+    
+    if @project.nil?
+      status 404
+      @error_message = "Proposal project '#{params[:name]}' not found"
+      erb :error, layout: :layout
+    else
+      erb :proposal_project_detail, layout: :layout
+    end
+  end
+
+  # Knowledge Base Management Routes
+  get '/knowledge-base' do
+    @active_tab = 'knowledge-base'
+    erb :knowledge_base_content, layout: :layout
+  end
+
+  get '/api/knowledge-base/sources' do
+    content_type :json
+    @knowledge_base_manager.get_content_sources.to_json
+  end
+
+  post '/api/knowledge-base/search' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    query = data['query']
+    source_types = data['source_types'] || []
+    page = data['page'] || 1
+    page_size = data['page_size'] || 10
+    
+    begin
+      # Convert source_types to symbols if they're strings
+      source_types = source_types.map(&:to_sym) if source_types.any?
+      
+      # If no source types specified, search all sources
+      if source_types.empty?
+        source_types = @knowledge_base_manager.get_content_sources.keys
+      end
+      
+      results = @knowledge_base_manager.search_knowledge_base(query, source_types, page, page_size)
+      results.to_json
+    rescue => e
+      status 500
+      { error: e.message, success: false }.to_json
+    end
+  end
+
+  get '/api/knowledge-base/status' do
+    content_type :json
+    begin
+      sources = @knowledge_base_manager.get_content_sources
+      status_info = {}
+      
+      sources.each do |source_type, config|
+        # Get stored content count
+        stored_content = @knowledge_base_manager.get_stored_content(source_type)
+        status_info[source_type] = {
+          name: config[:name],
+          enabled: config[:enabled],
+          last_sync: config[:last_sync],
+          content_count: stored_content.length,
+          sync_interval: config[:sync_interval]
+        }
+      end
+      
+      {
+        success: true,
+        sources: status_info,
+        timestamp: Time.now.iso8601
+      }.to_json
+    rescue => e
+      status 500
+      { error: e.message, success: false }.to_json
+    end
+  end
+
+  post '/api/knowledge-base/sources/register' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    result = @knowledge_base_manager.register_content_source(data['source_type'], data['config'])
+    result.to_json
+  end
+
+  post '/api/knowledge-base/sources/unregister' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    result = @knowledge_base_manager.unregister_content_source(data['source_type'])
+    result.to_json
+  end
+
+  post '/api/knowledge-base/sources/update' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    result = @knowledge_base_manager.update_content_source_config(data['source_type'], data['config'])
+    result.to_json
+  end
+
+  # Settings API routes
+  post '/api/settings/test-redis' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    redis_url = data['redis_url'] || 'redis://localhost:6379'
+    
+    begin
+      redis = Redis.new(url: redis_url)
+      redis.ping
+      result = {
+        success: true,
+        message: 'Redis connection successful',
+        info: {
+          dbsize: redis.dbsize,
+          memory: redis.info('memory'),
+          keyspace: redis.info('keyspace')
+        }
+      }
+    rescue => e
+      result = {
+        success: false,
+        message: "Redis connection failed: #{e.message}"
+      }
+    end
+    
+    result.to_json
+  end
+
+  post '/api/settings/save-redis' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    redis_url = data['redis_url']
+    
+    # Update config.env with new Redis URL
+    config_file = 'config.env'
+    if File.exist?(config_file)
+      config_content = File.read(config_file)
+      
+      # Replace existing REDIS_URL or add new one
+      if config_content.include?('REDIS_URL=')
+        config_content.gsub!(/REDIS_URL=.*/, "REDIS_URL=#{redis_url}")
+      else
+        config_content += "\nREDIS_URL=#{redis_url}"
+      end
+      
+      File.write(config_file, config_content)
+      result = { success: true, message: 'Redis configuration saved. Please restart the application for changes to take effect.' }
+    else
+      result = { success: false, message: 'Config file not found' }
+    end
+    
+    result.to_json
+  end
+
+  post '/api/settings/test-github' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    token = data['github_token']
+    
+    begin
+      require 'net/http'
+      require 'json'
+      
+      uri = URI('https://api.github.com/user')
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      
+      request = Net::HTTP::Get.new(uri)
+      request['Authorization'] = "token #{token}"
+      request['User-Agent'] = 'Wiseguy-Admin-UI'
+      
+      response = http.request(request)
+      
+      if response.code == '200'
+        user_info = JSON.parse(response.body)
+        result = {
+          success: true,
+          message: "GitHub connection successful. Connected as: #{user_info['login']}",
+          user: user_info
+        }
+      else
+        result = {
+          success: false,
+          message: "GitHub API error: #{response.code} - #{response.body}"
+        }
+      end
+    rescue => e
+      result = {
+        success: false,
+        message: "GitHub connection failed: #{e.message}"
+      }
+    end
+    
+    result.to_json
+  end
+
+  post '/api/settings/save-github' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    token = data['github_token']
+    
+    # Update config.env with new GitHub token
+    config_file = 'config.env'
+    if File.exist?(config_file)
+      config_content = File.read(config_file)
+      
+      # Replace existing GITHUB_TOKEN or add new one
+      if config_content.include?('GITHUB_TOKEN=')
+        config_content.gsub!(/GITHUB_TOKEN=.*/, "GITHUB_TOKEN=#{token}")
+      else
+        config_content += "\nGITHUB_TOKEN=#{token}"
+      end
+      
+      File.write(config_file, config_content)
+      result = { success: true, message: 'GitHub configuration saved. Please restart the application for changes to take effect.' }
+    else
+      result = { success: false, message: 'Config file not found' }
+    end
+    
+    result.to_json
+  end
+
+  # Wiz Chat Agent API routes
+  post '/api/wiz/chat' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    message = data['message']
+    context = data['context'] || 'general'
+    
+    begin
+      # Initialize Wiz Chat Agent
+      wiz_response = generate_wiz_response(message, context)
+      result = {
+        success: true,
+        response: wiz_response,
+        context: context,
+        timestamp: Time.now.iso8601
+      }
+    rescue => e
+      result = {
+        success: false,
+        error: e.message,
+        response: "I'm sorry, I encountered an error while processing your request. Please try again."
+      }
+    end
+    
+    result.to_json
+  end
+
+  post '/api/wiz/analyze' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    query = data['query']
+    source_type = data['source_type'] || 'all'
+    
+    begin
+      # Perform analysis using knowledge base
+      analysis_results = @knowledge_base_manager.search_knowledge_base(query, [source_type.to_sym], 1, 10)
+      
+      # Generate Wiz analysis
+      wiz_analysis = generate_wiz_analysis(query, analysis_results)
+      
+      result = {
+        success: true,
+        analysis: wiz_analysis,
+        results: analysis_results,
+        query: query,
+        source_type: source_type
+      }
+    rescue => e
+      result = {
+        success: false,
+        error: e.message,
+        analysis: "I'm sorry, I couldn't analyze that query. Please check your request and try again."
+      }
+    end
+    
+    result.to_json
+  end
+
+  # Wiz Agent Health Check
+  get '/api/wiz/health' do
+    content_type :json
+    
+    begin
+      require 'net/http'
+      require 'uri'
+      
+      uri = URI('http://localhost:10001/health')
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.open_timeout = 5
+      http.read_timeout = 10
+      
+      request = Net::HTTP::Get.new(uri)
+      response = http.request(request)
+      
+      if response.code == '200'
+        result = JSON.parse(response.body)
+        {
+          success: true,
+          status: 'connected',
+          microservice: 'wiz-agent',
+          port: 10001,
+          response: result
+        }
+      else
+        {
+          success: false,
+          status: 'error',
+          microservice: 'wiz-agent',
+          port: 10001,
+          error: "HTTP #{response.code}"
+        }
+      end
+    rescue => e
+      {
+        success: false,
+        status: 'disconnected',
+        microservice: 'wiz-agent',
+        port: 10001,
+        error: e.message
+      }
+    end.to_json
+  end
+
+  post '/api/knowledge-base/sync' do
+    content_type :json
+    results = @knowledge_base_manager.sync_all_content_sources
+    results.to_json
+  end
+
+  post '/api/knowledge-base/sync/:source_type' do
+    content_type :json
+    source_type = params[:source_type].to_sym
+    config = @knowledge_base_manager.get_content_sources[source_type]
+    result = @knowledge_base_manager.sync_content_source(source_type, config)
+    result.to_json
+  end
+
+  post '/api/knowledge-base/sync-source-code' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    repo = data['repository'] || 'brightmove/wiseguy'
+    
+    begin
+      result = @knowledge_base_manager.get_github_source_code(repo)
+      {
+        success: true,
+        repository: repo,
+        source_code_files: result.length,
+        files: result.map { |file| {
+          title: file[:title],
+          language: file[:language],
+          file_path: file[:file_path],
+          lines_of_code: file[:code_analysis][:lines_of_code],
+          functions: file[:code_analysis][:functions].length,
+          classes: file[:code_analysis][:classes].length
+        }}
+      }.to_json
+    rescue => e
+      status 500
+      { error: e.message }.to_json
+    end
+  end
+
+  get '/api/knowledge-base/search' do
+    content_type :json
+    query = params[:q]
+    source_types = params[:sources]&.split(',')&.map(&:to_sym)
+    page = params[:page]&.to_i || 1
+    page_size = params[:page_size]&.to_i || 10
+    results = @knowledge_base_manager.search_knowledge_base(query, source_types, page, page_size)
+    results.to_json
+  end
+
+  post '/api/knowledge-base/audit' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    audit_type = data['audit_type'] || 'comprehensive'
+    options = data['options'] || {}
+    results = @knowledge_base_manager.perform_audit(audit_type, options)
+    results.to_json
+  end
+
+  post '/api/knowledge-base/audit/schedule' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    audit_type = data['audit_type']
+    schedule_config = data['schedule_config']
+    result = @knowledge_base_manager.schedule_audit(audit_type, schedule_config)
+    result.to_json
+  end
+
+  get '/api/knowledge-base/audit/scheduled' do
+    content_type :json
+    audits = @knowledge_base_manager.get_scheduled_audits
+    audits.to_json
+  end
+
+  post '/api/knowledge-base/audit/run-scheduled' do
+    content_type :json
+    results = @knowledge_base_manager.run_scheduled_audits
+    results.to_json
+  end
+
+
 
   # API routes for Sales Tools management
   post '/api/sales-tools/rfp/create' do
@@ -2274,6 +2787,14 @@ class AdminUI < Sinatra::Base
     data = JSON.parse(request.body.read)
     sales_tools_manager = SalesToolsManager.new
     result = sales_tools_manager.create_sow_project(data['name'])
+    result.to_json
+  end
+
+  post '/api/sales-tools/proposal/create' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    sales_tools_manager = SalesToolsManager.new
+    result = sales_tools_manager.create_proposal_project(data['name'])
     result.to_json
   end
 
@@ -2293,6 +2814,14 @@ class AdminUI < Sinatra::Base
     result.to_json
   end
 
+  post '/api/sales-tools/proposal/delete' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    sales_tools_manager = SalesToolsManager.new
+    result = sales_tools_manager.delete_proposal_project(data['name'])
+    result.to_json
+  end
+
   post '/api/sales-tools/rfp/run-script' do
     content_type :json
     data = JSON.parse(request.body.read)
@@ -2307,6 +2836,487 @@ class AdminUI < Sinatra::Base
     sales_tools_manager = SalesToolsManager.new
     result = sales_tools_manager.run_sow_script(data['project_name'], data['script_name'])
     result.to_json
+  end
+
+  post '/api/sales-tools/proposal/run-script' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    sales_tools_manager = SalesToolsManager.new
+    result = sales_tools_manager.run_proposal_script(data['project_name'], data['script_name'])
+    result.to_json
+  end
+
+  # API routes for listing projects
+                    get '/api/sales-tools/rfp/list' do
+                    content_type :json
+                    sales_tools_manager = SalesToolsManager.new
+                    projects = sales_tools_manager.list_rfp_projects.map do |name| 
+                      project_info = sales_tools_manager.get_rfp_project_info(name)
+                      if project_info
+                        project_info[:estimated_value] = sales_tools_manager.get_project_estimated_value(name, 'rfp')
+                      end
+                      project_info
+                    end.compact
+                    projects.to_json
+                  end
+                
+                  get '/api/sales-tools/sow/list' do
+                    content_type :json
+                    sales_tools_manager = SalesToolsManager.new
+                    projects = sales_tools_manager.list_sow_projects.map do |name| 
+                      project_info = sales_tools_manager.get_sow_project_info(name)
+                      if project_info
+                        project_info[:estimated_value] = sales_tools_manager.get_project_estimated_value(name, 'sow')
+                      end
+                      project_info
+                    end.compact
+                    projects.to_json
+                  end
+
+                  get '/api/sales-tools/proposal/list' do
+                    content_type :json
+                    sales_tools_manager = SalesToolsManager.new
+                    projects = sales_tools_manager.list_proposal_projects.map do |name| 
+                      project_info = sales_tools_manager.get_proposal_project_info(name)
+                      if project_info
+                        project_info[:estimated_value] = sales_tools_manager.get_project_estimated_value(name, 'proposal')
+                      end
+                      project_info
+                    end.compact
+                    projects.to_json
+                  end
+
+  # File management endpoints
+  get '/api/sales-tools/:type/file/:project/:filename' do
+    content_type :text
+    project_path = case params[:type]
+                  when 'rfp'
+                    File.join(@sales_tools_manager.instance_variable_get(:@rfp_dir), params[:project])
+                  when 'sow'
+                    File.join(@sales_tools_manager.instance_variable_get(:@sow_dir), params[:project])
+                  when 'proposal'
+                    File.join(@sales_tools_manager.instance_variable_get(:@proposal_dir), params[:project])
+                  end
+    
+    file_path = File.join(project_path, params[:filename])
+    if File.exist?(file_path)
+      File.read(file_path)
+    else
+      status 404
+      "File not found"
+    end
+  end
+
+  get '/api/sales-tools/:type/files/:project/input' do
+    content_type :json
+    project_path = case params[:type]
+                  when 'rfp'
+                    File.join(@sales_tools_manager.instance_variable_get(:@rfp_dir), params[:project])
+                  when 'sow'
+                    File.join(@sales_tools_manager.instance_variable_get(:@sow_dir), params[:project])
+                  when 'proposal'
+                    File.join(@sales_tools_manager.instance_variable_get(:@proposal_dir), params[:project])
+                  end
+    
+    input_dir = File.join(project_path, 'input')
+    if Dir.exist?(input_dir)
+      Dir.entries(input_dir).reject { |f| f.start_with?('.') }.to_json
+    else
+      [].to_json
+    end
+  end
+
+  get '/api/sales-tools/:type/files/:project/custom' do
+    content_type :json
+    project_path = case params[:type]
+                  when 'rfp'
+                    File.join(@sales_tools_manager.instance_variable_get(:@rfp_dir), params[:project])
+                  when 'sow'
+                    File.join(@sales_tools_manager.instance_variable_get(:@sow_dir), params[:project])
+                  when 'proposal'
+                    File.join(@sales_tools_manager.instance_variable_get(:@proposal_dir), params[:project])
+                  end
+    
+    # Get all files in project root except system files and directories
+    if Dir.exist?(project_path)
+      Dir.entries(project_path).select { |f| !f.start_with?('.') && File.file?(File.join(project_path, f)) && !['input', 'output'].include?(f) }.to_json
+    else
+      [].to_json
+    end
+  end
+
+  post '/api/sales-tools/:type/save-file/:project' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    filename = data['filename']
+    content = data['content']
+    
+    project_path = case params[:type]
+                  when 'rfp'
+                    File.join(@sales_tools_manager.instance_variable_get(:@rfp_dir), params[:project])
+                  when 'sow'
+                    File.join(@sales_tools_manager.instance_variable_get(:@sow_dir), params[:project])
+                  when 'proposal'
+                    File.join(@sales_tools_manager.instance_variable_get(:@proposal_dir), params[:project])
+                  end
+    
+    file_path = File.join(project_path, filename)
+    
+    begin
+      File.write(file_path, content)
+      { success: true, message: "File saved successfully" }.to_json
+    rescue => e
+      status 500
+      { success: false, error: e.message }.to_json
+    end
+  end
+
+  # CRM API Routes
+  get '/api/crm/organizations' do
+    content_type :json
+    crm_manager = CRMManager.new
+    crm_manager.list_organizations.to_json
+  end
+
+  get '/api/crm/organizations/:id' do
+    content_type :json
+    crm_manager = CRMManager.new
+    organization = crm_manager.get_organization(params[:id])
+    if organization
+      organization.to_json
+    else
+      status 404
+      { error: 'Organization not found' }.to_json
+    end
+  end
+
+  post '/api/crm/organizations' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    crm_manager = CRMManager.new
+    organization = crm_manager.create_organization(data)
+    if organization
+      status 201
+      organization.to_json
+    else
+      status 400
+      { error: 'Failed to create organization' }.to_json
+    end
+  end
+
+  put '/api/crm/organizations/:id' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    crm_manager = CRMManager.new
+    organization = crm_manager.update_organization(params[:id], data)
+    if organization
+      organization.to_json
+    else
+      status 404
+      { error: 'Organization not found' }.to_json
+    end
+  end
+
+  delete '/api/crm/organizations/:id' do
+    content_type :json
+    crm_manager = CRMManager.new
+    crm_manager.delete_organization(params[:id])
+    { success: true, message: 'Organization deleted' }.to_json
+  end
+
+  # Contact API Routes
+  get '/api/crm/contacts' do
+    content_type :json
+    crm_manager = CRMManager.new
+    organization_id = params[:organization_id]
+    contacts = crm_manager.list_contacts(organization_id)
+    contacts.to_json
+  end
+
+  get '/api/crm/contacts/:id' do
+    content_type :json
+    crm_manager = CRMManager.new
+    contact = crm_manager.get_contact(params[:id])
+    if contact
+      contact.to_json
+    else
+      status 404
+      { error: 'Contact not found' }.to_json
+    end
+  end
+
+  post '/api/crm/contacts' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    crm_manager = CRMManager.new
+    contact = crm_manager.create_contact(data)
+    if contact
+      status 201
+      contact.to_json
+    else
+      status 400
+      { error: 'Failed to create contact' }.to_json
+    end
+  end
+
+  put '/api/crm/contacts/:id' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    crm_manager = CRMManager.new
+    contact = crm_manager.update_contact(params[:id], data)
+    if contact
+      contact.to_json
+    else
+      status 404
+      { error: 'Contact not found' }.to_json
+    end
+  end
+
+  delete '/api/crm/contacts/:id' do
+    content_type :json
+    crm_manager = CRMManager.new
+    crm_manager.delete_contact(params[:id])
+    { success: true, message: 'Contact deleted' }.to_json
+  end
+
+  # Activity API Routes
+  get '/api/crm/activities' do
+    content_type :json
+    crm_manager = CRMManager.new
+    project_id = params[:project_id]
+    organization_id = params[:organization_id]
+    activities = crm_manager.list_activities(project_id, organization_id)
+    activities.to_json
+  end
+
+  get '/api/crm/activities/:id' do
+    content_type :json
+    crm_manager = CRMManager.new
+    activity = crm_manager.get_activity(params[:id])
+    if activity
+      activity.to_json
+    else
+      status 404
+      { error: 'Activity not found' }.to_json
+    end
+  end
+
+  post '/api/crm/activities' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    crm_manager = CRMManager.new
+    activity = crm_manager.create_activity(data)
+    if activity
+      status 201
+      activity.to_json
+    else
+      status 400
+      { error: 'Failed to create activity' }.to_json
+    end
+  end
+
+  put '/api/crm/activities/:id' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    crm_manager = CRMManager.new
+    activity = crm_manager.update_activity(params[:id], data)
+    if activity
+      activity.to_json
+    else
+      status 404
+      { error: 'Activity not found' }.to_json
+    end
+  end
+
+  delete '/api/crm/activities/:id' do
+    content_type :json
+    crm_manager = CRMManager.new
+    crm_manager.delete_activity(params[:id])
+    { success: true, message: 'Activity deleted' }.to_json
+  end
+
+  # Note API Routes
+  get '/api/crm/notes' do
+    content_type :json
+    crm_manager = CRMManager.new
+    project_id = params[:project_id]
+    organization_id = params[:organization_id]
+    notes = crm_manager.list_notes(project_id, organization_id)
+    notes.to_json
+  end
+
+  get '/api/crm/notes/:id' do
+    content_type :json
+    crm_manager = CRMManager.new
+    note = crm_manager.get_note(params[:id])
+    if note
+      note.to_json
+    else
+      status 404
+      { error: 'Note not found' }.to_json
+    end
+  end
+
+  post '/api/crm/notes' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    crm_manager = CRMManager.new
+    note = crm_manager.create_note(data)
+    if note
+      status 201
+      note.to_json
+    else
+      status 400
+      { error: 'Failed to create note' }.to_json
+    end
+  end
+
+  put '/api/crm/notes/:id' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    crm_manager = CRMManager.new
+    note = crm_manager.update_note(params[:id], data)
+    if note
+      note.to_json
+    else
+      status 404
+      { error: 'Note not found' }.to_json
+    end
+  end
+
+  delete '/api/crm/notes/:id' do
+    content_type :json
+    crm_manager = CRMManager.new
+    crm_manager.delete_note(params[:id])
+    { success: true, message: 'Note deleted' }.to_json
+  end
+
+  # Pipeline API Routes
+  get '/api/crm/pipeline/stages' do
+    content_type :json
+    crm_manager = CRMManager.new
+    crm_manager.get_pipeline_stages.to_json
+  end
+
+  get '/api/crm/pipeline/entries' do
+    content_type :json
+    crm_manager = CRMManager.new
+    project_id = params[:project_id]
+    organization_id = params[:organization_id]
+    entries = crm_manager.list_pipeline_entries(project_id, organization_id)
+    entries.to_json
+  end
+
+  get '/api/crm/pipeline/entries/:id' do
+    content_type :json
+    crm_manager = CRMManager.new
+    entry = crm_manager.get_pipeline_entry(params[:id])
+    if entry
+      entry.to_json
+    else
+      status 404
+      { error: 'Pipeline entry not found' }.to_json
+    end
+  end
+
+  post '/api/crm/pipeline/entries' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    crm_manager = CRMManager.new
+    entry = crm_manager.create_pipeline_entry(data)
+    if entry
+      status 201
+      entry.to_json
+    else
+      status 400
+      { error: 'Failed to create pipeline entry' }.to_json
+    end
+  end
+
+  put '/api/crm/pipeline/entries/:id' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    crm_manager = CRMManager.new
+    entry = crm_manager.update_pipeline_entry(params[:id], data)
+    if entry
+      entry.to_json
+    else
+      status 404
+      { error: 'Pipeline entry not found' }.to_json
+    end
+  end
+
+  delete '/api/crm/pipeline/entries/:id' do
+    content_type :json
+    crm_manager = CRMManager.new
+    crm_manager.delete_pipeline_entry(params[:id])
+    { success: true, message: 'Pipeline entry deleted' }.to_json
+  end
+
+  get '/api/crm/pipeline/summary' do
+    content_type :json
+    crm_manager = CRMManager.new
+    crm_manager.get_pipeline_summary.to_json
+  end
+
+  # Project CRM Data API
+  get '/api/crm/project/:project_id/:project_type' do
+    content_type :json
+    crm_manager = CRMManager.new
+    crm_data = crm_manager.get_project_crm_data(params[:project_id], params[:project_type])
+    crm_data.to_json
+  end
+
+  # Project Linking API
+  post '/api/crm/project/link' do
+    content_type :json
+    data = JSON.parse(request.body.read)
+    crm_manager = CRMManager.new
+    link = crm_manager.link_project_to_organization(
+      data['project_id'], 
+      data['project_type'], 
+      data['organization_id']
+    )
+    if link
+      status 201
+      link.to_json
+    else
+      status 400
+      { error: 'Failed to link project' }.to_json
+    end
+  end
+
+  delete '/api/crm/project/link/:project_id/:project_type' do
+    content_type :json
+    crm_manager = CRMManager.new
+    result = crm_manager.unlink_project_from_organization(params[:project_id], params[:project_type])
+    result.to_json
+  end
+
+  get '/api/crm/project/link/:project_id/:project_type' do
+    content_type :json
+    crm_manager = CRMManager.new
+    link_data = crm_manager.get_project_organization(params[:project_id], params[:project_type])
+    if link_data
+      link_data.to_json
+    else
+      status 404
+      { error: 'Project not linked to any organization' }.to_json
+    end
+  end
+
+  get '/api/crm/organization/:organization_id/projects' do
+    content_type :json
+    crm_manager = CRMManager.new
+    projects = crm_manager.get_organization_projects(params[:organization_id])
+    projects.to_json
+  end
+
+  get '/api/crm/project-links' do
+    content_type :json
+    crm_manager = CRMManager.new
+    links = crm_manager.get_all_project_links
+    links.to_json
   end
 
   # GitHub Webhook Routes
@@ -2459,24 +3469,46 @@ class SalesToolsManager
   def initialize
     @rfp_dir = File.expand_path('../../sales-tools/rfp-machine/projects', __FILE__)
     @sow_dir = File.expand_path('../../sales-tools/sow-machine/projects', __FILE__)
+    @proposal_dir = File.expand_path('../../sales-tools/proposal-machine/projects', __FILE__)
   end
 
   def list_rfp_projects
     return [] unless Dir.exist?(@rfp_dir)
     
-    Dir.entries(@rfp_dir).select do |entry|
-      next if entry.start_with?('.')
-      File.directory?(File.join(@rfp_dir, entry))
-    end.sort.reverse
+    begin
+      Dir.entries(@rfp_dir).select do |entry|
+        next if entry.start_with?('.')
+        File.directory?(File.join(@rfp_dir, entry))
+      end.sort.reverse
+    rescue => e
+      []
+    end
   end
 
   def list_sow_projects
     return [] unless Dir.exist?(@sow_dir)
     
-    Dir.entries(@sow_dir).select do |entry|
-      next if entry.start_with?('.')
-      File.directory?(File.join(@sow_dir, entry))
-    end.sort.reverse
+    begin
+      Dir.entries(@sow_dir).select do |entry|
+        next if entry.start_with?('.')
+        File.directory?(File.join(@sow_dir, entry))
+      end.sort.reverse
+    rescue => e
+      []
+    end
+  end
+
+  def list_proposal_projects
+    return [] unless Dir.exist?(@proposal_dir)
+    
+    begin
+      Dir.entries(@proposal_dir).select do |entry|
+        next if entry.start_with?('.')
+        File.directory?(File.join(@proposal_dir, entry))
+      end.sort.reverse
+    rescue => e
+      []
+    end
   end
 
   def get_rfp_project_info(project_name)
@@ -2486,16 +3518,35 @@ class SalesToolsManager
     input_dir = File.join(project_path, 'input')
     output_dir = File.join(project_path, 'output')
     
+    begin
+      last_modified = File.mtime(project_path).strftime('%Y-%m-%d %H:%M:%S')
+    rescue => e
+      last_modified = 'Unknown'
+    end
+    
+    # Try to get creation date from .created file, fallback to directory creation time
+    begin
+      created_file = File.join(project_path, '.created')
+      if File.exist?(created_file)
+        created_date = File.read(created_file).strip
+      else
+        created_date = File.ctime(project_path).strftime('%Y-%m-%d %H:%M:%S')
+      end
+    rescue => e
+      created_date = 'Unknown'
+    end
+    
     {
       name: project_name,
       type: 'RFP',
-      input_files: Dir.exist?(input_dir) ? Dir.entries(input_dir).reject { |f| f.start_with?('.') } : [],
-      output_files: Dir.exist?(output_dir) ? Dir.entries(output_dir).reject { |f| f.start_with?('.') } : [],
-      python_files: Dir.entries(project_path).select { |f| f.end_with?('.py') && !f.start_with?('.') },
-      text_files: Dir.entries(project_path).select { |f| f.end_with?('.txt', '.md') && !f.start_with?('.') },
-      input_count: Dir.exist?(input_dir) ? Dir.entries(input_dir).reject { |f| f.start_with?('.') }.size : 0,
-      output_count: Dir.exist?(output_dir) ? Dir.entries(output_dir).reject { |f| f.start_with?('.') }.size : 0,
-      last_modified: File.mtime(project_path).strftime('%Y-%m-%d %H:%M:%S')
+      input_files: Dir.exist?(input_dir) ? (begin; Dir.entries(input_dir).reject { |f| f.start_with?('.') }; rescue; []; end) : [],
+      output_files: Dir.exist?(output_dir) ? (begin; Dir.entries(output_dir).reject { |f| f.start_with?('.') }; rescue; []; end) : [],
+      python_files: (begin; Dir.entries(project_path).select { |f| f.end_with?('.py') && !f.start_with?('.') }; rescue; []; end),
+      text_files: (begin; Dir.entries(project_path).select { |f| f.end_with?('.txt', '.md') && !f.start_with?('.') }; rescue; []; end),
+      input_count: Dir.exist?(input_dir) ? (begin; Dir.entries(input_dir).reject { |f| f.start_with?('.') }.size; rescue; 0; end) : 0,
+      output_count: Dir.exist?(output_dir) ? (begin; Dir.entries(output_dir).reject { |f| f.start_with?('.') }.size; rescue; 0; end) : 0,
+      created_date: created_date,
+      last_modified: last_modified
     }
   end
 
@@ -2506,16 +3557,74 @@ class SalesToolsManager
     input_dir = File.join(project_path, 'input')
     output_dir = File.join(project_path, 'output')
     
+    begin
+      last_modified = File.mtime(project_path).strftime('%Y-%m-%d %H:%M:%S')
+    rescue => e
+      last_modified = 'Unknown'
+    end
+    
+    # Try to get creation date from .created file, fallback to directory creation time
+    begin
+      created_file = File.join(project_path, '.created')
+      if File.exist?(created_file)
+        created_date = File.read(created_file).strip
+      else
+        created_date = File.ctime(project_path).strftime('%Y-%m-%d %H:%M:%S')
+      end
+    rescue => e
+      created_date = 'Unknown'
+    end
+    
     {
       name: project_name,
       type: 'SOW',
-      input_files: Dir.exist?(input_dir) ? Dir.entries(input_dir).reject { |f| f.start_with?('.') } : [],
-      output_files: Dir.exist?(output_dir) ? Dir.entries(output_dir).reject { |f| f.start_with?('.') } : [],
-      python_files: Dir.entries(project_path).select { |f| f.end_with?('.py') && !f.start_with?('.') },
-      text_files: Dir.entries(project_path).select { |f| f.end_with?('.txt', '.md') && !f.start_with?('.') },
-      input_count: Dir.exist?(input_dir) ? Dir.entries(input_dir).reject { |f| f.start_with?('.') }.size : 0,
-      output_count: Dir.exist?(output_dir) ? Dir.entries(output_dir).reject { |f| f.start_with?('.') }.size : 0,
-      last_modified: File.mtime(project_path).strftime('%Y-%m-%d %H:%M:%S')
+      input_files: Dir.exist?(input_dir) ? (begin; Dir.entries(input_dir).reject { |f| f.start_with?('.') }; rescue; []; end) : [],
+      output_files: Dir.exist?(output_dir) ? (begin; Dir.entries(output_dir).reject { |f| f.start_with?('.') }; rescue; []; end) : [],
+      python_files: (begin; Dir.entries(project_path).select { |f| f.end_with?('.py') && !f.start_with?('.') }; rescue; []; end),
+      text_files: (begin; Dir.entries(project_path).select { |f| f.end_with?('.txt', '.md') && !f.start_with?('.') }; rescue; []; end),
+      input_count: Dir.exist?(input_dir) ? (begin; Dir.entries(input_dir).reject { |f| f.start_with?('.') }.size; rescue; 0; end) : 0,
+      output_count: Dir.exist?(output_dir) ? (begin; Dir.entries(output_dir).reject { |f| f.start_with?('.') }.size; rescue; 0; end) : 0,
+      created_date: created_date,
+      last_modified: last_modified
+    }
+  end
+
+  def get_proposal_project_info(project_name)
+    project_path = File.join(@proposal_dir, project_name)
+    return nil unless Dir.exist?(project_path)
+
+    input_dir = File.join(project_path, 'input')
+    output_dir = File.join(project_path, 'output')
+    
+    begin
+      last_modified = File.mtime(project_path).strftime('%Y-%m-%d %H:%M:%S')
+    rescue => e
+      last_modified = 'Unknown'
+    end
+    
+    # Try to get creation date from .created file, fallback to directory creation time
+    begin
+      created_file = File.join(project_path, '.created')
+      if File.exist?(created_file)
+        created_date = File.read(created_file).strip
+      else
+        created_date = File.ctime(project_path).strftime('%Y-%m-%d %H:%M:%S')
+      end
+    rescue => e
+      created_date = 'Unknown'
+    end
+    
+    {
+      name: project_name,
+      type: 'PROPOSAL',
+      input_files: Dir.exist?(input_dir) ? (begin; Dir.entries(input_dir).reject { |f| f.start_with?('.') }; rescue; []; end) : [],
+      output_files: Dir.exist?(output_dir) ? (begin; Dir.entries(output_dir).reject { |f| f.start_with?('.') }; rescue; []; end) : [],
+      python_files: (begin; Dir.entries(project_path).select { |f| f.end_with?('.py') && !f.start_with?('.') }; rescue; []; end),
+      text_files: (begin; Dir.entries(project_path).select { |f| f.end_with?('.txt', '.md') && !f.start_with?('.') }; rescue; []; end),
+      input_count: Dir.exist?(input_dir) ? (begin; Dir.entries(input_dir).reject { |f| f.start_with?('.') }.size; rescue; 0; end) : 0,
+      output_count: Dir.exist?(output_dir) ? (begin; Dir.entries(output_dir).reject { |f| f.start_with?('.') }.size; rescue; 0; end) : 0,
+      created_date: created_date,
+      last_modified: last_modified
     }
   end
 
@@ -2527,6 +3636,11 @@ class SalesToolsManager
       Dir.mkdir(project_path)
       Dir.mkdir(File.join(project_path, 'input'))
       Dir.mkdir(File.join(project_path, 'output'))
+      
+      # Create .created file with timestamp
+      created_timestamp = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+      File.write(File.join(project_path, '.created'), created_timestamp)
+      
       { success: true, message: "RFP Project '#{project_name}' created successfully" }
     rescue => e
       { success: false, error: e.message }
@@ -2541,7 +3655,31 @@ class SalesToolsManager
       Dir.mkdir(project_path)
       Dir.mkdir(File.join(project_path, 'input'))
       Dir.mkdir(File.join(project_path, 'output'))
+      
+      # Create .created file with timestamp
+      created_timestamp = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+      File.write(File.join(project_path, '.created'), created_timestamp)
+      
       { success: true, message: "SOW Project '#{project_name}' created successfully" }
+    rescue => e
+      { success: false, error: e.message }
+    end
+  end
+
+  def create_proposal_project(project_name)
+    project_path = File.join(@proposal_dir, project_name)
+    return { success: false, error: 'Project already exists' } if Dir.exist?(project_path)
+
+    begin
+      Dir.mkdir(project_path)
+      Dir.mkdir(File.join(project_path, 'input'))
+      Dir.mkdir(File.join(project_path, 'output'))
+      
+      # Create .created file with timestamp
+      created_timestamp = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+      File.write(File.join(project_path, '.created'), created_timestamp)
+      
+      { success: true, message: "Proposal Project '#{project_name}' created successfully" }
     rescue => e
       { success: false, error: e.message }
     end
@@ -2566,6 +3704,18 @@ class SalesToolsManager
     begin
       FileUtils.rm_rf(project_path)
       { success: true, message: "SOW Project '#{project_name}' deleted successfully" }
+    rescue => e
+      { success: false, error: e.message }
+    end
+  end
+
+  def delete_proposal_project(project_name)
+    project_path = File.join(@proposal_dir, project_name)
+    return { success: false, error: 'Project does not exist' } unless Dir.exist?(project_path)
+
+    begin
+      FileUtils.rm_rf(project_path)
+      { success: true, message: "Proposal Project '#{project_name}' deleted successfully" }
     rescue => e
       { success: false, error: e.message }
     end
@@ -2626,6 +3776,234 @@ class SalesToolsManager
       { success: false, error: e.message }
     end
   end
+
+  def run_proposal_script(project_name, script_name)
+    project_path = File.join(@proposal_dir, project_name)
+    return { success: false, error: 'Project does not exist' } unless Dir.exist?(project_path)
+
+    script_path = File.join(project_path, script_name)
+    return { success: false, error: 'Script does not exist' } unless File.exist?(script_path)
+
+    begin
+      Dir.chdir(project_path) do
+        stdout, stderr, status = Open3.capture3("python3 #{script_name}")
+        
+        # Save execution log
+        log_file = File.join(project_path, 'output', "#{script_name}_execution.log")
+        File.write(log_file, "Script: #{script_name}\n\nSTDOUT:\n#{stdout}\n\nSTDERR:\n#{stderr}\n\nExit Code: #{status.exitstatus}")
+        
+        {
+          success: status.success?,
+          stdout: stdout,
+          stderr: stderr,
+          exit_code: status.exitstatus,
+          log_file: log_file
+        }
+      end
+    rescue => e
+      { success: false, error: e.message }
+    end
+  end
+
+  def get_sales_tools_summary
+    rfp_projects = list_rfp_projects
+    sow_projects = list_sow_projects
+    proposal_projects = list_proposal_projects
+    
+    # Get recent projects (last 5)
+    recent_rfp = rfp_projects.first(5).map { |name| get_rfp_project_info(name) }.compact
+    recent_sow = sow_projects.first(5).map { |name| get_sow_project_info(name) }.compact
+    recent_proposals = proposal_projects.first(5).map { |name| get_proposal_project_info(name) }.compact
+    
+    # Calculate estimated values
+    rfp_total_value = calculate_rfp_total_value(rfp_projects)
+    sow_total_value = calculate_sow_total_value(sow_projects)
+    proposal_total_value = calculate_proposal_total_value(proposal_projects)
+    total_value = rfp_total_value + sow_total_value + proposal_total_value
+    
+    {
+      total_rfp: rfp_projects.size,
+      total_sow: sow_projects.size,
+      total_proposals: proposal_projects.size,
+      total_all_proposals: rfp_projects.size + sow_projects.size + proposal_projects.size,
+      recent_rfp: recent_rfp,
+      recent_sow: recent_sow,
+      recent_proposals: recent_proposals,
+      open_rfp: rfp_projects.size,
+      open_sow: sow_projects.size,
+      open_proposals: proposal_projects.size,
+      open_all_proposals: rfp_projects.size + sow_projects.size + proposal_projects.size,
+      rfp_total_value: rfp_total_value,
+      sow_total_value: sow_total_value,
+      proposal_total_value: proposal_total_value,
+      total_value: total_value
+    }
+  end
+
+                  def calculate_rfp_total_value(projects)
+                  total = 0
+                  projects.each do |project_name|
+                    project_info = get_rfp_project_info(project_name)
+                    next unless project_info
+                    
+                    estimated_value = get_project_estimated_value(project_name, 'rfp')
+                    total += estimated_value
+                  end
+                  total
+                end
+                
+                def calculate_sow_total_value(projects)
+                  total = 0
+                  projects.each do |project_name|
+                    project_info = get_sow_project_info(project_name)
+                    next unless project_info
+                    
+                    estimated_value = get_project_estimated_value(project_name, 'sow')
+                    total += estimated_value
+                  end
+                  total
+                end
+
+                def calculate_proposal_total_value(projects)
+                  total = 0
+                  projects.each do |project_name|
+                    project_info = get_proposal_project_info(project_name)
+                    next unless project_info
+                    
+                    estimated_value = get_project_estimated_value(project_name, 'proposal')
+                    total += estimated_value
+                  end
+                  total
+                end
+                
+                def get_project_estimated_value(project_name, project_type)
+                  project_info = case project_type
+                                when 'rfp'
+                                  get_rfp_project_info(project_name)
+                                when 'sow'
+                                  get_sow_project_info(project_name)
+                                when 'proposal'
+                                  get_proposal_project_info(project_name)
+                                end
+                  return 0 unless project_info
+                  
+                  # Try to extract actual estimates from project files
+                  actual_estimate = extract_actual_estimate(project_name, project_type)
+                  return actual_estimate if actual_estimate > 0
+                  
+                  # Fallback to generic calculation if no actual estimate found
+                  case project_type
+                  when 'rfp'
+                    base_value = 50000
+                    complexity_bonus = project_info[:input_count] * 10000
+                    base_value + complexity_bonus
+                  when 'sow'
+                    base_value = 75000
+                    scope_bonus = project_info[:input_count] * 15000
+                    base_value + scope_bonus
+                  when 'proposal'
+                    base_value = 25000
+                    complexity_bonus = project_info[:input_count] * 5000
+                    base_value + complexity_bonus
+                  end
+                end
+                
+                def extract_actual_estimate(project_name, project_type)
+                  # Use absolute paths to ensure we can find the project directories
+                  base_dir = File.expand_path('..', __FILE__)
+                  project_path = case project_type
+                                when 'rfp'
+                                  File.join(base_dir, 'sales-tools/rfp-machine/projects', project_name)
+                                when 'sow'
+                                  File.join(base_dir, 'sales-tools/sow-machine/projects', project_name)
+                                when 'proposal'
+                                  File.join(base_dir, 'sales-tools/proposal-machine/projects', project_name)
+                                end
+                  
+                  return 0 unless Dir.exist?(project_path)
+                  
+                  # Look for pricing information in various files
+                  pricing_patterns = [
+                    /\$([0-9,]+(?:\.\d{2})?)/,  # $1,234.56 or $1234
+                    /Total.*Cost.*\$([0-9,]+(?:\.\d{2})?)/i,
+                    /Cost.*Total.*\$([0-9,]+(?:\.\d{2})?)/i,
+                    /Budget.*\$([0-9,]+(?:\.\d{2})?)/i,
+                    /Estimated.*Cost.*\$([0-9,]+(?:\.\d{2})?)/i,
+                    /This project cost is estimated at \$([0-9,]+(?:\.\d{2})?)/i,
+                    /Licensing.*Cost.*\$([0-9,]+(?:\.\d{2})?)/i,
+                    /Implementation.*Cost.*\$([0-9,]+(?:\.\d{2})?)/i
+                  ]
+                  
+                  # Search in common files that might contain pricing
+                  search_files = [
+                    'AI_USER_PROMPT.md',
+                    'README.md',
+                    'pricing.md',
+                    'estimate.md',
+                    'cost.md',
+                    'budget.md'
+                  ]
+                  
+                  # Also search in output directory for final proposals
+                  output_files = Dir.glob(File.join(project_path, 'output', '*.md')).map { |f| File.basename(f) }
+                  search_files.concat(output_files)
+                  
+                  max_estimate = 0
+                  
+                  search_files.each do |filename|
+                    file_path = File.join(project_path, filename)
+                    next unless File.exist?(file_path)
+                    
+                    begin
+                      content = File.read(file_path)
+                      pricing_patterns.each do |pattern|
+                        matches = content.scan(pattern)
+                        matches.each do |match|
+                          amount_str = match.is_a?(Array) ? match[0] : match
+                          amount_str = amount_str.gsub(',', '')
+                          amount = amount_str.to_f
+                          max_estimate = [max_estimate, amount].max if amount > 0
+                        end
+                      end
+                    rescue => e
+                      # Skip files that can't be read
+                      next
+                    end
+                  end
+                  
+                  # For RFP projects, also look for annual licensing costs and multiply by 3 years
+                  if project_type == 'rfp'
+                    annual_patterns = [
+                      /Annual.*Licensing.*Cost.*\$([0-9,]+(?:\.\d{2})?)/i,
+                      /Year.*Licensing.*Cost.*\$([0-9,]+(?:\.\d{2})?)/i,
+                      /Licensing.*Cost.*\$([0-9,]+(?:\.\d{2})?)/i
+                    ]
+                    
+                    search_files.each do |filename|
+                      file_path = File.join(project_path, filename)
+                      next unless File.exist?(file_path)
+                      
+                      begin
+                        content = File.read(file_path)
+                        annual_patterns.each do |pattern|
+                          matches = content.scan(pattern)
+                          matches.each do |match|
+                            amount_str = match.is_a?(Array) ? match[0] : match
+                            amount_str = amount_str.gsub(',', '')
+                            annual_amount = amount_str.to_f
+                            # Multiply by 3 years for total project value
+                            three_year_value = annual_amount * 3
+                            max_estimate = [max_estimate, three_year_value].max if three_year_value > 0
+                          end
+                        end
+                      rescue => e
+                        next
+                      end
+                    end
+                  end
+                  
+                  max_estimate
+                end
 end
 
 # Legacy AuditManager class (keeping for backward compatibility)
@@ -2716,9 +4094,145 @@ class ProjectManager
   end
 end
 
+# Wiz Chat Agent Helper Methods
+def generate_wiz_response(message, context)
+  # Connect to wiz-agent microservice
+  begin
+    require 'net/http'
+    require 'uri'
+    require 'json'
+    
+    # Prepare the request payload
+    payload = {
+      message: message,
+      context: context,
+      timestamp: Time.now.iso8601,
+      session_id: SecureRandom.uuid
+    }
+    
+    # Make HTTP request to wiz-agent microservice
+    uri = URI('http://localhost:10001/chat')
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.open_timeout = 30
+    http.read_timeout = 60
+    
+    request = Net::HTTP::Post.new(uri)
+    request['Content-Type'] = 'application/json'
+    request.body = payload.to_json
+    
+    response = http.request(request)
+    
+    if response.code == '200'
+      result = JSON.parse(response.body)
+      return result['response'] || result['message'] || "I received a response from the AI service, but it was empty."
+    else
+      # Fallback to local response generation if microservice is unavailable
+      puts "Wiz-agent microservice returned error: #{response.code} - #{response.body}"
+      return generate_fallback_response(message, context)
+    end
+    
+  rescue => e
+    puts "Error connecting to wiz-agent microservice: #{e.message}"
+    # Fallback to local response generation
+    return generate_fallback_response(message, context)
+  end
+end
+
+def generate_fallback_response(message, context)
+  # Fallback response generation when microservice is unavailable
+  case context
+  when 'sales'
+    generate_sales_response(message)
+  when 'audit'
+    generate_audit_response(message)
+  when 'knowledge'
+    generate_knowledge_response(message)
+  else
+    generate_general_response(message)
+  end
+end
+
+def generate_sales_response(message)
+  message_lower = message.downcase
+  if message_lower.include?('rfp') || message_lower.include?('proposal')
+    "I can help you with RFP and proposal generation! I can analyze requirements, generate responses, and track your sales pipeline. Would you like me to help you create a new RFP response or review existing ones?"
+  elsif message_lower.include?('sow') || message_lower.include?('statement of work')
+    "I can assist with Statement of Work creation! I can help you define project scope, estimate costs, and generate professional SOW documents. Would you like to start a new SOW project?"
+  elsif message_lower.include?('pipeline') || message_lower.include?('sales')
+    "I can help you track your sales pipeline! I can show you open RFPs, SOWs, and proposals, along with their total value and status. Would you like me to show you the current pipeline overview?"
+  else
+    "I'm here to help with your sales tools! I can assist with RFP responses, SOW creation, proposal generation, and pipeline tracking. What would you like to work on?"
+  end
+end
+
+def generate_audit_response(message)
+  message_lower = message.downcase
+  if message_lower.include?('jira') || message_lower.include?('ticket')
+    "I can help you audit JIRA tickets! I can identify obsolete tickets, find duplicates, and analyze ticket patterns. Would you like me to run a comprehensive JIRA audit?"
+  elsif message_lower.include?('content') || message_lower.include?('documentation')
+    "I can help you audit content and documentation! I can analyze content veracity, find inconsistencies, and suggest improvements. Would you like me to review your content?"
+  elsif message_lower.include?('github') || message_lower.include?('code')
+    "I can help you analyze GitHub impact! I can track code changes, identify affected documentation, and assess the impact of code modifications. Would you like me to analyze your GitHub repositories?"
+  else
+    "I'm here to help with audits and analysis! I can assist with JIRA ticket audits, content analysis, and GitHub impact assessment. What would you like to audit?"
+  end
+end
+
+def generate_knowledge_response(message)
+  message_lower = message.downcase
+  if message_lower.include?('search') || message_lower.include?('find')
+    "I can help you search the knowledge base! I can search across JIRA, Intercom, GitHub, and other sources to find relevant information. What would you like to search for?"
+  elsif message_lower.include?('sync') || message_lower.include?('update')
+    "I can help you sync the knowledge base! I can update content from all connected sources and ensure your knowledge base is current. Would you like me to sync all sources?"
+  elsif message_lower.include?('relationship') || message_lower.include?('link')
+    "I can help you explore content relationships! I can show you how different pieces of content are connected across sources. Would you like me to analyze content relationships?"
+  else
+    "I'm here to help with the knowledge base! I can assist with searching content, syncing sources, and exploring relationships between different pieces of information. What would you like to do?"
+  end
+end
+
+def generate_general_response(message)
+  message_lower = message.downcase
+  if message_lower.include?('hello') || message_lower.include?('hi')
+          "Hello! I'm Wiz, your AI assistant for Wiseguy. I can help you with sales tools, audits, and knowledge base management. What would you like to work on today?"
+  elsif message_lower.include?('help') || message_lower.include?('what can you do')
+    "I'm Wiz, your AI assistant! I can help you with:\n\n• **Sales Tools**: RFP responses, SOW creation, pipeline tracking\n• **Audits & Analysis**: JIRA audits, content analysis, GitHub impact\n• **Knowledge Base**: Content search, source syncing, relationship analysis\n\nWhat would you like to explore?"
+  else
+          "I'm Wiz, your AI assistant for Wiseguy! I can help you with sales tools, audits, and knowledge base management. How can I assist you today?"
+  end
+end
+
+def generate_wiz_analysis(query, results)
+  if results[:results]&.empty?
+    return "I searched for '#{query}' but didn't find any relevant content in the knowledge base. You might want to try different keywords or check if the content sources are properly synced."
+  end
+  
+  result_count = results[:results].length
+  sources = results[:sources_queried] || []
+  
+  analysis = "I found #{result_count} relevant result(s) for '#{query}' from #{sources.join(', ')} sources.\n\n"
+  
+  # Add insights based on results
+  if result_count > 5
+    analysis += "📊 **High Relevance**: This query returned many results, indicating strong content coverage.\n"
+  elsif result_count > 0
+    analysis += "📊 **Moderate Relevance**: This query found some relevant content.\n"
+  end
+  
+  # Check for vector relationships
+  has_relationships = results[:results].any? { |r| r[:vector_relationships]&.any? }
+  if has_relationships
+    analysis += "🔗 **Content Relationships**: Some results have related content across different sources.\n"
+  end
+  
+  analysis += "\nWould you like me to show you the detailed results or help you explore specific content?"
+  
+  analysis
+end
+
 # Start the application
 if __FILE__ == $0
-  puts "Wizdocs Veracity Audit System started at http://localhost:#{ENV['PORT'] || 3000}"
+  puts "Wiseguy Veracity Audit System started at http://localhost:#{ENV['PORT'] || 3000}"
   puts "Make sure to configure your API credentials in config.env"
   AdminUI.run!
 end 

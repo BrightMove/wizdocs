@@ -1,0 +1,706 @@
+<!-- CRM Integration Component -->
+<div class="crm-integration" id="crmIntegration" data-project-id="<%= @project[:name] %>" data-project-type="<%= @project[:type] %>">
+  <div class="crm-section">
+    <h3>Customer & Pipeline</h3>
+    
+    <!-- Customer & Contact Linking Section -->
+    <div class="customer-linking">
+      <div class="current-customer" id="currentCustomer" style="display: none;">
+        <div class="customer-info">
+          <h4>Linked Organization</h4>
+          <div id="customerDetails"></div>
+          <button class="btn-small btn-secondary" onclick="unlinkCustomer()">Unlink Organization</button>
+        </div>
+      </div>
+      
+      <div class="link-customer" id="linkCustomer" style="display: none;">
+        <h4>Link to Organization</h4>
+        <div class="form-group">
+          <label>Select Organization:</label>
+          <select id="organizationSelect" class="form-select">
+            <option value="">Choose an organization...</option>
+          </select>
+        </div>
+        <button class="btn-small btn-primary" onclick="linkToCustomer()">Link Project</button>
+      </div>
+    </div>
+
+    <!-- Contact Linking Section -->
+    <div class="contact-linking">
+      <div class="current-contact" id="currentContact" style="display: none;">
+        <div class="contact-info">
+          <h4>Primary Contact</h4>
+          <div id="contactDetails"></div>
+          <button class="btn-small btn-secondary" onclick="unlinkContact()">Unlink Contact</button>
+        </div>
+      </div>
+      
+      <div class="link-contact" id="linkContact" style="display: none;">
+        <h4>Link to Contact</h4>
+        <div class="form-group">
+          <label>Select Contact:</label>
+          <select id="contactSelect" class="form-select">
+            <option value="">Choose a contact...</option>
+          </select>
+        </div>
+        <button class="btn-small btn-primary" onclick="linkToContact()">Link Contact</button>
+      </div>
+    </div>
+    
+    <!-- Pipeline Tracking Section -->
+    <div class="pipeline-tracking">
+      <h4>Sales Pipeline</h4>
+      <div class="pipeline-status" id="pipelineStatus">
+        <div class="form-group">
+          <label>Current Stage:</label>
+          <select id="pipelineStage" class="form-select">
+            <option value="lead">Lead (10%)</option>
+            <option value="qualified">Qualified Lead (25%)</option>
+            <option value="proposal">Proposal (50%)</option>
+            <option value="negotiation">Negotiation (75%)</option>
+            <option value="closed_won">Closed Won (100%)</option>
+            <option value="closed_lost">Closed Lost (0%)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Deal Value ($):</label>
+          <input type="number" id="dealValue" class="form-input" placeholder="Enter deal value">
+        </div>
+        <div class="form-group">
+          <label>Currency:</label>
+          <select id="dealCurrency" class="form-select">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="CAD">CAD</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Expected Close Date:</label>
+          <input type="date" id="closeDate" class="form-input">
+        </div>
+        <div class="form-group">
+          <label>Win Probability (%):</label>
+          <input type="number" id="winProbability" class="form-input" min="0" max="100" placeholder="Enter probability">
+        </div>
+        <div class="form-group">
+          <label>Pipeline Notes:</label>
+          <textarea id="pipelineNotes" class="form-textarea" placeholder="Pipeline notes..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Next Action:</label>
+          <input type="text" id="nextAction" class="form-input" placeholder="What's the next step?">
+        </div>
+        <div class="form-group">
+          <label>Next Action Date:</label>
+          <input type="date" id="nextActionDate" class="form-input">
+        </div>
+        <button class="btn-small btn-primary" onclick="updatePipeline()">Update Pipeline</button>
+      </div>
+    </div>
+    
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <h4>Quick Actions</h4>
+      <div class="action-buttons">
+        <button class="btn-small btn-secondary" onclick="addActivity()">Add Activity</button>
+        <button class="btn-small btn-secondary" onclick="addNote()">Add Note</button>
+        <button class="btn-small btn-secondary" onclick="viewCRM()">View Full CRM</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.crm-integration {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.crm-section h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.crm-section h4 {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.customer-linking, .pipeline-tracking, .quick-actions {
+  margin-bottom: 20px;
+}
+
+.customer-info {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-secondary);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 12px;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border-primary);
+  border-radius: 6px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.form-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.btn-primary {
+  background: var(--accent-primary);
+  color: white;
+}
+
+.btn-secondary {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+}
+
+.btn-primary:hover {
+  background: var(--accent-primary-dark);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-secondary);
+}
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pipeline-status {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-secondary);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-secondary);
+}
+
+.error {
+  background: #fee;
+  border: 1px solid #fcc;
+  color: #c33;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.success {
+  background: #efe;
+  border: 1px solid #cfc;
+  color: #3c3;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+</style>
+
+<script>
+let currentProjectId = '<%= @project[:name] %>';
+let currentProjectType = '<%= @project[:type] %>';
+let currentOrganization = null;
+let currentContact = null;
+let currentPipelineEntry = null;
+
+// Initialize CRM Integration
+document.addEventListener('DOMContentLoaded', function() {
+  loadCustomerLink();
+  loadContactLink();
+  loadPipelineEntry();
+  loadOrganizations();
+  loadContacts();
+});
+
+function loadCustomerLink() {
+  fetch(`/api/crm/project/link/${currentProjectId}/${currentProjectType}`)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        return null;
+      }
+    })
+    .then(data => {
+      if (data && data.organization) {
+        currentOrganization = data.organization;
+        showCurrentCustomer(data.organization);
+      } else {
+        showLinkCustomer();
+      }
+    })
+    .catch(error => {
+      console.error('Error loading customer link:', error);
+      showLinkCustomer();
+    });
+}
+
+function loadPipelineEntry() {
+  fetch(`/api/crm/pipeline/entries?project_id=${currentProjectId}`)
+    .then(response => response.json())
+    .then(entries => {
+      if (entries && entries.length > 0) {
+        currentPipelineEntry = entries[0];
+        populatePipelineForm(currentPipelineEntry);
+      }
+    })
+    .catch(error => {
+      console.error('Error loading pipeline entry:', error);
+    });
+}
+
+function loadOrganizations() {
+  fetch('/api/crm/organizations')
+    .then(response => response.json())
+    .then(organizations => {
+      const select = document.getElementById('organizationSelect');
+      select.innerHTML = '<option value="">Choose an organization...</option>';
+      
+      organizations.forEach(org => {
+        const option = document.createElement('option');
+        option.value = org.id;
+        option.textContent = org.name;
+        select.appendChild(option);
+      });
+    })
+    .catch(error => {
+      console.error('Error loading organizations:', error);
+    });
+}
+
+function loadContacts() {
+  fetch('/api/crm/contacts')
+    .then(response => response.json())
+    .then(contacts => {
+      const select = document.getElementById('contactSelect');
+      select.innerHTML = '<option value="">Choose a contact...</option>';
+      
+      contacts.forEach(contact => {
+        const option = document.createElement('option');
+        option.value = contact.id;
+        option.textContent = `${contact.first_name} ${contact.last_name}${contact.title ? ` - ${contact.title}` : ''}`;
+        select.appendChild(option);
+      });
+    })
+    .catch(error => {
+      console.error('Error loading contacts:', error);
+    });
+}
+
+function loadContactLink() {
+  // For now, we'll link contacts through the pipeline entry
+  // This could be enhanced to have direct project-contact links
+  fetch(`/api/crm/pipeline/entries?project_id=${currentProjectId}`)
+    .then(response => response.json())
+    .then(entries => {
+      if (entries && entries.length > 0) {
+        const entry = entries[0];
+        if (entry.contact_id) {
+          // Load contact details if we have a contact ID
+          fetch(`/api/crm/contacts/${entry.contact_id}`)
+            .then(response => response.json())
+            .then(contact => {
+              if (contact) {
+                currentContact = contact;
+                showCurrentContact(contact);
+              } else {
+                showLinkContact();
+              }
+            })
+            .catch(() => showLinkContact());
+        } else {
+          showLinkContact();
+        }
+      } else {
+        showLinkContact();
+      }
+    })
+    .catch(error => {
+      console.error('Error loading contact link:', error);
+      showLinkContact();
+    });
+}
+
+function showCurrentCustomer(organization) {
+  document.getElementById('currentCustomer').style.display = 'block';
+  document.getElementById('linkCustomer').style.display = 'none';
+  
+  const details = document.getElementById('customerDetails');
+  details.innerHTML = `
+    <div><strong>${organization.name}</strong></div>
+    <div>${organization.industry || 'N/A'}</div>
+    <div>${organization.employee_count ? organization.employee_count + ' employees' : 'N/A'}</div>
+  `;
+}
+
+function showLinkCustomer() {
+  document.getElementById('currentCustomer').style.display = 'none';
+  document.getElementById('linkCustomer').style.display = 'block';
+}
+
+function showCurrentContact(contact) {
+  document.getElementById('currentContact').style.display = 'block';
+  document.getElementById('linkContact').style.display = 'none';
+  
+  const details = document.getElementById('contactDetails');
+  details.innerHTML = `
+    <div><strong>${contact.first_name} ${contact.last_name}</strong></div>
+    <div>${contact.title || 'N/A'}</div>
+    <div>${contact.email || 'N/A'}</div>
+  `;
+}
+
+function showLinkContact() {
+  document.getElementById('currentContact').style.display = 'none';
+  document.getElementById('linkContact').style.display = 'block';
+}
+
+function linkToCustomer() {
+  const organizationId = document.getElementById('organizationSelect').value;
+  if (!organizationId) {
+    alert('Please select an organization');
+    return;
+  }
+  
+  fetch('/api/crm/project/link', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      project_id: currentProjectId,
+      project_type: currentProjectType,
+      organization_id: organizationId
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.error) {
+      showError('Failed to link project: ' + data.error);
+    } else {
+      showSuccess('Project linked successfully!');
+      loadCustomerLink();
+    }
+  })
+  .catch(error => {
+    console.error('Error linking project:', error);
+    showError('Failed to link project');
+  });
+}
+
+function unlinkCustomer() {
+  if (!confirm('Are you sure you want to unlink this organization?')) {
+    return;
+  }
+  
+  fetch(`/api/crm/project/link/${currentProjectId}/${currentProjectType}`, {
+    method: 'DELETE'
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      showSuccess('Organization unlinked successfully!');
+      currentOrganization = null;
+      showLinkCustomer();
+    } else {
+      showError('Failed to unlink organization');
+    }
+  })
+  .catch(error => {
+    console.error('Error unlinking organization:', error);
+    showError('Failed to unlink organization');
+  });
+}
+
+function linkToContact() {
+  const contactId = document.getElementById('contactSelect').value;
+  if (!contactId) {
+    alert('Please select a contact');
+    return;
+  }
+  
+  // For now, we'll link contacts through the pipeline entry
+  // This could be enhanced to have direct project-contact links
+  if (currentPipelineEntry) {
+    updatePipelineWithContact(contactId);
+  } else {
+    showError('Please link to an organization first and create a pipeline entry');
+  }
+}
+
+function unlinkContact() {
+  if (!confirm('Are you sure you want to unlink this contact?')) {
+    return;
+  }
+  
+  if (currentPipelineEntry) {
+    updatePipelineWithContact(null);
+  } else {
+    showSuccess('Contact unlinked successfully!');
+    currentContact = null;
+    showLinkContact();
+  }
+}
+
+function updatePipelineWithContact(contactId) {
+  const pipelineData = {
+    ...currentPipelineEntry,
+    contact_id: contactId
+  };
+  
+  fetch(`/api/crm/pipeline/entries/${currentPipelineEntry.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(pipelineData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.error) {
+      showError('Failed to update contact: ' + data.error);
+    } else {
+      showSuccess('Contact updated successfully!');
+      currentPipelineEntry = data;
+      if (contactId) {
+        // Load contact details
+        fetch(`/api/crm/contacts/${contactId}`)
+          .then(response => response.json())
+          .then(contact => {
+            currentContact = contact;
+            showCurrentContact(contact);
+          });
+      } else {
+        currentContact = null;
+        showLinkContact();
+      }
+    }
+  })
+  .catch(error => {
+    console.error('Error updating contact:', error);
+    showError('Failed to update contact');
+  });
+}
+
+function populatePipelineForm(entry) {
+  document.getElementById('pipelineStage').value = entry.stage || 'lead';
+  document.getElementById('dealValue').value = entry.value || '';
+  document.getElementById('dealCurrency').value = entry.currency || 'USD';
+  document.getElementById('closeDate').value = entry.expected_close_date || '';
+  document.getElementById('winProbability').value = entry.win_probability || '';
+  document.getElementById('pipelineNotes').value = entry.notes || '';
+  document.getElementById('nextAction').value = entry.next_action || '';
+  document.getElementById('nextActionDate').value = entry.next_action_date || '';
+}
+
+function updatePipeline() {
+  const stage = document.getElementById('pipelineStage').value;
+  const value = document.getElementById('dealValue').value;
+  const currency = document.getElementById('dealCurrency').value;
+  const closeDate = document.getElementById('closeDate').value;
+  const winProbability = document.getElementById('winProbability').value;
+  const notes = document.getElementById('pipelineNotes').value;
+  const nextAction = document.getElementById('nextAction').value;
+  const nextActionDate = document.getElementById('nextActionDate').value;
+  
+  if (!currentOrganization) {
+    showError('Please link to an organization first');
+    return;
+  }
+  
+  const pipelineData = {
+    project_id: currentProjectId,
+    project_type: currentProjectType,
+    organization_id: currentOrganization.id,
+    contact_id: currentContact ? currentContact.id : null,
+    stage: stage,
+    value: value,
+    currency: currency,
+    expected_close_date: closeDate,
+    win_probability: winProbability,
+    notes: notes,
+    next_action: nextAction,
+    next_action_date: nextActionDate
+  };
+  
+  const method = currentPipelineEntry ? 'PUT' : 'POST';
+  const url = currentPipelineEntry 
+    ? `/api/crm/pipeline/entries/${currentPipelineEntry.id}`
+    : '/api/crm/pipeline/entries';
+  
+  fetch(url, {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(pipelineData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.error) {
+      showError('Failed to update pipeline: ' + data.error);
+    } else {
+      showSuccess('Pipeline updated successfully!');
+      currentPipelineEntry = data;
+    }
+  })
+  .catch(error => {
+    console.error('Error updating pipeline:', error);
+    showError('Failed to update pipeline');
+  });
+}
+
+function addActivity() {
+  const subject = prompt('Activity subject:');
+  if (!subject) return;
+  
+  const type = prompt('Activity type (call, email, meeting, etc.):');
+  if (!type) return;
+  
+  const description = prompt('Activity description:');
+  
+  const activityData = {
+    project_id: currentProjectId,
+    project_type: currentProjectType,
+    organization_id: currentOrganization ? currentOrganization.id : null,
+    subject: subject,
+    type: type,
+    description: description,
+    date: new Date().toISOString()
+  };
+  
+  fetch('/api/crm/activities', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(activityData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.error) {
+      showError('Failed to add activity: ' + data.error);
+    } else {
+      showSuccess('Activity added successfully!');
+    }
+  })
+  .catch(error => {
+    console.error('Error adding activity:', error);
+    showError('Failed to add activity');
+  });
+}
+
+function addNote() {
+  const title = prompt('Note title:');
+  if (!title) return;
+  
+  const content = prompt('Note content:');
+  if (!content) return;
+  
+  const noteData = {
+    project_id: currentProjectId,
+    project_type: currentProjectType,
+    organization_id: currentOrganization ? currentOrganization.id : null,
+    title: title,
+    content: content,
+    category: 'general'
+  };
+  
+  fetch('/api/crm/notes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(noteData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.error) {
+      showError('Failed to add note: ' + data.error);
+    } else {
+      showSuccess('Note added successfully!');
+    }
+  })
+  .catch(error => {
+    console.error('Error adding note:', error);
+    showError('Failed to add note');
+  });
+}
+
+function viewCRM() {
+  window.open('/crm', '_blank');
+}
+
+function showError(message) {
+  const errorDiv = document.createElement('div');
+  errorDiv.className = 'error';
+  errorDiv.textContent = message;
+  
+  const container = document.getElementById('crmIntegration');
+  container.insertBefore(errorDiv, container.firstChild);
+  
+  setTimeout(() => {
+    errorDiv.remove();
+  }, 5000);
+}
+
+function showSuccess(message) {
+  const successDiv = document.createElement('div');
+  successDiv.className = 'success';
+  successDiv.textContent = message;
+  
+  const container = document.getElementById('crmIntegration');
+  container.insertBefore(successDiv, container.firstChild);
+  
+  setTimeout(() => {
+    successDiv.remove();
+  }, 5000);
+}
+</script>

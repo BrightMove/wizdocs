@@ -1,0 +1,975 @@
+<div class="container">
+    <style>
+        .projects-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .projects-table th {
+            background: var(--bg-secondary);
+            padding: 16px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-primary);
+        }
+        
+        .projects-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid var(--border-secondary);
+            color: var(--text-primary);
+        }
+        
+        .projects-table tr:hover {
+            background: var(--bg-secondary);
+        }
+        
+        .project-type {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .project-type.rfp {
+            background: rgba(255, 193, 7, 0.1);
+            color: #f57c00;
+        }
+        
+        .project-type.sow {
+            background: rgba(76, 175, 80, 0.1);
+            color: #388e3c;
+        }
+        
+        .project-type.proposal {
+            background: rgba(33, 150, 243, 0.1);
+            color: #1976d2;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-view {
+            background: var(--accent-primary);
+            color: white;
+        }
+        
+        .btn-edit {
+            background: var(--accent-primary);
+            color: white;
+        }
+        
+        .btn-regenerate {
+            background: var(--accent-warning);
+            color: white;
+        }
+        
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background-color: var(--bg-primary);
+            margin: 5% auto;
+            padding: 24px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .close {
+            color: var(--text-secondary);
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: var(--text-primary);
+        }
+        
+        .form-row {
+            margin-bottom: 16px;
+        }
+        
+        .form-row label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .form-row select,
+        .form-row input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+        
+        .form-row select:focus,
+        .form-row input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+        
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-group label {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .filter-group select {
+            padding: 8px 12px;
+            border: 1px solid var(--border-primary);
+            border-radius: 6px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+        
+        /* Responsive design for mobile */
+        @media (max-width: 768px) {
+            .projects-table {
+                font-size: 14px;
+            }
+            
+            .projects-table th,
+            .projects-table td {
+                padding: 12px 8px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 4px;
+            }
+            
+            .btn-small {
+                padding: 4px 8px;
+                font-size: 11px;
+                min-width: 60px;
+            }
+            
+            .filters {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .filter-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+        }
+    </style>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <div>
+            <h1 class="section-title">Sales Tools</h1>
+            <p class="section-subtitle">AI-powered tools for RFP responses and Statement of Work generation</p>
+            <p id="projectCount" style="margin: 8px 0 0 0; color: var(--text-secondary); font-size: 14px;">
+                Loading projects...
+            </p>
+        </div>
+        <button onclick="openCreateModal()" class="btn primary">
+            <span style="margin-right: 8px;">➕</span>
+            New Project
+        </button>
+    </div>
+    
+    <!-- Filters -->
+    <div class="filters">
+        <div class="filter-group">
+            <label>Type:</label>
+            <select id="typeFilter" onchange="filterProjects()">
+                <option value="">All Types</option>
+                <option value="RFP">RFP</option>
+                <option value="SOW">SOW</option>
+                <option value="PROPOSAL">Proposal</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Sort by:</label>
+            <select id="sortFilter" onchange="filterProjects()">
+                <option value="date">Last Modified</option>
+                <option value="created">Date Created</option>
+                <option value="name">Project Name</option>
+                <option value="type">Project Type</option>
+            </select>
+        </div>
+    </div>
+    
+    <!-- Projects Table -->
+    <div id="projectsTable">
+        <div class="empty-state">
+            <div class="empty-state-icon">📊</div>
+            <p>Loading projects...</p>
+        </div>
+    </div>
+</div>
+
+<!-- Create Project Modal -->
+<div id="createModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Create New Project</h3>
+            <span class="close" onclick="closeCreateModal()">&times;</span>
+        </div>
+        
+        <div class="form-row">
+            <label for="projectType">Project Type</label>
+            <select id="projectType" required>
+                <option value="">Select project type...</option>
+                <option value="RFP">RFP Response</option>
+                <option value="SOW">Statement of Work</option>
+                <option value="PROPOSAL">Proposal</option>
+            </select>
+        </div>
+        
+        <div class="form-row">
+            <label for="projectName">Project Name</label>
+            <input type="text" id="projectName" placeholder="Enter project name..." required>
+        </div>
+        
+        <div class="modal-actions">
+            <button onclick="closeCreateModal()" class="btn secondary">Cancel</button>
+            <button onclick="createProject()" class="btn primary">Create Project</button>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Project Modal -->
+<div id="editModal" class="modal">
+    <div class="modal-content" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
+        <div class="modal-header">
+            <h3>Edit Project: <span id="editProjectName"></span></h3>
+            <span class="close" onclick="closeEditModal()">&times;</span>
+        </div>
+        
+        <div id="editModalContent">
+            <!-- Project Info Section -->
+            <div class="form-row">
+                <label>Project Type</label>
+                <div style="padding: 12px; background: var(--bg-secondary); border-radius: 8px; color: var(--text-primary);">
+                    <span id="editProjectType"></span>
+                </div>
+            </div>
+            
+            <!-- File Management Section -->
+            <div class="form-row">
+                <h4 style="margin: 16px 0 8px 0; color: var(--text-primary);">File Management</h4>
+                
+                <!-- Input Files -->
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 8px;">
+                        <label style="margin: 0; font-weight: 500;">Input Files</label>
+                        <button onclick="addInputFile()" class="btn-small btn-view" style="padding: 4px 8px; font-size: 12px;">Add File</button>
+                    </div>
+                    <div id="inputFilesList" style="background: var(--bg-secondary); border-radius: 8px; padding: 12px; min-height: 60px;">
+                        <p style="color: var(--text-secondary); text-align: center; margin: 0;">No input files</p>
+                    </div>
+                </div>
+                
+                <!-- AI Prompt File -->
+                <div style="margin-bottom: 20px;">
+                    <label style="font-weight: 500; margin-bottom: 8px; display: block;">AI Prompt (AI_USER_PROMPT.md)</label>
+                    <textarea id="aiPromptContent" rows="8" style="width: 100%; padding: 12px; border: 1px solid var(--border-primary); border-radius: 8px; background: var(--bg-secondary); color: var(--text-primary); font-family: monospace; font-size: 14px;" placeholder="Enter your AI prompt here..."></textarea>
+                </div>
+                
+                <!-- README File -->
+                <div style="margin-bottom: 20px;">
+                    <label style="font-weight: 500; margin-bottom: 8px; display: block;">README (README.md)</label>
+                    <textarea id="readmeContent" rows="6" style="width: 100%; padding: 12px; border: 1px solid var(--border-primary); border-radius: 8px; background: var(--bg-secondary); color: var(--text-primary); font-family: monospace; font-size: 14px;" placeholder="Enter project description..."></textarea>
+                </div>
+                
+                <!-- Custom Files -->
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 8px;">
+                        <label style="margin: 0; font-weight: 500;">Custom Files</label>
+                        <button onclick="addCustomFile()" class="btn-small btn-view" style="padding: 4px 8px; font-size: 12px;">Add File</button>
+                    </div>
+                    <div id="customFilesList" style="background: var(--bg-secondary); border-radius: 8px; padding: 12px; min-height: 60px;">
+                        <p style="color: var(--text-secondary); text-align: center; margin: 0;">No custom files</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal-actions">
+            <button onclick="closeEditModal()" class="btn secondary">Cancel</button>
+            <button onclick="saveProjectChanges()" class="btn primary">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let allProjects = [];
+    
+    // Load projects on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        loadAllProjects();
+    });
+    
+    function loadAllProjects() {
+        Promise.all([
+            fetch('/api/sales-tools/rfp/list').then(r => r.json()),
+            fetch('/api/sales-tools/sow/list').then(r => r.json()),
+            fetch('/api/sales-tools/proposal/list').then(r => r.json())
+        ])
+        .then(([rfpProjects, sowProjects, proposalProjects]) => {
+            allProjects = [
+                ...rfpProjects.map(p => ({ ...p, type: 'RFP' })),
+                ...sowProjects.map(p => ({ ...p, type: 'SOW' })),
+                ...proposalProjects.map(p => ({ ...p, type: 'PROPOSAL' }))
+            ];
+            renderProjectsTable();
+        })
+        .catch(error => {
+            console.error('Error loading projects:', error);
+            document.getElementById('projectsTable').innerHTML = 
+                '<div class="empty-state"><div class="empty-state-icon">❌</div><p>Error loading projects</p></div>';
+        });
+    }
+    
+    function renderProjectsTable() {
+        const container = document.getElementById('projectsTable');
+        
+        // Update project count
+        const projectCountElement = document.getElementById('projectCount');
+        if (allProjects.length === 0) {
+            projectCountElement.textContent = 'No projects found';
+        } else {
+            const filteredProjects = filterProjectsData();
+            projectCountElement.textContent = `${filteredProjects.length} of ${allProjects.length} projects`;
+        }
+        
+        if (allProjects.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">📁</div>
+                    <p>No projects found</p>
+                    <button onclick="openCreateModal()" class="btn primary" style="margin-top: 16px;">Create Your First Project</button>
+                </div>
+            `;
+            return;
+        }
+        
+        const filteredProjects = filterProjectsData();
+        
+        container.innerHTML = `
+            <table class="projects-table">
+                <thead>
+                    <tr>
+                                    <th>Project Name</th>
+            <th>Type</th>
+            <th>Date Created</th>
+            <th>Last Modified</th>
+            <th>Customer</th>
+            <th>Pipeline</th>
+            <th>Files</th>
+            <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${filteredProjects.map(project => `
+                        <tr>
+                            <td>
+                                <div style="font-weight: 500;">${project.name}</div>
+                                <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">
+                                    ${project.input_count} input, ${project.output_count} output
+                                </div>
+                            </td>
+                            <td>
+                                <span class="project-type ${project.type.toLowerCase()}">
+                                    ${getTypeIcon(project.type)} ${project.type}
+                                </span>
+                            </td>
+                                            <td>${formatDate(project.created_date)}</td>
+                <td>${formatDate(project.last_modified)}</td>
+                <td>
+                    <div id="customer-${project.name}" class="customer-info" style="font-size: 12px;">
+                        <div class="loading">Loading...</div>
+                    </div>
+                </td>
+                <td>
+                    <div id="pipeline-${project.name}" class="pipeline-info" style="font-size: 12px;">
+                        <div class="loading">Loading...</div>
+                    </div>
+                </td>
+                <td>
+                    <div style="font-size: 12px;">
+                        <div>📁 ${project.input_count} input</div>
+                        <div>📄 ${project.output_count} output</div>
+                    </div>
+                </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <a href="/sales-tools/${project.type.toLowerCase()}/${project.name}" class="btn-small btn-view">View</a>
+                                    <button onclick="editProject('${project.name}', '${project.type}')" class="btn-small btn-edit">Edit</button>
+                                    <button onclick="regenerateProject('${project.name}', '${project.type}')" class="btn-small btn-regenerate">Regenerate</button>
+                                    <button onclick="deleteProject('${project.name}', '${project.type}')" class="btn-small btn-delete">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+        
+        // Load CRM data for each project
+        filteredProjects.forEach(project => {
+            loadProjectCRMData(project.name, project.type);
+        });
+    }
+
+    function loadProjectCRMData(projectName, projectType) {
+        // Load customer link
+        fetch(`/api/crm/project/link/${projectName}/${projectType}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    return null;
+                }
+            })
+            .then(data => {
+                const customerElement = document.getElementById(`customer-${projectName}`);
+                if (data && data.organization) {
+                    customerElement.innerHTML = `
+                        <div style="color: var(--accent-primary); font-weight: 500;">
+                            👥 ${data.organization.name}
+                        </div>
+                        <div style="color: var(--text-secondary);">
+                            ${data.organization.industry || 'N/A'}
+                        </div>
+                    `;
+                } else {
+                    customerElement.innerHTML = `
+                        <div style="color: var(--text-secondary);">
+                            No customer linked
+                        </div>
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error('Error loading customer data:', error);
+                const customerElement = document.getElementById(`customer-${projectName}`);
+                if (customerElement) {
+                    customerElement.innerHTML = `
+                        <div style="color: var(--text-secondary);">
+                            Error loading
+                        </div>
+                    `;
+                }
+            });
+
+        // Load pipeline entry
+        fetch(`/api/crm/pipeline/entries?project_id=${projectName}`)
+            .then(response => response.json())
+            .then(entries => {
+                const pipelineElement = document.getElementById(`pipeline-${projectName}`);
+                if (entries && entries.length > 0) {
+                    const entry = entries[0];
+                    const stageColors = {
+                        'lead': '#6c757d',
+                        'qualified': '#17a2b8',
+                        'proposal': '#ffc107',
+                        'negotiation': '#fd7e14',
+                        'closed_won': '#28a745',
+                        'closed_lost': '#dc3545'
+                    };
+                    const stageNames = {
+                        'lead': 'Lead',
+                        'qualified': 'Qualified',
+                        'proposal': 'Proposal',
+                        'negotiation': 'Negotiation',
+                        'closed_won': 'Won',
+                        'closed_lost': 'Lost'
+                    };
+                    
+                    if (pipelineElement) {
+                        pipelineElement.innerHTML = `
+                            <div style="color: ${stageColors[entry.stage] || '#6c757d'}; font-weight: 500;">
+                                ${stageNames[entry.stage] || entry.stage}
+                            </div>
+                            <div style="color: var(--text-secondary);">
+                                $${entry.value ? entry.value.toLocaleString() : '0'}
+                            </div>
+                        `;
+                    }
+                } else {
+                    if (pipelineElement) {
+                        pipelineElement.innerHTML = `
+                            <div style="color: var(--text-secondary);">
+                                No pipeline
+                            </div>
+                        `;
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error loading pipeline data:', error);
+                const pipelineElement = document.getElementById(`pipeline-${projectName}`);
+                if (pipelineElement) {
+                    pipelineElement.innerHTML = `
+                        <div style="color: var(--text-secondary);">
+                            Error loading
+                        </div>
+                    `;
+                }
+            });
+    }
+    
+    function filterProjectsData() {
+        let filtered = [...allProjects];
+        
+        const typeFilter = document.getElementById('typeFilter').value;
+        const sortFilter = document.getElementById('sortFilter').value;
+        
+        // Filter by type
+        if (typeFilter) {
+            filtered = filtered.filter(p => p.type === typeFilter);
+        }
+        
+        // Sort
+        filtered.sort((a, b) => {
+            switch (sortFilter) {
+                case 'name':
+                    return a.name.localeCompare(b.name);
+                case 'type':
+                    return a.type.localeCompare(b.type);
+                case 'created':
+                    return new Date(b.created_date) - new Date(a.created_date);
+                case 'modified':
+                    return new Date(b.last_modified) - new Date(a.last_modified);
+                case 'date':
+                default:
+                    return new Date(b.last_modified) - new Date(a.last_modified);
+            }
+        });
+        
+        return filtered;
+    }
+    
+    function filterProjects() {
+        renderProjectsTable();
+    }
+    
+    function getTypeIcon(type) {
+        switch (type) {
+            case 'RFP': return '📋';
+            case 'SOW': return '📄';
+            case 'PROPOSAL': return '💼';
+            default: return '📁';
+        }
+    }
+    
+    function formatDate(dateString) {
+        if (!dateString || dateString === 'Unknown') return 'Unknown';
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric' 
+        });
+    }
+    
+    function openCreateModal() {
+        document.getElementById('createModal').style.display = 'block';
+        document.getElementById('projectName').focus();
+    }
+    
+    function closeCreateModal() {
+        document.getElementById('createModal').style.display = 'none';
+        document.getElementById('projectType').value = '';
+        document.getElementById('projectName').value = '';
+    }
+    
+    function createProject() {
+        const projectType = document.getElementById('projectType').value;
+        const projectName = document.getElementById('projectName').value.trim();
+        
+        if (!projectType || !projectName) {
+            alert('Please fill in all fields');
+            return;
+        }
+        
+        const endpoint = `/api/sales-tools/${projectType.toLowerCase()}/create`;
+        
+        fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: projectName })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                closeCreateModal();
+                loadAllProjects();
+            } else {
+                alert('Error: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error creating project');
+        });
+    }
+    
+    function regenerateProject(projectName, projectType) {
+        if (!confirm(`Are you sure you want to regenerate the ${projectType} project "${projectName}"?`)) {
+            return;
+        }
+        
+        const endpoint = `/api/sales-tools/${projectType.toLowerCase()}/run-script`;
+        
+        fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: projectName })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Project regenerated successfully!');
+                loadAllProjects();
+            } else {
+                alert('Error: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error regenerating project');
+        });
+    }
+    
+    function editProject(projectName, projectType) {
+        // Open edit modal with project data
+        openEditModal(projectName, projectType);
+    }
+    
+    function deleteProject(projectName, projectType) {
+        if (!confirm(`Are you sure you want to delete the ${projectType} project "${projectName}"? This action cannot be undone.`)) {
+            return;
+        }
+        
+        const endpoint = `/api/sales-tools/${projectType.toLowerCase()}/delete`;
+        
+        fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: projectName })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                loadAllProjects();
+            } else {
+                alert('Error: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error deleting project');
+        });
+    }
+    
+    // Edit modal functions
+    let currentEditProject = null;
+    
+    function openEditModal(projectName, projectType) {
+        currentEditProject = { name: projectName, type: projectType };
+        document.getElementById('editProjectName').textContent = projectName;
+        document.getElementById('editProjectType').textContent = projectType;
+        
+        // Load project data
+        loadProjectData(projectName, projectType);
+        
+        document.getElementById('editModal').style.display = 'block';
+    }
+    
+    function closeEditModal() {
+        document.getElementById('editModal').style.display = 'none';
+        currentEditProject = null;
+        // Clear form data
+        document.getElementById('aiPromptContent').value = '';
+        document.getElementById('readmeContent').value = '';
+        document.getElementById('inputFilesList').innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin: 0;">No input files</p>';
+        document.getElementById('customFilesList').innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin: 0;">No custom files</p>';
+    }
+    
+    function loadProjectData(projectName, projectType) {
+        // Load AI prompt file
+        fetch(`/api/sales-tools/${projectType.toLowerCase()}/file/${projectName}/AI_USER_PROMPT.md`)
+            .then(response => response.text())
+            .then(content => {
+                document.getElementById('aiPromptContent').value = content;
+            })
+            .catch(() => {
+                document.getElementById('aiPromptContent').value = '';
+            });
+        
+        // Load README file
+        fetch(`/api/sales-tools/${projectType.toLowerCase()}/file/${projectName}/README.md`)
+            .then(response => response.text())
+            .then(content => {
+                document.getElementById('readmeContent').value = content;
+            })
+            .catch(() => {
+                document.getElementById('readmeContent').value = '';
+            });
+        
+        // Load input files list
+        loadInputFiles(projectName, projectType);
+        loadCustomFiles(projectName, projectType);
+    }
+    
+    function loadInputFiles(projectName, projectType) {
+        fetch(`/api/sales-tools/${projectType.toLowerCase()}/files/${projectName}/input`)
+            .then(response => response.json())
+            .then(files => {
+                const container = document.getElementById('inputFilesList');
+                if (files.length === 0) {
+                    container.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin: 0;">No input files</p>';
+                } else {
+                    container.innerHTML = files.map(file => `
+                        <div style="display: flex; justify-content: between; align-items: center; padding: 8px; border-bottom: 1px solid var(--border-secondary);">
+                            <span style="color: var(--text-primary);">📄 ${file}</span>
+                            <button onclick="removeInputFile('${file}')" class="btn-small btn-delete" style="padding: 2px 6px; font-size: 10px;">Remove</button>
+                        </div>
+                    `).join('');
+                }
+            })
+            .catch(() => {
+                document.getElementById('inputFilesList').innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin: 0;">Error loading files</p>';
+            });
+    }
+    
+    function loadCustomFiles(projectName, projectType) {
+        fetch(`/api/sales-tools/${projectType.toLowerCase()}/files/${projectName}/custom`)
+            .then(response => response.json())
+            .then(files => {
+                const container = document.getElementById('customFilesList');
+                if (files.length === 0) {
+                    container.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin: 0;">No custom files</p>';
+                } else {
+                    container.innerHTML = files.map(file => `
+                        <div style="display: flex; justify-content: between; align-items: center; padding: 8px; border-bottom: 1px solid var(--border-secondary);">
+                            <span style="color: var(--text-primary);">📄 ${file}</span>
+                            <button onclick="removeCustomFile('${file}')" class="btn-small btn-delete" style="padding: 2px 6px; font-size: 10px;">Remove</button>
+                        </div>
+                    `).join('');
+                }
+            })
+            .catch(() => {
+                document.getElementById('customFilesList').innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin: 0;">Error loading files</p>';
+            });
+    }
+    
+    function addInputFile() {
+        const fileName = prompt('Enter file name:');
+        if (fileName) {
+            // Add file to the list
+            const container = document.getElementById('inputFilesList');
+            if (container.querySelector('p')) {
+                container.innerHTML = '';
+            }
+            container.innerHTML += `
+                <div style="display: flex; justify-content: between; align-items: center; padding: 8px; border-bottom: 1px solid var(--border-secondary);">
+                    <span style="color: var(--text-primary);">📄 ${fileName}</span>
+                    <button onclick="removeInputFile('${fileName}')" class="btn-small btn-delete" style="padding: 2px 6px; font-size: 10px;">Remove</button>
+                </div>
+            `;
+        }
+    }
+    
+    function addCustomFile() {
+        const fileName = prompt('Enter file name:');
+        if (fileName) {
+            // Add file to the list
+            const container = document.getElementById('customFilesList');
+            if (container.querySelector('p')) {
+                container.innerHTML = '';
+            }
+            container.innerHTML += `
+                <div style="display: flex; justify-content: between; align-items: center; padding: 8px; border-bottom: 1px solid var(--border-secondary);">
+                    <span style="color: var(--text-primary);">📄 ${fileName}</span>
+                    <button onclick="removeCustomFile('${fileName}')" class="btn-small btn-delete" style="padding: 2px 6px; font-size: 10px;">Remove</button>
+                </div>
+            `;
+        }
+    }
+    
+    function removeInputFile(fileName) {
+        if (confirm(`Remove input file "${fileName}"?`)) {
+            const container = document.getElementById('inputFilesList');
+            const fileElement = container.querySelector(`[onclick="removeInputFile('${fileName}')"]`).parentElement;
+            fileElement.remove();
+            
+            if (container.children.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin: 0;">No input files</p>';
+            }
+        }
+    }
+    
+    function removeCustomFile(fileName) {
+        if (confirm(`Remove custom file "${fileName}"?`)) {
+            const container = document.getElementById('customFilesList');
+            const fileElement = container.querySelector(`[onclick="removeCustomFile('${fileName}')"]`).parentElement;
+            fileElement.remove();
+            
+            if (container.children.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin: 0;">No custom files</p>';
+            }
+        }
+    }
+    
+    function saveProjectChanges() {
+        if (!currentEditProject) return;
+        
+        const aiPrompt = document.getElementById('aiPromptContent').value;
+        const readme = document.getElementById('readmeContent').value;
+        
+        // Save AI prompt
+        fetch(`/api/sales-tools/${currentEditProject.type.toLowerCase()}/save-file/${currentEditProject.name}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                filename: 'AI_USER_PROMPT.md',
+                content: aiPrompt
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.success) {
+                console.error('Error saving AI prompt:', data.error);
+            }
+        });
+        
+        // Save README
+        fetch(`/api/sales-tools/${currentEditProject.type.toLowerCase()}/save-file/${currentEditProject.name}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                filename: 'README.md',
+                content: readme
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Project changes saved successfully!');
+                closeEditModal();
+                loadAllProjects(); // Refresh the projects list
+            } else {
+                alert('Error saving changes: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error saving project changes');
+        });
+    }
+    
+    // Close modals when clicking outside
+    window.onclick = function(event) {
+        const createModal = document.getElementById('createModal');
+        const editModal = document.getElementById('editModal');
+        
+        if (event.target === createModal) {
+            closeCreateModal();
+        }
+        if (event.target === editModal) {
+            closeEditModal();
+        }
+    }
+</script>

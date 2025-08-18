@@ -9,9 +9,27 @@ GEM
       zeitwerk (~> 2.3)
     atlassian-jwt (0.2.1)
       jwt (~> 2.1)
+    aws-eventstream (1.3.2)
+    aws-partitions (1.1109.0)
+    aws-sdk-bedrock (1.46.0)
+      aws-sdk-core (~> 3, >= 3.216.0)
+      aws-sigv4 (~> 1.5)
+    aws-sdk-bedrockruntime (1.48.0)
+      aws-sdk-core (~> 3, >= 3.216.0)
+      aws-sigv4 (~> 1.5)
+    aws-sdk-core (3.224.1)
+      aws-eventstream (~> 1, >= 1.3.0)
+      aws-partitions (~> 1, >= 1.992.0)
+      aws-sigv4 (~> 1.9)
+      base64
+      jmespath (~> 1, >= 1.6.1)
+      logger
+    aws-sigv4 (1.11.0)
+      aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.3.0)
     chronic (0.10.2)
     concurrent-ruby (1.3.5)
+    connection_pool (2.5.3)
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
@@ -27,9 +45,12 @@ GEM
       atlassian-jwt
       multipart-post
       oauth (~> 0.5, >= 0.5.0)
+    jmespath (1.6.2)
     json (2.7.6)
     jwt (2.10.2)
       base64
+    langchainrb (0.3.14)
+    logger (1.7.0)
     mini_mime (1.1.5)
     minitest (5.25.4)
     multi_xml (0.6.0)
@@ -42,6 +63,10 @@ GEM
     rack (2.2.17)
     rack-protection (2.2.4)
       rack
+    redis (5.4.1)
+      redis-client (>= 0.22.0)
+    redis-client (0.25.2)
+      connection_pool
     ruby2_keywords (0.0.5)
     sinatra (2.2.4)
       mustermann (~> 2.0)
@@ -62,12 +87,16 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport (~> 6.1)
+  aws-sdk-bedrock
+  aws-sdk-bedrockruntime
   chronic (~> 0.10)
   dotenv (~> 0.3)
   httparty (~> 0.21)
   intercom-ruby (~> 9001.0)
   jira-ruby (~> 2.0)
   json (~> 2.6)
+  langchainrb
+  redis
   sinatra (~> 2.2)
 
 BUNDLED WITH

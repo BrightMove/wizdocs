@@ -1,0 +1,58 @@
+<div class="container">
+    <h1 class="section-title">Audits & Analysis</h1>
+    <p class="section-subtitle">Comprehensive audit tools for JIRA ticket analysis, content veracity verification, and GitHub impact assessment</p>
+    
+    <!-- Audit Projects -->
+    <div class="stats-section">
+        <div class="stats-header">
+            <div class="card-icon primary">📊</div>
+            <h3 class="stats-title">Audit Projects</h3>
+        </div>
+        <div id="auditProjects">
+            <p style="color: var(--text-secondary); text-align: center;">Loading audit projects...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Load audit projects on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        loadAuditProjects();
+    });
+    
+    function loadAuditProjects() {
+        const container = document.getElementById('auditProjects');
+        
+        <% if @audits && @audits.length > 0 %>
+            let html = '<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">';
+            <% @audits.each do |audit| %>
+                html += `
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon primary">📊</div>
+                            <h3 class="card-title"><%= audit[:name] %></h3>
+                        </div>
+                        <p class="card-description">
+                            <%= audit[:description] || 'Audit project' %>
+                        </p>
+                        <div class="card-actions">
+                            <a href="/audit/<%= audit[:name] %>" class="btn primary">View Details</a>
+                            <button onclick="runAudit('<%= audit[:name] %>')" class="btn success">Run Audit</button>
+                        </div>
+                    </div>
+                `;
+            <% end %>
+            html += '</div>';
+            container.innerHTML = html;
+        <% else %>
+            container.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">No audit projects found</p>';
+        <% end %>
+    }
+    
+    function runAudit(auditName) {
+        if (confirm(`Are you sure you want to run the ${auditName} audit?`)) {
+            // Implementation for running audit
+            alert(`Starting ${auditName} audit...`);
+        }
+    }
+</script>
