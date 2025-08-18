@@ -1,10 +1,10 @@
-# WizDocs - Agentic AI Platform for BrightMove
+# Wiseguy - Agentic AI Platform for BrightMove
 
 A modern web application built with Ruby/Sinatra that provides comprehensive audit tools and sales automation for BrightMove product management.
 
 ## Overview
 
-WizDocs is an agentic AI platform designed to support BrightMove product management through two main areas:
+Wiseguy is an agentic AI platform designed to support BrightMove product management through two main areas:
 
 ### 📊 Audits & Analysis
 - **Development Tickets**: Analyze JIRA development tickets and Intercom customer support tickets for consistency and accuracy
@@ -94,7 +94,7 @@ ENVIRONMENT=development
 #### JIRA & Confluence Setup
 1. Go to your Atlassian account settings: https://id.atlassian.com/manage-profile/security/api-tokens
 2. Click "Create API token"
-3. Give it a name (e.g., "Wizdocs Admin UI")
+3. Give it a name (e.g., "Wiseguy Admin UI")
 4. Copy the generated token
 5. Use your JIRA email address as the username
 6. The same credentials work for both JIRA and Confluence APIs
@@ -134,7 +134,7 @@ The application will start at `http://localhost:3000`
 - **Orphaned Content**: Find content with no related tickets
 
 ### Veracity Audits
-The Admin UI supports the Wizdocs veracity audit process:
+The Admin UI supports the Wiseguy veracity audit process:
 - **Input Directory**: Contains contextually relevant documents for audit analysis
 - **Output Directory**: Where audit output documents are written
 - **Cross-Platform Analysis**: Comprehensive analysis across JIRA, Confluence, and Intercom

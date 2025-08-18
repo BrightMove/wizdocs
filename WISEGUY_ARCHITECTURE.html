@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiseguy - Technical Architecture Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .mermaid {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .description {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏗️ Wiseguy Technical Architecture</h1>
+        
+        <div class="mermaid">
+graph TB
+    %% User Interface Layer
+    subgraph "User Interface"
+        UI[Web Browser]
+        UI --> |HTTP/HTTPS| AdminUI
+    end
+
+    %% Main Application Layer
+    subgraph "Wiseguy Core Services"
+        AdminUI[Admin UI<br/>Ruby Sinatra<br/>Port 3000]
+        WizAgent[Wiz-Agent<br/>Python Flask<br/>Port 10001]
+        SalesTools[Sales Tools<br/>RFP/SOW/Proposal<br/>Generation]
+    end
+
+    %% Data Storage Layer
+    subgraph "Data Storage"
+        Redis[(Redis<br/>Cache & Vector Store<br/>Port 6379)]
+        FileSystem[(File System<br/>JSON Storage<br/>CRM Data)]
+        VectorDB[(Vector Database<br/>Embeddings & Search)]
+    end
+
+    %% External AI Services
+    subgraph "AI & ML Services"
+        Bedrock[AWS Bedrock<br/>Claude 3 Sonnet<br/>Titan Embeddings]
+        LangChain[LangChain<br/>Agent Framework]
+    end
+
+    %% External Integrations
+    subgraph "External Integrations"
+        GitHub[GitHub API<br/>Source Code<br/>Repositories]
+        Jira[Jira API<br/>Project Management<br/>Tickets]
+        Confluence[Confluence API<br/>Documentation<br/>Knowledge Base]
+        Intercom[Intercom API<br/>Customer Support<br/>Articles]
+    end
+
+    %% Content Management
+    subgraph "Content Management"
+        ContentRepo[Content Repository<br/>Structured Data<br/>Templates]
+        VectorRelations[Vector Relationships<br/>Content Analysis<br/>Impact Tracking]
+    end
+
+    %% Audit & Analysis
+    subgraph "Audit & Analysis"
+        Audits[Audit Engine<br/>Veracity Checks<br/>Consistency Analysis]
+        KnowledgeBase[Knowledge Base<br/>Search & Index<br/>Content Sync]
+    end
+
+    %% Connections
+    AdminUI --> Redis
+    AdminUI --> FileSystem
+    AdminUI --> |HTTP| WizAgent
+    AdminUI --> GitHub
+    AdminUI --> Jira
+    AdminUI --> Confluence
+    AdminUI --> Intercom
+    AdminUI --> ContentRepo
+    AdminUI --> VectorRelations
+    AdminUI --> Audits
+    AdminUI --> KnowledgeBase
+
+    WizAgent --> Bedrock
+    WizAgent --> LangChain
+    WizAgent --> Redis
+
+    SalesTools --> FileSystem
+    SalesTools --> |HTTP| WizAgent
+
+    KnowledgeBase --> VectorDB
+    KnowledgeBase --> Redis
+    KnowledgeBase --> Bedrock
+
+    VectorRelations --> VectorDB
+    VectorRelations --> Bedrock
+    VectorRelations --> Redis
+
+    Audits --> GitHub
+    Audits --> Jira
+    Audits --> Confluence
+    Audits --> Intercom
+    Audits --> KnowledgeBase
+
+    ContentRepo --> FileSystem
+    ContentRepo --> VectorRelations
+
+    %% Styling
+    classDef coreService fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef storage fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef aiService fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef integration fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef content fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+
+    class AdminUI,WizAgent,SalesTools coreService
+    class Redis,FileSystem,VectorDB storage
+    class Bedrock,LangChain aiService
+    class GitHub,Jira,Confluence,Intercom integration
+    class ContentRepo,VectorRelations,Audits,KnowledgeBase content
+        </div>
+
+        <div class="description">
+            <h3>📋 How to View This Diagram:</h3>
+            <ul>
+                <li><strong>Local View:</strong> Open this HTML file in any web browser</li>
+                <li><strong>GitHub:</strong> Push to GitHub and view the markdown file</li>
+                <li><strong>VS Code:</strong> Install Mermaid Preview extension and use Ctrl+Shift+V</li>
+                <li><strong>Online:</strong> Copy the Mermaid code to <a href="https://mermaid.live/" target="_blank">mermaid.live</a></li>
+            </ul>
+            
+            <h3>🎨 Color Legend:</h3>
+            <ul>
+                <li><span style="color: #01579b; font-weight: bold;">🔵 Blue:</span> Core Services (Admin UI, Wiz-Agent, Sales Tools)</li>
+                <li><span style="color: #4a148c; font-weight: bold;">🟣 Purple:</span> Data Storage (Redis, File System, Vector DB)</li>
+                <li><span style="color: #1b5e20; font-weight: bold;">🟢 Green:</span> AI Services (AWS Bedrock, LangChain)</li>
+                <li><span style="color: #e65100; font-weight: bold;">🟠 Orange:</span> External Integrations (GitHub, Jira, Confluence, Intercom)</li>
+                <li><span style="color: #880e4f; font-weight: bold;">🟣 Pink:</span> Content Management (Content Repo, Vector Relations, Audits, Knowledge Base)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>
