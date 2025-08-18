@@ -50,7 +50,7 @@ The service will start on `http://localhost:10001`
 docker build -t wiz-agent .
 
 # Run container
-docker run -p 5000:5000 --env-file .env wiz-agent
+docker run -p 10001:10001 --env-file .env wiz-agent
 ```
 
 ## API Endpoints
@@ -99,21 +99,21 @@ GET /tools
 
 ### Basic Chat
 ```bash
-curl -X POST http://localhost:5000/chat \
+curl -X POST http://localhost:10001/chat \
   -H "Content-Type: application/json" \
   -d '{"message": "Calculate 15 * 23"}'
 ```
 
 ### With Session
 ```bash
-curl -X POST http://localhost:5000/chat \
+curl -X POST http://localhost:10001/chat \
   -H "Content-Type: application/json" \
   -d '{"message": "Hello, I am John", "session_id": "my-session"}'
 ```
 
 ### Complex Query
 ```bash
-curl -X POST http://localhost:5000/chat \
+curl -X POST http://localhost:10001/chat \
   -H "Content-Type: application/json" \
   -d '{"message": "What is the weather in Paris and calculate the tip for a $85 bill with 18% tip?"}'
 ```
@@ -127,7 +127,7 @@ require 'net/http'
 require 'json'
 
 class WizAgent
-  def initialize(base_url = 'http://localhost:5000')
+  def initialize(base_url = 'http://localhost:10001')
     @base_url = base_url
   end
 
