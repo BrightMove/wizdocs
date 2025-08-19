@@ -1464,11 +1464,82 @@
             modal.classList.add('show');
             document.body.style.overflow = 'hidden';
             
+            // Check wiz-agent service status
+            checkWizServiceStatus();
+            
             // Focus on input
             setTimeout(() => {
                 const input = document.getElementById('wizModalInput');
                 if (input) input.focus();
             }, 300);
+        }
+        
+        function checkWizServiceStatus() {
+            const statusIndicator = document.querySelector('.wiz-status-indicator');
+            const messagesContainer = document.getElementById('wizModalMessages');
+            const input = document.getElementById('wizModalInput');
+            const sendBtn = document.querySelector('.wiz-send-btn');
+            const quickBtns = ['rfpBtn', 'searchBtn', 'auditBtn', 'helpBtn'];
+            
+            // Update status to checking
+            statusIndicator.innerHTML = '🔄 Checking connection...';
+            statusIndicator.style.color = '#666';
+            
+            fetch('/api/wiz/health')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.status === 'connected') {
+                        // Service is online
+                        statusIndicator.innerHTML = '🟢 Online';
+                        statusIndicator.style.color = '#28a745';
+                        
+                        // Enable input and buttons
+                        if (input) input.disabled = false;
+                        if (sendBtn) sendBtn.disabled = false;
+                        quickBtns.forEach(btnId => {
+                            const btn = document.getElementById(btnId);
+                            if (btn) btn.disabled = false;
+                        });
+                        
+                        // Show welcome message if no messages exist
+                        if (messagesContainer.children.length === 0) {
+                            addWizModalMessage('Hello! I\'m Wiz, your AI assistant for Wiseguy. I can help you with sales tools, audits, and knowledge base management. What would you like to work on today?', 'bot');
+                        }
+                    } else {
+                        // Service is offline
+                        statusIndicator.innerHTML = '🔴 Offline';
+                        statusIndicator.style.color = '#dc3545';
+                        
+                        // Disable input and buttons
+                        if (input) input.disabled = true;
+                        if (sendBtn) sendBtn.disabled = true;
+                        quickBtns.forEach(btnId => {
+                            const btn = document.getElementById(btnId);
+                            if (btn) btn.disabled = true;
+                        });
+                        
+                        // Clear existing messages and show offline message
+                        messagesContainer.innerHTML = '';
+                        addWizModalMessage('The Wiz Agent service is currently offline. Please try again later when the service is available.', 'bot');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking wiz service status:', error);
+                    statusIndicator.innerHTML = '🔴 Offline';
+                    statusIndicator.style.color = '#dc3545';
+                    
+                    // Disable input and buttons
+                    if (input) input.disabled = true;
+                    if (sendBtn) sendBtn.disabled = true;
+                    quickBtns.forEach(btnId => {
+                        const btn = document.getElementById(btnId);
+                        if (btn) btn.disabled = true;
+                    });
+                    
+                    // Clear existing messages and show offline message
+                    messagesContainer.innerHTML = '';
+                    addWizModalMessage('The Wiz Agent service is currently offline. Please try again later when the service is available.', 'bot');
+                });
         }
         
         function closeWizModal() {
@@ -1482,6 +1553,13 @@
             const message = input.value.trim();
             
             if (!message) return;
+            
+            // Check if service is online before sending message
+            const statusIndicator = document.querySelector('.wiz-status-indicator');
+            if (statusIndicator.textContent.includes('Offline')) {
+                addWizModalMessage('The Wiz Agent service is currently offline. Please try again later when the service is available.', 'bot');
+                return;
+            }
             
             // Add user message to chat
             addWizModalMessage(message, 'user');
@@ -1534,6 +1612,13 @@
         }
         
         function askWizModal(message, context) {
+            // Check if service is online before sending message
+            const statusIndicator = document.querySelector('.wiz-status-indicator');
+            if (statusIndicator.textContent.includes('Offline')) {
+                addWizModalMessage('The Wiz Agent service is currently offline. Please try again later when the service is available.', 'bot');
+                return;
+            }
+            
             // Add user message to chat
             addWizModalMessage(message, 'user');
             
@@ -1593,29 +1678,25 @@
                     <span>🦉</span>
                     <span>Wiz - Your AI Assistant</span>
                     <div class="wiz-status-indicator" style="font-size: 11px; margin-top: 2px;">🔄 Checking connection...</div>
+                    <button onclick="checkWizServiceStatus()" class="wiz-refresh-btn" title="Refresh connection status" style="background: none; border: none; cursor: pointer; font-size: 12px; margin-left: 8px; color: #666;">🔄</button>
                 </h3>
                 <button class="wiz-modal-close" onclick="closeWizModal()">×</button>
             </div>
             <div class="wiz-modal-body">
                 <div class="wiz-chat-messages" id="wizModalMessages">
-                    <div class="wiz-message wiz-message-bot">
-                        <div class="wiz-message-avatar">🦉</div>
-                        <div class="wiz-message-content">
-                            <p>Hello! I'm Wiz, your AI assistant for Wiseguy. I can help you with sales tools, audits, and knowledge base management. What would you like to work on today?</p>
-                        </div>
-                    </div>
+                    <!-- Messages will be dynamically added based on service status -->
                 </div>
                 
                 <div class="wiz-chat-input" style="margin-top: 16px;">
-                    <input type="text" id="wizModalInput" placeholder="Ask Wiz anything..." class="wiz-input">
-                    <button onclick="sendWizModalMessage()" class="wiz-send-btn">Send</button>
+                    <input type="text" id="wizModalInput" placeholder="Ask Wiz anything..." class="wiz-input" disabled>
+                    <button onclick="sendWizModalMessage()" class="wiz-send-btn" disabled>Send</button>
                 </div>
                 
                 <div class="wiz-quick-actions" style="margin-top: 16px;">
-                    <button onclick="askWizModal('Help me with RFP generation', 'sales')" class="wiz-quick-btn">📋 RFP Help</button>
-                    <button onclick="askWizModal('Search the knowledge base for SSO', 'knowledge')" class="wiz-quick-btn">🔍 Search KB</button>
-                    <button onclick="askWizModal('Run a JIRA audit', 'audit')" class="wiz-quick-btn">🎫 Audit JIRA</button>
-                    <button onclick="askWizModal('What can you do?', 'general')" class="wiz-quick-btn">❓ Help</button>
+                    <button onclick="askWizModal('Help me with RFP generation', 'sales')" class="wiz-quick-btn" id="rfpBtn" disabled>📋 RFP Help</button>
+                    <button onclick="askWizModal('Search the knowledge base for SSO', 'knowledge')" class="wiz-quick-btn" id="searchBtn" disabled>🔍 Search KB</button>
+                    <button onclick="askWizModal('Run a JIRA audit', 'audit')" class="wiz-quick-btn" id="auditBtn" disabled>🎫 Audit JIRA</button>
+                    <button onclick="askWizModal('What can you do?', 'general')" class="wiz-quick-btn" id="helpBtn" disabled>❓ Help</button>
                 </div>
             </div>
         </div>

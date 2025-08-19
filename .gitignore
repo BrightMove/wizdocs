@@ -326,3 +326,4 @@ cache/
 
 # Environment configuration files
 webapp/config.env 
+wiseguy.code-workspace
