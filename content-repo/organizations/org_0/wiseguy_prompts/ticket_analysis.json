@@ -1,0 +1,13 @@
+{
+  "name": "Ticket Analysis",
+  "template": "Analyze the following {{ticket_type}} ticket for consistency with our documentation and implementation:\n\n{{ticket_content}}\n\nProvide a detailed analysis including:\n1. Documentation gaps\n2. Implementation inconsistencies\n3. Recommended actions",
+  "variables": [
+    "ticket_type",
+    "ticket_content"
+  ],
+  "description": "Standard prompt for analyzing support tickets and feature requests",
+  "org_id": "0",
+  "created_at": "2025-08-18T13:05:05Z",
+  "updated_at": "2025-08-18T13:05:05Z",
+  "usage_count": 0
+}

@@ -1,0 +1,19 @@
+{
+  "organization_id": "91a18fd3-a8bb-43f3-9174-d8af3f76a89f",
+  "name": "Beta CRM",
+  "description": null,
+  "created_at": "2025-08-18T17:19:01Z",
+  "content_sources": [
+    {
+      "name": "docs",
+      "type": "general",
+      "visibility": "private",
+      "sync_strategy": "static",
+      "connector": "file_system_connector",
+      "added_at": "2025-08-18T17:19:01Z"
+    }
+  ],
+  "wiseguy_content": [
+
+  ]
+}

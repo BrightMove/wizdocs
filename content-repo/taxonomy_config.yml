@@ -1,0 +1,173 @@
+# Knowledge Base Taxonomy Configuration
+# This file defines the organizational structure for content repositories
+
+taxonomy:
+  version: "1.0"
+  description: "Organization-based content taxonomy for Wiseguy knowledge base"
+  
+organizations:
+  # Organization 0 - Primary organization (BrightMove)
+  org_0:
+    name: "BrightMove"
+    description: "Primary organization for BrightMove content"
+    cro_org_id: "0"
+    content_sources:
+      - name: "intercom_tickets"
+        type: "specific"
+        visibility: "private"
+        sync_strategy: "dynamic"
+        connector: "intercom_tickets_connector"
+        sync_frequency: "hourly"
+        metadata_retention: true
+      - name: "intercom_help_center"
+        type: "specific"
+        visibility: "public"
+        sync_strategy: "dynamic"
+        connector: "intercom_help_center_connector"
+        sync_frequency: "daily"
+        metadata_retention: true
+      - name: "confluence"
+        type: "specific"
+        visibility: "private"
+        sync_strategy: "dynamic"
+        connector: "confluence_connector"
+        sync_frequency: "daily"
+        metadata_retention: true
+      - name: "jira"
+        type: "specific"
+        visibility: "private"
+        sync_strategy: "dynamic"
+        connector: "jira_connector"
+        sync_frequency: "hourly"
+        metadata_retention: true
+      - name: "github"
+        type: "specific"
+        visibility: "public"
+        sync_strategy: "dynamic"
+        connector: "github_connector"
+        sync_frequency: "daily"
+        metadata_retention: true
+      - name: "website_content"
+        type: "general"
+        visibility: "public"
+        sync_strategy: "static"
+        connector: "web_scraper_connector"
+        sync_frequency: "weekly"
+        metadata_retention: false
+      - name: "documents"
+        type: "general"
+        visibility: "private"
+        sync_strategy: "static"
+        connector: "file_system_connector"
+        sync_frequency: "manual"
+        metadata_retention: true
+    wiseguy_content:
+      - name: "wiseguy_metadata"
+        description: "Wiseguy system metadata and configuration"
+        sync_strategy: "dynamic"
+        sync_frequency: "realtime"
+      - name: "wiseguy_hints"
+        description: "Wiseguy hints and contextual information"
+        sync_strategy: "dynamic"
+        sync_frequency: "realtime"
+      - name: "wiseguy_prompts"
+        description: "Wiseguy prompt templates and configurations"
+        sync_strategy: "dynamic"
+        sync_frequency: "realtime"
+
+content_source_types:
+  general:
+    description: "General content sources without specific connectors"
+    examples: ["documents", "website_content", "presentations", "research"]
+    
+  specific:
+    description: "Content sources with specific sync connectors"
+    examples: ["intercom_tickets", "intercom_help_center", "confluence", "jira", "github"]
+    connectors:
+      intercom_tickets_connector:
+        api_endpoint: "https://api.intercom.io"
+        content_type: "conversations"
+        metadata_fields: ["id", "created_at", "updated_at", "user_id", "conversation_parts"]
+      intercom_help_center_connector:
+        api_endpoint: "https://api.intercom.io"
+        content_type: "articles"
+        metadata_fields: ["id", "title", "body", "author_id", "published_at", "updated_at"]
+      confluence_connector:
+        api_endpoint: "https://company.atlassian.net/wiki/rest/api"
+        content_type: "pages"
+        metadata_fields: ["id", "title", "body", "version", "created", "updated", "space_key"]
+      jira_connector:
+        api_endpoint: "https://company.atlassian.net/rest/api/3"
+        content_type: "issues"
+        metadata_fields: ["key", "summary", "description", "status", "assignee", "created", "updated"]
+      github_connector:
+        api_endpoint: "https://api.github.com"
+        content_type: "repositories"
+        metadata_fields: ["id", "name", "full_name", "description", "created_at", "updated_at"]
+
+sync_strategies:
+  static:
+    description: "Content synced once and not updated automatically"
+    sync_trigger: "manual"
+    update_frequency: "never"
+    
+  dynamic:
+    description: "Content synced periodically and updated automatically"
+    sync_trigger: "scheduled"
+    update_frequency: "configurable"
+
+visibility_levels:
+  public:
+    description: "Content accessible to all organizations"
+    access_control: "open"
+    
+  private:
+    description: "Content accessible only to the owning organization"
+    access_control: "restricted"
+
+wiseguy_content_types:
+  wiseguy_metadata:
+    description: "System metadata, configuration, and operational data"
+    storage_format: "json"
+    update_frequency: "realtime"
+    
+  wiseguy_hints:
+    description: "Contextual hints and guidance for AI analysis"
+    storage_format: "markdown"
+    update_frequency: "realtime"
+    
+  wiseguy_prompts:
+    description: "Prompt templates and AI instruction sets"
+    storage_format: "markdown"
+    update_frequency: "realtime"
+
+# Directory structure template for new organizations
+directory_template:
+  organizations:
+    "org_{cro_org_id}":
+      content_sources:
+        general:
+          public:
+            static: []
+            dynamic: []
+          private:
+            static: []
+            dynamic: []
+        specific:
+          public:
+            dynamic:
+              intercom_tickets: []
+              intercom_help_center: []
+              confluence: []
+              jira: []
+              github: []
+          private:
+            dynamic:
+              intercom_tickets: []
+              intercom_help_center: []
+              confluence: []
+              jira: []
+              github: []
+      wiseguy_metadata: []
+      wiseguy_hints: []
+      wiseguy_prompts: []

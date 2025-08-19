@@ -150,7 +150,7 @@ class RelationshipAnalyzer
       by_type: {},
       by_category: {},
       conflicts: detect_relationship_conflicts.length,
-      last_updated: Time.now.iso8601
+      last_updated: Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
     }
     
     # Count by relationship type
@@ -265,7 +265,7 @@ class RelationshipAnalyzer
       to_category: to_content[:category],
       type: relationship_type,
       strength: strength,
-      created_at: Time.now.iso8601,
+      created_at: Time.now.strftime("%Y-%m-%dT%H:%M:%SZ"),
       metadata: {
         relationship_type: relationship_type,
         strength_threshold: @categories[:relationships][relationship_type][:strength_threshold]

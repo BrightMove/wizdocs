@@ -1,0 +1,9 @@
+{
+  "name": "Content Consistency",
+  "content": "Ensure that documentation, code comments, and user-facing content are consistent across all platforms.",
+  "category": "quality",
+  "priority": "high",
+  "org_id": "0",
+  "created_at": "2025-08-18T13:05:05Z",
+  "updated_at": "2025-08-18T13:05:05Z"
+}

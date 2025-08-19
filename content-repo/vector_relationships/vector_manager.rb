@@ -26,7 +26,7 @@ class VectorRelationshipManager
   # Content Management Methods
   def add_content(content:, source:, category:, metadata: {})
     content_id = generate_content_id
-    timestamp = Time.now.iso8601
+    timestamp = Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
     
     content_data = {
       id: content_id,
@@ -69,7 +69,7 @@ class VectorRelationshipManager
     # Update fields
     existing[:content] = content if content
     existing[:metadata] = existing[:metadata].merge(metadata) if metadata
-    existing[:metadata][:updated_at] = Time.now.iso8601
+    existing[:metadata][:updated_at] = Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
     existing[:metadata][:vector_updated_at] = nil
     
     # Store updated content
@@ -312,7 +312,7 @@ class VectorRelationshipManager
       embeddings: check_embeddings_health,
       relationships: check_relationships_health,
       content_count: get_content_count,
-      last_updated: Time.now.iso8601
+      last_updated: Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
     }
   end
 
@@ -323,7 +323,7 @@ class VectorRelationshipManager
       by_source: {},
       relationships: get_relationship_count,
       embeddings: get_embedding_count,
-      last_updated: Time.now.iso8601
+      last_updated: Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
     }
     
     # Count by category
@@ -448,7 +448,7 @@ class VectorRelationshipManager
     when 'url'
       "https://example.com/#{content_data[:id]}"
     when 'last_updated', 'created_date', 'last_modified'
-      Time.now.iso8601
+      Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
     when 'author'
       'System'
     when 'version'
@@ -494,7 +494,7 @@ class VectorRelationshipManager
     @embeddings.store_embedding(content_data[:id], embedding)
     
     # Update metadata
-    content_data[:metadata][:vector_updated_at] = Time.now.iso8601
+    content_data[:metadata][:vector_updated_at] = Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
     store_content(content_data)
   end
 

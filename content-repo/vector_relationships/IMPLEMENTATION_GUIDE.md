@@ -168,7 +168,7 @@ platform:
     base_url: "https://api.github.com"
     token: "${GITHUB_TOKEN}"
     org: "brightmove"
-    repos: ["brightmove-ats", "brightmove-sync", "admin-ui"]
+    repos: ["brightmove-ats", "brightmove-sync", "webapp"]
     content_types: ["code", "readme", "docs", "issues", "pull_requests"]
     file_extensions: [".md", ".yml", ".yaml", ".json", ".rb", ".js", ".ts", ".java"]
     update_frequency: "daily"

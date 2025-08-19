@@ -1,0 +1,11 @@
+{
+  "name": "test_confluence",
+  "type": "specific",
+  "visibility": "private",
+  "sync_strategy": "dynamic",
+  "connector": "confluence_connector",
+  "created_at": "2025-08-18T13:33:48Z",
+  "last_sync": null,
+  "sync_status": "pending",
+  "content_count": 0
+}

@@ -1,0 +1,11 @@
+{
+  "name": "sow_projects",
+  "type": "general",
+  "visibility": "private",
+  "sync_strategy": "static",
+  "connector": "file_system_connector",
+  "created_at": "2025-08-18T12:42:11Z",
+  "last_sync": null,
+  "sync_status": "pending",
+  "content_count": 0
+}

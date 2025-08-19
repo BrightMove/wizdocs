@@ -135,7 +135,7 @@ class ContentCategorizer
       categories: {},
       sources: {},
       indicators: {},
-      last_updated: Time.now.iso8601
+      last_updated: Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
     }
     
     # Category statistics
@@ -181,7 +181,7 @@ class ContentCategorizer
     enhanced = metadata.dup
     
     # Add categorization metadata
-    enhanced[:categorized_at] = Time.now.iso8601
+    enhanced[:categorized_at] = Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
     enhanced[:category] = category
     enhanced[:source] = source
     

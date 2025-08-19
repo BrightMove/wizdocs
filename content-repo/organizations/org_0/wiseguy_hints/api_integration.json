@@ -1,0 +1,9 @@
+{
+  "name": "API Integration",
+  "content": "When integrating with external APIs, always include proper error handling and rate limiting.",
+  "category": "development",
+  "priority": "high",
+  "org_id": "0",
+  "created_at": "2025-08-18T13:05:05Z",
+  "updated_at": "2025-08-18T13:05:05Z"
+}

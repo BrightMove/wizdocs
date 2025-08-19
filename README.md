@@ -3,7 +3,7 @@
 ## Table of Contents
 - [Overview](#overview)
 - [Architecture](#architecture)
-- [Admin UI](#admin-ui)
+- [Web App](#web-app)
 - [Sales Tools](#sales-tools)
 - [Usage](#usage)
 - [Veracity Audits](#veracity-audits)
@@ -22,7 +22,7 @@ The platform helps ensure that customer support tickets, project management tick
 
 The Wiseguy system consists of several key components:
 
-- **Admin UI**: A Ruby Sinatra web application for managing audits and analyzing content
+- **Web App**: A Ruby Sinatra web application for managing audits and analyzing content
 - **Wiz Agent**: A Python microservice to connect to Langchain+AWS Bedrock for AI services
 - **Sales Tools**: AI-powered tools for RFP responses and SOW generation
 - **Sync Services**: Integration with Atlassian Jira, Confluence, Intercom, and GitHub
@@ -30,9 +30,9 @@ The Wiseguy system consists of several key components:
 - **Veracity Audits**: Structured audit processes for specific features or areas
 - **Local Caching**: File-based caching system for performance and offline access
 
-## Admin UI
+## Web App
 
-The Admin UI is a Ruby Sinatra application located in the `admin-ui/` subdirectory. It provides a comprehensive web interface for:
+The Web App is a Ruby Sinatra application located in the `webapp/` subdirectory. It provides a comprehensive web interface for:
 
 ### Core Features
 - **Dashboard**: Overview of all system components and quick statistics
@@ -101,10 +101,10 @@ sales-tools/
 
 ## Usage
 
-### Starting the Admin UI
+### Starting the Web App
 
 ```bash
-cd admin-ui
+cd webapp
 PORT=3000 ruby app.rb
 ```
 
@@ -112,7 +112,7 @@ The application will be available at `http://localhost:3000`
 
 ### Configuration
 
-Create a `config.env` file in the `admin-ui/` directory with your API credentials:
+Create a `config.env` file in the `webapp/` directory with your API credentials:
 
 ```env
 JIRA_SITE=https://your-domain.atlassian.net
@@ -190,14 +190,21 @@ The system analyzes two major ticket classifications:
 
 ```
 wizdocs/
-├── admin-ui/           # Main web application
+├── webapp/            # Main web application
 │   ├── app.rb         # Sinatra application
 │   ├── views/         # ERB templates
 │   ├── cache/         # Local data cache
 │   └── config.env     # API configuration
-├── sales-tools/        # AI-powered sales automation tools
-│   ├── rfp-machine/   # RFP response automation
-│   └── sow-machine/   # SOW generation automation
+├── content-repo/       # Knowledge base taxonomy system
+│   ├── docs/          # 📚 Comprehensive documentation
+│   ├── organizations/ # Organization-based content repositories
+│   │   └── org_0/     # BrightMove organization
+│   │       └── content_sources/general/private/static/
+│   │           ├── rfp_projects/      # RFP response projects
+│   │           ├── sow_projects/      # SOW generation projects
+│   │           └── proposal_projects/ # Proposal projects
+│   ├── taxonomy_config.yml # Taxonomy configuration
+│   └── *.rb           # Management classes and scripts
 ├── audits/            # Veracity audit projects
 │   ├── audit-name/
 │   │   ├── input/     # Audit input materials
@@ -228,7 +235,7 @@ wizdocs/
 
 2. **Install Ruby dependencies**:
    ```bash
-   cd admin-ui
+   cd webapp
    bundle install
    ```
 
@@ -250,11 +257,11 @@ The Admin UI requires API tokens for:
 - **Confluence**: For wiki content analysis
 - **Intercom**: For customer support data
 
-Configure these in `admin-ui/config.env` following the example format.
+Configure these in `webapp/config.env` following the example format.
 
 ### First Run
 
-1. Start the Admin UI application
+1. Start the Web App application
 2. Navigate to `http://localhost:3000`
 3. Configure your API credentials in Settings
 4. Sync your data using the dashboard options
@@ -272,4 +279,4 @@ When contributing to veracity audits:
 
 ## Support
 
-For issues with the Admin UI or audit processes, check the application logs and ensure all API credentials are properly configured.
+For issues with the Web App or audit processes, check the application logs and ensure all API credentials are properly configured.

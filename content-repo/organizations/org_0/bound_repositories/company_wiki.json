@@ -1,0 +1,17 @@
+{
+  "repo_id": "company_wiki",
+  "repo_name": "company-wiki",
+  "repo_type": "confluence",
+  "repo_url": "https://brightmove.atlassian.net/wiki",
+  "repo_branch": "latest",
+  "repo_access": "token",
+  "repo_description": "Company knowledge base and documentation",
+  "auto_sync": true,
+  "sync_history": true,
+  "sync_metadata": true,
+  "sync_attachments": true,
+  "bound_at": "2025-08-18T13:42:56Z",
+  "last_sync": null,
+  "sync_status": "pending",
+  "content_count": 0
+}

@@ -1,0 +1,438 @@
+<div class="container">
+    <h1 class="section-title">Settings & Configuration</h1>
+    <p class="section-subtitle">Configure and monitor all integrated services and API connections</p>
+
+    <!-- Setup Instructions -->
+    <div class="card" style="margin-bottom: 40px;">
+        <div class="card-header">
+            <div class="card-icon primary">📋</div>
+            <h3 class="card-title">Setup Instructions</h3>
+        </div>
+        <div class="card-description">
+            <ol style="padding-left: 20px; line-height: 1.8;">
+                <li><strong>Redis Setup:</strong> Install and start Redis server (brew install redis && brew services start redis)</li>
+                <li><strong>JIRA Setup:</strong> Create an API token in your Atlassian account and configure the JIRA site URL</li>
+                <li><strong>Intercom Setup:</strong> Generate an access token from your Intercom developer settings</li>
+                <li><strong>GitHub Setup:</strong> Create a personal access token in your GitHub account settings</li>
+                <li><strong>Configuration:</strong> Copy <code>config.env.example</code> to <code>config.env</code> and fill in your credentials</li>
+                <li><strong>Test:</strong> Use the test connection buttons below to verify your API access</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div id="alerts"></div>
+    
+    <!-- Taxonomy Organization Information -->
+    <% if defined?(@taxonomy_error) && @taxonomy_error %>
+    <div class="card" style="margin-bottom: 24px; border-color: #dc3545;">
+        <div class="card-header">
+            <div class="card-icon warning">⚠️</div>
+            <h3 class="card-title">Taxonomy Error</h3>
+        </div>
+        <div class="card-description">
+            <strong>Error:</strong> <%= @taxonomy_error %>
+        </div>
+    </div>
+    <% end %>
+    
+    <!-- Organization management has been moved to the CRM Organizations tab -->
+    <div class="card" style="margin-bottom: 40px;">
+        <div class="card-header">
+            <div class="card-icon info">ℹ️</div>
+            <h3 class="card-title">Organization Management</h3>
+        </div>
+        <div class="card-description">
+            Organization management has been moved to the <strong>CRM → Organizations</strong> tab for better integration with the CRM system. 
+            You can now manage all organizations, their content sources, and bind content repositories from a single location.
+        </div>
+    </div>
+    
+    <!-- Settings Grid -->
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-bottom: 40px;">
+        <!-- JIRA Configuration -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon <%= @jira_connected ? 'success' : 'warning' %>">🎫</div>
+                <div>
+                    <h3 class="card-title">JIRA Configuration</h3>
+                    <div class="connection-status <%= @jira_connected ? 'connected' : 'disconnected' %>" style="margin-top: 8px;">
+                        <% if @jira_connected %>
+                            ✓ Connected to JIRA
+                        <% else %>
+                            ✗ Not connected to JIRA
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+            
+            <form id="jiraForm">
+                <div class="form-group">
+                    <label for="jira_site">JIRA Site URL</label>
+                    <input type="url" id="jira_site" name="jira_site" class="form-input" placeholder="https://your-domain.atlassian.net" value="<%= ENV['JIRA_SITE'] || '' %>">
+                    <div class="help-text">Your JIRA Cloud instance URL</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="jira_username">Email Address</label>
+                    <input type="email" id="jira_username" name="jira_username" class="form-input" placeholder="your-email@domain.com" value="<%= ENV['JIRA_USERNAME'] || '' %>">
+                    <div class="help-text">The email address associated with your JIRA account</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="jira_api_token">API Token</label>
+                    <input type="password" id="jira_api_token" name="jira_api_token" class="form-input" placeholder="Your JIRA API token">
+                    <div class="help-text">Generate this in your Atlassian account settings</div>
+                </div>
+                
+                <div class="test-connection">
+                    <button type="button" onclick="testJiraConnection()" class="btn primary">Test Connection</button>
+                    <button type="button" onclick="saveJiraConfig()" class="btn success">Save Configuration</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Intercom Configuration -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon <%= @intercom_connected ? 'success' : 'warning' %>">💬</div>
+                <div>
+                    <h3 class="card-title">Intercom Configuration</h3>
+                    <div class="connection-status <%= @intercom_connected ? 'connected' : 'disconnected' %>" style="margin-top: 8px;">
+                        <% if @intercom_connected %>
+                            ✓ Connected to Intercom
+                        <% else %>
+                            ✗ Not connected to Intercom
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+            
+            <form id="intercomForm">
+                <div class="form-group">
+                    <label for="intercom_access_token">Access Token</label>
+                    <input type="password" id="intercom_access_token" name="intercom_access_token" class="form-input" placeholder="Your Intercom access token">
+                    <div class="help-text">Generate this in your Intercom developer settings</div>
+                </div>
+                
+                <div class="test-connection">
+                    <button type="button" onclick="testIntercomConnection()" class="btn primary">Test Connection</button>
+                    <button type="button" onclick="saveIntercomConfig()" class="btn success">Save Configuration</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Redis Configuration -->
+    <div class="card" style="margin-bottom: 40px;">
+        <div class="card-header">
+            <div class="card-icon <%= @redis_connected ? 'success' : 'warning' %>">🗄️</div>
+            <div>
+                <h3 class="card-title">Redis Configuration</h3>
+                <div class="connection-status <%= @redis_connected ? 'connected' : 'disconnected' %>" style="margin-top: 8px;">
+                    <% if @redis_connected %>
+                        ✓ Connected to Redis
+                        <% if @redis_info %>
+                            <br><small>Database size: <%= @redis_info[:dbsize] %> keys</small>
+                        <% end %>
+                    <% else %>
+                        ✗ Not connected to Redis
+                        <% if @redis_error %>
+                            <br><small>Error: <%= @redis_error %></small>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        
+        <form id="redisForm">
+            <div class="form-group">
+                <label for="redis_url">Redis URL</label>
+                <input type="text" id="redis_url" name="redis_url" class="form-input" placeholder="redis://localhost:6379" value="<%= ENV['REDIS_URL'] || 'redis://localhost:6379' %>">
+                <div class="help-text">Redis connection URL (default: redis://localhost:6379)</div>
+            </div>
+            
+            <div class="test-connection">
+                <button type="button" onclick="testRedisConnection()" class="btn primary">Test Connection</button>
+                <button type="button" onclick="saveRedisConfig()" class="btn success">Save Configuration</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- GitHub Configuration -->
+    <div class="card" style="margin-bottom: 40px;">
+        <div class="card-header">
+            <div class="card-icon <%= @github_connected ? 'success' : 'warning' %>">🐙</div>
+            <div>
+                <h3 class="card-title">GitHub Configuration</h3>
+                <div class="connection-status <%= @github_connected ? 'connected' : 'disconnected' %>" style="margin-top: 8px;">
+                    <% if @github_connected %>
+                        ✓ GitHub token configured
+                    <% else %>
+                        ✗ GitHub token not configured
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        
+        <form id="githubForm">
+            <div class="form-group">
+                <label for="github_token">GitHub Personal Access Token</label>
+                <input type="password" id="github_token" name="github_token" class="form-input" placeholder="Your GitHub personal access token">
+                <div class="help-text">Create this in your GitHub account settings under Developer settings > Personal access tokens</div>
+            </div>
+            
+            <div class="test-connection">
+                <button type="button" onclick="testGitHubConnection()" class="btn primary">Test Connection</button>
+                <button type="button" onclick="saveGitHubConfig()" class="btn success">Save Configuration</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showAlert(message, type) {
+        const alertsDiv = document.getElementById('alerts');
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type}`;
+        alert.style.cssText = `
+            padding: 16px;
+            margin-bottom: 16px;
+            border-radius: 12px;
+            font-weight: 500;
+            border: 1px solid;
+            ${type === 'success' ? 'background: var(--accent-success); color: white; border-color: var(--accent-success);' : ''}
+            ${type === 'error' ? 'background: var(--accent-danger); color: white; border-color: var(--accent-danger);' : ''}
+            ${type === 'warning' ? 'background: var(--accent-warning); color: white; border-color: var(--accent-warning);' : ''}
+        `;
+        alert.textContent = message;
+        alertsDiv.appendChild(alert);
+        
+        setTimeout(() => {
+            alert.remove();
+        }, 5000);
+    }
+    
+    function testJiraConnection() {
+        const formData = new FormData(document.getElementById('jiraForm'));
+        const config = {
+            jira_site: formData.get('jira_site'),
+            jira_username: formData.get('jira_username'),
+            jira_api_token: formData.get('jira_api_token')
+        };
+        
+        showAlert('Testing JIRA connection...', 'warning');
+        
+        fetch('/api/settings/test-jira', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(config)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showAlert('JIRA connection successful!', 'success');
+            } else {
+                showAlert(`JIRA connection failed: ${data.message}`, 'error');
+            }
+        })
+        .catch(error => {
+            showAlert(`Error testing JIRA connection: ${error.message}`, 'error');
+        });
+    }
+    
+    function saveJiraConfig() {
+        const formData = new FormData(document.getElementById('jiraForm'));
+        const config = {
+            jira_site: formData.get('jira_site'),
+            jira_username: formData.get('jira_username'),
+            jira_api_token: formData.get('jira_api_token')
+        };
+        
+        fetch('/api/settings/save-jira', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(config)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showAlert('JIRA configuration saved successfully!', 'success');
+            } else {
+                showAlert(`Failed to save JIRA config: ${data.message}`, 'error');
+            }
+        })
+        .catch(error => {
+            showAlert(`Error saving JIRA config: ${error.message}`, 'error');
+        });
+    }
+    
+    function testIntercomConnection() {
+        const formData = new FormData(document.getElementById('intercomForm'));
+        const config = {
+            intercom_access_token: formData.get('intercom_access_token')
+        };
+        
+        showAlert('Testing Intercom connection...', 'warning');
+        
+        fetch('/api/settings/test-intercom', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(config)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showAlert('Intercom connection successful!', 'success');
+            } else {
+                showAlert(`Intercom connection failed: ${data.message}`, 'error');
+            }
+        })
+        .catch(error => {
+            showAlert(`Error testing Intercom connection: ${error.message}`, 'error');
+        });
+    }
+    
+    function saveIntercomConfig() {
+        const formData = new FormData(document.getElementById('intercomForm'));
+        const config = {
+            intercom_access_token: formData.get('intercom_access_token')
+        };
+        
+        fetch('/api/settings/save-intercom', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(config)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showAlert('Intercom configuration saved successfully!', 'success');
+            } else {
+                showAlert(`Failed to save Intercom config: ${data.message}`, 'error');
+            }
+        })
+        .catch(error => {
+            showAlert(`Error saving Intercom config: ${error.message}`, 'error');
+        });
+    }
+    
+    function testRedisConnection() {
+        const redisUrl = document.getElementById('redis_url').value;
+        
+        if (!redisUrl) {
+            showAlert('Please enter a Redis URL before testing', 'error');
+            return;
+        }
+        
+        showAlert('Testing Redis connection...', 'warning');
+        
+        fetch('/api/settings/test-redis', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ redis_url: redisUrl })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showAlert(`Redis connection successful! Database size: ${data.info.dbsize} keys`, 'success');
+            } else {
+                showAlert(`Redis connection failed: ${data.message}`, 'error');
+            }
+        })
+        .catch(error => {
+            showAlert(`Error testing Redis connection: ${error.message}`, 'error');
+        });
+    }
+    
+    function saveRedisConfig() {
+        const formData = new FormData(document.getElementById('redisForm'));
+        const config = {
+            redis_url: formData.get('redis_url')
+        };
+        
+        fetch('/api/settings/save-redis', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(config)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showAlert(data.message, 'success');
+            } else {
+                showAlert(`Failed to save Redis config: ${data.message}`, 'error');
+            }
+        })
+        .catch(error => {
+            showAlert(`Error saving Redis config: ${error.message}`, 'error');
+        });
+    }
+    
+    function testGitHubConnection() {
+        const token = document.getElementById('github_token').value;
+        
+        if (!token) {
+            showAlert('Please enter a GitHub token before testing', 'error');
+            return;
+        }
+        
+        showAlert('Testing GitHub connection...', 'warning');
+        
+        fetch('/api/settings/test-github', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ github_token: token })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showAlert(`GitHub connection successful! Connected as: ${data.user.login}`, 'success');
+            } else {
+                showAlert(`GitHub connection failed: ${data.message}`, 'error');
+            }
+        })
+        .catch(error => {
+            showAlert(`Error testing GitHub connection: ${error.message}`, 'error');
+        });
+    }
+    
+    function saveGitHubConfig() {
+        const formData = new FormData(document.getElementById('githubForm'));
+        const config = {
+            github_token: formData.get('github_token')
+        };
+        
+        fetch('/api/settings/save-github', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(config)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showAlert(data.message, 'success');
+            } else {
+                showAlert(`Failed to save GitHub config: ${data.message}`, 'error');
+            }
+        })
+        .catch(error => {
+            showAlert(`Error saving GitHub config: ${error.message}`, 'error');
+        });
+    }
+</script>

@@ -357,7 +357,7 @@ class WizDocsVectorIntegration
   end
 end
 
-# Example usage in WizDocs admin-ui/app.rb
+# Example usage in WizDocs webapp/app.rb
 if __FILE__ == $0
   puts "🔗 WizDocs Vector Integration"
   puts "This module provides vector relationship analysis for WizDocs"

@@ -262,7 +262,7 @@ class VectorEmbeddings
       model: @config[:embeddings][:model],
       dimensions: @config[:global][:vector_dimensions],
       similarity_threshold: @config[:vector_similarity][:cosine_threshold],
-      last_updated: Time.now.iso8601
+      last_updated: Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
     }
   end
 

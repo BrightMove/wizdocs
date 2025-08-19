@@ -1,0 +1,12 @@
+{
+  "name": "Content Verification",
+  "template": "Verify the accuracy of the following content against our current implementation:\n\n{{content}}\n\nCheck for:\n1. Outdated information\n2. Missing features\n3. Inconsistent terminology\n4. Broken references",
+  "variables": [
+    "content"
+  ],
+  "description": "Prompt for verifying content accuracy and consistency",
+  "org_id": "0",
+  "created_at": "2025-08-18T13:05:05Z",
+  "updated_at": "2025-08-18T13:05:05Z",
+  "usage_count": 0
+}

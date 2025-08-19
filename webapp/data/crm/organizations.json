@@ -1,0 +1,106 @@
+[
+  {
+    "id": "a2bc20de-b2cd-403e-9258-aa594eeae468",
+    "name": "Colorado University Updated",
+    "industry": "Education",
+    "organization_types": [
+      "Customer"
+    ],
+    "website": "",
+    "address": "",
+    "phone": "",
+    "email": "",
+    "annual_revenue": "",
+    "employee_count": "",
+    "notes": "",
+    "created_at": "2025-08-18T08:59:46-04:00",
+    "updated_at": "2025-08-18T16:58:53-04:00"
+  },
+  {
+    "id": "32327de4-9887-4e68-96fa-7b9c65c254ee",
+    "name": "City of Bowling Green",
+    "industry": "Government",
+    "organization_types": [
+      "Customer"
+    ],
+    "website": "",
+    "address": "",
+    "phone": "",
+    "email": "",
+    "annual_revenue": "",
+    "employee_count": "",
+    "notes": "",
+    "created_at": "2025-08-18T09:00:07-04:00",
+    "updated_at": "2025-08-18T09:00:07-04:00"
+  },
+  {
+    "id": "47ac13ad-807f-4c02-acd0-d4e5186dc405",
+    "name": "Inovium",
+    "industry": "Consultant",
+    "organization_types": [
+      "Partner/Reseller"
+    ],
+    "website": "",
+    "address": "",
+    "phone": "",
+    "email": "",
+    "annual_revenue": "",
+    "employee_count": "",
+    "notes": "",
+    "created_at": "2025-08-18T16:56:28-04:00",
+    "updated_at": "2025-08-18T17:12:49-04:00"
+  },
+  {
+    "id": "33787769-833f-4c68-a96c-5cd105348d7f",
+    "name": "EG Workforce Solutions",
+    "industry": "Human Resources",
+    "organization_types": [
+      "Customer",
+      "Partner/Reseller"
+    ],
+    "website": "https://egnow.com",
+    "address": "",
+    "phone": "",
+    "email": "",
+    "annual_revenue": "",
+    "employee_count": "",
+    "notes": "",
+    "created_at": "2025-08-18T17:03:46-04:00",
+    "updated_at": "2025-08-18T17:09:07-04:00"
+  },
+  {
+    "id": "b3652ecb-c157-422c-89d6-a9f19e96cabc",
+    "name": "Acme CRM",
+    "industry": "Manufacturing",
+    "organization_types": [
+      "Customer"
+    ],
+    "website": null,
+    "address": null,
+    "phone": null,
+    "email": null,
+    "annual_revenue": null,
+    "employee_count": null,
+    "notes": null,
+    "created_at": "2025-08-18T17:18:54-04:00",
+    "updated_at": "2025-08-18T17:18:54-04:00"
+  },
+  {
+    "id": "91a18fd3-a8bb-43f3-9174-d8af3f76a89f",
+    "name": "Beta CRM",
+    "industry": "Tech",
+    "organization_types": [
+      "Customer",
+      "Partner/Reseller"
+    ],
+    "website": null,
+    "address": null,
+    "phone": null,
+    "email": null,
+    "annual_revenue": null,
+    "employee_count": null,
+    "notes": null,
+    "created_at": "2025-08-18T17:19:00-04:00",
+    "updated_at": "2025-08-18T17:19:00-04:00"
+  }
+]

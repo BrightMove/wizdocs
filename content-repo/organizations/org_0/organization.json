@@ -1,0 +1,164 @@
+{
+  "organization_id": "0",
+  "name": "BrightMove",
+  "description": "Main company for Wiseguy",
+  "created_at": "2025-08-18T12:30:36Z",
+  "content_sources": [
+    {
+      "name": "intercom_tickets",
+      "type": "specific",
+      "visibility": "private",
+      "sync_strategy": "dynamic",
+      "connector": "intercom_tickets_connector",
+      "added_at": "2025-08-18T12:30:36Z"
+    },
+    {
+      "name": "intercom_help_center",
+      "type": "specific",
+      "visibility": "public",
+      "sync_strategy": "dynamic",
+      "connector": "intercom_help_center_connector",
+      "added_at": "2025-08-18T12:30:36Z"
+    },
+    {
+      "name": "confluence",
+      "type": "specific",
+      "visibility": "private",
+      "sync_strategy": "dynamic",
+      "connector": "confluence_connector",
+      "added_at": "2025-08-18T12:30:36Z"
+    },
+    {
+      "name": "jira",
+      "type": "specific",
+      "visibility": "private",
+      "sync_strategy": "dynamic",
+      "connector": "jira_connector",
+      "added_at": "2025-08-18T12:30:36Z"
+    },
+    {
+      "name": "github",
+      "type": "specific",
+      "visibility": "public",
+      "sync_strategy": "dynamic",
+      "connector": "github_connector",
+      "added_at": "2025-08-18T12:30:36Z"
+    },
+    {
+      "name": "website_content",
+      "type": "general",
+      "visibility": "public",
+      "sync_strategy": "static",
+      "connector": "web_scraper_connector",
+      "added_at": "2025-08-18T12:30:36Z"
+    },
+    {
+      "name": "documents",
+      "type": "general",
+      "visibility": "private",
+      "sync_strategy": "static",
+      "connector": "file_system_connector",
+      "added_at": "2025-08-18T12:30:36Z"
+    },
+    {
+      "name": "rfp_projects",
+      "type": "general",
+      "visibility": "private",
+      "sync_strategy": "static",
+      "connector": "file_system_connector",
+      "added_at": "2025-08-18T12:42:11Z"
+    },
+    {
+      "name": "sow_projects",
+      "type": "general",
+      "visibility": "private",
+      "sync_strategy": "static",
+      "connector": "file_system_connector",
+      "added_at": "2025-08-18T12:42:11Z"
+    },
+    {
+      "name": "proposal_projects",
+      "type": "general",
+      "visibility": "private",
+      "sync_strategy": "static",
+      "connector": "file_system_connector",
+      "added_at": "2025-08-18T12:42:11Z"
+    },
+    {
+      "name": "intercom_tickets",
+      "type": "specific",
+      "visibility": "private",
+      "sync_strategy": "dynamic",
+      "connector": "intercom_tickets_connector",
+      "added_at": "2025-08-18T13:05:05Z"
+    },
+    {
+      "name": "intercom_help_center",
+      "type": "specific",
+      "visibility": "public",
+      "sync_strategy": "dynamic",
+      "connector": "intercom_help_center_connector",
+      "added_at": "2025-08-18T13:05:05Z"
+    },
+    {
+      "name": "confluence",
+      "type": "specific",
+      "visibility": "private",
+      "sync_strategy": "dynamic",
+      "connector": "confluence_connector",
+      "added_at": "2025-08-18T13:05:05Z"
+    },
+    {
+      "name": "jira",
+      "type": "specific",
+      "visibility": "private",
+      "sync_strategy": "dynamic",
+      "connector": "jira_connector",
+      "added_at": "2025-08-18T13:05:05Z"
+    },
+    {
+      "name": "github",
+      "type": "specific",
+      "visibility": "public",
+      "sync_strategy": "dynamic",
+      "connector": "github_connector",
+      "added_at": "2025-08-18T13:05:05Z"
+    },
+    {
+      "name": "website_content",
+      "type": "general",
+      "visibility": "public",
+      "sync_strategy": "static",
+      "connector": "web_scraper_connector",
+      "added_at": "2025-08-18T13:05:05Z"
+    },
+    {
+      "name": "documents",
+      "type": "general",
+      "visibility": "private",
+      "sync_strategy": "static",
+      "connector": "file_system_connector",
+      "added_at": "2025-08-18T13:05:05Z"
+    },
+    {
+      "name": "test_confluence",
+      "type": "specific",
+      "visibility": "private",
+      "sync_strategy": "dynamic",
+      "connector": "confluence_connector",
+      "added_at": "2025-08-18T13:33:48Z"
+    },
+    {
+      "name": "test_jira_api",
+      "type": "specific",
+      "visibility": "private",
+      "sync_strategy": "dynamic",
+      "connector": "jira_connector",
+      "added_at": "2025-08-18T13:34:38Z"
+    }
+  ],
+  "wiseguy_content": [
+
+  ],
+  "updated_at": "2025-08-18T13:52:27Z"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Company Homepage",
+  "type": "general",
+  "visibility": "public",
+  "sync_strategy": "dynamic",
+  "connector": "file_system_connector",
+  "url": "https://www.inovium.com",
+  "description": "Company website",
+  "created_at": "2025-08-18T17:21:24Z",
+  "updated_at": "2025-08-18T17:21:48Z",
+  "last_sync": null,
+  "sync_status": "pending",
+  "content_count": 0
+}
