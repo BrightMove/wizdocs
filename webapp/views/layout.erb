@@ -364,10 +364,27 @@
                             if (btn) btn.disabled = false;
                         });
                         
-                        // Show welcome message if no messages exist
-                        if (messagesContainer.children.length === 0) {
-                            addWizModalMessage('Hello! I\'m Wiz, your AI assistant for Wiseguy. I can help you with sales tools, audits, and knowledge base management. What would you like to work on today?', 'bot');
-                        }
+                        // Clear existing messages and show personalized introduction
+                        messagesContainer.innerHTML = '';
+                        
+                        // Fetch agent type information and show personalized introduction
+                        fetch('/api/wiz/agent-type')
+                            .then(response => response.json())
+                            .then(agentData => {
+                                if (agentData.success && agentData.agent_type) {
+                                    const agentType = agentData.agent_type;
+                                                                            const introduction = `Hello! I'm Wiz, your ${agentType.name} for Wiseguy. ${agentType.description} What would you like to work on today?`;
+                                    addWizModalMessage(introduction, 'bot');
+                                } else {
+                                    // Fallback to generic message
+                                    addWizModalMessage('Hello! I\'m Wiz, your AI assistant for Wiseguy. I can help you with sales tools, audits, and knowledge base management. What would you like to work on today?', 'bot');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error fetching agent type:', error);
+                                // Fallback to generic message
+                                addWizModalMessage('Hello! I\'m Wiz, your AI assistant for Wiseguy. I can help you with sales tools, audits, and knowledge base management. What would you like to work on today?', 'bot');
+                            });
                     } else {
                         // Service is offline
                         statusIndicator.innerHTML = '🔴 Offline';

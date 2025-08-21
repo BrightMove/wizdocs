@@ -3234,6 +3234,52 @@ helpers do
     end.to_json
   end
 
+  # Wiz Agent Type Information
+  get '/api/wiz/agent-type' do
+    content_type :json
+    
+    begin
+      require 'net/http'
+      require 'uri'
+      
+      uri = URI('http://localhost:10001/admin/api/agent-types/current')
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.open_timeout = 5
+      http.read_timeout = 10
+      
+      request = Net::HTTP::Get.new(uri)
+      response = http.request(request)
+      
+      if response.code == '200'
+        result = JSON.parse(response.body)
+        {
+          success: true,
+          agent_type: result
+        }
+      else
+        {
+          success: false,
+          error: "HTTP #{response.code}",
+          agent_type: {
+            "id": "default",
+            "name": "Default",
+            "description": "Default agent with access to all tools and minimal session context requirements"
+          }
+        }
+      end
+    rescue => e
+      {
+        success: false,
+        error: e.message,
+        agent_type: {
+          "id": "default",
+          "name": "Default",
+          "description": "Default agent with access to all tools and minimal session context requirements"
+        }
+      }
+    end.to_json
+  end
+
   post '/api/knowledge-base/sync' do
     content_type :json
     results = @knowledge_base_manager.sync_all_content_sources
